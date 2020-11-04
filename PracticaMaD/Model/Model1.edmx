@@ -1,0 +1,961 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Es.Udc.DotNet.PracticaMaD.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="categoryId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Category_Product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="productId" Type="bigint" Nullable="false" />
+          <Property Name="categoryId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="bigint" Nullable="false" />
+          <Property Name="productId" Type="bigint" Nullable="false" />
+          <Property Name="text" Type="varchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CreditCard">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="creditCardNumber" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="cvv" Type="smallint" Nullable="false" />
+          <Property Name="expirationDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CreditCard_User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="bigint" Nullable="false" />
+          <Property Name="creditCardId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Label">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lab" Type="varchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Label_Comment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="commentId" Type="bigint" Nullable="false" />
+          <Property Name="labId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="country" Type="varchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order_Table">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="postalAddress" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="orderDate" Type="date" Nullable="false" />
+          <Property Name="totalPrice" Type="decimal" Precision="9" Scale="5" Nullable="false" />
+          <Property Name="userId" Type="bigint" Nullable="false" />
+          <Property Name="creditCardId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderLine">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="quantity" Type="smallint" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="9" Scale="5" Nullable="false" />
+          <Property Name="productId" Type="bigint" Nullable="false" />
+          <Property Name="orderId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_name" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="9" Scale="5" Nullable="false" />
+          <Property Name="releaseDate" Type="date" Nullable="false" />
+          <Property Name="stock" Type="int" Nullable="false" />
+          <Property Name="categoryId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User_Table">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="lastName" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="languageId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Category_Product_CategoryId">
+          <End Role="Category" Type="Self.Category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Category_Product" Type="Self.Category_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Category_Product">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Category_Product_ProductId">
+          <End Role="Product" Type="Self.Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Category_Product" Type="Self.Category_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Category_Product">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryId">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Category1" Type="Self.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Category1">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_ProductId">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_UserId">
+          <End Role="User_Table" Type="Self.User_Table" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Table">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CreditCard_User_CreditCard">
+          <End Role="CreditCard" Type="Self.CreditCard" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CreditCard_User" Type="Self.CreditCard_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CreditCard">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CreditCard_User">
+              <PropertyRef Name="creditCardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CreditCard_User_User">
+          <End Role="User_Table" Type="Self.User_Table" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CreditCard_User" Type="Self.CreditCard_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Table">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CreditCard_User">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Label_Comment_CommentId">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Label_Comment" Type="Self.Label_Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Label_Comment">
+              <PropertyRef Name="commentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Label_Comment_LabelId">
+          <End Role="Label" Type="Self.Label" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Label_Comment" Type="Self.Label_Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Label">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Label_Comment">
+              <PropertyRef Name="labId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LanguageId">
+          <End Role="Language" Type="Self.Language" Multiplicity="1" />
+          <End Role="User_Table" Type="Self.User_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User_Table">
+              <PropertyRef Name="languageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_CreditCardId">
+          <End Role="CreditCard" Type="Self.CreditCard" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order_Table" Type="Self.Order_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CreditCard">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Order_Table">
+              <PropertyRef Name="creditCardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderId">
+          <End Role="Order_Table" Type="Self.Order_Table" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderLine" Type="Self.OrderLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order_Table">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OrderLine">
+              <PropertyRef Name="orderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductCategoryId">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductId">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="OrderLine" Type="Self.OrderLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OrderLine">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserId">
+          <End Role="User_Table" Type="Self.User_Table" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order_Table" Type="Self.Order_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Table">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Order_Table">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EsUdcDotNetPracticaMaDStoreContainer">
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category_Product" EntityType="Self.Category_Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CreditCard" EntityType="Self.CreditCard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CreditCard_User" EntityType="Self.CreditCard_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Label" EntityType="Self.Label" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Label_Comment" EntityType="Self.Label_Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order_Table" EntityType="Self.Order_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderLine" EntityType="Self.OrderLine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Table" EntityType="Self.User_Table" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Category_Product_CategoryId" Association="Self.FK_Category_Product_CategoryId">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Category_Product" EntitySet="Category_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Category_Product_ProductId" Association="Self.FK_Category_Product_ProductId">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Category_Product" EntitySet="Category_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryId" Association="Self.FK_CategoryId">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Category1" EntitySet="Category" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_ProductId" Association="Self.FK_Comment_ProductId">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_UserId" Association="Self.FK_Comment_UserId">
+            <End Role="User_Table" EntitySet="User_Table" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CreditCard_User_CreditCard" Association="Self.FK_CreditCard_User_CreditCard">
+            <End Role="CreditCard" EntitySet="CreditCard" />
+            <End Role="CreditCard_User" EntitySet="CreditCard_User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CreditCard_User_User" Association="Self.FK_CreditCard_User_User">
+            <End Role="User_Table" EntitySet="User_Table" />
+            <End Role="CreditCard_User" EntitySet="CreditCard_User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Label_Comment_CommentId" Association="Self.FK_Label_Comment_CommentId">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="Label_Comment" EntitySet="Label_Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Label_Comment_LabelId" Association="Self.FK_Label_Comment_LabelId">
+            <End Role="Label" EntitySet="Label" />
+            <End Role="Label_Comment" EntitySet="Label_Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LanguageId" Association="Self.FK_LanguageId">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="User_Table" EntitySet="User_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_CreditCardId" Association="Self.FK_Order_CreditCardId">
+            <End Role="CreditCard" EntitySet="CreditCard" />
+            <End Role="Order_Table" EntitySet="Order_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderId" Association="Self.FK_OrderId">
+            <End Role="Order_Table" EntitySet="Order_Table" />
+            <End Role="OrderLine" EntitySet="OrderLine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductCategoryId" Association="Self.FK_ProductCategoryId">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductId" Association="Self.FK_ProductId">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="OrderLine" EntitySet="OrderLine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserId" Association="Self.FK_UserId">
+            <End Role="User_Table" EntitySet="User_Table" />
+            <End Role="Order_Table" EntitySet="Order_Table" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Es.Udc.DotNet.PracticaMaD" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="categoryId" Type="Int64" />
+          <NavigationProperty Name="Category_Product" Relationship="Self.FK_Category_Product_CategoryId" FromRole="Category" ToRole="Category_Product" />
+          <NavigationProperty Name="Category1" Relationship="Self.FK_CategoryId" FromRole="Category" ToRole="Category1" />
+          <NavigationProperty Name="Category2" Relationship="Self.FK_CategoryId" FromRole="Category1" ToRole="Category" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_ProductCategoryId" FromRole="Category" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Category_Product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productId" Type="Int64" Nullable="false" />
+          <Property Name="categoryId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Category_Product_CategoryId" FromRole="Category_Product" ToRole="Category" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Category_Product_ProductId" FromRole="Category_Product" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int64" Nullable="false" />
+          <Property Name="productId" Type="Int64" Nullable="false" />
+          <Property Name="text" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Comment_ProductId" FromRole="Comment" ToRole="Product" />
+          <NavigationProperty Name="User_Table" Relationship="Self.FK_Comment_UserId" FromRole="Comment" ToRole="User_Table" />
+          <NavigationProperty Name="Label_Comment" Relationship="Self.FK_Label_Comment_CommentId" FromRole="Comment" ToRole="Label_Comment" />
+        </EntityType>
+        <EntityType Name="CreditCard">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="creditCardNumber" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cvv" Type="Int16" Nullable="false" />
+          <Property Name="expirationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="CreditCard_User" Relationship="Self.FK_CreditCard_User_CreditCard" FromRole="CreditCard" ToRole="CreditCard_User" />
+          <NavigationProperty Name="Order_Table" Relationship="Self.FK_Order_CreditCardId" FromRole="CreditCard" ToRole="Order_Table" />
+        </EntityType>
+        <EntityType Name="CreditCard_User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int64" Nullable="false" />
+          <Property Name="creditCardId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="CreditCard" Relationship="Self.FK_CreditCard_User_CreditCard" FromRole="CreditCard_User" ToRole="CreditCard" />
+          <NavigationProperty Name="User_Table" Relationship="Self.FK_CreditCard_User_User" FromRole="CreditCard_User" ToRole="User_Table" />
+        </EntityType>
+        <EntityType Name="Label">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lab" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Label_Comment" Relationship="Self.FK_Label_Comment_LabelId" FromRole="Label" ToRole="Label_Comment" />
+        </EntityType>
+        <EntityType Name="Label_Comment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="commentId" Type="Int64" Nullable="false" />
+          <Property Name="labId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Comment" Relationship="Self.FK_Label_Comment_CommentId" FromRole="Label_Comment" ToRole="Comment" />
+          <NavigationProperty Name="Label" Relationship="Self.FK_Label_Comment_LabelId" FromRole="Label_Comment" ToRole="Label" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="country" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="User_Table" Relationship="Self.FK_LanguageId" FromRole="Language" ToRole="User_Table" />
+        </EntityType>
+        <EntityType Name="Order_Table">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="postalAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="orderDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="totalPrice" Type="Decimal" Precision="9" Scale="5" Nullable="false" />
+          <Property Name="userId" Type="Int64" Nullable="false" />
+          <Property Name="creditCardId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="CreditCard" Relationship="Self.FK_Order_CreditCardId" FromRole="Order_Table" ToRole="CreditCard" />
+          <NavigationProperty Name="OrderLines" Relationship="Self.FK_OrderId" FromRole="Order_Table" ToRole="OrderLine" />
+          <NavigationProperty Name="User_Table" Relationship="Self.FK_UserId" FromRole="Order_Table" ToRole="User_Table" />
+        </EntityType>
+        <EntityType Name="OrderLine">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="quantity" Type="Int16" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="9" Scale="5" Nullable="false" />
+          <Property Name="productId" Type="Int64" Nullable="false" />
+          <Property Name="orderId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Order_Table" Relationship="Self.FK_OrderId" FromRole="OrderLine" ToRole="Order_Table" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_ProductId" FromRole="OrderLine" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_name" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="9" Scale="5" Nullable="false" />
+          <Property Name="releaseDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="stock" Type="Int32" Nullable="false" />
+          <Property Name="categoryId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_ProductCategoryId" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="Category_Product" Relationship="Self.FK_Category_Product_ProductId" FromRole="Product" ToRole="Category_Product" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_ProductId" FromRole="Product" ToRole="Comment" />
+          <NavigationProperty Name="OrderLines" Relationship="Self.FK_ProductId" FromRole="Product" ToRole="OrderLine" />
+        </EntityType>
+        <EntityType Name="User_Table">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lastName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="languageId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_UserId" FromRole="User_Table" ToRole="Comment" />
+          <NavigationProperty Name="CreditCard_User" Relationship="Self.FK_CreditCard_User_User" FromRole="User_Table" ToRole="CreditCard_User" />
+          <NavigationProperty Name="Language" Relationship="Self.FK_LanguageId" FromRole="User_Table" ToRole="Language" />
+          <NavigationProperty Name="Order_Table" Relationship="Self.FK_UserId" FromRole="User_Table" ToRole="Order_Table" />
+        </EntityType>
+        <Association Name="FK_Category_Product_CategoryId">
+          <End Role="Category" Type="Self.Category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Category_Product" Type="Self.Category_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Category_Product">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryId">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Category1" Type="Self.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Category1">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductCategoryId">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Category_Product_ProductId">
+          <End Role="Product" Type="Self.Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Category_Product" Type="Self.Category_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Category_Product">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_ProductId">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_UserId">
+          <End Role="User_Table" Type="Self.User_Table" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Table">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Label_Comment_CommentId">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Label_Comment" Type="Self.Label_Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Label_Comment">
+              <PropertyRef Name="commentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CreditCard_User_CreditCard">
+          <End Role="CreditCard" Type="Self.CreditCard" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CreditCard_User" Type="Self.CreditCard_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CreditCard">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CreditCard_User">
+              <PropertyRef Name="creditCardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_CreditCardId">
+          <End Role="CreditCard" Type="Self.CreditCard" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order_Table" Type="Self.Order_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CreditCard">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Order_Table">
+              <PropertyRef Name="creditCardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CreditCard_User_User">
+          <End Role="User_Table" Type="Self.User_Table" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CreditCard_User" Type="Self.CreditCard_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Table">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CreditCard_User">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Label_Comment_LabelId">
+          <End Role="Label" Type="Self.Label" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Label_Comment" Type="Self.Label_Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Label">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Label_Comment">
+              <PropertyRef Name="labId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LanguageId">
+          <End Role="Language" Type="Self.Language" Multiplicity="1" />
+          <End Role="User_Table" Type="Self.User_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User_Table">
+              <PropertyRef Name="languageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderId">
+          <End Role="Order_Table" Type="Self.Order_Table" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderLine" Type="Self.OrderLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order_Table">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OrderLine">
+              <PropertyRef Name="orderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserId">
+          <End Role="User_Table" Type="Self.User_Table" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order_Table" Type="Self.Order_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Table">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Order_Table">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductId">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="OrderLine" Type="Self.OrderLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OrderLine">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="practicamadEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Category_Product" EntityType="Self.Category_Product" />
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="CreditCards" EntityType="Self.CreditCard" />
+          <EntitySet Name="CreditCard_User" EntityType="Self.CreditCard_User" />
+          <EntitySet Name="Labels" EntityType="Self.Label" />
+          <EntitySet Name="Label_Comment" EntityType="Self.Label_Comment" />
+          <EntitySet Name="Languages" EntityType="Self.Language" />
+          <EntitySet Name="Order_Table" EntityType="Self.Order_Table" />
+          <EntitySet Name="OrderLines" EntityType="Self.OrderLine" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="User_Table" EntityType="Self.User_Table" />
+          <AssociationSet Name="FK_Category_Product_CategoryId" Association="Self.FK_Category_Product_CategoryId">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Category_Product" EntitySet="Category_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryId" Association="Self.FK_CategoryId">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Category1" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductCategoryId" Association="Self.FK_ProductCategoryId">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Category_Product_ProductId" Association="Self.FK_Category_Product_ProductId">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Category_Product" EntitySet="Category_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_ProductId" Association="Self.FK_Comment_ProductId">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_UserId" Association="Self.FK_Comment_UserId">
+            <End Role="User_Table" EntitySet="User_Table" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Label_Comment_CommentId" Association="Self.FK_Label_Comment_CommentId">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="Label_Comment" EntitySet="Label_Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CreditCard_User_CreditCard" Association="Self.FK_CreditCard_User_CreditCard">
+            <End Role="CreditCard" EntitySet="CreditCards" />
+            <End Role="CreditCard_User" EntitySet="CreditCard_User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_CreditCardId" Association="Self.FK_Order_CreditCardId">
+            <End Role="CreditCard" EntitySet="CreditCards" />
+            <End Role="Order_Table" EntitySet="Order_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CreditCard_User_User" Association="Self.FK_CreditCard_User_User">
+            <End Role="User_Table" EntitySet="User_Table" />
+            <End Role="CreditCard_User" EntitySet="CreditCard_User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Label_Comment_LabelId" Association="Self.FK_Label_Comment_LabelId">
+            <End Role="Label" EntitySet="Labels" />
+            <End Role="Label_Comment" EntitySet="Label_Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LanguageId" Association="Self.FK_LanguageId">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="User_Table" EntitySet="User_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderId" Association="Self.FK_OrderId">
+            <End Role="Order_Table" EntitySet="Order_Table" />
+            <End Role="OrderLine" EntitySet="OrderLines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserId" Association="Self.FK_UserId">
+            <End Role="User_Table" EntitySet="User_Table" />
+            <End Role="Order_Table" EntitySet="Order_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductId" Association="Self.FK_ProductId">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="OrderLine" EntitySet="OrderLines" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EsUdcDotNetPracticaMaDStoreContainer" CdmEntityContainer="practicamadEntities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category_Product">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Category_Product">
+              <MappingFragment StoreEntitySet="Category_Product">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="text" ColumnName="text" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CreditCards">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.CreditCard">
+              <MappingFragment StoreEntitySet="CreditCard">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="creditCardNumber" ColumnName="creditCardNumber" />
+                <ScalarProperty Name="cvv" ColumnName="cvv" />
+                <ScalarProperty Name="expirationDate" ColumnName="expirationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CreditCard_User">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.CreditCard_User">
+              <MappingFragment StoreEntitySet="CreditCard_User">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="creditCardId" ColumnName="creditCardId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Labels">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Label">
+              <MappingFragment StoreEntitySet="Label">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="lab" ColumnName="lab" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Label_Comment">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Label_Comment">
+              <MappingFragment StoreEntitySet="Label_Comment">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="commentId" ColumnName="commentId" />
+                <ScalarProperty Name="labId" ColumnName="labId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Languages">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Language">
+              <MappingFragment StoreEntitySet="Language">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="country" ColumnName="country" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order_Table">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Order_Table">
+              <MappingFragment StoreEntitySet="Order_Table">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="postalAddress" ColumnName="postalAddress" />
+                <ScalarProperty Name="orderDate" ColumnName="orderDate" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="creditCardId" ColumnName="creditCardId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderLines">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.OrderLine">
+              <MappingFragment StoreEntitySet="OrderLine">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="releaseDate" ColumnName="releaseDate" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Table">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.User_Table">
+              <MappingFragment StoreEntitySet="User_Table">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="languageId" ColumnName="languageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
