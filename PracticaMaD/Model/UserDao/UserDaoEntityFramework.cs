@@ -32,16 +32,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao
         /// <param name="login"></param>
         /// <returns></returns>
         /// <exception cref="InstanceNotFoundException"></exception>
-        public User_Table FindByLogin(string login)
+        public User_Table FindByLogin(String login)
         {
-            User_Table userProfile = null;
+            User_Table user = null;
 
             #region Option 1: Using Linq.
 
-            DbSet<User_Table> user = Context.Set<User_Table>();
+            DbSet<User_Table> users = Context.Set<User_Table>();
 
             var result =
-                (from u in user
+                (from u in users
                  where u.login == login
                  select u);
 
@@ -54,7 +54,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao
                 throw new InstanceNotFoundException(login,
                     typeof(User_Table).FullName);
 
-            return userProfile;
+            return user;
         }
 
         #endregion IUserProfileDao Members
