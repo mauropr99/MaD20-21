@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Es.Udc.DotNet.ModelUtil.Dao;
-using Microsoft.EntityFrameworkCore;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 {
@@ -37,6 +38,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
             return product;
 
         }
+
+        Product IProductDao.FindById(long id)
+        {
+            throw new NotImplementedException();
+        }
+
         List<Product> FindByProductName(String product_name, int startIndex, int count)
         {
             #region Using Linq.
@@ -54,23 +61,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
             #endregion Using Linq.
         }
 
+        List<Product> IProductDao.FindByProductName(string product_name, int startIndex, int count)
+        {
+            throw new NotImplementedException();
+        }
+
         List<Product> FindByProductNameAndCategoryId(String product_name, long categoryId,
             int startIndex, int count)
         {
             #region Using Linq.
 
             DbSet<Product> products = Context.Set<Product>();
-
+            
             var result =
                 (from p in products
                  where p.product_name == product_name
-                 and p.categoryId == categoryId
+                 && p.categoryId == categoryId
                  orderby p.id
                  select p).Skip(startIndex).Take(count).ToList();
+
 
             return result;
 
             #endregion Using Linq.
+        }
+
+        List<Product> IProductDao.FindByProductNameAndCategoryId(string product_name, long categoryId, int startIndex, int count)
+        {
+            throw new NotImplementedException();
         }
         #endregion Members
     }

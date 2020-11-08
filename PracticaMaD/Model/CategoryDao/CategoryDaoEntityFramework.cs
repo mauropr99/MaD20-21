@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
 {

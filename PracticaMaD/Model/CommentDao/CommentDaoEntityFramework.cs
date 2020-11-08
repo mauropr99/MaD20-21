@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Es.Udc.DotNet.ModelUtil.Dao;
-using Microsoft.EntityFrameworkCore;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 {
@@ -21,11 +21,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
                 (from c in comments
                  where c.productId == productId
                  orderby c.commentDate
-                 select c).Skip(startIndex).Take(count).ToList();
+                 select c).Skip(0).ToList();
 
             return result;
 
             #endregion Using Linq.
+        }
+
+        List<Comment> ICommentDao.FindByProductId(long productId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

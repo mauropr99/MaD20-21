@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.OrderDao
 {
-    public interface IOrderDaoIGenericDao<Order_Table, Int64>
+    public interface IOrderDao : IGenericDao<Order_Table, Int64>
     {
         /// <summary>
         /// Finds a The order

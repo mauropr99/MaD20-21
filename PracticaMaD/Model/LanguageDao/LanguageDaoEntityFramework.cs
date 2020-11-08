@@ -54,7 +54,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao
 
         public List<Language> FindLanguagesByCountry(string country)
         {
-            List<Language> languages = null;
 
             #region Option 1: Using Linq.
 
@@ -63,17 +62,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao
             var result =
                 (from u in languages
                  where u.country == country
-                 select u);
+                 select u).Skip(0).ToList();
 
-            languages = result.ToList();
+            
 
             #endregion Option 1: Using Linq.
 
-            if (languages == null)
+            if (result == null)
                 throw new InstanceNotFoundException(country,
                     typeof(Language).FullName);
 
-            return language;
+            return result;
+        }
+
+        ICollection<Language> ILanguageDao.FindLanguagesByCountry(string country)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion ILanguageDao Members

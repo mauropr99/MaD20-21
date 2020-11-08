@@ -1,10 +1,11 @@
-﻿using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
+﻿using Ninject;
+using System;
+using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService.Util;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Transactions;
-using Ninject;
-using System;
+
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 {
@@ -21,7 +22,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         {
             User_Table user = UserDao.Find(id);
             System.String storedPassword = user.password;
-
             if (!PasswordEncrypter.IsClearPasswordCorrect(oldClearPassword,
                  storedPassword))
             {
