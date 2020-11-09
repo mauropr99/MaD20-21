@@ -102,6 +102,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                 user.email = userDetails.Email;
                 user.Language.name = userDetails.Language;
                 user.address = userDetails.Address;
+                user.role = "user";
 
                 UserDao.Create(user);
 
