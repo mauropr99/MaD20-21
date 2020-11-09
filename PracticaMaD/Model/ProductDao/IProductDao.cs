@@ -27,10 +27,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         /// is not null, it returns a list of products pertaining to the given category too.
         /// </summary>
         /// <param name="product_name">the product name </param>
-        /// <param name="categoryId">the category identifier</param>
+        /// <param name="category_name">the category name</param>
         /// <param name="startIndex">the index of the first product to return (starting in 0)</param>
         /// <param name="count">the maximum number of products to return</param>
         /// <returns>the list of products</returns>
-        List<Product> FindByProductNameAndCategoryId(String product_name, long categoryId, int startIndex, int count);
+        List<Product> FindByProductNameAndCategoryId(String product_name, string categoryName, int startIndex, int count);
     }
 }

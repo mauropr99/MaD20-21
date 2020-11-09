@@ -20,6 +20,7 @@
 
 USE practicamad
 
+
 /* Drop Table OrderLine if already exists */
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[OrderLine]') 
@@ -119,7 +120,7 @@ PRINT N'Done'
 
 CREATE TABLE CreditCard (
 	id bigint IDENTITY(1,1) NOT NULL, 
-	type VARCHAR(64) NOT NULL,
+	creditType VARCHAR(30) NOT NULL CHECK(creditType IN ('debit','credit')),
 	creditCardNumber VARCHAR (16) NOT NULL,
 	cvv smallint NOT NULL,
 	expirationDate date NOT NULL,
@@ -148,6 +149,7 @@ CREATE TABLE User_Table (
 	address VARCHAR(64) NOT NULL,
 	email VARCHAR(64) NOT NULL,
 	languageId BIGINT NOT NULL,
+	role VARCHAR(30) NOT NULL CHECK(role IN ('admin','user')),
 
     CONSTRAINT [PK_User] PRIMARY KEY (id ASC),
 
@@ -269,6 +271,7 @@ CREATE TABLE Comment (
 	userId BIGINT  NOT NULL,
 	productId BIGINT NOT NULL,
 	text VARCHAR(64) NOT NULL,
+	commentDate date NOT NULL,
     
     CONSTRAINT [PK_Comment] PRIMARY KEY (id ASC),
 
@@ -311,32 +314,6 @@ PRINT N'Table  Label_Comment created.'
 GO
 
 PRINT N'Done'
-
-/* Category_Product */
-
-CREATE TABLE Category_Product (
-	id bigint IDENTITY(1,1) NOT NULL, 
-   	productId BIGINT NOT NULL,
-	categoryId BIGINT NOT NULL,
-
-    CONSTRAINT [PK_Category_Product] PRIMARY KEY (id ASC),
-
-    CONSTRAINT [FK_Category_Product_ProductId] FOREIGN KEY(productId)
-        REFERENCES Product (id) ON DELETE CASCADE,
-	CONSTRAINT [FK_Category_Product_CategoryId] FOREIGN KEY(categoryId)
-        REFERENCES Category (id) ON DELETE CASCADE
-	
-)
-
-
-CREATE NONCLUSTERED INDEX IX_Category_ProductIndexById 
-ON Category_Product (id);
-
-PRINT N'Table Category_Product created.'
-GO
-
-PRINT N'Done'
-
 
 /* Order */
 

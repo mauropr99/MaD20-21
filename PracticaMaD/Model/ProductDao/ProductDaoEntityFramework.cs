@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Es.Udc.DotNet.ModelUtil.Dao;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Es.Udc.DotNet.ModelUtil.Dao;
-using Microsoft.EntityFrameworkCore;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
+using System.Security.Cryptography;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 {
@@ -13,7 +13,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
     {
         #region IProductDao Members
         
-        Product FindById(long id)
+        public Product FindById(long id)
         {
             Product product = null;
 
@@ -37,16 +37,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
             return product;
 
         }
-        List<Product> FindByProductName(String product_name, int startIndex, int count)
+        public List<Product> FindByProductName(String product_name, int startIndex, int count)
         {
             #region Using Linq.
 
             DbSet<Product> products = Context.Set<Product>();
 
-            var result = 
+            List<Product> result = 
                 (from p in products
                  where p.product_name == product_name
-                 orderby p.id
+                 orderby p.product_name
                  select p).Skip(startIndex).Take(count).ToList();
 
             return result;
@@ -54,18 +54,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
             #endregion Using Linq.
         }
 
-        List<Product> FindByProductNameAndCategoryId(String product_name, long categoryId,
+        public List<Product> FindByProductNameAndCategoryId(String product_name, string category_name,
             int startIndex, int count)
         {
             #region Using Linq.
 
             DbSet<Product> products = Context.Set<Product>();
 
-            var result =
+            List<Product> result =
                 (from p in products
-                 where p.product_name == product_name
-                 and p.categoryId == categoryId
-                 orderby p.id
+                 where p.product_name == product_name && p.Category.name == category_name
+                 orderby p.product_name
                  select p).Skip(startIndex).Take(count).ToList();
 
             return result;
