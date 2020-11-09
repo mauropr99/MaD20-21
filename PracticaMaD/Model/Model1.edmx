@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Es.Udc.DotNet.PracticaMaD.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Es.Udc.DotNet.practicamadModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="id" />
@@ -12,14 +12,6 @@
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="64" Nullable="false" />
           <Property Name="categoryId" Type="bigint" />
-        </EntityType>
-        <EntityType Name="Category_Product">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="productId" Type="bigint" Nullable="false" />
-          <Property Name="categoryId" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
@@ -29,13 +21,14 @@
           <Property Name="userId" Type="bigint" Nullable="false" />
           <Property Name="productId" Type="bigint" Nullable="false" />
           <Property Name="text" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="commentDate" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="CreditCard">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="type" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="creditType" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="creditCardNumber" Type="varchar" MaxLength="16" Nullable="false" />
           <Property Name="cvv" Type="smallint" Nullable="false" />
           <Property Name="expirationDate" Type="date" Nullable="false" />
@@ -115,35 +108,8 @@
           <Property Name="address" Type="varchar" MaxLength="64" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="64" Nullable="false" />
           <Property Name="languageId" Type="bigint" Nullable="false" />
+          <Property Name="role" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Category_Product_CategoryId">
-          <End Role="Category" Type="Self.Category" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Category_Product" Type="Self.Category_Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Category_Product">
-              <PropertyRef Name="categoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Category_Product_ProductId">
-          <End Role="Product" Type="Self.Product" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Category_Product" Type="Self.Category_Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Category_Product">
-              <PropertyRef Name="productId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CategoryId">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
           <End Role="Category1" Type="Self.Category" Multiplicity="*" />
@@ -314,9 +280,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="EsUdcDotNetPracticaMaDStoreContainer">
+        <EntityContainer Name="EsUdcDotNetpracticamadModelStoreContainer">
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Category_Product" EntityType="Self.Category_Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CreditCard" EntityType="Self.CreditCard" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CreditCard_User" EntityType="Self.CreditCard_User" Schema="dbo" store:Type="Tables" />
@@ -327,14 +292,6 @@
           <EntitySet Name="OrderLine" EntityType="Self.OrderLine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User_Table" EntityType="Self.User_Table" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Category_Product_CategoryId" Association="Self.FK_Category_Product_CategoryId">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="Category_Product" EntitySet="Category_Product" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Category_Product_ProductId" Association="Self.FK_Category_Product_ProductId">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="Category_Product" EntitySet="Category_Product" />
-          </AssociationSet>
           <AssociationSet Name="FK_CategoryId" Association="Self.FK_CategoryId">
             <End Role="Category" EntitySet="Category" />
             <End Role="Category1" EntitySet="Category" />
@@ -392,7 +349,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Es.Udc.DotNet.PracticaMaD" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Es.Udc.DotNet.practicamadModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="id" />
@@ -400,20 +357,9 @@
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="categoryId" Type="Int64" />
-          <NavigationProperty Name="Category_Product" Relationship="Self.FK_Category_Product_CategoryId" FromRole="Category" ToRole="Category_Product" />
           <NavigationProperty Name="Category1" Relationship="Self.FK_CategoryId" FromRole="Category" ToRole="Category1" />
           <NavigationProperty Name="Category2" Relationship="Self.FK_CategoryId" FromRole="Category1" ToRole="Category" />
           <NavigationProperty Name="Products" Relationship="Self.FK_ProductCategoryId" FromRole="Category" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="Category_Product">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="productId" Type="Int64" Nullable="false" />
-          <Property Name="categoryId" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="Category" Relationship="Self.FK_Category_Product_CategoryId" FromRole="Category_Product" ToRole="Category" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_Category_Product_ProductId" FromRole="Category_Product" ToRole="Product" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
@@ -423,6 +369,7 @@
           <Property Name="userId" Type="Int64" Nullable="false" />
           <Property Name="productId" Type="Int64" Nullable="false" />
           <Property Name="text" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="commentDate" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Comment_ProductId" FromRole="Comment" ToRole="Product" />
           <NavigationProperty Name="User_Table" Relationship="Self.FK_Comment_UserId" FromRole="Comment" ToRole="User_Table" />
           <NavigationProperty Name="Label_Comment" Relationship="Self.FK_Label_Comment_CommentId" FromRole="Comment" ToRole="Label_Comment" />
@@ -432,7 +379,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="type" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="creditType" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="creditCardNumber" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="cvv" Type="Int16" Nullable="false" />
           <Property Name="expirationDate" Type="DateTime" Nullable="false" Precision="0" />
@@ -513,7 +460,6 @@
           <Property Name="stock" Type="Int32" Nullable="false" />
           <Property Name="categoryId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Category" Relationship="Self.FK_ProductCategoryId" FromRole="Product" ToRole="Category" />
-          <NavigationProperty Name="Category_Product" Relationship="Self.FK_Category_Product_ProductId" FromRole="Product" ToRole="Category_Product" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_ProductId" FromRole="Product" ToRole="Comment" />
           <NavigationProperty Name="OrderLines" Relationship="Self.FK_ProductId" FromRole="Product" ToRole="OrderLine" />
         </EntityType>
@@ -529,25 +475,12 @@
           <Property Name="address" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="languageId" Type="Int64" Nullable="false" />
+          <Property Name="role" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_UserId" FromRole="User_Table" ToRole="Comment" />
           <NavigationProperty Name="CreditCard_User" Relationship="Self.FK_CreditCard_User_User" FromRole="User_Table" ToRole="CreditCard_User" />
           <NavigationProperty Name="Language" Relationship="Self.FK_LanguageId" FromRole="User_Table" ToRole="Language" />
           <NavigationProperty Name="Order_Table" Relationship="Self.FK_UserId" FromRole="User_Table" ToRole="Order_Table" />
         </EntityType>
-        <Association Name="FK_Category_Product_CategoryId">
-          <End Role="Category" Type="Self.Category" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Category_Product" Type="Self.Category_Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Category_Product">
-              <PropertyRef Name="categoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CategoryId">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
           <End Role="Category1" Type="Self.Category" Multiplicity="*" />
@@ -569,20 +502,6 @@
             </Principal>
             <Dependent Role="Product">
               <PropertyRef Name="categoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Category_Product_ProductId">
-          <End Role="Product" Type="Self.Product" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Category_Product" Type="Self.Category_Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Category_Product">
-              <PropertyRef Name="productId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -734,7 +653,6 @@
         </Association>
         <EntityContainer Name="practicamadEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="Self.Category" />
-          <EntitySet Name="Category_Product" EntityType="Self.Category_Product" />
           <EntitySet Name="Comments" EntityType="Self.Comment" />
           <EntitySet Name="CreditCards" EntityType="Self.CreditCard" />
           <EntitySet Name="CreditCard_User" EntityType="Self.CreditCard_User" />
@@ -745,10 +663,6 @@
           <EntitySet Name="OrderLines" EntityType="Self.OrderLine" />
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="User_Table" EntityType="Self.User_Table" />
-          <AssociationSet Name="FK_Category_Product_CategoryId" Association="Self.FK_Category_Product_CategoryId">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="Category_Product" EntitySet="Category_Product" />
-          </AssociationSet>
           <AssociationSet Name="FK_CategoryId" Association="Self.FK_CategoryId">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Category1" EntitySet="Categories" />
@@ -756,10 +670,6 @@
           <AssociationSet Name="FK_ProductCategoryId" Association="Self.FK_ProductCategoryId">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Category_Product_ProductId" Association="Self.FK_Category_Product_ProductId">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="Category_Product" EntitySet="Category_Product" />
           </AssociationSet>
           <AssociationSet Name="FK_Comment_ProductId" Association="Self.FK_Comment_ProductId">
             <End Role="Product" EntitySet="Products" />
@@ -811,9 +721,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="EsUdcDotNetPracticaMaDStoreContainer" CdmEntityContainer="practicamadEntities">
+        <EntityContainerMapping StorageEntityContainer="EsUdcDotNetpracticamadModelStoreContainer" CdmEntityContainer="practicamadEntities">
           <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Category">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.practicamadModel.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -821,30 +731,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Category_Product">
-            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Category_Product">
-              <MappingFragment StoreEntitySet="Category_Product">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="productId" ColumnName="productId" />
-                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Comments">
-            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Comment">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.practicamadModel.Comment">
               <MappingFragment StoreEntitySet="Comment">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
                 <ScalarProperty Name="productId" ColumnName="productId" />
                 <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="commentDate" ColumnName="commentDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CreditCards">
-            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.CreditCard">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.practicamadModel.CreditCard">
               <MappingFragment StoreEntitySet="CreditCard">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="creditType" ColumnName="creditType" />
                 <ScalarProperty Name="creditCardNumber" ColumnName="creditCardNumber" />
                 <ScalarProperty Name="cvv" ColumnName="cvv" />
                 <ScalarProperty Name="expirationDate" ColumnName="expirationDate" />
@@ -852,7 +754,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CreditCard_User">
-            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.CreditCard_User">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.practicamadModel.CreditCard_User">
               <MappingFragment StoreEntitySet="CreditCard_User">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
@@ -861,7 +763,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Labels">
-            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Label">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.practicamadModel.Label">
               <MappingFragment StoreEntitySet="Label">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="lab" ColumnName="lab" />
@@ -869,7 +771,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Label_Comment">
-            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Label_Comment">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.practicamadModel.Label_Comment">
               <MappingFragment StoreEntitySet="Label_Comment">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="commentId" ColumnName="commentId" />
@@ -878,7 +780,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Languages">
-            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Language">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.practicamadModel.Language">
               <MappingFragment StoreEntitySet="Language">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -887,7 +789,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Order_Table">
-            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Order_Table">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.practicamadModel.Order_Table">
               <MappingFragment StoreEntitySet="Order_Table">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="postalAddress" ColumnName="postalAddress" />
@@ -899,7 +801,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderLines">
-            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.OrderLine">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.practicamadModel.OrderLine">
               <MappingFragment StoreEntitySet="OrderLine">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
@@ -910,7 +812,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Product">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.practicamadModel.Product">
               <MappingFragment StoreEntitySet="Product">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="product_name" ColumnName="product_name" />
@@ -922,7 +824,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User_Table">
-            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.User_Table">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.practicamadModel.User_Table">
               <MappingFragment StoreEntitySet="User_Table">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="login" ColumnName="login" />
@@ -932,6 +834,7 @@
                 <ScalarProperty Name="address" ColumnName="address" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="languageId" ColumnName="languageId" />
+                <ScalarProperty Name="role" ColumnName="role" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

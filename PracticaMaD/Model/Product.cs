@@ -17,7 +17,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.Category_Product = new HashSet<Category_Product>();
             this.Comments = new HashSet<Comment>();
             this.OrderLines = new HashSet<OrderLine>();
         }
@@ -30,8 +29,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public long categoryId { get; set; }
     
         public virtual Category Category { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Category_Product> Category_Product { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

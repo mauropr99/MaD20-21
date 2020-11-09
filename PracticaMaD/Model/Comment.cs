@@ -24,6 +24,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public long userId { get; set; }
         public long productId { get; set; }
         public string text { get; set; }
+        public System.DateTime commentDate { get; set; }
     
         public virtual Product Product { get; set; }
         public virtual User_Table User_Table { get; set; }
