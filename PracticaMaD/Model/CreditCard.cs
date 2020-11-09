@@ -22,7 +22,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
     
         public long id { get; set; }
-        public string type { get; set; }
+        public string creditType { get; set; }
         public string creditCardNumber { get; set; }
         public short cvv { get; set; }
         public System.DateTime expirationDate { get; set; }
