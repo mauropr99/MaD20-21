@@ -12,7 +12,7 @@
  /*** PATH to store the db files. This path must exists in the local system. ***/
  /******************************************************************************/
  DECLARE @Default_DB_Path as VARCHAR(64)
- SET @Default_DB_Path = N'B:\SourceCode\DataBase\'
+ SET @Default_DB_Path = N'C:\SourceCode\DataBase\'
  
  
 USE [master]

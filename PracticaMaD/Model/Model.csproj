@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Es.Udc.DotNet.PracticaMaD.Model</RootNamespace>
     <AssemblyName>Model</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,10 +39,23 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="ModelUtil">
-      <HintPath>..\Lib\ModelUtil.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Downloads\MiniPortal-src-4.2.1\MiniPortal-src-4.2.1\Lib\ModelUtil.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.3.3.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.3\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Interception, Version=3.3.1.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Interception.3.3.1\lib\net45\Ninject.Extensions.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Interception.DynamicProxy, Version=3.3.1.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Interception.DynamicProxy.3.3.1\lib\net45\Ninject.Extensions.Interception.DynamicProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Xml, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Xml.3.3.0\lib\net45\Ninject.Extensions.Xml.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -56,15 +70,18 @@
     <Compile Include="Category.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Category_Product.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
+    <Compile Include="CategoryDao\CategoryDaoEntityFramework.cs" />
+    <Compile Include="CategoryDao\ICategoryDao.cs" />
     <Compile Include="Comment.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="CommentDao\CommentDaoEntityFramework.cs" />
+    <Compile Include="CommentDao\ICommentDao.cs" />
     <Compile Include="CreditCard.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="CreditCardDao\CreditCardDaoEntityFramework.cs" />
+    <Compile Include="CreditCardDao\ICreditCardDao.cs" />
     <Compile Include="CreditCard_User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -77,6 +94,8 @@
     <Compile Include="Language.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="LanguageDao\ILanguageDao.cs" />
+    <Compile Include="LanguageDao\LanguageDaoEntityFramework.cs" />
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -92,33 +111,43 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="OrderDao\IOrderDao.cs" />
+    <Compile Include="OrderDao\OrderDaoEntityFramework.cs" />
     <Compile Include="OrderLine.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="OrderLineDao\IOrderLineDao.cs" />
+    <Compile Include="OrderLineDao\OrderLineDaoEntityFramework.cs" />
     <Compile Include="Order_Table.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Product.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProductDao\IProductDao.cs" />
+    <Compile Include="ProductDao\ProductDaoEntityFramework.cs" />
+    <Compile Include="ProductService\Exceptions\IncorrectPasswordException.cs" />
+    <Compile Include="ProductService\IProductService.cs" />
+    <Compile Include="ProductService\ProductBlock.cs" />
+    <Compile Include="ProductService\ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserDao\UserDaoEntityFramework.cs" />
     <Compile Include="UserDao\IUserDao.cs" />
+    <Compile Include="UserService\Exceptions\IncorrectPasswordException.cs" />
+    <Compile Include="UserService\IUserService.cs" />
+    <Compile Include="UserService\LoginResult.cs" />
+    <Compile Include="UserService\UserDetails.cs" />
+    <Compile Include="UserService\UserService.cs" />
+    <Compile Include="UserService\Util\PasswordEncrypter.cs" />
     <Compile Include="User_Table.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -130,6 +159,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <None Include="Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>
@@ -138,8 +171,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ProductDao\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

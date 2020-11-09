@@ -23,5 +23,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         [Transactional]
         ProductBlock FindProductsByNameAndCategory(string productName, string categoryName,  int startIndex, int count);
 
+        [Transactional]
+        void UpdateProduct(long productId, string productName, int stock, decimal price);
+
+
     }
 }

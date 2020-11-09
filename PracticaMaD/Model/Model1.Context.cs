@@ -26,7 +26,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
     
         public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Category_Product> Category_Product { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<CreditCard> CreditCards { get; set; }
         public virtual DbSet<CreditCard_User> CreditCard_User { get; set; }

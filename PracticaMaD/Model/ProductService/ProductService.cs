@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Ninject;
+using Es.Udc.DotNet.ModelUtil.Dao;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 {
-    public class ProductService: IProductService
+    public class ProductService: GenericDaoEntityFramework<Product, long>, IProductService
     {
         public ProductService()
         {
@@ -48,6 +46,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
         }
 
+        public void UpdateProduct(long productId, string productName,  int stock, decimal price)
+        {
+      
+                Product prod = ProductDao.FindById(productId);
+                prod.product_name = productName;
+                prod.stock = stock;
+                prod.price = price;
+                ProductDao.Update(prod);
+  
+        }
+       
         #endregion IProductService Members
+
     }
+
 }

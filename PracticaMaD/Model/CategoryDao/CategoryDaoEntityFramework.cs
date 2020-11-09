@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 
-namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
+namespace Es.Udc.DotNet.PracticaMaD.Model.CategoryDao
 {
     /// <summary>
     /// Specific Operations for Category

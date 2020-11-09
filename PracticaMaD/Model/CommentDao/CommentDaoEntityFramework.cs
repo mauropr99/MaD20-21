@@ -18,6 +18,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
             List<Comment> result =
                 (from c in comments
                  where c.productId == productId
+                 orderby c.commentDate descending
                  select c).Skip(startIndex).Take(count).ToList();
 
             return result;
