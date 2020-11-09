@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingCartService
+namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 {
     [Serializable()]
     public class ShoppingCartResult

@@ -3,7 +3,7 @@ using Es.Udc.DotNet.PracticaMaD.Model;
 using System.Collections.Generic;
 
 
-namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingCartService
+namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 {
 
     [Serializable()]
@@ -11,7 +11,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingCartService
     {
         #region Properties Region
 
-        public decimal TotalPrice { get; private set; }
+        public long UserId { get; set; }
+
+        public decimal TotalPrice { get; set; }
 
         public virtual ICollection<OrderLine> OrderLines { get; set; }
 
@@ -28,6 +30,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingCartService
             this.TotalPrice = totalPrice;
             this.OrderLines = orderLines;
         }
+        
+
 
         public override bool Equals(object obj)
         {
