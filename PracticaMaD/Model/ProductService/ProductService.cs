@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Ninject;
 using Es.Udc.DotNet.ModelUtil.Dao;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 {

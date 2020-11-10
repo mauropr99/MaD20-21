@@ -126,11 +126,15 @@
     </Compile>
     <Compile Include="ProductDao\IProductDao.cs" />
     <Compile Include="ProductDao\ProductDaoEntityFramework.cs" />
-    <Compile Include="ProductService\Exceptions\IncorrectPasswordException.cs" />
     <Compile Include="ProductService\IProductService.cs" />
     <Compile Include="ProductService\ProductBlock.cs" />
     <Compile Include="ProductService\ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShoppingService\Exceptions\CreditCardAlreadyExpired.cs" />
+    <Compile Include="ShoppingService\IShoppingService.cs" />
+    <Compile Include="ShoppingService\ShoppingCartDetails.cs" />
+    <Compile Include="ShoppingService\ShoppingCartResult.cs" />
+    <Compile Include="ShoppingService\ShoppingService.cs" />
     <Compile Include="UserDao\UserDaoEntityFramework.cs" />
     <Compile Include="UserDao\IUserDao.cs" />
     <Compile Include="UserService\Exceptions\IncorrectPasswordException.cs" />

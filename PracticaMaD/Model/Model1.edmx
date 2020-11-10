@@ -74,6 +74,7 @@
           <Property Name="totalPrice" Type="decimal" Precision="9" Scale="5" Nullable="false" />
           <Property Name="userId" Type="bigint" Nullable="false" />
           <Property Name="creditCardId" Type="bigint" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityType Name="OrderLine">
           <Key>
@@ -433,6 +434,7 @@
           <Property Name="totalPrice" Type="Decimal" Precision="9" Scale="5" Nullable="false" />
           <Property Name="userId" Type="Int64" Nullable="false" />
           <Property Name="creditCardId" Type="Int64" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="CreditCard" Relationship="Self.FK_Order_CreditCardId" FromRole="Order_Table" ToRole="CreditCard" />
           <NavigationProperty Name="OrderLines" Relationship="Self.FK_OrderId" FromRole="Order_Table" ToRole="OrderLine" />
           <NavigationProperty Name="User_Table" Relationship="Self.FK_UserId" FromRole="Order_Table" ToRole="User_Table" />
@@ -797,6 +799,7 @@
                 <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
                 <ScalarProperty Name="creditCardId" ColumnName="creditCardId" />
+                <ScalarProperty Name="description" ColumnName="description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

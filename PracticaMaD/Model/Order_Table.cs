@@ -26,6 +26,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public decimal totalPrice { get; set; }
         public long userId { get; set; }
         public long creditCardId { get; set; }
+        public string description { get; set; }
     
         public virtual CreditCard CreditCard { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

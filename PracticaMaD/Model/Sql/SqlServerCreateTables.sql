@@ -324,6 +324,7 @@ CREATE TABLE Order_Table (
 	totalPrice DECIMAL(9,5) NOT NULL,
 	userId bigint NOT NULL,
 	creditCardId bigint NOT NULL,
+	description VARCHAR(200) NOT NULL,
     
     CONSTRAINT [PK_Order] PRIMARY KEY (id ASC),
     CONSTRAINT [FK_UserId] FOREIGN KEY(userId)

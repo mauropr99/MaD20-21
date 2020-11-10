@@ -6,19 +6,26 @@ using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using Ninject;
 using System;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 {
     public interface IShoppingService
     {
-        IOrderDao OrderDao { get;  set; }
+        IOrderDao OrderDao { set; }
 
-        IOrderLineDao OrderLineDao { get;  set; }
-
-        IUserDao UserDao { get; set; }
+        IProductDao ProductDao { set; }
 
         Order_Table BuyProducts(User_Table user, ICollection<OrderLine> orderLines,
             string postalAddress, CreditCard creditCard);
+
+        ShoppingCartDetails AddToShoppingCart(long productId, short quantity, Boolean giftWrap);
+
+        ShoppingCartDetails RemoveFromShoppingCart(long productId);
+
+        ShoppingCartDetails UpdateProductFromShoppingCart(long productId, short quantity, Boolean giftWrap);
+
+        ShoppingCartDetails AddProductLinkToShoppingCart(System.String productLink);
 
     }
 }
