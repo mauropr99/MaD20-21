@@ -146,6 +146,26 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             }
         }
 
+        public OrderBlock FindOrdersByUserId(long userId, int startIndex, int count)
+        {
+            List<Order_Table> orders;
+
+            /*
+            * Find count+1 orders to determine if there exist more orders above
+            * the specified range.
+            */
+            orders = OrderDao.FindByUserId(userId, startIndex, count + 1);
+
+            bool existMoreOrders = (orders.Count == count + 1);
+
+            if (existMoreOrders)
+            {
+                orders.RemoveAt(count);
+            }
+
+            return new OrderBlock(orders, existMoreOrders);
+        }
+
         #endregion IShoppingService Members
 
 

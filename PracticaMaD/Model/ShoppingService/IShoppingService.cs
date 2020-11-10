@@ -27,6 +27,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         ShoppingCartDetails AddProductLinkToShoppingCart(System.String productLink);
 
+        [Transactional]
+        OrderBlock FindOrdersByUserId(long userId, int startIndex, int count);
+
     }
 }
 
