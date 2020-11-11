@@ -20,13 +20,5 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao
         /// <returns>The OrderLine</returns>
         /// <exception cref="InstanceNotFoundException"/>
         OrderLine FindById(long id);
-
-        /// <summary>
-        /// Finds a product of an order line
-        /// </summary>
-        /// <param productId="productId">productId</param>
-        /// <returns>The Product</returns>
-        /// <exception cref="InstanceNotFoundException"/>
-        Product FindByProductId(long productId);
     }
 }

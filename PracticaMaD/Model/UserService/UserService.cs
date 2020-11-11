@@ -20,7 +20,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         public void ChangePassword(long id, string oldClearPassword,
             string newClearPassword)
         {
-            User_Table user = UserDao.Find(id);
+            User user = UserDao.Find(id);
             System.String storedPassword = user.password;
             if (!PasswordEncrypter.IsClearPasswordCorrect(oldClearPassword,
                  storedPassword))
@@ -38,7 +38,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         [Transactional]
         public UserDetails FindUserDetails(long id)
         {
-            User_Table user = UserDao.Find(id);
+            User user = UserDao.Find(id);
 
             UserDetails userDetails =
                 new UserDetails(user.name,
@@ -53,7 +53,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         [Transactional]
         public LoginResult Login(String login, string password, bool passwordIsEncrypted)
         {
-            User_Table user =
+            User user =
                 UserDao.FindByLogin(login);
 
             string storedPassword = user.password;
@@ -87,13 +87,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                 UserDao.FindByLogin(login);
 
                 throw new DuplicateInstanceException(login,
-                    typeof(User_Table).FullName);
+                    typeof(User).FullName);
             }
             catch (InstanceNotFoundException)
             {
                 string encryptedPassword = PasswordEncrypter.Crypt(clearPassword);
 
-                User_Table user = new User_Table();
+                User user = new User();
 
                 user.login = login;
                 user.password = encryptedPassword;
@@ -115,7 +115,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
             try
             {
-                User_Table userProfile = UserDao.FindByLogin(login);
+                User userProfile = UserDao.FindByLogin(login);
             }
             catch (InstanceNotFoundException)
             {

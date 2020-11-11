@@ -17,13 +17,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Label()
         {
-            this.Label_Comment = new HashSet<Label_Comment>();
+            this.Comments = new HashSet<Comment>();
         }
     
         public long id { get; set; }
         public string lab { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Label_Comment> Label_Comment { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

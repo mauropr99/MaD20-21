@@ -8,7 +8,7 @@ using Es.Udc.DotNet.ModelUtil.Exceptions;
 namespace Es.Udc.DotNet.PracticaMaD.Model.OrderDao
 {
     public class OrderDaoEntityFramework:
-        GenericDaoEntityFramework<Order_Table, Int64>, IOrderDao
+        GenericDaoEntityFramework<Order, Int64>, IOrderDao
     {
         #region Public Constructors
 
@@ -22,11 +22,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderDao
         #endregion Public Constructors
 
         #region IOrderLineDao Members. Specific Operations
-        public Order_Table FindById(long id)
+        public Order FindById(long id)
         {
-            Order_Table order = null;
+            #region Using Linq.
+            Order order = null;
 
-            DbSet<Order_Table> orders = Context.Set<Order_Table>();
+            DbSet<Order> orders = Context.Set<Order>();
 
             var result =
                 (from o in orders
@@ -37,9 +38,30 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderDao
 
             if (order == null)
                 throw new InstanceNotFoundException(id,
-                    typeof(Order_Table).FullName);
+                    typeof(Order).FullName);
 
             return order;
+
+            #endregion Using Linq.
+        }
+
+        public List<Order> FindByUserId(long userId, int startIndex, int count)
+        {
+            #region Using Linq.
+
+            DbSet<Order> orders = Context.Set<Order>();
+
+            List<Order> result =
+                (from o in orders
+                 where o.userId == userId
+                 orderby o.orderDate
+                 select o).Skip(startIndex).Take(count).ToList();
+
+
+            return result;
+
+            #endregion Using Linq.
+
         }
 
         #endregion IUserProfileDao Members

@@ -82,13 +82,7 @@
     </Compile>
     <Compile Include="CreditCardDao\CreditCardDaoEntityFramework.cs" />
     <Compile Include="CreditCardDao\ICreditCardDao.cs" />
-    <Compile Include="CreditCard_User.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Label.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Label_Comment.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Language.cs">
@@ -111,6 +105,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Order.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="OrderDao\IOrderDao.cs" />
     <Compile Include="OrderDao\OrderDaoEntityFramework.cs" />
     <Compile Include="OrderLine.cs">
@@ -118,19 +115,26 @@
     </Compile>
     <Compile Include="OrderLineDao\IOrderLineDao.cs" />
     <Compile Include="OrderLineDao\OrderLineDaoEntityFramework.cs" />
-    <Compile Include="Order_Table.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Product.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductDao\IProductDao.cs" />
     <Compile Include="ProductDao\ProductDaoEntityFramework.cs" />
-    <Compile Include="ProductService\Exceptions\IncorrectPasswordException.cs" />
     <Compile Include="ProductService\IProductService.cs" />
     <Compile Include="ProductService\ProductBlock.cs" />
     <Compile Include="ProductService\ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShoppingService\OrderLineDetails.cs" />
+    <Compile Include="ShoppingService\OrderDetails.cs" />
+    <Compile Include="ShoppingService\Exceptions\CreditCardAlreadyExpired.cs" />
+    <Compile Include="ShoppingService\IShoppingService.cs" />
+    <Compile Include="ShoppingService\OrderBlock.cs" />
+    <Compile Include="ShoppingService\ShoppingCartDetails.cs" />
+    <Compile Include="ShoppingService\ShoppingCartResult.cs" />
+    <Compile Include="ShoppingService\ShoppingService.cs" />
+    <Compile Include="User.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="UserDao\UserDaoEntityFramework.cs" />
     <Compile Include="UserDao\IUserDao.cs" />
     <Compile Include="UserService\Exceptions\IncorrectPasswordException.cs" />
@@ -139,9 +143,6 @@
     <Compile Include="UserService\UserDetails.cs" />
     <Compile Include="UserService\UserService.cs" />
     <Compile Include="UserService\Util\PasswordEncrypter.cs" />
-    <Compile Include="User_Table.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Model1.Context.tt">

@@ -17,7 +17,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Language()
         {
-            this.User_Table = new HashSet<User_Table>();
+            this.User_Table = new HashSet<User>();
         }
     
         public long id { get; set; }
@@ -25,6 +25,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public string country { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User_Table> User_Table { get; set; }
+        public virtual ICollection<User> User_Table { get; set; }
     }
 }

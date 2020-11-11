@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Xaquin\Desktop\Carrera\Q7\MaD20-21\PracticaMaD\Model\Model1.edmx'. 
+﻿// T4 code generation is enabled for model 'B:\Users\mauro\source\repos\MaD20-21\PracticaMaD\Model\Model1.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

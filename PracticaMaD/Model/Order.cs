@@ -12,10 +12,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Order_Table
+    public partial class Order
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Order_Table()
+        public Order()
         {
             this.OrderLines = new HashSet<OrderLine>();
         }
@@ -26,10 +26,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public decimal totalPrice { get; set; }
         public long userId { get; set; }
         public long creditCardId { get; set; }
+        public string description { get; set; }
     
         public virtual CreditCard CreditCard { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderLine> OrderLines { get; set; }
-        public virtual User_Table User_Table { get; set; }
+        public virtual User User_Table { get; set; }
     }
 }

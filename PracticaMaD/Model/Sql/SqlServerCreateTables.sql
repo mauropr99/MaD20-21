@@ -172,22 +172,18 @@ PRINT N'Done'
 /* CreditCard_User */
 
 CREATE TABLE CreditCard_User (
-	id bigint IDENTITY(1,1) NOT NULL, 
 	userId bigint NOT NULL, 
 	creditCardId bigint NOT NULL, 
-
     
-    CONSTRAINT [PK_CreditCard_User] PRIMARY KEY (id ASC),
+    CONSTRAINT [PK_CreditCard_User] PRIMARY KEY (userId, creditCardId),
+	
 	CONSTRAINT [FK_CreditCard_User_User] FOREIGN KEY(userId)
         REFERENCES User_Table (id) ON DELETE CASCADE,
+	
 	CONSTRAINT [FK_CreditCard_User_CreditCard] FOREIGN KEY(creditCardId)
         REFERENCES CreditCard (id) ON DELETE CASCADE
 	
 )
-
-
-CREATE NONCLUSTERED INDEX IX_CreditCard_UserIndexById 
-ON CreditCard_User (id);
 
 PRINT N'Table CreditCard_User created.'
 GO
@@ -294,11 +290,10 @@ PRINT N'Done'
 /* Label_Comment */
 
 CREATE TABLE Label_Comment (
-	id bigint IDENTITY(1,1) NOT NULL, 
 	commentId bigint NOT NULL,
 	labId bigint NOT NULL,
 
-    CONSTRAINT [PK_Label_Comment] PRIMARY KEY (id ASC),
+    CONSTRAINT [PK_Label_Comment] PRIMARY KEY (commentId, labId),
 
 	CONSTRAINT [FK_Label_Comment_CommentId] FOREIGN KEY(commentId)
 		REFERENCES Comment (id) ON DELETE CASCADE,
@@ -306,9 +301,6 @@ CREATE TABLE Label_Comment (
 	CONSTRAINT [FK_Label_Comment_LabelId] FOREIGN KEY(labId)
 		REFERENCES Label (id) ON DELETE CASCADE
 )
-
-CREATE NONCLUSTERED INDEX IX_Label_CommentIndexById 
-ON  Label_Comment (id);
 
 PRINT N'Table  Label_Comment created.'
 GO
@@ -324,6 +316,7 @@ CREATE TABLE Order_Table (
 	totalPrice DECIMAL(9,5) NOT NULL,
 	userId bigint NOT NULL,
 	creditCardId bigint NOT NULL,
+	description VARCHAR(200) NOT NULL,
     
     CONSTRAINT [PK_Order] PRIMARY KEY (id ASC),
     CONSTRAINT [FK_UserId] FOREIGN KEY(userId)

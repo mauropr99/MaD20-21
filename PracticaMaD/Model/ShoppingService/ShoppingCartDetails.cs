@@ -1,5 +1,4 @@
 ﻿using System;
-using Es.Udc.DotNet.PracticaMaD.Model;
 using System.Collections.Generic;
 
 
@@ -22,7 +21,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         public ShoppingCartDetails()
         {
             this.TotalPrice = 0;
-            this.OrderLines = OrderLines;
+            this.OrderLines = orderLines;
         }
 
         public ShoppingCartDetails(decimal totalPrice, ICollection<OrderLine> orderLines)
@@ -30,8 +29,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             this.TotalPrice = totalPrice;
             this.OrderLines = orderLines;
         }
-        
-
 
         public override bool Equals(object obj)
         {
@@ -41,6 +38,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             return (this.TotalPrice == target.TotalPrice)
                   && (this.OrderLines.Equals(target.OrderLines));
 
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = -1395028349;
+            hashCode = hashCode * -1521134295 + UserId.GetHashCode();
+            hashCode = hashCode * -1521134295 + TotalPrice.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<ICollection<OrderLine>>.Default.GetHashCode(OrderLines);
+            return hashCode;
         }
     }
 }
