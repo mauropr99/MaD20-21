@@ -54,26 +54,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao
             return result;
         }
 
-        public Product FindByProductId(long productId)
-        {
-            Product product = null;
-
-            DbSet<Product> products = Context.Set<Product>();
-
-            var result =
-                (from p in products
-                 where p.id == productId
-                 select p);
-
-            product = result.FirstOrDefault();
-
-            if (product == null)
-                throw new InstanceNotFoundException(productId,
-                    typeof(OrderLine).FullName);
-
-            return product;
-        }
-
         #endregion IUserProfileDao Members
     }
 }

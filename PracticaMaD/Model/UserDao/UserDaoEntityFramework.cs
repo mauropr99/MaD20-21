@@ -11,7 +11,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao
     /// Specific Operations for UserProfile
     /// </summary>
     public class UserDaoEntityFramework :
-        GenericDaoEntityFramework<User_Table, Int64>, IUserDao
+        GenericDaoEntityFramework<User, Int64>, IUserDao
     {
         #region Public Constructors
 
@@ -32,13 +32,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao
         /// <param name="login"></param>
         /// <returns></returns>
         /// <exception cref="InstanceNotFoundException"></exception>
-        public User_Table FindByLogin(String login)
+        public User FindByLogin(String login)
         {
-            User_Table user = null;
+            User user = null;
 
             #region Option 1: Using Linq.
 
-            DbSet<User_Table> users = Context.Set<User_Table>();
+            DbSet<User> users = Context.Set<User>();
 
             var result =
                 (from u in users
@@ -52,7 +52,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao
             
             if (user == null)
                 throw new InstanceNotFoundException(login,
-                    typeof(User_Table).FullName);
+                    typeof(User).FullName);
 
             return user;
         }

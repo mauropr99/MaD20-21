@@ -20,7 +20,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public long productId { get; set; }
         public long orderId { get; set; }
     
-        public virtual Order_Table Order_Table { get; set; }
+        public virtual Order Order_Table { get; set; }
         public virtual Product Product { get; set; }
     }
 }

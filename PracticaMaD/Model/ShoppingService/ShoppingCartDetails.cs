@@ -18,16 +18,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         #endregion
 
-        public ShoppingCartDetails(ICollection<OrderLine> orderLines)
-        {
-            this.TotalPrice = 0;
-            this.OrderLines = OrderLines;
-        }
-
         public ShoppingCartDetails()
         {
             this.TotalPrice = 0;
-            this.OrderLines = new List<OrderLine> ();
+            this.OrderLines = orderLines;
         }
 
         public ShoppingCartDetails(decimal totalPrice, ICollection<OrderLine> orderLines)

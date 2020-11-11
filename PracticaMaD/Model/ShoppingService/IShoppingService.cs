@@ -16,8 +16,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         IProductDao ProductDao { set; }
 
-        Order_Table BuyProducts(User_Table user, ICollection<OrderLine> orderLines,
-            string postalAddress, CreditCard creditCard);
+        Order BuyProducts(User user, ICollection<OrderLine> orderLines,
+            string postalAddress, CreditCard creditCard, string description);
 
         ShoppingCartDetails AddToShoppingCart(long productId, short quantity, Boolean giftWrap);
 
@@ -25,11 +25,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         ShoppingCartDetails UpdateProductFromShoppingCart(long productId, short quantity, Boolean giftWrap);
 
-        ShoppingCartDetails AddProductLinkToShoppingCart(System.String productLink);
-
         [Transactional]
         OrderBlock FindOrdersByUserId(long userId, int startIndex, int count);
 
+        [Transactional]
+        List<OrderLineDetails> ViewOrderDetails(long orderId);
     }
 }
 

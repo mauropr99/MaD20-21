@@ -49,9 +49,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
         public override string ToString()
         {
-            string strUserProfileDetails;
+            string strUserDetails;
 
-            strUserProfileDetails =
+            strUserDetails =
                 "[ firstName = " + Name + " | " +
                 "lastName = " + Lastname + " | " +
                 "email = " + Email + " | " +
@@ -59,7 +59,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                 "country = " + Address + " ]";
 
 
-            return strUserProfileDetails;
+            return strUserDetails;
         }
     }
 }

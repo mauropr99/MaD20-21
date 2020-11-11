@@ -1,5 +1,6 @@
 ﻿using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
+using Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao;
 using System;
 using Ninject;
 using System.Collections.Generic;
@@ -16,12 +17,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         [Inject]
         public IProductDao ProductDao { private get; set; }
 
+        [Inject]
+        public IOrderLineDao OrderLineDao { private get; set; }
+
         private ShoppingCartDetails shoppingCart = new ShoppingCartDetails();
 
 
         #region IShoppingService Members
 
-        public Order_Table BuyProducts(User_Table user, ICollection<OrderLine> orderLines,
+        public Order BuyProducts(User user, ICollection<OrderLine> orderLines,
             string postalAddress, CreditCard creditCard, string description)
         {
 
@@ -38,7 +42,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                 totalPrice += line.quantity * line.price;
             }
 
-            Order_Table order = new Order_Table();
+            Order order = new Order();
             order.postalAddress = postalAddress;
             order.orderDate = DateTime.Now;
             order.totalPrice = totalPrice;
@@ -123,16 +127,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             return shoppingCart;
         }
 
-        public ShoppingCartDetails AddProductLinkToShoppingCart(string productLink)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Order_Table BuyProducts(User_Table user, ICollection<OrderLine> orderLines, string postalAddress, CreditCard creditCard)
-        {
-            throw new NotImplementedException();
-        }
-
         private void CleanShoppingCart()
         {
             foreach (OrderLine line in shoppingCart.OrderLines)
@@ -148,7 +142,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         public OrderBlock FindOrdersByUserId(long userId, int startIndex, int count)
         {
-            List<Order_Table> orders;
+            List<Order> orders;
 
             /*
             * Find count+1 orders to determine if there exist more orders above
@@ -163,11 +157,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                 orders.RemoveAt(count);
             }
 
-            return new OrderBlock(orders, existMoreOrders);
+            List<OrderDetails> detailOrders = new List<OrderDetails>();
+
+            foreach(Order order in orders)
+            {
+                detailOrders.Add(new OrderDetails(order.id, order.orderDate, order.description, order.totalPrice));
+            }
+
+            return new OrderBlock(detailOrders, existMoreOrders);
+        }
+
+        public List<OrderLineDetails> ViewOrderDetails(long orderId)
+        {
+
+            List<OrderLine> orderLines;
+
+            orderLines = OrderLineDao.FindByOrderId(orderId);
+
+            List<OrderLineDetails> detailLineOrders = new List<OrderLineDetails>();
+
+            foreach(OrderLine orderLine in orderLines)
+            {
+                detailLineOrders.Add(new OrderLineDetails(orderLine.id, orderLine.Product.product_name, orderLine.quantity, orderLine.price));
+            }
+
+            return detailLineOrders;
         }
 
         #endregion IShoppingService Members
-
 
     }
 }
