@@ -1,11 +1,11 @@
-﻿using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
-using Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao;
-using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
+﻿using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
+
+using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
 using Ninject;
 using System.Configuration;
 using System.Data.Entity;
 
-namespace Es.Udc.DotNet.MiniBank.Test
+namespace Es.Udc.DotNet.PracticaMaD.Test
 {
     public class TestManager
     {
@@ -19,16 +19,11 @@ namespace Es.Udc.DotNet.MiniBank.Test
 
             IKernel kernel = new StandardKernel();
 
-            kernel.Bind<IShoppingService>().To<ShoppingService>();
-
-            kernel.Bind<IOrderDao>().
-                To<OrderDaoEntityFramework>();
-
-            kernel.Bind<IOrderLineDao>().
-                To<OrderLineDaoEntityFramework>();
+            kernel.Bind<IUserDao>().To<UserDaoEntityFramework>();
+            kernel.Bind<ILanguageDao>().To<LanguageDaoEntityFramework>();
 
             string connectionString =
-                ConfigurationManager.ConnectionStrings["PracticaMaDEntities"].ConnectionString;
+                ConfigurationManager.ConnectionStrings["practicamad_testEntities"].ConnectionString;
 
             kernel.Bind<DbContext>().
                 ToSelf().

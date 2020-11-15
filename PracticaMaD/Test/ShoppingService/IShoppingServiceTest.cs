@@ -1,4 +1,4 @@
-﻿using Es.Udc.DotNet.MiniBank.Test;
+﻿using Es.Udc.DotNet.PracticaMaD.Test;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;

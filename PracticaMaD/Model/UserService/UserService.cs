@@ -5,14 +5,20 @@ using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService.Util;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Transactions;
-
+using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 {
     public class UserService : IUserService
     {
+        public UserService()
+        {
+        }
+
         [Inject]
         public IUserDao UserDao { private get; set; }
+        [Inject]
+        public ILanguageDao LanguageDao { private get; set; }
 
         #region IUserService Members
 
@@ -21,7 +27,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             string newClearPassword)
         {
             User user = UserDao.Find(id);
-            System.String storedPassword = user.password;
+            String storedPassword = user.password;
+
             if (!PasswordEncrypter.IsClearPasswordCorrect(oldClearPassword,
                  storedPassword))
             {
@@ -100,7 +107,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                 user.name = userDetails.Name;
                 user.lastName = userDetails.Lastname;
                 user.email = userDetails.Email;
-                user.Language.name = userDetails.Language;
+                user.Language = LanguageDao.FindByName(userDetails.LanguageName);
                 user.address = userDetails.Address;
                 user.role = "user";
 
@@ -108,6 +115,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
                 return user.id;
             }
+        }
+
+        public void UpdateUserDetails(long id, UserDetails userDetails)
+        {
+            User user = UserDao.Find(id);
+
+            user.name = userDetails.Name;
+            user.lastName = userDetails.Lastname;
+            user.email = userDetails.Email;
+            user.languageId = LanguageDao.FindByName(userDetails.LanguageName).id;
+            user.address = userDetails.Address;
         }
 
         public bool UserExists(string login)

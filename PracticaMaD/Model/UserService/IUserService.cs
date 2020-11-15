@@ -8,15 +8,27 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 {
     public interface IUserService
     {
-        [Inject]
+ 
         IUserDao UserDao { set; }
 
+        void ChangePassword(long id, String oldClearPassword,
+            String newClearPassword);
+
         [Transactional]
-        LoginResult Login(System.String loginName, System.String password,
+        UserDetails FindUserDetails(long userProfileId);
+
+        [Transactional]
+        LoginResult Login(String login, String password,
             Boolean passwordIsEncrypted);
 
         [Transactional]
-        long SingUpUser(System.String loginName, System.String clearPassword,
+        long SingUpUser(String login, String clearPassword,
             UserDetails userDetails);
+
+        [Transactional]
+        void UpdateUserDetails(long id,
+            UserDetails userDetails);
+
+        bool UserExists(string login);
     }
 }
