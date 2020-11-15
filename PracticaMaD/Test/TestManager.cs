@@ -1,6 +1,7 @@
 ﻿using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
 
 using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Ninject;
 using System.Configuration;
 using System.Data.Entity;
@@ -21,6 +22,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
             kernel.Bind<IUserDao>().To<UserDaoEntityFramework>();
             kernel.Bind<ILanguageDao>().To<LanguageDaoEntityFramework>();
+            kernel.Bind<IUserService>().To<UserService>();
 
             string connectionString =
                 ConfigurationManager.ConnectionStrings["practicamad_testEntities"].ConnectionString;

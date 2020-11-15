@@ -1,4 +1,5 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService.Util;
 using Es.Udc.DotNet.PracticaMaD.Test;
@@ -17,7 +18,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
         private const string password = "passwd";
         private const string email = "user@udc.es";
         private const string address = "A Coruña";
-        private const string language = "ES";
+        private const string language = "es";
         private const string role = "user";
 
         private const long NON_EXISTENT_USER_ID = -1;
@@ -91,7 +92,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
                 Assert.AreEqual(lastName, user.lastName);
                 Assert.AreEqual(email, user.email);
                 Assert.AreEqual(address, user.address);
-                Assert.AreEqual(language, user.Language);
+                Assert.AreEqual(language, user.Language.name);
                 Assert.AreEqual(role, user.role);
             }
         }
