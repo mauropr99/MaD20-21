@@ -144,16 +144,6 @@ ON Language (id);
 PRINT N'Table Language created.'
 GO
 
-INSERT INTO dbo.Language
-(
-    name,
-    country
-)
-VALUES
-(   'es', -- name - varchar(64)
-    'ES'  -- country - varchar(64)
-    )
-
 PRINT N'Done'
 
 /* CreditCard */

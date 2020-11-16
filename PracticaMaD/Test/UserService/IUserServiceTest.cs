@@ -18,14 +18,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
         private const string password = "passwd";
         private const string email = "user@udc.es";
         private const string address = "A Coruña";
-        private const string language = "es";
+        private const string languageName = "es";
+        private const string languageCountry = "ES";
         private const string role = "user";
+        private static Language language = new Language();
 
         private const long NON_EXISTENT_USER_ID = -1;
 
         private static IKernel kernel;
         private static IUserService userService;
         private static IUserDao userDao;
+
 
         private TransactionScope transactionScope;
 
@@ -53,7 +56,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
             userDao = kernel.Get<IUserDao>();
 
             userService = kernel.Get<IUserService>();
-        }
+
+            language.name = languageName;
+            language.country = languageCountry;
+
+    }
 
         [ClassCleanup()]
         public static void MyClassCleanup()
@@ -82,7 +89,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
             { 
                 var id =
                     userService.SingUpUser(login, password,
-                        new UserDetails(name, lastName, email, language, address));
+                        new UserDetails(name, lastName, email, language.name, address));
 
                 var user = userDao.Find(id);
 
@@ -92,7 +99,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
                 Assert.AreEqual(lastName, user.lastName);
                 Assert.AreEqual(email, user.email);
                 Assert.AreEqual(address, user.address);
-                Assert.AreEqual(language, user.Language.name);
+                Assert.AreEqual(language.name, user.Language.name);
                 Assert.AreEqual(role, user.role);
             }
         }
@@ -104,10 +111,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
             using (var scope = new TransactionScope())
             {
                 userService.SingUpUser(login, password,
-                         new UserDetails(name, lastName, email, language, address));
+                         new UserDetails(name, lastName, email, language.name, address));
 
                 userService.SingUpUser(login, password,
-                        new UserDetails(name, lastName, email, language, address));
+                        new UserDetails(name, lastName, email, language.name, address));
             }
         }
 
@@ -117,10 +124,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
             using (var scope = new TransactionScope())
             {
                 var id = userService.SingUpUser(login, password,
-                         new UserDetails(name, lastName, email, language, address));
+                         new UserDetails(name, lastName, email, language.name, address));
 
                 var expected = new LoginResult(id, login, name, lastName,
-                   PasswordEncrypter.Crypt(password), language, email, address);
+                   PasswordEncrypter.Crypt(password), language.name, email, address);
 
                 var actual =
                     userService.Login(login,
