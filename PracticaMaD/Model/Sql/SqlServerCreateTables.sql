@@ -343,7 +343,7 @@ CREATE TABLE OrderLine (
 	quantity smallint NOT NULL,
 	price DECIMAL(9,5) NOT NULL,
    	productId BIGINT NOT NULL,
-	orderId BIGINT NOT NULL,
+	orderId BIGINT,
 
     CONSTRAINT [PK_OrderLine] PRIMARY KEY (id ASC),
 
