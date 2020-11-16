@@ -30,9 +30,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public virtual DbSet<CreditCard> CreditCards { get; set; }
         public virtual DbSet<Label> Labels { get; set; }
         public virtual DbSet<Language> Languages { get; set; }
-        public virtual DbSet<Order> Order { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderLine> OrderLines { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

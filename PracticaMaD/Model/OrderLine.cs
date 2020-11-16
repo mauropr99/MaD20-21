@@ -18,7 +18,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public short quantity { get; set; }
         public decimal price { get; set; }
         public long productId { get; set; }
-        public long orderId { get; set; }
+        public Nullable<long> orderId { get; set; }
     
         public virtual Order Order_Table { get; set; }
         public virtual Product Product { get; set; }
