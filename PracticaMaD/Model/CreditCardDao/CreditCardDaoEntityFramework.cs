@@ -53,6 +53,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao
             return creditCard;
         }
 
+        public ICollection<CreditCard> FindCreditCardsByUserLogin(string login)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion ICreditCardDao Members
     }
 }
