@@ -32,7 +32,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             kernel.Bind<IProductDao>().To<ProductDaoEntityFramework>();
             kernel.Bind<ICategoryDao>().To<CategoryDaoEntityFramework>();
             kernel.Bind<IUserService>().To<UserService>();
-           
+
 
             string connectionString =
                 ConfigurationManager.ConnectionStrings["practicamad_testEntities"].ConnectionString;
