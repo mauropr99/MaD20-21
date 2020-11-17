@@ -55,7 +55,29 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao
 
         public ICollection<CreditCard> FindCreditCardsByUserLogin(string login)
         {
-            throw new NotImplementedException();
+
+            #region Option 1: Using Linq.
+            DbSet<User> users = Context.Set<User>();
+
+            var userResult =
+                (from u in users
+                 where u.login == login
+                 select u).First();
+
+
+            DbSet<CreditCard> creditCards = Context.Set<CreditCard>();
+            ICollection<CreditCard> foundCreditCards;
+
+            var result =
+                (from c in creditCards
+                 where c.User_Table.Contains(userResult)
+                 select c);
+
+            foundCreditCards = result.ToArray();
+
+            #endregion Option 1: Using Linq
+
+            return foundCreditCards;
         }
 
         #endregion ICreditCardDao Members
