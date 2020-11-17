@@ -28,31 +28,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao
 
         #region ICreditCardDao Members. Specific Operations
 
-        public CreditCard FindById(long id)
-        {
-            CreditCard creditCard = null;
-
-            #region Option 1: Using Linq.
-
-            DbSet<CreditCard> creditCards = Context.Set<CreditCard>();
-
-            var result =
-                (from u in creditCards
-                 where u.id == id
-                 select u);
-
-            creditCard = result.FirstOrDefault();
-
-            #endregion Option 1: Using Linq.
-
-           
-            if (creditCard == null)
-                throw new InstanceNotFoundException(id,
-                    typeof(CreditCard).FullName);
-
-            return creditCard;
-        }
-
         public ICollection<CreditCard> FindCreditCardsByUserLogin(string login)
         {
 
