@@ -21,7 +21,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderDao
 
         #endregion Public Constructors
 
-        #region IOrderLineDao Members. Specific Operations
+        #region IOrderDao Members. Specific Operations
         public Order FindById(long id)
         {
             #region Using Linq.
@@ -64,6 +64,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderDao
 
         }
 
-        #endregion IUserProfileDao Members
+        #endregion IOrderDao Members
     }
 }

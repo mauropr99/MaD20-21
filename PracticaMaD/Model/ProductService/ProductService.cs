@@ -5,7 +5,7 @@ using Es.Udc.DotNet.ModelUtil.Dao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 {
-    public class ProductService: GenericDaoEntityFramework<Product, long>, IProductService
+    public class ProductService:  IProductService
     {
         public ProductService()
         {
@@ -16,7 +16,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
         #region IProductService Members
 
-        public ProductBlock FindProductsByNameAndCategory(string productName, string categoryName, int startIndex, int count)
+        public ProductBlock ViewOrderHistorical(string productName, string categoryName, int startIndex, int count)
         {
             List<Product> products;
 

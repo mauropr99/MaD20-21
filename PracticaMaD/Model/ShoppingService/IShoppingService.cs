@@ -13,9 +13,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
     public interface IShoppingService
     {
         IOrderDao OrderDao { set; }
-
         IProductDao ProductDao { set; }
 
+        [Transactional]
         Order BuyProducts(User user, ICollection<OrderLine> orderLines,
             string postalAddress, CreditCard creditCard, string description);
 

@@ -8,7 +8,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 {
     public interface IUserService
     {
-        [Inject]
         IUserDao UserDao { set; }
 
         [Transactional]

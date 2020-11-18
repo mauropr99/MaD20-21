@@ -77,6 +77,9 @@
     </Compile>
     <Compile Include="CommentDao\CommentDaoEntityFramework.cs" />
     <Compile Include="CommentDao\ICommentDao.cs" />
+    <Compile Include="CommentService\CommentBlock.cs" />
+    <Compile Include="CommentService\CommentService.cs" />
+    <Compile Include="CommentService\ICommentService.cs" />
     <Compile Include="CreditCard.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -85,6 +88,8 @@
     <Compile Include="Label.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="LabelDao\LabelDaoEntityFramework.cs" />
+    <Compile Include="LabelDao\ILabelDao.cs" />
     <Compile Include="Language.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

@@ -2,8 +2,7 @@ using System;
 using System.Collections.Generic;
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
-
-
+using Ninject;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 {
@@ -21,12 +20,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         /// <param name="count">The maximum number of objects to return.</param>
         /// <returns>The list of products within an AccountBlock.</returns>
         [Transactional]
-        ProductBlock FindProductsByNameAndCategory(string productName, string categoryName,  int startIndex, int count);
+        ProductBlock ViewOrderHistorical(string productName, string categoryName,  int startIndex, int count);
 
         [Transactional]
         void UpdateProduct(long productId, string productName, int stock, decimal price);
-
-
     }
 }
 
