@@ -26,9 +26,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderDao.Tests
         private static ILanguageDao languageDao;
         private static ICreditCardDao creditCardDao;
 
-        private const string NON_EXISTENT_USER = "no_user";
         private const long NON_EXISTENT_ID_USER = -1;
-        private const long NON_EXISTENT_ID_PRODUCT = -1;
 
         private static Language createExistentLanguage(Language language)
         {
@@ -227,21 +225,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderDao.Tests
             Assert.AreEqual(0, foundOrders.Count);
 
             Order foundOrder = new Order();
-            foundOrder = orderDao.FindById(order1.id);
+            foundOrder = orderDao.Find(order1.id);
 
             Assert.AreEqual(order1.orderDate, foundOrder.orderDate);
             Assert.AreEqual(order1.totalPrice, foundOrder.totalPrice);
             Assert.AreEqual(order1.userId, foundOrder.userId);
             Assert.AreEqual(order1.totalPrice, foundOrder.totalPrice);
             Assert.AreEqual(order1.description, foundOrder.description);
-        }
-
-        [TestMethod()]
-        [ExpectedException(typeof(InstanceNotFoundException))]
-        public void FindByNonExistentOrderTest()
-        {
-            Order foundOrder = new Order();
-            foundOrder = orderDao.FindById(NON_EXISTENT_ID_PRODUCT);
         }
     }
 }

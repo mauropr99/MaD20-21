@@ -5,6 +5,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Ninject;
 using System.Configuration;
@@ -31,6 +32,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             kernel.Bind<IOrderLineDao>().To<OrderLineDaoEntityFramework>();
             kernel.Bind<IProductDao>().To<ProductDaoEntityFramework>();
             kernel.Bind<ICategoryDao>().To<CategoryDaoEntityFramework>();
+            kernel.Bind<ICommentDao>().To<CommentDaoEntityFramework>();
             kernel.Bind<IUserService>().To<UserService>();
 
 

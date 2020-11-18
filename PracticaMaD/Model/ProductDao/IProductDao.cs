@@ -9,12 +9,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 
     {
         /// <summary>
-        /// Returns a product pertaining to a given identifier.
-        /// </summary>
-        /// <param name="id">the product identifier </param>
-        /// <returns>a product</returns>
-        Product FindById(long id);
-        /// <summary>
         /// Returns a list of products that matches to a given name.
         /// </summary>
         /// <param name="product_name">the product name </param>
@@ -31,6 +25,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         /// <param name="startIndex">the index of the first product to return (starting in 0)</param>
         /// <param name="count">the maximum number of products to return</param>
         /// <returns>the list of products</returns>
-        List<Product> FindByProductNameAndCategoryId(String product_name, string categoryName, int startIndex, int count);
+        List<Product> FindByProductNameAndCategoryName(String product_name, string categoryName, int startIndex, int count);
     }
 }

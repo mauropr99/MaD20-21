@@ -4,8 +4,7 @@ using Ninject;
 using Es.Udc.DotNet.PracticaMaD.Test;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Transactions;
-
-
+using Es.Udc.DotNet.ModelUtil.Exceptions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CategoryDao.Tests
 {
@@ -16,9 +15,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CategoryDao.Tests
         private static ICategoryDao categoryDao;
 
         // Variables used in several tests are initialized here
-        private const long userId = 123456;
-        private const long NON_EXISTENT_USER_ID = -2;
-        private const long categoryId = -1;
+        private const string NON_EXISTENT_CATEGORY_NAME = "non_existent_cat";
 
         private TransactionScope transactionScope;
 
@@ -75,7 +72,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CategoryDao.Tests
         #endregion Additional test attributes
 
         [TestMethod()]
-        public void FindByNameTest()
+        public void FindByCategoryNameTest()
         {
             int numberOfCategories = 11;
 
@@ -96,6 +93,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CategoryDao.Tests
             Category foundCategory = categoryDao.FindByName(expectedCategoryName);
 
             Assert.AreEqual(foundCategory.name, expectedCategoryName);
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(InstanceNotFoundException))]
+        public void FindByNonExistentNameTest()
+        {
+            Category foundCategory = categoryDao.FindByName(NON_EXISTENT_CATEGORY_NAME);
         }
     }
 }

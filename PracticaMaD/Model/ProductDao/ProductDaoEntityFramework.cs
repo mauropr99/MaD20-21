@@ -13,31 +13,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         GenericDaoEntityFramework<Product, Int64>, IProductDao
     {
         #region IProductDao Members
-        
-        public Product FindById(long id)
-        {
-            Product product = null;
-
-            #region Option 1: Using Linq.
-
-            DbSet<Product> products = Context.Set<Product>();
-
-            var result =
-                (from p in products
-                 where p.id == id
-                 select p);
-
-            product = result.FirstOrDefault();
-
-            #endregion Option 1: Using Linq.
-
-            if (product == null)
-                throw new InstanceNotFoundException(id,
-                    typeof(Product).FullName);
-
-            return product;
-
-        }
 
         public List<Product> FindByProductName(String product_name, int startIndex, int count)
         {
@@ -47,7 +22,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 
             List<Product> result = 
                 (from p in products
-                 where p.product_name == product_name
+                 where p.product_name.Contains (product_name)
                  orderby p.product_name
                  select p).Skip(startIndex).Take(count).ToList();
 
@@ -57,7 +32,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         }
 
 
-        public List<Product> FindByProductNameAndCategoryId(String product_name, string category_name,
+        public List<Product> FindByProductNameAndCategoryName(String product_name, string category_name,
             int startIndex, int count)
         {
             #region Using Linq.
@@ -67,7 +42,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 
             List<Product> result =
                 (from p in products
-                 where p.product_name == product_name && p.Category.name == category_name
+                 where p.product_name.Contains(product_name) && p.Category.name == category_name
                  orderby p.product_name
                  select p).Skip(startIndex).Take(count).ToList();
 
@@ -77,10 +52,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
             #endregion Using Linq.
         }
 
-        List<Product> FindByProductNameAndCategoryId(string product_name, long categoryId, int startIndex, int count)
-        {
-            throw new NotImplementedException();
-        }
         #endregion Members
     }
 }

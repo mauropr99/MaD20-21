@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 {
-    interface ICommentDao : IGenericDao<Comment, Int64>
+    public interface ICommentDao : IGenericDao<Comment, Int64>
     {
         /// <summary>
         /// Returns a list of comments pertaining to a given product identifier.

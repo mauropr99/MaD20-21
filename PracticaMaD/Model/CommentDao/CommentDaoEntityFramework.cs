@@ -25,11 +25,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 
             #endregion Using Linq.
         }
-
-        List<Comment> FindByProductId(long productId)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
 

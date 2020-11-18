@@ -4,7 +4,7 @@ using Ninject;
 using Es.Udc.DotNet.PracticaMaD.Test;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Transactions;
-
+using Es.Udc.DotNet.ModelUtil.Exceptions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao.Tests
 {
@@ -15,8 +15,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao.Tests
         private static ILanguageDao languageDao;
 
         // Variables used in several tests are initialized here
-        private const long userId = 123456;
-        private const long NON_EXISTENT_USER_ID = -2;
+        private const string NON_EXISTENT_LANGUAGE_NAME = "non_existent_language";
 
         private TransactionScope transactionScope;
 
@@ -95,6 +94,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao.Tests
 
             Assert.AreEqual(foundlanguage.name, expectedLanguageName);
 
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(InstanceNotFoundException))]
+        public void FindByNonExistentLanguageNameTest()
+        {
+            Language expectedLanguage = languageDao.FindByName(NON_EXISTENT_LANGUAGE_NAME);
         }
     }
 }

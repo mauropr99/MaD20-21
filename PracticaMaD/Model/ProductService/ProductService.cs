@@ -31,7 +31,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             } 
             else
             {
-                products = ProductDao.FindByProductNameAndCategoryId(productName, categoryName, startIndex, count + 1);
+                products = ProductDao.FindByProductNameAndCategoryName(productName, categoryName, startIndex, count + 1);
             }
 
             bool existMoreProducts = (products.Count == count + 1);
@@ -48,7 +48,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         public void UpdateProduct(long productId, string productName,  int stock, decimal price)
         {
       
-                Product prod = ProductDao.FindById(productId);
+                Product prod = ProductDao.Find(productId);
                 prod.product_name = productName;
                 prod.stock = stock;
                 prod.price = price;

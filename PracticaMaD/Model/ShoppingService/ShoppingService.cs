@@ -63,7 +63,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         public ShoppingCartDetails AddToShoppingCart(long productId,
             short quantity, Boolean giftWrap)
         {
-            Product product = ProductDao.FindById(productId);
+            Product product = ProductDao.Find(productId);
 
             //Check if the product is inside the shopping cart already
             foreach (OrderLine line in shoppingCart.OrderLines)
