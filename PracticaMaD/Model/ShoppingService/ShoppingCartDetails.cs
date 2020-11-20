@@ -21,7 +21,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         public ShoppingCartDetails()
         {
             this.TotalPrice = 0;
-            this.OrderLines = orderLines;
+            this.OrderLines = OrderLines;
         }
 
         public ShoppingCartDetails(decimal totalPrice, ICollection<OrderLine> orderLines)

@@ -84,7 +84,7 @@
           <Property Name="quantity" Type="smallint" Nullable="false" />
           <Property Name="price" Type="decimal" Precision="9" Scale="5" Nullable="false" />
           <Property Name="productId" Type="bigint" Nullable="false" />
-          <Property Name="orderId" Type="bigint" Nullable="false" />
+          <Property Name="orderId" Type="bigint" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -230,7 +230,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderId">
-          <End Role="Order_Table" Type="Self.Order_Table" Multiplicity="1">
+          <End Role="Order_Table" Type="Self.Order_Table" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="OrderLine" Type="Self.OrderLine" Multiplicity="*" />
@@ -427,7 +427,7 @@
           <Property Name="quantity" Type="Int16" Nullable="false" />
           <Property Name="price" Type="Decimal" Precision="9" Scale="5" Nullable="false" />
           <Property Name="productId" Type="Int64" Nullable="false" />
-          <Property Name="orderId" Type="Int64" Nullable="false" />
+          <Property Name="orderId" Type="Int64" />
           <NavigationProperty Name="Order_Table" Relationship="Self.FK_OrderId" FromRole="OrderLine" ToRole="Order_Table" />
           <NavigationProperty Name="Product" Relationship="Self.FK_ProductId" FromRole="OrderLine" ToRole="Product" />
         </EntityType>
@@ -538,7 +538,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderId">
-          <End Role="Order_Table" Type="Es.Udc.DotNet.practicamadModel.Order" Multiplicity="1">
+          <End Role="Order_Table" Type="Es.Udc.DotNet.practicamadModel.Order" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="OrderLine" Type="Self.OrderLine" Multiplicity="*" />
@@ -591,10 +591,10 @@
           <EntitySet Name="CreditCards" EntityType="Self.CreditCard" />
           <EntitySet Name="Labels" EntityType="Self.Label" />
           <EntitySet Name="Languages" EntityType="Self.Language" />
-          <EntitySet Name="Order" EntityType="Es.Udc.DotNet.practicamadModel.Order" />
+          <EntitySet Name="Orders" EntityType="Es.Udc.DotNet.practicamadModel.Order" />
           <EntitySet Name="OrderLines" EntityType="Self.OrderLine" />
           <EntitySet Name="Products" EntityType="Self.Product" />
-          <EntitySet Name="User" EntityType="Es.Udc.DotNet.practicamadModel.User" />
+          <EntitySet Name="Users" EntityType="Es.Udc.DotNet.practicamadModel.User" />
           <AssociationSet Name="FK_CategoryId" Association="Self.FK_CategoryId">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Category1" EntitySet="Categories" />
@@ -608,24 +608,24 @@
             <End Role="Comment" EntitySet="Comments" />
           </AssociationSet>
           <AssociationSet Name="FK_Comment_UserId" Association="Self.FK_Comment_UserId">
-            <End Role="User_Table" EntitySet="User" />
+            <End Role="User_Table" EntitySet="Users" />
             <End Role="Comment" EntitySet="Comments" />
           </AssociationSet>
           <AssociationSet Name="FK_Order_CreditCardId" Association="Self.FK_Order_CreditCardId">
             <End Role="CreditCard" EntitySet="CreditCards" />
-            <End Role="Order_Table" EntitySet="Order" />
+            <End Role="Order_Table" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_LanguageId" Association="Self.FK_LanguageId">
             <End Role="Language" EntitySet="Languages" />
-            <End Role="User_Table" EntitySet="User" />
+            <End Role="User_Table" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderId" Association="Self.FK_OrderId">
-            <End Role="Order_Table" EntitySet="Order" />
+            <End Role="Order_Table" EntitySet="Orders" />
             <End Role="OrderLine" EntitySet="OrderLines" />
           </AssociationSet>
           <AssociationSet Name="FK_UserId" Association="Self.FK_UserId">
-            <End Role="User_Table" EntitySet="User" />
-            <End Role="Order_Table" EntitySet="Order" />
+            <End Role="User_Table" EntitySet="Users" />
+            <End Role="Order_Table" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductId" Association="Self.FK_ProductId">
             <End Role="Product" EntitySet="Products" />
@@ -633,7 +633,7 @@
           </AssociationSet>
           <AssociationSet Name="CreditCard_User" Association="Self.CreditCard_User">
             <End Role="CreditCard" EntitySet="CreditCards" />
-            <End Role="User_Table" EntitySet="User" />
+            <End Role="User_Table" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="Label_Comment" Association="Self.Label_Comment">
             <End Role="Comment" EntitySet="Comments" />
@@ -694,7 +694,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Order">
+          <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="Es.Udc.DotNet.practicamadModel.Order">
               <MappingFragment StoreEntitySet="Order_Table">
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -730,7 +730,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="User">
+          <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="Es.Udc.DotNet.practicamadModel.User">
               <MappingFragment StoreEntitySet="User_Table">
                 <ScalarProperty Name="id" ColumnName="id" />

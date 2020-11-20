@@ -21,29 +21,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderDao
 
         #endregion Public Constructors
 
-        #region IOrderDao Members. Specific Operations
-        public Order FindById(long id)
-        {
-            #region Using Linq.
-            Order order = null;
-
-            DbSet<Order> orders = Context.Set<Order>();
-
-            var result =
-                (from o in orders
-                 where o.id == id
-                 select o);
-
-            order = result.FirstOrDefault();
-
-            if (order == null)
-                throw new InstanceNotFoundException(id,
-                    typeof(Order).FullName);
-
-            return order;
-
-            #endregion Using Linq.
-        }
+        #region IOrderLineDao Members. Specific Operations
 
         public List<Order> FindByUserId(long userId, int startIndex, int count)
         {

@@ -14,7 +14,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
         public string Email { get; private set; }
 
-        public string Language { get; private set; }
+        public string LanguageName { get; private set; }
 
         public string Address { get; private set; }
 
@@ -26,7 +26,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             this.Name = name;
             this.Lastname = lastName;
             this.Email = email;
-            this.Language = language;
+            this.LanguageName = language;
             this.Address = address;
         }
 
@@ -38,7 +38,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             return (this.Name == target.Name)
                   && (this.Lastname == target.Lastname)
                   && (this.Email == target.Email)
-                  && (this.Language == target.Language)
+                  && (this.LanguageName == target.LanguageName)
                   && (this.Address == target.Address);
         }
     
@@ -55,7 +55,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                 "[ firstName = " + Name + " | " +
                 "lastName = " + Lastname + " | " +
                 "email = " + Email + " | " +
-                "language = " + Language + " | " +
+                "language = " + LanguageName + " | " +
                 "country = " + Address + " ]";
 
 

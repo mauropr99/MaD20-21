@@ -7,6 +7,7 @@ using Es.Udc.DotNet.ModelUtil.Transactions;
 using Ninject;
 using System;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 {
@@ -15,8 +16,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         IOrderDao OrderDao { set; }
         IProductDao ProductDao { set; }
 
-        [Transactional]
-        Order BuyProducts(User user, ICollection<OrderLine> orderLines,
+        IUserDao UserDao {  set; }
+
+
+        Order BuyProducts(UserDetails user, ICollection<OrderLineDetails> orderLinesDetails,
             string postalAddress, CreditCard creditCard, string description);
 
         ShoppingCartDetails AddToShoppingCart(long productId, short quantity, Boolean giftWrap);

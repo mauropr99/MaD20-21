@@ -21,25 +21,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao
         #endregion Public Constructors
         
         #region IOrderLineDao Members. Specific Operations
-        public OrderLine FindById(long id)
-        {
-            OrderLine orderLine = null;
-
-            DbSet<OrderLine> orderLines = Context.Set<OrderLine>();
-
-            var result =
-                (from o in orderLines
-                 where o.id == id
-                 select o);
-
-            orderLine = result.FirstOrDefault();
-
-            if (orderLine == null)
-                throw new InstanceNotFoundException(id,
-                    typeof(OrderLine).FullName);
-
-            return orderLine;
-        }
 
         public List<OrderLine> FindByOrderId(long orderId)
         {

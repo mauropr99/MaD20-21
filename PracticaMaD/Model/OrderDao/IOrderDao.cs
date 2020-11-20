@@ -7,13 +7,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderDao
 {
     public interface IOrderDao : IGenericDao<Order, Int64>
     {
-        /// <summary>
-        /// Finds a The order
-        /// </summary>
-        /// <param id="id">id</param>
-        /// <returns>The Order</returns>
-        /// <exception cref="InstanceNotFoundException"/>
-        Order FindById(long id);
 
          /// <summary>
         /// Returns a list of orders that matches to a given user identifier.

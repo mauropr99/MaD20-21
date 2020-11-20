@@ -57,6 +57,31 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao
             return user;
         }
 
+        public User FindByEmail(String email)
+        {
+            User user = null;
+
+            #region Option 1: Using Linq.
+
+            DbSet<User> users = Context.Set<User>();
+
+            var result =
+                (from u in users
+                 where u.email == email
+                 select u);
+
+            user = result.FirstOrDefault();
+
+            #endregion Option 1: Using Linq.
+
+            
+            if (user == null)
+                throw new InstanceNotFoundException(email,
+                    typeof(User).FullName);
+
+            return user;
+        }
+
         #endregion IUserProfileDao Members
     }
 
