@@ -26,5 +26,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         /// <param name="count">the maximum number of products to return</param>
         /// <returns>the list of products</returns>
         List<Product> FindByProductNameAndCategoryName(String product_name, string categoryName, int startIndex, int count);
+
+        Product FindByProductName(String product_name);
     }
 }

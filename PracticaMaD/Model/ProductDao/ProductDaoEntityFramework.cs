@@ -31,6 +31,29 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
             #endregion Using Linq.
         }
 
+        public Product FindByProductName(String product_name)
+        {
+            #region Using Linq.
+            Product product = new Product();
+
+            DbSet<Product> products = Context.Set<Product>();
+
+            var result =
+                (from p in products
+                 where p.product_name == product_name
+                 select p);
+
+            product = result.FirstOrDefault();
+
+            if (product == null)
+                throw new InstanceNotFoundException(product_name,
+                    typeof(User).FullName);
+
+           
+            return product;
+
+            #endregion Using Linq.
+        }
 
         public List<Product> FindByProductNameAndCategoryName(String product_name, string category_name,
             int startIndex, int count)

@@ -10,6 +10,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Ninject;
 using System.Configuration;
 using System.Data.Entity;
+using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
 
 namespace Es.Udc.DotNet.PracticaMaD.Test
 {
@@ -34,6 +35,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             kernel.Bind<ICategoryDao>().To<CategoryDaoEntityFramework>();
             kernel.Bind<ICommentDao>().To<CommentDaoEntityFramework>();
             kernel.Bind<IUserService>().To<UserService>();
+            kernel.Bind<IShoppingService>().To<ShoppingService>();
 
 
             string connectionString =

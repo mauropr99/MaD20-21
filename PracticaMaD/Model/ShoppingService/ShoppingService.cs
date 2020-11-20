@@ -5,11 +5,15 @@ using System;
 using Ninject;
 using System.Collections.Generic;
 using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService;
+using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 {
     public class ShoppingService : IShoppingService
     {
+        [Inject]
+        public IUserDao UserDao { private get; set; }
 
         [Inject]
         public IOrderDao OrderDao { private get; set; }
@@ -25,10 +29,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         #region IShoppingService Members
 
-        public Order BuyProducts(User user, ICollection<OrderLine> orderLines,
+        public Order BuyProducts(UserDetails user, ICollection<OrderLineDetails> orderLinesDetails,
             string postalAddress, CreditCard creditCard, string description)
         {
-
+            List<OrderLine> orderLines = new List<OrderLine>();
+            Product product = new Product();
+            decimal totalPrice = 0;
+            OrderLine orderLine = new OrderLine();
             //Check expiration date
             if (creditCard.expirationDate < DateTime.Now)
             {
@@ -36,10 +43,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             }
 
             //Calculate total price
-            decimal totalPrice = 0;
-            foreach (OrderLine line in orderLines)
+           
+            foreach (OrderLineDetails line in orderLinesDetails)
             {
-                totalPrice += line.quantity * line.price;
+                product = ProductDao.FindByProductName(line.Product_Name);
+                if (product.stock < line.Quantity)
+                {
+                    throw new NotEnoughStock(product.product_name, product.stock);
+                }
+
+                orderLine.price = line.Price;
+                orderLine.productId = product.id;
+                orderLine.quantity = line.Quantity;
+                OrderLineDao.Create(orderLine);
+
+                totalPrice += line.Quantity * line.Price;
+                orderLines.Add(orderLine);  
             }
 
             Order order = new Order();
@@ -48,16 +67,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             order.totalPrice = totalPrice;
             order.CreditCard = creditCard;
             order.OrderLines = orderLines;
-            order.User_Table = user;
+            order.User_Table = UserDao.FindByEmail(user.Email);
             order.description = description;
 
             //Llamar al DAO para crear el order.
             OrderDao.Create(order);
-
-            //Preguntar a ellos
-            CleanShoppingCart();
-
-            return order;
+            order = OrderDao.Find(order.id);
+            foreach (OrderLine line in orderLines)
+            {
+                line.orderId = order.id;
+            }
+                return order;
         }
 
         public ShoppingCartDetails AddToShoppingCart(long productId,
@@ -127,18 +147,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             return shoppingCart;
         }
 
-        private void CleanShoppingCart()
-        {
-            foreach (OrderLine line in shoppingCart.OrderLines)
-            {
-                
-                //Remove element from collection
-                shoppingCart.OrderLines.Remove(line);
-                //Update total price
-                shoppingCart.TotalPrice -= line.quantity * line.price;
-                
-            }
-        }
 
         public OrderBlock FindOrdersByUserId(long userId, int startIndex, int count)
         {
@@ -178,7 +186,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
             foreach(OrderLine orderLine in orderLines)
             {
-                detailLineOrders.Add(new OrderLineDetails(orderLine.id, orderLine.Product.product_name, orderLine.quantity, orderLine.price));
+                detailLineOrders.Add(new OrderLineDetails(orderLine.Product.product_name, orderLine.quantity, orderLine.price));
             }
 
             return detailLineOrders;

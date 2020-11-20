@@ -6,6 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Transactions;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Test.Util;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
 {
@@ -13,29 +14,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
     public class IProductDaoEntityFrameworkTests
     {
         private static IKernel kernel;
-        private static IProductDao productDao;
-        private static ICategoryDao categoryDao;
-
-        private static Category createCategory(Category category, string name)
-        {
-            category.name = name;
-
-            categoryDao.Create(category);
-            return category;
-        }
-
-        private static Product createProduct(Category category, string productName, decimal price, Product product)
-        {
-            product.product_name = productName;
-            product.price = price;
-            product.releaseDate = DateTime.Now;
-            product.stock = 10000;
-            product.categoryId = category.id;
-
-            productDao.Create(product);
-            return product;
-        }
-
 
         private TransactionScope transactionScope;
 
@@ -64,8 +42,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
         public static void MyClassInitialize(TestContext testContext)
         {
             kernel = TestManager.ConfigureNInjectKernel();
-            productDao = kernel.Get<IProductDao>();
-            categoryDao = kernel.Get<ICategoryDao>();
+            TestUtil.productDao = kernel.Get<IProductDao>();
+            TestUtil.categoryDao = kernel.Get<ICategoryDao>();
         }
 
         //Use ClassCleanup to run code after all tests in a class have run
@@ -95,17 +73,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
         public void FindByProductNameTest()
         {
             Category category = new Category();
-            createCategory(category, "Ordenadores");
+            TestUtil.CreateCategory(category, "Ordenadores");
 
             Product product1 = new Product();
-            createProduct(category, "Portatil Acer blanco", 3, product1);
+            TestUtil.CreateProduct(category, "Portatil Acer blanco", 3, product1);
             Product product2 = new Product();
-            createProduct(category, "Ordenador Acer sobremesa i7 RTX2600", 850, product2);
+            TestUtil.CreateProduct(category, "Ordenador Acer sobremesa i7 RTX2600", 850, product2);
             Product product3 = new Product();
-            createProduct(category, "Portatil Toshiba reacondicionado", 3, product3);
+            TestUtil.CreateProduct(category, "Portatil Toshiba reacondicionado", 3, product3);
 
             List<Product> foundProducts = new List<Product>();
-            foundProducts = productDao.FindByProductName("Acer", 0, 10);
+            foundProducts = TestUtil.productDao.FindByProductName("Acer", 0, 10);
 
             Assert.AreEqual(2, foundProducts.Count);
             //Están ordenados alfabéticamente por nombre, por eso que sea primero el [1]
@@ -123,17 +101,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
         public void FindZeroByProductNameTest()
         {
             Category category = new Category();
-            createCategory(category, "Ordenadores");
+            TestUtil.CreateCategory(category, "Ordenadores");
 
             Product product1 = new Product();
-            createProduct(category, "Portátil Acer blanco", 3, product1);
+            TestUtil.CreateProduct(category, "Portátil Acer blanco", 3, product1);
             Product product2 = new Product();
-            createProduct(category, "Ordenador Acer sobremesa i7 RTX2600", 850, product2);
+            TestUtil.CreateProduct(category, "Ordenador Acer sobremesa i7 RTX2600", 850, product2);
             Product product3 = new Product();
-            createProduct(category, "Portatil Toshiba reacondicionado", 3, product3);
+            TestUtil.CreateProduct(category, "Portatil Toshiba reacondicionado", 3, product3);
 
             List<Product> foundProducts = new List<Product>();
-            foundProducts = productDao.FindByProductName("Secador de pelo", 0, 10);
+            foundProducts = TestUtil.productDao.FindByProductName("Secador de pelo", 0, 10);
 
             Assert.AreEqual(0, foundProducts.Count);
         }
@@ -142,20 +120,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
         public void FindByProductNameAndCategoryIdTest()
         {
             Category category = new Category();
-            createCategory(category, "Sobremesa");
+            TestUtil.CreateCategory(category, "Sobremesa");
 
             Category category2 = new Category();
-            createCategory(category2, "Portátiles");
+            TestUtil.CreateCategory(category2, "Portátiles");
 
             Product product1 = new Product();
-            createProduct(category2, "Portátil Acer blanco", 3, product1);
+            TestUtil.CreateProduct(category2, "Portátil Acer blanco", 3, product1);
             Product product2 = new Product();
-            createProduct(category, "Ordenador Acer sobremesa i7 RTX2600", 850, product2);
+            TestUtil.CreateProduct(category, "Ordenador Acer sobremesa i7 RTX2600", 850, product2);
             Product product3 = new Product();
-            createProduct(category2, "Portatil Toshiba reacondicionado", 3, product3);
+            TestUtil.CreateProduct(category2, "Portatil Toshiba reacondicionado", 3, product3);
 
             List<Product> foundProducts = new List<Product>();
-            foundProducts = productDao.FindByProductNameAndCategoryName("Acer", category.name, 0, 10);
+            foundProducts = TestUtil.productDao.FindByProductNameAndCategoryName("Acer", category.name, 0, 10);
 
             Assert.AreEqual(1, foundProducts.Count);
             Assert.AreEqual(product2.price, foundProducts[0].price);
@@ -169,20 +147,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
         public void FindZeroByProductNameAndCategoryIdTest()
         {
             Category category = new Category();
-            createCategory(category, "Hogar");
+            TestUtil.CreateCategory(category, "Hogar");
 
             Category category2 = new Category();
-            createCategory(category2, "Informática");
+            TestUtil.CreateCategory(category2, "Informática");
 
             Product product1 = new Product();
-            createProduct(category2, "Portátil Acer blanco", 3, product1);
+            TestUtil.CreateProduct(category2, "Portátil Acer blanco", 3, product1);
             Product product2 = new Product();
-            createProduct(category2, "Ordenador Acer sobremesa i7 RTX2600", 850, product2);
+            TestUtil.CreateProduct(category2, "Ordenador Acer sobremesa i7 RTX2600", 850, product2);
             Product product3 = new Product();
-            createProduct(category2, "Portatil Toshiba reacondicionado", 3, product3);
+            TestUtil.CreateProduct(category2, "Portatil Toshiba reacondicionado", 3, product3);
 
             List<Product> foundProducts = new List<Product>();
-            foundProducts = productDao.FindByProductNameAndCategoryName("Acer", category.name, 0, 10);
+            foundProducts = TestUtil.productDao.FindByProductNameAndCategoryName("Acer", category.name, 0, 10);
 
             Assert.AreEqual(0, foundProducts.Count);
         }

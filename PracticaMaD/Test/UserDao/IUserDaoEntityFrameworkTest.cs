@@ -1,6 +1,7 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
 using Es.Udc.DotNet.PracticaMaD.Test;
+using Es.Udc.DotNet.PracticaMaD.Test.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using System.Transactions;
@@ -12,35 +13,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao.Test
     {
 
         private static IKernel kernel;
-        private static IUserDao userDao;
-        private static ILanguageDao languageDao;
 
         private const string NON_EXISTENT_USER = "no_user";
-
-        private static Language createExistentLanguage(Language language)
-        {
-            language.name = "español";
-            language.country = "España";
-            languageDao.Create(language);
-            
-            return language;
-        }
-
-        private static User createExistentUser(User user, Language language)
-        {
-            
-            user.login = "user";
-            user.name = "usuario";
-            user.lastName = "dePrueba";
-            user.password = "passwd";
-            user.address = "A Coruña";
-            user.email = "user@user";
-            user.role = "user";
-            user.languageId = language.id;
-            userDao.Create(user);
-            
-            return user;
-        }
 
         private TransactionScope transactionScope;
 
@@ -69,8 +43,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao.Test
         public static void MyClassInitialize(TestContext testContext)
         {
             kernel = TestManager.ConfigureNInjectKernel();
-            userDao = kernel.Get<IUserDao>();
-            languageDao = kernel.Get<ILanguageDao>();
+            TestUtil.userDao = kernel.Get<IUserDao>();
+            TestUtil.languageDao = kernel.Get<ILanguageDao>();
         }
 
         //Use ClassCleanup to run code after all tests in a class have run
@@ -100,11 +74,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao.Test
         public void FindByLoginTest()
         {
             Language language = new Language();
-            createExistentLanguage(language);
+            TestUtil.CreateExistentLanguage(language);
             User user = new User();
-            createExistentUser(user, language);
+            TestUtil.CreateExistentUser(user, language);
             User foundUser = new User();
-            foundUser = userDao.FindByLogin("user");
+            foundUser = TestUtil.userDao.FindByLogin("user");
 
             Assert.AreEqual(user.id, foundUser.id);
             Assert.AreEqual(user.login, foundUser.login);
@@ -121,7 +95,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao.Test
         [ExpectedException(typeof(InstanceNotFoundException))]
         public void FindByNonExistentLoginTest()
         {
-            User foundUser = userDao.FindByLogin(NON_EXISTENT_USER);
+            User foundUser = TestUtil.userDao.FindByLogin(NON_EXISTENT_USER);
         }
     }
 }

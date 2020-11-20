@@ -106,7 +106,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
 
         [TestMethod()]
         [ExpectedException(typeof(DuplicateInstanceException))]
-        public void RegisterDuplicatedUserTest()
+        public void SingUpDuplicatedUserTest()
         {
             using (var scope = new TransactionScope())
             {

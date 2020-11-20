@@ -13,6 +13,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao
         /// <returns>The UserProfile</returns>
         /// <exception cref="InstanceNotFoundException"/>
         User FindByLogin(String login);
+
+        User FindByEmail(String email);
     }
 }
 
