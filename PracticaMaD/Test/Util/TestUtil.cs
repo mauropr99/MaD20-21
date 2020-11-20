@@ -24,34 +24,42 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
         public static ILanguageDao languageDao;
         public static ICreditCardDao creditCardDao;
 
-        public static Language CreateExistentLanguage(Language language)
+        public static Language CreateExistentLanguage()
         {
-            language.name = "español";
-            language.country = "España";
+            Language language = new Language
+            {
+                name = "español",
+                country = "España"
+            };
             languageDao.Create(language);
 
             return language;
         }
 
-        public static User CreateExistentUser(User user, Language language)
+        public static User CreateExistentUser( Language language)
         {
-
-            user.login = "user";
-            user.name = "usuario";
-            user.lastName = "dePrueba";
-            user.password = "passwd";
-            user.address = "A Coruña";
-            user.email = "user@user";
-            user.role = "user";
-            user.languageId = language.id;
+            User user = new User
+            {
+                login = "user",
+                name = "usuario",
+                lastName = "dePrueba",
+                password = "passwd",
+                address = "A Coruña",
+                email = "user@user",
+                role = "user",
+                languageId = language.id
+            };
             userDao.Create(user);
 
             return user;
         }
 
-        public static Order CreateOrder(User user, CreditCard credirCard, List<OrderLine> orderLines, Order order)
+        public static Order CreateOrder(User user, CreditCard credirCard, List<OrderLine> orderLines)
         {
-            order.postalAddress = "A Coruña";
+            Order order = new Order
+            {
+                postalAddress = "A Coruña"
+            };
             foreach (OrderLine orderLine in orderLines)
             {
                 order.totalPrice = orderLine.price + order.totalPrice;
@@ -68,42 +76,54 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
             return order;
         }
 
-        public static OrderLine CreateOrderLine(Product product, OrderLine orderLine)
+        public static OrderLine CreateOrderLine(Product product)
         {
-            orderLine.quantity = 2;
-            orderLine.price = product.price;
-            orderLine.productId = product.id;
+            OrderLine orderLine = new OrderLine
+            {
+                quantity = 2,
+                price = product.price,
+                productId = product.id
+            };
 
             orderLineDao.Create(orderLine);
             return orderLine;
         }
 
-        public static Product CreateProduct(Category category, string productName, decimal price, Product product)
+        public static Product CreateProduct(Category category, string productName, decimal price)
         {
-            product.product_name = productName;
-            product.price = price;
-            product.releaseDate = DateTime.Now;
-            product.stock = 100;
-            product.categoryId = category.id;
+            Product product = new Product
+            {
+                product_name = productName,
+                price = price,
+                releaseDate = DateTime.Now,
+                stock = 100,
+                categoryId = category.id
+            };
 
             productDao.Create(product);
             return product;
         }
 
-        public static Category CreateCategory(Category category, string categoryName)
+        public static Category CreateCategory( string categoryName)
         {
-            category.name = categoryName;
+            Category category = new Category
+            {
+                name = categoryName
+            };
 
             categoryDao.Create(category);
             return category;
         }
 
-        public static CreditCard CreateCreditCard(CreditCard creditCard)
+        public static CreditCard CreateCreditCard()
         {
-            creditCard.creditType = "debit";
-            creditCard.creditCardNumber = "1234567891234567";
-            creditCard.cvv = 123;
-            creditCard.expirationDate = DateTime.Now.AddYears(1);
+            CreditCard creditCard = new CreditCard
+            {
+                creditType = "debit",
+                creditCardNumber = "1234567891234567",
+                cvv = 123,
+                expirationDate = DateTime.Now.AddYears(1)
+            };
 
             creditCardDao.Create(creditCard);
             return creditCard;

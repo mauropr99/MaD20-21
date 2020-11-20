@@ -32,7 +32,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         OrderBlock FindOrdersByUserId(long userId, int startIndex, int count);
 
         [Transactional]
-        List<OrderLineDetails> ViewOrderDetails(long orderId);
+        List<OrderDetails> ViewOrders(long userId,int startIndex, int count);
+
+        [Transactional]
+        List<OrderLineDetails> ViewOrderLineDetails(long orderId);
     }
 }
 

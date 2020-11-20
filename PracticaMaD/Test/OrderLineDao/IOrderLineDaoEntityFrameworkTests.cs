@@ -85,31 +85,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao.Tests
         [TestMethod()]
         public void FindByOrderIdTest()
         {
-            Category category = new Category();
-            TestUtil.CreateCategory(category,"Balones");
-            Product product1 = new Product();
-            TestUtil.CreateProduct(category, "Balón negro", 3, product1);
-            Product product2 = new Product();
-            TestUtil.CreateProduct(category, "Balón blanco", 2.5m, product2);
-            Product product3 = new Product();
-            TestUtil.CreateProduct(category, "Balón negro y blanco", 3.5m, product3);
-            OrderLine orderline1 = new OrderLine();
-            TestUtil.CreateOrderLine(product1, orderline1);
-            OrderLine orderline2 = new OrderLine();
-            TestUtil.CreateOrderLine(product2, orderline2);
-            OrderLine orderline3 = new OrderLine();
-            TestUtil.CreateOrderLine(product3, orderline3);
-            List<OrderLine> orderLines = new List<OrderLine>();
-            orderLines.Add(orderline1);
-            orderLines.Add(orderline2);
-            Language language = new Language();
-            TestUtil.CreateExistentLanguage(language);
-            User user = new User();
-            TestUtil.CreateExistentUser(user, language);
-            CreditCard creditCard = new CreditCard();
-            TestUtil.CreateCreditCard(creditCard);
-            Order order1 = new Order();
-            TestUtil.CreateOrder(user, creditCard, orderLines, order1);
+            Category category = TestUtil.CreateCategory("Balones");
+            Product product1 = TestUtil.CreateProduct(category, "Balón negro", 3);
+            Product product2 = TestUtil.CreateProduct(category, "Balón blanco", 2.5m);
+            Product product3 = TestUtil.CreateProduct(category, "Balón negro y blanco", 3.5m);
+            OrderLine orderline1 = TestUtil.CreateOrderLine(product1);
+            OrderLine orderline2 = TestUtil.CreateOrderLine(product2);
+            OrderLine orderline3 = TestUtil.CreateOrderLine(product3);
+            List<OrderLine> orderLines = new List<OrderLine>
+            {
+                orderline1,
+                orderline2
+            };
+            Language language = TestUtil.CreateExistentLanguage();
+            User user = TestUtil.CreateExistentUser(language);
+            CreditCard creditCard = TestUtil.CreateCreditCard();
+            Order order1 = TestUtil.CreateOrder(user, creditCard, orderLines);
 
             List<OrderLine> foundOrderLines = new List<OrderLine>();
             foundOrderLines = TestUtil.orderLineDao.FindByOrderId(order1.id);

@@ -100,16 +100,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             {
                 string encryptedPassword = PasswordEncrypter.Crypt(clearPassword);
 
-                User user = new User();
-
-                user.login = login;
-                user.password = encryptedPassword;
-                user.name = userDetails.Name;
-                user.lastName = userDetails.Lastname;
-                user.email = userDetails.Email;
-                user.Language = LanguageDao.FindByName(userDetails.LanguageName);
-                user.address = userDetails.Address;
-                user.role = "user";
+                User user = new User
+                {
+                    login = login,
+                    password = encryptedPassword,
+                    name = userDetails.Name,
+                    lastName = userDetails.Lastname,
+                    email = userDetails.Email,
+                    Language = LanguageDao.FindByName(userDetails.LanguageName),
+                    address = userDetails.Address,
+                    role = "user"
+                };
 
                 UserDao.Create(user);
 

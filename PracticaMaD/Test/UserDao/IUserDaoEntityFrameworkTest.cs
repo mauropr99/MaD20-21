@@ -73,12 +73,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao.Test
         [TestMethod()]
         public void FindByLoginTest()
         {
-            Language language = new Language();
-            TestUtil.CreateExistentLanguage(language);
-            User user = new User();
-            TestUtil.CreateExistentUser(user, language);
-            User foundUser = new User();
-            foundUser = TestUtil.userDao.FindByLogin("user");
+            Language language = TestUtil.CreateExistentLanguage();
+            User user = TestUtil.CreateExistentUser(language);
+            User foundUser = foundUser = TestUtil.userDao.FindByLogin("user");
 
             Assert.AreEqual(user.id, foundUser.id);
             Assert.AreEqual(user.login, foundUser.login);

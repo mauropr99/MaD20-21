@@ -51,7 +51,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                 {
                     throw new NotEnoughStock(product.product_name, product.stock);
                 }
-
+                product.stock -= line.Quantity;
                 orderLine.price = line.Price;
                 orderLine.productId = product.id;
                 orderLine.quantity = line.Quantity;
@@ -61,14 +61,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                 orderLines.Add(orderLine);  
             }
 
-            Order order = new Order();
-            order.postalAddress = postalAddress;
-            order.orderDate = DateTime.Now;
-            order.totalPrice = totalPrice;
-            order.CreditCard = creditCard;
-            order.OrderLines = orderLines;
-            order.User_Table = UserDao.FindByEmail(user.Email);
-            order.description = description;
+            Order order = new Order
+            {
+                postalAddress = postalAddress,
+                orderDate = DateTime.Now,
+                totalPrice = totalPrice,
+                CreditCard = creditCard,
+                OrderLines = orderLines,
+                User_Table = UserDao.FindByEmail(user.Email),
+                description = description
+            };
 
             //Llamar al DAO para crear el order.
             OrderDao.Create(order);
@@ -99,10 +101,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             }
 
             //If it is a new product in the shopping cart
-            OrderLine orderLine = new OrderLine();
-            orderLine.quantity = quantity;
-            orderLine.price = product.price;
-            orderLine.productId = product.id;
+            OrderLine orderLine = new OrderLine
+            {
+                quantity = quantity,
+                price = product.price,
+                productId = product.id
+            };
             shoppingCart.OrderLines.Add(orderLine);
 
             foreach (OrderLine line in shoppingCart.OrderLines)
@@ -175,16 +179,32 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             return new OrderBlock(detailOrders, existMoreOrders);
         }
 
-        public List<OrderLineDetails> ViewOrderDetails(long orderId)
-        {
 
+        public List<OrderDetails> ViewOrders(long userId,int startIndex, int count)
+        {
+            List<Order> orders;
+
+            orders = OrderDao.FindByUserId(userId, startIndex, count);
+
+            List<OrderDetails> detailOrders = new List<OrderDetails>();
+
+            foreach (Order order in orders)
+            {
+                detailOrders.Add(new OrderDetails(order.id,order.orderDate,order.description,order.totalPrice));
+            }
+
+            return detailOrders;
+        }
+
+        public List<OrderLineDetails> ViewOrderLineDetails(long orderId)
+        {
             List<OrderLine> orderLines;
 
             orderLines = OrderLineDao.FindByOrderId(orderId);
 
             List<OrderLineDetails> detailLineOrders = new List<OrderLineDetails>();
 
-            foreach(OrderLine orderLine in orderLines)
+            foreach (OrderLine orderLine in orderLines)
             {
                 detailLineOrders.Add(new OrderLineDetails(orderLine.Product.product_name, orderLine.quantity, orderLine.price));
             }

@@ -72,15 +72,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
         [TestMethod()]
         public void FindByProductNameTest()
         {
-            Category category = new Category();
-            TestUtil.CreateCategory(category, "Ordenadores");
+            Category category = TestUtil.CreateCategory("Ordenadores");
 
-            Product product1 = new Product();
-            TestUtil.CreateProduct(category, "Portatil Acer blanco", 3, product1);
-            Product product2 = new Product();
-            TestUtil.CreateProduct(category, "Ordenador Acer sobremesa i7 RTX2600", 850, product2);
-            Product product3 = new Product();
-            TestUtil.CreateProduct(category, "Portatil Toshiba reacondicionado", 3, product3);
+            Product product1 = TestUtil.CreateProduct(category, "Portatil Acer blanco", 3);
+            Product product2 = TestUtil.CreateProduct(category, "Ordenador Acer sobremesa i7 RTX2600", 850);
+            Product product3 = TestUtil.CreateProduct(category, "Portatil Toshiba reacondicionado", 3);
 
             List<Product> foundProducts = new List<Product>();
             foundProducts = TestUtil.productDao.FindByProductName("Acer", 0, 10);
@@ -100,15 +96,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
         [TestMethod()]
         public void FindZeroByProductNameTest()
         {
-            Category category = new Category();
-            TestUtil.CreateCategory(category, "Ordenadores");
+            Category category = TestUtil.CreateCategory("Ordenadores");
 
-            Product product1 = new Product();
-            TestUtil.CreateProduct(category, "Portátil Acer blanco", 3, product1);
-            Product product2 = new Product();
-            TestUtil.CreateProduct(category, "Ordenador Acer sobremesa i7 RTX2600", 850, product2);
-            Product product3 = new Product();
-            TestUtil.CreateProduct(category, "Portatil Toshiba reacondicionado", 3, product3);
+            Product product1 = TestUtil.CreateProduct(category, "Portátil Acer blanco", 3);
+            Product product2 = TestUtil.CreateProduct(category, "Ordenador Acer sobremesa i7 RTX2600", 850);
+            Product product3 = TestUtil.CreateProduct(category, "Portatil Toshiba reacondicionado", 3);
 
             List<Product> foundProducts = new List<Product>();
             foundProducts = TestUtil.productDao.FindByProductName("Secador de pelo", 0, 10);
@@ -119,18 +111,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
         [TestMethod()]
         public void FindByProductNameAndCategoryIdTest()
         {
-            Category category = new Category();
-            TestUtil.CreateCategory(category, "Sobremesa");
+            Category category = TestUtil.CreateCategory("Sobremesa");
 
-            Category category2 = new Category();
-            TestUtil.CreateCategory(category2, "Portátiles");
+            Category category2 = TestUtil.CreateCategory("Portátiles");
 
-            Product product1 = new Product();
-            TestUtil.CreateProduct(category2, "Portátil Acer blanco", 3, product1);
-            Product product2 = new Product();
-            TestUtil.CreateProduct(category, "Ordenador Acer sobremesa i7 RTX2600", 850, product2);
-            Product product3 = new Product();
-            TestUtil.CreateProduct(category2, "Portatil Toshiba reacondicionado", 3, product3);
+            Product product1 = TestUtil.CreateProduct(category2, "Portátil Acer blanco", 3);
+            Product product2 = TestUtil.CreateProduct(category, "Ordenador Acer sobremesa i7 RTX2600", 850);
+            Product product3 = TestUtil.CreateProduct(category2, "Portatil Toshiba reacondicionado", 3);
 
             List<Product> foundProducts = new List<Product>();
             foundProducts = TestUtil.productDao.FindByProductNameAndCategoryName("Acer", category.name, 0, 10);
@@ -146,18 +133,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
         [TestMethod()]
         public void FindZeroByProductNameAndCategoryIdTest()
         {
-            Category category = new Category();
-            TestUtil.CreateCategory(category, "Hogar");
+            Category category = TestUtil.CreateCategory("Hogar");
 
-            Category category2 = new Category();
-            TestUtil.CreateCategory(category2, "Informática");
+            Category category2 = TestUtil.CreateCategory("Informática");
 
-            Product product1 = new Product();
-            TestUtil.CreateProduct(category2, "Portátil Acer blanco", 3, product1);
-            Product product2 = new Product();
-            TestUtil.CreateProduct(category2, "Ordenador Acer sobremesa i7 RTX2600", 850, product2);
-            Product product3 = new Product();
-            TestUtil.CreateProduct(category2, "Portatil Toshiba reacondicionado", 3, product3);
+            Product product1 = TestUtil.CreateProduct(category2, "Portátil Acer blanco", 3);
+            Product product2 = TestUtil.CreateProduct(category2, "Ordenador Acer sobremesa i7 RTX2600", 850);
+            Product product3 = TestUtil.CreateProduct(category2, "Portatil Toshiba reacondicionado", 3);
 
             List<Product> foundProducts = new List<Product>();
             foundProducts = TestUtil.productDao.FindByProductNameAndCategoryName("Acer", category.name, 0, 10);
