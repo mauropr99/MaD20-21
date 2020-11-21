@@ -285,6 +285,50 @@ GO
 PRINT N'Done'
 
 
+/* Desktop 
+
+CREATE TABLE Desktop (
+	id bigint NOT NULL, 
+	allInOne BIT NOT NULL,
+
+
+    CONSTRAINT [PK_Desktop] PRIMARY KEY (id ASC),
+
+	CONSTRAINT [FK_DesktopComputer] FOREIGN KEY(id)
+        REFERENCES Computers (id) ON DELETE CASCADE
+
+)
+
+
+CREATE NONCLUSTERED INDEX IX_DesktopIndexById 
+ON Desktop (id);
+
+PRINT N'Table Desktop created.'
+GO
+*/
+
+/* Laptop 
+
+CREATE TABLE Laptop (
+	id bigint NOT NULL, 
+	screenResolution VARCHAR(64),
+	screenInches SMALLINT,
+
+    CONSTRAINT [PK_Laptop] PRIMARY KEY (id ASC),
+
+	CONSTRAINT [FK_LaptopComputer] FOREIGN KEY(id)
+        REFERENCES Computers (id) ON DELETE CASCADE
+
+)
+
+
+CREATE NONCLUSTERED INDEX IX_LaptopIndexById 
+ON Laptop (id);
+
+PRINT N'Table Laptop created.'
+GO
+
+*/
 /* Book */
 
 CREATE TABLE Book (

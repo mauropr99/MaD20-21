@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Es.Udc.DotNet.PracticaMaD.Model;
+using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
@@ -18,6 +20,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
     {
         public static IOrderDao orderDao;
         public static IOrderLineDao orderLineDao;
+        public static IBookDao bookDao;
+        public static IComputerDao computerDao;
         public static IProductDao productDao;
         public static ICategoryDao categoryDao;
         public static IUserDao userDao;
@@ -90,19 +94,41 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
             return orderLine;
         }
 
-        public static Product CreateProduct(Category category, string productName, decimal price)
+        public static Computer CreateComputer(Category category, string productName, decimal price,string brand)
         {
-            Product product = new Product
+            Computer computer = new Computer
             {
                 product_name = productName,
                 price = price,
                 releaseDate = DateTime.Now,
                 stock = 100,
-                categoryId = category.id
+                categoryId = category.id,
+                brand = brand,
+                processor = "intel i7",
+                os = "Windows"
             };
 
-            productDao.Create(product);
-            return product;
+            computerDao.Create(computer);
+            return computer;
+        }
+
+        public static Book CreateBook(Category category, string productName, decimal price, string title)
+        {
+            Book book = new Book
+            {
+                product_name = productName,
+                price = price,
+                releaseDate = DateTime.Now,
+                stock = 100,
+                categoryId = category.id,
+                title = title,
+                genre = "Fantasy",
+                editorial = "Planeta",
+                isbnCode = "978-0-226-26421-9"
+            };
+
+            bookDao.Create(book);
+            return book;
         }
 
         public static Category CreateCategory( string categoryName)

@@ -16,6 +16,8 @@ using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
+using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
 {
@@ -82,6 +84,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
             TestUtil.categoryDao = kernel.Get<ICategoryDao>();
             TestUtil.productDao = kernel.Get<IProductDao>();
             TestUtil.orderDao = kernel.Get<IOrderDao>();
+            TestUtil.computerDao = kernel.Get<IComputerDao>();
+            TestUtil.bookDao = kernel.Get<IBookDao>();
 
 
             shoppingService = kernel.Get<IShoppingService>();
@@ -123,25 +127,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                        new UserDetails(name, lastName, email, language.name, address));
                 User user = TestUtil.userDao.Find(userId);
                 CreditCard creditCard = TestUtil.CreateCreditCard(user);
-                
-                Category category = TestUtil.CreateCategory("Balones");
-                Product product1 = TestUtil.CreateProduct(category, "Balón negro", 3);
-                Product product2 = TestUtil.CreateProduct(category, "Balón blanco", 2.5m);
+
+                Category category1 = TestUtil.CreateCategory("Ordenadores");
+                Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
+                Computer product2 = TestUtil.CreateComputer(category1, "ACER 3x2600", 2.5m, "Acer");
+ 
 
                 OrderLineDetails orderLineDetail1 = new OrderLineDetails(
+                    product1.id,
                     product1.product_name,
                     15,
                     product1.price
                 );
                 OrderLineDetails orderLineDetail2 = new OrderLineDetails(
+                   product2.id,
                    product2.product_name,
-                   90,
-                   product2.price
-               );
-
-                OrderLineDetails orderLineDetail3 = new OrderLineDetails(
-                   product2.product_name,
-                   10,
+                   100,
                    product2.price
                );
 
@@ -186,17 +187,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                     expirationDate = DateTime.Now.AddYears(-1)
                 };
 
-                TestUtil.creditCardDao.Create(creditCard);
-                Category category = TestUtil.CreateCategory("Balones");
-                Product product1 = TestUtil.CreateProduct(category, "Balón negro", 3);
-                Product product2 = TestUtil.CreateProduct(category, "Balón blanco", 2.5m);
+                Category category1 = TestUtil.CreateCategory("Ordenadores");
+                Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
+                Computer product2 = TestUtil.CreateComputer(category1, "ACER 3x2600", 2.5m, "Acer");
 
                 OrderLineDetails orderLineDetail1 = new OrderLineDetails(
+                    product1.id,
                     product1.product_name,
                     15,
                     product1.price
                 );
                 OrderLineDetails orderLineDetail2 = new OrderLineDetails(
+                   product2.id,
                    product2.product_name,
                    100,
                    product2.price
@@ -213,40 +215,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
             }
         }
 
-        [TestMethod()]
-        [ExpectedException(typeof(InstanceNotFoundException))]
-        public void FindByNonExistentLoginTest()
-        {
-            using (var scope = new TransactionScope())
-            {
-
-                CreditCard creditCard = TestUtil.CreateCreditCard(null);
-                Category category = TestUtil.CreateCategory("Balones");
-                Product product1 = TestUtil.CreateProduct(category, "Balón negro", 3);
-                Product product2 = TestUtil.CreateProduct(category, "Balón blanco", 2.5m);
-                Language language = TestUtil.CreateExistentLanguage();
-
-                OrderLineDetails orderLineDetail1 = new OrderLineDetails(
-                    product1.product_name,
-                    15,
-                    product1.price
-                );
-                OrderLineDetails orderLineDetail2 = new OrderLineDetails(
-                   product2.product_name,
-                   100,
-                   product2.price
-               );
-                List<OrderLineDetails> orderLineDetails = new List<OrderLineDetails>
-                {
-                    orderLineDetail1,
-                    orderLineDetail2
-                };
-
-                var order =
-                    shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, address), orderLineDetails,
-                        address, creditCard, "Patatas asadas");
-            }
-        }
 
         [TestMethod()]
         [ExpectedException(typeof(NotEnoughStock))]
@@ -260,11 +228,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                        new UserDetails(name, lastName, email, language.name, address));
                 User user = TestUtil.userDao.Find(userId);
                 CreditCard creditCard = TestUtil.CreateCreditCard(user);
-                Category category = TestUtil.CreateCategory("Mascarillas");
-                Product product1 = TestUtil.CreateProduct(category, "FFP2", 3);
-                Product product2 = TestUtil.CreateProduct(category, "Quirurjica", 2.5m);
+                Category category1 = TestUtil.CreateCategory("Ordenadores");
+                Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
+                Computer product2 = TestUtil.CreateComputer(category1, "ACER 3x2600", 2.5m, "Acer");
 
                 OrderLineDetails orderLineDetail1 = new OrderLineDetails(
+                   product2.id,
                    product2.product_name,
                    90,
                    product2.price

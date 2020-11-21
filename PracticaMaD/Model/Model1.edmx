@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Es.Udc.DotNet.practicamadModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Es.Udc.DotNet.practicamadModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Book">
           <Key>
             <PropertyRef Name="id" />
@@ -46,6 +46,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ownerName" Type="varchar" MaxLength="128" Nullable="false" />
           <Property Name="creditType" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="creditCardNumber" Type="varchar" MaxLength="16" Nullable="false" />
           <Property Name="cvv" Type="smallint" Nullable="false" />
@@ -59,19 +60,13 @@
           <Property Name="userId" Type="bigint" Nullable="false" />
           <Property Name="creditCardId" Type="bigint" Nullable="false" />
         </EntityType>
-        <EntityType Name="Desktop">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="bigint" Nullable="false" />
-          <Property Name="allInOne" Type="bit" Nullable="false" />
-        </EntityType>
         <EntityType Name="Label">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="lab" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="timesUsed" Type="int" />
         </EntityType>
         <EntityType Name="Label_Comment">
           <Key>
@@ -88,14 +83,6 @@
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="64" Nullable="false" />
           <Property Name="country" Type="varchar" MaxLength="64" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Laptop">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="bigint" Nullable="false" />
-          <Property Name="screenResolution" Type="varchar" MaxLength="64" />
-          <Property Name="screenInches" Type="smallint" />
         </EntityType>
         <EntityType Name="Order_Table">
           <Key>
@@ -224,20 +211,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DesktopComputer">
-          <End Role="Computers" Type="Self.Computers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Desktop" Type="Self.Desktop" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Computers">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Desktop">
-              <PropertyRef Name="id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Label_Comment_CommentId">
           <End Role="Comment" Type="Self.Comment" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -275,20 +248,6 @@
             </Principal>
             <Dependent Role="User_Table">
               <PropertyRef Name="languageId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_LaptopComputer">
-          <End Role="Computers" Type="Self.Computers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Laptop" Type="Self.Laptop" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Computers">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Laptop">
-              <PropertyRef Name="id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -365,11 +324,9 @@
           <EntitySet Name="Computers" EntityType="Self.Computers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CreditCard" EntityType="Self.CreditCard" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CreditCard_User" EntityType="Self.CreditCard_User" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Desktop" EntityType="Self.Desktop" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Label" EntityType="Self.Label" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Label_Comment" EntityType="Self.Label_Comment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Laptop" EntityType="Self.Laptop" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order_Table" EntityType="Self.Order_Table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderLine" EntityType="Self.OrderLine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
@@ -398,10 +355,6 @@
             <End Role="User_Table" EntitySet="User_Table" />
             <End Role="CreditCard_User" EntitySet="CreditCard_User" />
           </AssociationSet>
-          <AssociationSet Name="FK_DesktopComputer" Association="Self.FK_DesktopComputer">
-            <End Role="Computers" EntitySet="Computers" />
-            <End Role="Desktop" EntitySet="Desktop" />
-          </AssociationSet>
           <AssociationSet Name="FK_Label_Comment_CommentId" Association="Self.FK_Label_Comment_CommentId">
             <End Role="Comment" EntitySet="Comment" />
             <End Role="Label_Comment" EntitySet="Label_Comment" />
@@ -413,10 +366,6 @@
           <AssociationSet Name="FK_LanguageId" Association="Self.FK_LanguageId">
             <End Role="Language" EntitySet="Language" />
             <End Role="User_Table" EntitySet="User_Table" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LaptopComputer" Association="Self.FK_LaptopComputer">
-            <End Role="Computers" EntitySet="Computers" />
-            <End Role="Laptop" EntitySet="Laptop" />
           </AssociationSet>
           <AssociationSet Name="FK_Order_CreditCardId" Association="Self.FK_Order_CreditCardId">
             <End Role="CreditCard" EntitySet="CreditCard" />
@@ -439,8 +388,7 @@
             <End Role="Order_Table" EntitySet="Order_Table" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Es.Udc.DotNet.practicamadModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -471,7 +419,7 @@
           <NavigationProperty Name="User_Table" Relationship="Self.FK_Comment_UserId" FromRole="Comment" ToRole="User_Table" />
           <NavigationProperty Name="Labels" Relationship="Self.Label_Comment" FromRole="Comment" ToRole="Label" />
         </EntityType>
-        <EntityType Name="Computer" BaseType="Es.Udc.DotNet.practicamadModel.Product">
+        <EntityType Name="Computer" a:TypeAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" BaseType="Es.Udc.DotNet.practicamadModel.Product">
           <Property Name="brand" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="processor" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Name="os" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
@@ -487,9 +435,7 @@
           <Property Name="expirationDate" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Order_Table" Relationship="Self.FK_Order_CreditCardId" FromRole="CreditCard" ToRole="Order_Table" />
           <NavigationProperty Name="User_Table" Relationship="Self.CreditCard_User" FromRole="CreditCard" ToRole="User_Table" />
-        </EntityType>
-        <EntityType Name="Desktop" BaseType="Es.Udc.DotNet.practicamadModel.Computer">
-          <Property Name="allInOne" Type="Boolean" Nullable="false" />
+          <Property Name="ownerName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Label">
           <Key>
@@ -497,8 +443,8 @@
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="lab" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="timesUsed" Type="Int32" />
           <NavigationProperty Name="Comments" Relationship="Self.Label_Comment" FromRole="Label" ToRole="Comment" />
-          <Property Name="timesUsed" Type="Int32" Nullable="false" DefaultValue="0" />
         </EntityType>
         <EntityType Name="Language">
           <Key>
@@ -508,10 +454,6 @@
           <Property Name="name" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="country" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="User_Table" Relationship="Self.FK_LanguageId" FromRole="Language" ToRole="User_Table" />
-        </EntityType>
-        <EntityType Name="Laptop" BaseType="Es.Udc.DotNet.practicamadModel.Computer">
-          <Property Name="screenResolution" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Name="screenInches" Type="Int16" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -732,7 +674,7 @@
             <End Role="Comment" EntitySet="Comments" />
             <End Role="Label" EntitySet="Labels" />
           </AssociationSet>
-          </EntityContainer>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -761,6 +703,7 @@
           <EntitySetMapping Name="CreditCards">
             <EntityTypeMapping TypeName="Es.Udc.DotNet.practicamadModel.CreditCard">
               <MappingFragment StoreEntitySet="CreditCard">
+                <ScalarProperty Name="ownerName" ColumnName="ownerName" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="creditType" ColumnName="creditType" />
                 <ScalarProperty Name="creditCardNumber" ColumnName="creditCardNumber" />
@@ -774,6 +717,7 @@
               <MappingFragment StoreEntitySet="Label">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="lab" ColumnName="lab" />
+                <ScalarProperty Name="timesUsed" ColumnName="timesUsed" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -821,15 +765,6 @@
                 <ScalarProperty Name="product_name" ColumnName="product_name" />
               </MappingFragment>
             </EntityTypeMapping>
-            <EntityTypeMapping TypeName="IsTypeOf(Es.Udc.DotNet.practicamadModel.Book)">
-              <MappingFragment StoreEntitySet="Book">
-                <ScalarProperty Name="isbnCode" ColumnName="isbnCode" />
-                <ScalarProperty Name="editorial" ColumnName="editorial" />
-                <ScalarProperty Name="genre" ColumnName="genre" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
             <EntityTypeMapping TypeName="IsTypeOf(Es.Udc.DotNet.practicamadModel.Computer)">
               <MappingFragment StoreEntitySet="Computers">
                 <ScalarProperty Name="os" ColumnName="os" />
@@ -838,15 +773,12 @@
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
-            <EntityTypeMapping TypeName="IsTypeOf(Es.Udc.DotNet.practicamadModel.Desktop)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-              <MappingFragment StoreEntitySet="Desktop">
-                <ScalarProperty Name="allInOne" ColumnName="allInOne" />
-              </MappingFragment>
-            </EntityTypeMapping>
-            <EntityTypeMapping TypeName="IsTypeOf(Es.Udc.DotNet.practicamadModel.Laptop)">
-              <MappingFragment StoreEntitySet="Laptop">
-                <ScalarProperty Name="screenInches" ColumnName="screenInches" />
-                <ScalarProperty Name="screenResolution" ColumnName="screenResolution" />
+            <EntityTypeMapping TypeName="IsTypeOf(Es.Udc.DotNet.practicamadModel.Book)">
+              <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="isbnCode" ColumnName="isbnCode" />
+                <ScalarProperty Name="editorial" ColumnName="editorial" />
+                <ScalarProperty Name="genre" ColumnName="genre" />
+                <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -882,7 +814,7 @@
               <ScalarProperty Name="id" ColumnName="labId" />
             </EndProperty>
           </AssociationSetMapping>
-          </EntityContainerMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -899,7 +831,7 @@
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

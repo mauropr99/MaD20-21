@@ -85,10 +85,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao.Tests
         [TestMethod()]
         public void FindByOrderIdTest()
         {
-            Category category = TestUtil.CreateCategory("Balones");
-            Product product1 = TestUtil.CreateProduct(category, "Balón negro", 3);
-            Product product2 = TestUtil.CreateProduct(category, "Balón blanco", 2.5m);
-            Product product3 = TestUtil.CreateProduct(category, "Balón negro y blanco", 3.5m);
+            Category category1 = TestUtil.CreateCategory("Ordenadores");
+            Category category2 = TestUtil.CreateCategory("Libros");
+            Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
+            Computer product2 = TestUtil.CreateComputer(category1, "ACER 3x2600", 2.5m, "Acer");
+            Book product3 = TestUtil.CreateBook(category2, "El quijote Nueva edición", 3.5m, "El quijote");
             OrderLine orderline1 = TestUtil.CreateOrderLine(product1);
             OrderLine orderline2 = TestUtil.CreateOrderLine(product2);
             OrderLine orderline3 = TestUtil.CreateOrderLine(product3);

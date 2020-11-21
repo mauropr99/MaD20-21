@@ -7,6 +7,8 @@ using System.Transactions;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Test.Util;
+using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
+using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
 {
@@ -44,6 +46,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
             kernel = TestManager.ConfigureNInjectKernel();
             TestUtil.productDao = kernel.Get<IProductDao>();
             TestUtil.categoryDao = kernel.Get<ICategoryDao>();
+            TestUtil.computerDao = kernel.Get<IComputerDao>();
+            TestUtil.bookDao = kernel.Get<IBookDao>();
+            
         }
 
         //Use ClassCleanup to run code after all tests in a class have run
@@ -72,21 +77,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
         [TestMethod()]
         public void FindByProductNameTest()
         {
-            Category category = TestUtil.CreateCategory("Ordenadores");
 
-            Product product1 = TestUtil.CreateProduct(category, "Portatil Acer blanco", 3);
-            Product product2 = TestUtil.CreateProduct(category, "Ordenador Acer sobremesa i7 RTX2600", 850);
-            Product product3 = TestUtil.CreateProduct(category, "Portatil Toshiba reacondicionado", 3);
+            Category category1 = TestUtil.CreateCategory("Ordenadores");
+
+            Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
+            Computer product2 = TestUtil.CreateComputer(category1, "ACER 3x2600", 2.5m, "Acer");
+            Computer product3 = TestUtil.CreateComputer(category1, "ACER 4x2600", 2.5m, "Acer");
+
 
             List<Product> foundProducts = new List<Product>();
             foundProducts = TestUtil.productDao.FindByProductName("Acer", 0, 10);
 
             Assert.AreEqual(2, foundProducts.Count);
             //Están ordenados alfabéticamente por nombre, por eso que sea primero el [1]
-            Assert.AreEqual(product1.product_name, foundProducts[1].product_name);
-            Assert.AreEqual(product1.price, foundProducts[1].price);   
-            Assert.AreEqual(product1.releaseDate, foundProducts[1].releaseDate);
-            Assert.AreEqual(product1.stock, foundProducts[1].stock);
+            Assert.AreEqual(product3.product_name, foundProducts[1].product_name);
+            Assert.AreEqual(product3.price, foundProducts[1].price);   
+            Assert.AreEqual(product3.releaseDate, foundProducts[1].releaseDate);
+            Assert.AreEqual(product3.stock, foundProducts[1].stock);
             Assert.AreEqual(product2.product_name, foundProducts[0].product_name);
             Assert.AreEqual(product2.price, foundProducts[0].price);
             Assert.AreEqual(product2.releaseDate, foundProducts[0].releaseDate);
@@ -96,11 +103,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
         [TestMethod()]
         public void FindZeroByProductNameTest()
         {
-            Category category = TestUtil.CreateCategory("Ordenadores");
-
-            Product product1 = TestUtil.CreateProduct(category, "Portátil Acer blanco", 3);
-            Product product2 = TestUtil.CreateProduct(category, "Ordenador Acer sobremesa i7 RTX2600", 850);
-            Product product3 = TestUtil.CreateProduct(category, "Portatil Toshiba reacondicionado", 3);
+            Category category1 = TestUtil.CreateCategory("Ordenadores");
+            Category category2 = TestUtil.CreateCategory("Libros");
+            Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
+            Computer product2 = TestUtil.CreateComputer(category1, "ACER 3x2600", 2.5m, "Acer");
+            Book product3 = TestUtil.CreateBook(category2, "El Quijote Nueva edición", 3.5m, "El Quijote");
 
             List<Product> foundProducts = new List<Product>();
             foundProducts = TestUtil.productDao.FindByProductName("Secador de pelo", 0, 10);
@@ -111,16 +118,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
         [TestMethod()]
         public void FindByProductNameAndCategoryIdTest()
         {
-            Category category = TestUtil.CreateCategory("Sobremesa");
-
-            Category category2 = TestUtil.CreateCategory("Portátiles");
-
-            Product product1 = TestUtil.CreateProduct(category2, "Portátil Acer blanco", 3);
-            Product product2 = TestUtil.CreateProduct(category, "Ordenador Acer sobremesa i7 RTX2600", 850);
-            Product product3 = TestUtil.CreateProduct(category2, "Portatil Toshiba reacondicionado", 3);
+            Category category1 = TestUtil.CreateCategory("Ordenadores");
+            Category category2 = TestUtil.CreateCategory("Libros");
+            Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
+            Computer product2 = TestUtil.CreateComputer(category1, "ACER 3x2600", 2.5m, "Acer");
+            Book product3 = TestUtil.CreateBook(category2, "El Quijote Nueva edición", 3.5m, "El Quijote");
 
             List<Product> foundProducts = new List<Product>();
-            foundProducts = TestUtil.productDao.FindByProductNameAndCategoryName("Acer", category.name, 0, 10);
+            foundProducts = TestUtil.productDao.FindByProductNameAndCategoryName("Acer", category1.name, 0, 10);
 
             Assert.AreEqual(1, foundProducts.Count);
             Assert.AreEqual(product2.price, foundProducts[0].price);
@@ -133,16 +138,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
         [TestMethod()]
         public void FindZeroByProductNameAndCategoryIdTest()
         {
-            Category category = TestUtil.CreateCategory("Hogar");
-
-            Category category2 = TestUtil.CreateCategory("Informática");
-
-            Product product1 = TestUtil.CreateProduct(category2, "Portátil Acer blanco", 3);
-            Product product2 = TestUtil.CreateProduct(category2, "Ordenador Acer sobremesa i7 RTX2600", 850);
-            Product product3 = TestUtil.CreateProduct(category2, "Portatil Toshiba reacondicionado", 3);
+            Category category1 = TestUtil.CreateCategory("Ordenadores");
+            Category category2 = TestUtil.CreateCategory("Libros");
+            Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
+            Computer product2 = TestUtil.CreateComputer(category1, "ACER 3x2600", 2.5m, "Acer");
+            Book product3 = TestUtil.CreateBook(category2, "El Quijote Nueva edición", 3.5m, "El Quijote");
 
             List<Product> foundProducts = new List<Product>();
-            foundProducts = TestUtil.productDao.FindByProductNameAndCategoryName("Acer", category.name, 0, 10);
+            foundProducts = TestUtil.productDao.FindByProductNameAndCategoryName("Acer", category2.name, 0, 10);
 
             Assert.AreEqual(0, foundProducts.Count);
         }

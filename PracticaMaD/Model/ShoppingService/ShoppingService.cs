@@ -206,7 +206,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
             foreach (OrderLine orderLine in orderLines)
             {
-                detailLineOrders.Add(new OrderLineDetails(orderLine.Product.product_name, orderLine.quantity, orderLine.price));
+                detailLineOrders.Add(new OrderLineDetails(orderLine.productId,orderLine.Product.product_name, orderLine.quantity, orderLine.price));
             }
 
             return detailLineOrders;

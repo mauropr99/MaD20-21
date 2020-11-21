@@ -11,6 +11,8 @@ using Ninject;
 using System.Configuration;
 using System.Data.Entity;
 using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
+using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
+using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Test
 {
@@ -32,6 +34,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             kernel.Bind<IOrderDao>().To<OrderDaoEntityFramework>();
             kernel.Bind<IOrderLineDao>().To<OrderLineDaoEntityFramework>();
             kernel.Bind<IProductDao>().To<ProductDaoEntityFramework>();
+            kernel.Bind<IComputerDao>().To<ComputerDaoEntityFramework>();
+            kernel.Bind<IBookDao>().To<BookDaoEntityFramework>();
             kernel.Bind<ICategoryDao>().To<CategoryDaoEntityFramework>();
             kernel.Bind<ICommentDao>().To<CommentDaoEntityFramework>();
             kernel.Bind<IUserService>().To<UserService>();
