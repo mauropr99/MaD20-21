@@ -29,6 +29,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         void UpdateUserDetails(long id,
             UserDetails userDetails);
 
+        [Transactional]
+        CreditCard AddCreditCard(long userId, string creditType,
+            string creditCardNumber, short cvv, DateTime expirationDate);
+
         bool UserExists(string login);
     }
 }

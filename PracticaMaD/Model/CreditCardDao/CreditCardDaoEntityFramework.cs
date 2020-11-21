@@ -39,25 +39,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao
                  where u.login == login
                  select u).First();
 
-            
-
-            DbSet<CreditCard> creditCards = Context.Set<CreditCard>();
-
-
-            List<User> usersResult =
-                (from c in creditCards
-                 select c.User_Table).FirstOrDefault().ToList();
-
-            var usersIds = usersResult.Select(s => s.id).ToList();
-
-
-            List<CreditCard> result =
-                (from c in creditCards
-                 where usersIds.Contains(userResult.id)
-                 orderby c.id
-                 select c).ToList();
-
-            return result;
+            return userResult.CreditCards.ToList();
 
             #endregion Option 1: Using Linq
         }

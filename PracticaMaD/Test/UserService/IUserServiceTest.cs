@@ -1,11 +1,15 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService.Util;
 using Es.Udc.DotNet.PracticaMaD.Test;
 using Es.Udc.DotNet.PracticaMaD.Test.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
+using System;
+using System.Collections.Generic;
 using System.Transactions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
@@ -52,6 +56,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
 
             TestUtil.userDao = kernel.Get<IUserDao>();
             TestUtil.languageDao = kernel.Get<ILanguageDao>();
+            TestUtil.creditCardDao = kernel.Get<ICreditCardDao>();
 
             userService = kernel.Get<IUserService>();
 
@@ -136,6 +141,49 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
                         password, false);
 
                 Assert.AreEqual(expected, actual);
+            }
+        }
+
+        [TestMethod()]
+        public void AddCreditCardTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                Language language = TestUtil.CreateExistentLanguage();
+                User user = TestUtil.CreateExistentUser(language);
+
+                string creditType = "debit";
+                string creditCardNumber = "1234567891234567";
+                short cvv = 123;
+                DateTime expirationDate = DateTime.Now.AddYears(1);
+
+                CreditCard createdCreditCard = userService.AddCreditCard(user.id, creditType, creditCardNumber, cvv, expirationDate);
+
+                List<CreditCard> creditCards = TestUtil.creditCardDao.FindCreditCardsByUserLogin(user.login);
+
+                Assert.IsTrue(creditCards.Contains(createdCreditCard));
+
+            }
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(DuplicatedCreditCardException))]
+        public void AddDuplicatedCreditCardTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                Language language = TestUtil.CreateExistentLanguage();
+                User user = TestUtil.CreateExistentUser(language);
+
+                string creditType = "debit";
+                string creditCardNumber = "1234567891234567";
+                short cvv = 123;
+                DateTime expirationDate = DateTime.Now.AddYears(1);
+
+                userService.AddCreditCard(user.id, creditType, creditCardNumber, cvv, expirationDate);
+
+                userService.AddCreditCard(user.id, creditType, creditCardNumber, cvv, expirationDate);
+
             }
         }
     }

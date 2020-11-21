@@ -6,6 +6,8 @@ using Es.Udc.DotNet.PracticaMaD.Model.UserService.Util;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
+using System.Collections.Generic;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 {
@@ -19,6 +21,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         public IUserDao UserDao { private get; set; }
         [Inject]
         public ILanguageDao LanguageDao { private get; set; }
+        [Inject]
+        public ICreditCardDao CreditCardDao { private get; set; }
 
         #region IUserService Members
 
@@ -128,6 +132,37 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             user.languageId = LanguageDao.FindByName(userDetails.LanguageName).id;
             user.address = userDetails.Address;
         }
+
+        /// <exception cref="DuplicateCreditCardException"/>
+        public CreditCard AddCreditCard(long userId, string creditType,
+            string creditCardNumber, short cvv, DateTime expirationDate)
+        {
+
+            User user = UserDao.Find(userId);
+
+            List<CreditCard> creditCards = CreditCardDao.FindCreditCardsByUserLogin(user.login);
+
+            foreach (CreditCard creditCard in creditCards)
+            {
+                if (creditCard.creditCardNumber == creditCardNumber)
+                {
+                    throw new DuplicatedCreditCardException(creditCardNumber);
+                }
+            }
+
+            CreditCard newCreditCard = new CreditCard();
+            newCreditCard.creditType = creditType;
+            newCreditCard.creditCardNumber = creditCardNumber;
+            newCreditCard.cvv = cvv;
+            newCreditCard.expirationDate = expirationDate;
+            newCreditCard.User_Table.Add(user);
+            
+            CreditCardDao.Create(newCreditCard);
+
+
+            return newCreditCard;
+        }
+
 
         public bool UserExists(string login)
         {
