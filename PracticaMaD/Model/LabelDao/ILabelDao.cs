@@ -9,5 +9,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LabelDao
     {
         Boolean ExistByName(string labelName);
         List<Label> FindByCommentId(long commentId);
+
+        Label FindByLabelName(string labelName);
     }
 }

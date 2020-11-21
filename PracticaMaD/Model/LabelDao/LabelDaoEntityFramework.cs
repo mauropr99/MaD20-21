@@ -46,7 +46,28 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LabelDao
             #endregion Using Linq.
         }
 
-        #endregion ILabelDao Members. Specific Operations
+        public Label FindByLabelName(string labelName)
+        {
+            #region Option 1: Using Linq.
 
-    }
+            DbSet<Label> labels = Context.Set<Label>();
+
+            Label result =
+                (from u in labels
+                 where u.lab == labelName
+                 select u).FirstOrDefault();
+
+
+                #endregion Option 1: Using Linq.
+
+                if (result == null)
+                    throw new InstanceNotFoundException(labelName,
+                        typeof(Label).FullName);
+
+                return result;
+        }
+
+    #endregion ILabelDao Members. Specific Operations
+
+}
 }

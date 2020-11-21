@@ -12,13 +12,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         ICommentDao CommentDao { set; }
 
         [Transactional]
-        Comment NewComment(long userId, long productId, string text, List<Label> labels);
+        Comment NewComment(long userId, long productId, string text, List<string> labels);
 
         [Transactional]
-        Comment UpdateComment(long commentId, string text, List<Label> labels);
+        Comment UpdateComment(long commentId, string text, List<string> labels);
 
         [Transactional]
-        Comment RemoveComment(long commentId);
+        void RemoveComment(long commentId);
 
         [Transactional]
         CommentBlock ViewComments(long productId, int startIndex, int count);

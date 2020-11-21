@@ -22,20 +22,28 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
         #region ICommentSercice Members
 
-        public Comment NewComment(long userId, long productId, string text, List<Label> labels)
+        public Comment NewComment(long userId, long productId, string text, List<string> labels)
         {
             Comment comment = new Comment();
             
             if (labels.Count != 0)
             {
-                foreach (Label label in labels) {
-                    
-                    if (!LabelDao.ExistByName(label.lab)) 
+                foreach (string label in labels) {
+
+                    if (!LabelDao.ExistByName(label)) 
                     {
-                        LabelDao.Create(label);
+                        Label newLabel = new Label()
+                        {
+                            lab = label
+                        };
+                        LabelDao.Create(newLabel);
                     }
 
-                    comment.Labels.Add(label);
+                    Label foundLabel = LabelDao.FindByLabelName(label);
+
+                    foundLabel.timesUsed++;
+                    LabelDao.Update(foundLabel);
+                    comment.Labels.Add(foundLabel);
                 }
             }
 
@@ -49,17 +57,51 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
         }
 
-        public Comment UpdateComment(long commentId, string text, List<Label> labels)
+        public Comment UpdateComment(long commentId, string text, List<string> labels)
         {
             Comment comment = CommentDao.Find(commentId);
 
-            List<Label> labelsComment = LabelDao.FindByCommentId(commentId);
+            //Recovering comment labels
+            List<Label> oldLabels = LabelDao.FindByCommentId(commentId);
     
-            foreach(Label label in labelsComment)
+            foreach(string label in labels)
             {
-                if (!labels.Contains(label))
+
+                if (!LabelDao.ExistByName(label))
                 {
-                    comment.Labels.Remove(label);
+                    Label newLabel = new Label()
+                    {
+                        lab = label,
+                        timesUsed = 1
+                    };
+                    LabelDao.Create(newLabel);
+                }
+
+                Label foundLabel = LabelDao.FindByLabelName(label);
+
+                //Adding new labels
+                if (!oldLabels.Contains(foundLabel))
+                {
+                    comment.Labels.Add(foundLabel);
+                }
+
+            }
+
+            //Removing unused labels
+            foreach (Label oldLabel in oldLabels)
+            {
+                if (!labels.Contains(oldLabel.lab))
+                {
+                    Label foundLabel = LabelDao.FindByLabelName(oldLabel.lab);
+                    if (foundLabel.timesUsed == 1)
+                    {
+                        LabelDao.Remove(foundLabel.id);
+                    } else
+                    {
+                        foundLabel.timesUsed--;
+                        LabelDao.Update(foundLabel);
+                    }
+                    
                 }
             }
 
@@ -71,9 +113,29 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             return comment;
         }
 
-        public Comment RemoveComment(long commentId)
+        public void RemoveComment(long commentId)
         {
-            throw new NotImplementedException();
+            //Check if comment exists
+            CommentDao.Find(commentId);
+
+
+            List<Label> labels = LabelDao.FindByCommentId(commentId);
+
+
+            //Removing unused labels
+            foreach (Label label in labels)
+            {
+                if (label.timesUsed == 1)
+                {
+                    LabelDao.Remove(label.id);
+                } else
+                {
+                    label.timesUsed--;
+                    LabelDao.Update(label);
+                }
+            }
+
+            CommentDao.Remove(commentId);
         }
 
         public CommentBlock ViewComments(long productId, int startIndex, int count)
