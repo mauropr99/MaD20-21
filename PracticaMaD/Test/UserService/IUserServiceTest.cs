@@ -3,6 +3,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService.Util;
 using Es.Udc.DotNet.PracticaMaD.Test;
+using Es.Udc.DotNet.PracticaMaD.Test.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using System.Transactions;
@@ -18,16 +19,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
         private const string password = "passwd";
         private const string email = "user@udc.es";
         private const string address = "A Coruña";
-        private const string languageName = "es";
-        private const string languageCountry = "ES";
         private const string role = "user";
-        private static Language language = new Language();
 
         private const long NON_EXISTENT_USER_ID = -1;
 
         private static IKernel kernel;
         private static IUserService userService;
-        private static IUserDao userDao;
 
 
         private TransactionScope transactionScope;
@@ -53,14 +50,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
         {
             kernel = TestManager.ConfigureNInjectKernel();
 
-            userDao = kernel.Get<IUserDao>();
+            TestUtil.userDao = kernel.Get<IUserDao>();
+            TestUtil.languageDao = kernel.Get<ILanguageDao>();
 
             userService = kernel.Get<IUserService>();
 
-            language.name = languageName;
-            language.country = languageCountry;
-
-    }
+        }
 
         [ClassCleanup()]
         public static void MyClassCleanup()
@@ -85,13 +80,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
         [TestMethod()]
         public void SignUpUserTest()
         {
+
             using (var scope = new TransactionScope())
-            { 
+            {
+                Language language = TestUtil.CreateExistentLanguage();
+
                 var id =
                     userService.SingUpUser(login, password,
                         new UserDetails(name, lastName, email, language.name, address));
 
-                var user = userDao.Find(id);
+                var user = TestUtil.userDao.Find(id);
 
                 Assert.AreEqual(id, user.id);
                 Assert.AreEqual(login, user.login);
@@ -110,6 +108,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
         {
             using (var scope = new TransactionScope())
             {
+                Language language = TestUtil.CreateExistentLanguage();
+
                 userService.SingUpUser(login, password,
                          new UserDetails(name, lastName, email, language.name, address));
 
@@ -123,6 +123,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
         {
             using (var scope = new TransactionScope())
             {
+                Language language = TestUtil.CreateExistentLanguage();
+
                 var id = userService.SingUpUser(login, password,
                          new UserDetails(name, lastName, email, language.name, address));
 

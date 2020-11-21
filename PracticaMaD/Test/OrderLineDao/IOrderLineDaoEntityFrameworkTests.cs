@@ -99,7 +99,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao.Tests
             };
             Language language = TestUtil.CreateExistentLanguage();
             User user = TestUtil.CreateExistentUser(language);
-            CreditCard creditCard = TestUtil.CreateCreditCard();
+            CreditCard creditCard = TestUtil.CreateCreditCard(user);
             Order order1 = TestUtil.CreateOrder(user, creditCard, orderLines);
 
             List<OrderLine> foundOrderLines = new List<OrderLine>();

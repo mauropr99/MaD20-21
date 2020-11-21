@@ -15,6 +15,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
 {
@@ -35,10 +36,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
         private const string password = "passwd";
         private const string email = "user@udc.es";
         private const string address = "A Coruña";
-        private const string languageName = "es";
-        private const string languageCountry = "ES";
         private const string role = "user";
-        private static Language language = new Language();
 
         // Variables used in several tests are initialized here
         private const long userId = 123456;
@@ -73,15 +71,59 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
         }
 
         #region Additional test attributes
+        //Use ClassInitialize to run code before running the first test in the class
+        [ClassInitialize()]
+        public static void MyClassInitialize(TestContext testContext)
+        {
+            kernel = TestManager.ConfigureNInjectKernel();
+            TestUtil.userDao = kernel.Get<IUserDao>();
+            TestUtil.languageDao = kernel.Get<ILanguageDao>();
+            TestUtil.creditCardDao = kernel.Get<ICreditCardDao>();
+            TestUtil.categoryDao = kernel.Get<ICategoryDao>();
+            TestUtil.productDao = kernel.Get<IProductDao>();
+            TestUtil.orderDao = kernel.Get<IOrderDao>();
+
+
+            shoppingService = kernel.Get<IShoppingService>();
+            userService = kernel.Get<IUserService>();
+
+        }
+
+        //Use ClassCleanup to run code after all tests in a class have run
+        [ClassCleanup()]
+        public static void MyClassCleanup()
+        {
+            TestManager.ClearNInjectKernel(kernel);
+        }
+
+        //Use TestInitialize to run code before running each test
+        [TestInitialize()]
+        public void MyTestInitialize()
+        {
+            transactionScope = new TransactionScope();
+        }
+
+        //Use TestCleanup to run code after each test has run
+        [TestCleanup()]
+        public void MyTestCleanup()
+        {
+            transactionScope.Dispose();
+        }
+
+        #endregion Additional test attributes
 
         [TestMethod()]
         public void BuyProductTest()
         {
             using (var scope = new TransactionScope())
             {
-                CreditCard creditCard = TestUtil.CreateCreditCard();
-                userService.SingUpUser(login, password,
+                Language language = TestUtil.CreateExistentLanguage();
+
+                long userId = userService.SingUpUser(login, password,
                        new UserDetails(name, lastName, email, language.name, address));
+                User user = TestUtil.userDao.Find(userId);
+                CreditCard creditCard = TestUtil.CreateCreditCard(user);
+                
                 Category category = TestUtil.CreateCategory("Balones");
                 Product product1 = TestUtil.CreateProduct(category, "Balón negro", 3);
                 Product product2 = TestUtil.CreateProduct(category, "Balón blanco", 2.5m);
@@ -131,6 +173,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
         {
             using (var scope = new TransactionScope())
             {
+                Language language = TestUtil.CreateExistentLanguage();
+
                 userService.SingUpUser(login, password,
                 new UserDetails(name, lastName, email, language.name, address));
                 CreditCard creditCard = new CreditCard
@@ -175,11 +219,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
             using (var scope = new TransactionScope())
             {
 
-                CreditCard creditCard = TestUtil.CreateCreditCard();
+                CreditCard creditCard = TestUtil.CreateCreditCard(null);
                 Category category = TestUtil.CreateCategory("Balones");
                 Product product1 = TestUtil.CreateProduct(category, "Balón negro", 3);
                 Product product2 = TestUtil.CreateProduct(category, "Balón blanco", 2.5m);
-              
+                Language language = TestUtil.CreateExistentLanguage();
+
                 OrderLineDetails orderLineDetail1 = new OrderLineDetails(
                     product1.product_name,
                     15,
@@ -208,9 +253,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
         {
             using (var scope = new TransactionScope())
             {
-                userService.SingUpUser(login, password,
-                      new UserDetails(name, lastName, email, language.name, address));
-                CreditCard creditCard = TestUtil.CreateCreditCard();
+                Language language = TestUtil.CreateExistentLanguage();
+
+                long userId = userService.SingUpUser(login, password,
+                       new UserDetails(name, lastName, email, language.name, address));
+                User user = TestUtil.userDao.Find(userId);
+                CreditCard creditCard = TestUtil.CreateCreditCard(user);
                 Category category = TestUtil.CreateCategory("Mascarillas");
                 Product product1 = TestUtil.CreateProduct(category, "FFP2", 3);
                 Product product2 = TestUtil.CreateProduct(category, "Quirurjica", 2.5m);
@@ -235,47 +283,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
             }
         }
 
-        //Use ClassInitialize to run code before running the first test in the class
-        [ClassInitialize()]
-        public static void MyClassInitialize(TestContext testContext)
-        {
-            kernel = TestManager.ConfigureNInjectKernel();
-            shoppingService = kernel.Get<IShoppingService>();
-            userService = kernel.Get<IUserService>();
-
-            TestUtil.userDao = kernel.Get<IUserDao>();
-            TestUtil.categoryDao = kernel.Get<ICategoryDao>();
-            TestUtil.orderDao = kernel.Get<IOrderDao>();
-            TestUtil.orderLineDao = kernel.Get<IOrderLineDao>();
-            TestUtil.creditCardDao = kernel.Get<ICreditCardDao>();
-            TestUtil.productDao = kernel.Get<IProductDao>();
-
-            language.name = languageName;
-            language.country = languageCountry;
-        }
-
-        //Use ClassCleanup to run code after all tests in a class have run
-        [ClassCleanup()]
-        public static void MyClassCleanup()
-        {
-            TestManager.ClearNInjectKernel(kernel);
-        }
-
-        //Use TestInitialize to run code before running each test
-        [TestInitialize()]
-        public void MyTestInitialize()
-        {
-            transactionScope = new TransactionScope();
-        }
-
-        //Use TestCleanup to run code after each test has run
-        [TestCleanup()]
-        public void MyTestCleanup()
-        {
-            transactionScope.Dispose();
-        }
-
-        #endregion Additional test 
+        
         
     }
 }

@@ -4,7 +4,9 @@ using Ninject;
 using Es.Udc.DotNet.PracticaMaD.Test;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Transactions;
-
+using Es.Udc.DotNet.PracticaMaD.Test.Util;
+using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
+using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao.Tests
 {
@@ -12,7 +14,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao.Tests
     public class ICreditCardDaoEntityFrameworkTests
     {
         private static IKernel kernel;
-        private static ICreditCardDao creditCardDao;
 
         // Variables used in several tests are initialized here
         private const long userId = 123456;
@@ -45,7 +46,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao.Tests
         public static void MyClassInitialize(TestContext testContext)
         {
             kernel = TestManager.ConfigureNInjectKernel();
-            creditCardDao = kernel.Get<ICreditCardDao>();
+            TestUtil.userDao = kernel.Get<IUserDao>();
+            TestUtil.languageDao = kernel.Get<ILanguageDao>();
+            TestUtil.creditCardDao = kernel.Get<ICreditCardDao>();
         }
 
         //Use ClassCleanup to run code after all tests in a class have run
@@ -72,7 +75,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao.Tests
         #endregion Additional test attributes
 
 
-        //TODO hacer test de FindCreditCardsByUserLogin cuando se haga merge con develop.
+        [TestMethod()]
+        public void FindCreditCardsByUserLoginTest()
+        {
+            Language language = TestUtil.CreateExistentLanguage();
+            User user = TestUtil.CreateExistentUser(language);
+            CreditCard creditCard = TestUtil.CreateCreditCard(user);
 
+            List<CreditCard> foundCreditCards = TestUtil.creditCardDao.FindCreditCardsByUserLogin(user.login);
+
+            Assert.AreEqual(creditCard.id, foundCreditCards[0].id);
+            Assert.AreEqual(creditCard.creditCardNumber, foundCreditCards[0].creditCardNumber);
+            Assert.AreEqual(creditCard.creditType, foundCreditCards[0].creditType);
+            Assert.AreEqual(creditCard.cvv, foundCreditCards[0].cvv);
+            Assert.AreEqual(creditCard.expirationDate, foundCreditCards[0].expirationDate);
+
+        }
     }
 }

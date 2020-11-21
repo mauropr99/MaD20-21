@@ -28,31 +28,38 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao
 
         #region ICreditCardDao Members. Specific Operations
 
-        public ICollection<CreditCard> FindCreditCardsByUserLogin(string login)
+        public List<CreditCard> FindCreditCardsByUserLogin(string login)
         {
-
             #region Option 1: Using Linq.
+
             DbSet<User> users = Context.Set<User>();
 
-            var userResult =
+            User userResult =
                 (from u in users
                  where u.login == login
                  select u).First();
 
+            
 
             DbSet<CreditCard> creditCards = Context.Set<CreditCard>();
-            ICollection<CreditCard> foundCreditCards;
 
-            var result =
+
+            List<User> usersResult =
                 (from c in creditCards
-                 where c.User_Table.Contains(userResult)
-                 select c);
+                 select c.User_Table).FirstOrDefault().ToList();
 
-            foundCreditCards = result.ToArray();
+            var usersIds = usersResult.Select(s => s.id).ToList();
+
+
+            List<CreditCard> result =
+                (from c in creditCards
+                 where usersIds.Contains(userResult.id)
+                 orderby c.id
+                 select c).ToList();
+
+            return result;
 
             #endregion Option 1: Using Linq
-
-            return foundCreditCards;
         }
 
         #endregion ICreditCardDao Members

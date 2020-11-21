@@ -28,9 +28,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
         {
             Language language = new Language
             {
-                name = "español",
-                country = "España"
+                name = "es",
+                country = "ES"
             };
+
             languageDao.Create(language);
 
             return language;
@@ -115,16 +116,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
             return category;
         }
 
-        public static CreditCard CreateCreditCard()
+
+        public static CreditCard CreateCreditCard(User user)
         {
             CreditCard creditCard = new CreditCard
             {
                 creditType = "debit",
                 creditCardNumber = "1234567891234567",
                 cvv = 123,
-                expirationDate = DateTime.Now.AddYears(1)
+                expirationDate = DateTime.Now.AddYears(1),
             };
-
+            creditCard.User_Table.Add(user);
             creditCardDao.Create(creditCard);
             return creditCard;
         }
