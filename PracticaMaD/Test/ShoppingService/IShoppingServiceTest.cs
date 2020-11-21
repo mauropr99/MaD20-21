@@ -179,6 +179,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                 new UserDetails(name, lastName, email, language.name, address));
                 CreditCard creditCard = new CreditCard
                 {
+                    ownerName = "Name Surname",
                     creditType = "debit",
                     creditCardNumber = "1234567891234567",
                     cvv = 123,

@@ -152,12 +152,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
                 Language language = TestUtil.CreateExistentLanguage();
                 User user = TestUtil.CreateExistentUser(language);
 
+                string ownerName = "Name Surname";
                 string creditType = "debit";
                 string creditCardNumber = "1234567891234567";
                 short cvv = 123;
                 DateTime expirationDate = DateTime.Now.AddYears(1);
 
-                CreditCard createdCreditCard = userService.AddCreditCard(user.id, creditType, creditCardNumber, cvv, expirationDate);
+                CreditCard createdCreditCard = userService.AddCreditCard(user.id, ownerName, creditType, creditCardNumber, cvv, expirationDate);
 
                 List<CreditCard> creditCards = TestUtil.creditCardDao.FindCreditCardsByUserLogin(user.login);
 
@@ -175,14 +176,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
                 Language language = TestUtil.CreateExistentLanguage();
                 User user = TestUtil.CreateExistentUser(language);
 
+                string ownerName = "Name Surname";
                 string creditType = "debit";
                 string creditCardNumber = "1234567891234567";
                 short cvv = 123;
                 DateTime expirationDate = DateTime.Now.AddYears(1);
 
-                userService.AddCreditCard(user.id, creditType, creditCardNumber, cvv, expirationDate);
+                userService.AddCreditCard(user.id, ownerName, creditType, creditCardNumber, cvv, expirationDate);
 
-                userService.AddCreditCard(user.id, creditType, creditCardNumber, cvv, expirationDate);
+                userService.AddCreditCard(user.id, ownerName, creditType, creditCardNumber, cvv, expirationDate);
 
             }
         }

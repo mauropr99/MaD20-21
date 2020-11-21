@@ -30,7 +30,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             UserDetails userDetails);
 
         [Transactional]
-        CreditCard AddCreditCard(long userId, string creditType,
+        CreditCard AddCreditCard(long userId, string ownerName, string creditType,
             string creditCardNumber, short cvv, DateTime expirationDate);
 
         bool UserExists(string login);

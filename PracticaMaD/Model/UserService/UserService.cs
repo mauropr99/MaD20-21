@@ -122,6 +122,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             }
         }
 
+        [Transactional]
         public void UpdateUserDetails(long id, UserDetails userDetails)
         {
             User user = UserDao.Find(id);
@@ -134,7 +135,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         }
 
         /// <exception cref="DuplicateCreditCardException"/>
-        public CreditCard AddCreditCard(long userId, string creditType,
+        [Transactional]
+        public CreditCard AddCreditCard(long userId, string ownerName, string creditType,
             string creditCardNumber, short cvv, DateTime expirationDate)
         {
 
@@ -151,6 +153,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             }
 
             CreditCard newCreditCard = new CreditCard();
+            newCreditCard.ownerName = ownerName;
             newCreditCard.creditType = creditType;
             newCreditCard.creditCardNumber = creditCardNumber;
             newCreditCard.cvv = cvv;

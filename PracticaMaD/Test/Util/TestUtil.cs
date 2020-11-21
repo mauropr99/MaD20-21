@@ -121,8 +121,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
         {
             CreditCard creditCard = new CreditCard
             {
+                ownerName = "Name Surname",
                 creditType = "debit",
-                creditCardNumber = "1234567891234567",
+                creditCardNumber = "1234567890123456",
                 cvv = 123,
                 expirationDate = DateTime.Now.AddYears(1),
             };

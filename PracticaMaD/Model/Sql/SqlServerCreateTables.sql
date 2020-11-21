@@ -142,7 +142,8 @@ PRINT N'Done'
 /* CreditCard */
 
 CREATE TABLE CreditCard (
-	id bigint IDENTITY(1,1) NOT NULL, 
+	id bigint IDENTITY(1,1) NOT NULL,
+	ownerName VARCHAR(128) NOT NULL,
 	creditType VARCHAR(30) NOT NULL CHECK(creditType IN ('debit','credit')),
 	creditCardNumber VARCHAR (16) NOT NULL,
 	cvv smallint NOT NULL,
@@ -282,50 +283,6 @@ ON Computers (id);
 PRINT N'Table Computers created.'
 GO
 PRINT N'Done'
-
-
-/* Desktop */
-
-CREATE TABLE Desktop (
-	id bigint NOT NULL, 
-	allInOne BIT NOT NULL,
-
-
-    CONSTRAINT [PK_Desktop] PRIMARY KEY (id ASC),
-
-	CONSTRAINT [FK_DesktopComputer] FOREIGN KEY(id)
-        REFERENCES Computers (id) ON DELETE CASCADE
-
-)
-
-
-CREATE NONCLUSTERED INDEX IX_DesktopIndexById 
-ON Desktop (id);
-
-PRINT N'Table Desktop created.'
-GO
-
-
-/* Laptop */
-
-CREATE TABLE Laptop (
-	id bigint NOT NULL, 
-	screenResolution VARCHAR(64),
-	screenInches SMALLINT,
-
-    CONSTRAINT [PK_Laptop] PRIMARY KEY (id ASC),
-
-	CONSTRAINT [FK_LaptopComputer] FOREIGN KEY(id)
-        REFERENCES Computers (id) ON DELETE CASCADE
-
-)
-
-
-CREATE NONCLUSTERED INDEX IX_LaptopIndexById 
-ON Laptop (id);
-
-PRINT N'Table Laptop created.'
-GO
 
 
 /* Book */

@@ -84,6 +84,29 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Label]')
 AND type in ('U')) DROP TABLE [Label]
 GO
 
+/* Drop Table Laptop if already exists */
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Laptop]') 
+AND type in ('U')) DROP TABLE [Laptop]
+GO
+
+/* Drop Table Desktop if already exists */
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Desktop]') 
+AND type in ('U')) DROP TABLE [Desktop]
+GO
+
+/* Drop Table Computer if already exists */
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Computers]') 
+AND type in ('U')) DROP TABLE [Computers]
+GO
+
+/* Drop Table Book if already exists */
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Book]') 
+AND type in ('U')) DROP TABLE [Book]
+GO
 
 /* Drop Table Product if already exists */
 
@@ -124,10 +147,11 @@ GO
 
 /*
  * Create tables.
- * Account and AccountOp tables are created. Indexes required for the 
+ * Tables are created. Indexes required for the 
  * most common operations are also defined.
  */
 
+/* Language */
 
 CREATE TABLE Language (
 	id bigint IDENTITY(1,1) NOT NULL, 
@@ -143,23 +167,14 @@ ON Language (id);
 
 PRINT N'Table Language created.'
 GO
-INSERT INTO dbo.Language
-(
-    name,
-    country
-)
-VALUES
-(   'es', -- name - varchar(64)
-    'ES'  -- country - varchar(64)
-    )
-
 
 PRINT N'Done'
 
 /* CreditCard */
 
 CREATE TABLE CreditCard (
-	id bigint IDENTITY(1,1) NOT NULL, 
+	id bigint IDENTITY(1,1) NOT NULL,
+	ownerName VARCHAR(128) NOT NULL,
 	creditType VARCHAR(30) NOT NULL CHECK(creditType IN ('debit','credit')),
 	creditCardNumber VARCHAR (16) NOT NULL,
 	cvv smallint NOT NULL,
@@ -236,24 +251,17 @@ PRINT N'Done'
 CREATE TABLE Category (
 	id bigint IDENTITY(1,1) NOT NULL, 
 	name VARCHAR(64) NOT NULL,
-	categoryId bigint,
-
 
     CONSTRAINT [PK_Category] PRIMARY KEY (id ASC),
 
-    CONSTRAINT [FK_CategoryId] FOREIGN KEY(categoryId)
-        REFERENCES Category (id) ON DELETE NO ACTION
-	
 )
 
 
 CREATE NONCLUSTERED INDEX IX_CategoryIndexById 
 ON Category (id);
 
-PRINT N'Table Category created.'
+PRINT N'Table Desktop created.'
 GO
-
-PRINT N'Done'
 
 
 /* Product */
@@ -282,12 +290,62 @@ GO
 
 PRINT N'Done'
 
+/* Computers */
+
+CREATE TABLE Computers (
+	id bigint NOT NULL, 
+	brand VARCHAR(64) NOT NULL,
+	processor VARCHAR(64),
+	os VARCHAR(64),
+
+
+
+    CONSTRAINT [PK_Computers] PRIMARY KEY (id ASC),
+
+	CONSTRAINT [FK_Computers] FOREIGN KEY(id)
+        REFERENCES Product (id) ON DELETE CASCADE
+	
+)
+
+
+CREATE NONCLUSTERED INDEX IX_ComputersIndexById 
+ON Computers (id);
+
+PRINT N'Table Computers created.'
+GO
+PRINT N'Done'
+
+
+/* Book */
+
+CREATE TABLE Book (
+	id bigint NOT NULL, 
+	title VARCHAR(64) NOT NULL,
+	genre VARCHAR(64) NOT NULL,
+	editorial VARCHAR(64) NOT NULL,
+	isbnCode VARCHAR(64) NOT NULL,
+
+    CONSTRAINT [PK_Book] PRIMARY KEY (id ASC),
+
+    CONSTRAINT [FK_BookId] FOREIGN KEY(id)
+        REFERENCES Product (id) ON DELETE CASCADE
+	
+)
+
+
+CREATE NONCLUSTERED INDEX IX_BookIndexById 
+ON Book (id);
+
+PRINT N'Table Book created.'
+GO
+
+
 /* Label */
 
 CREATE TABLE Label (
 	id bigint IDENTITY(1,1) NOT NULL, 
 	lab VARCHAR(64) NOT NULL,
-
+	timesUsed int,
 
     CONSTRAINT [PK_Label] PRIMARY KEY (id ASC),
 )
