@@ -1,0 +1,152 @@
+﻿using System.Collections.Generic;
+using Ninject;
+using Es.Udc.DotNet.PracticaMaD.Test;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Transactions;
+using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Test.Util;
+using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
+using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
+
+namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
+{
+    [TestClass()]
+    public class IProductDaoEntityFrameworkTests
+    {
+        private static IKernel kernel;
+
+        private TransactionScope transactionScope;
+
+        private TestContext testContextInstance;
+
+        /// <summary>
+        ///Gets or sets the test context which provides
+        ///information about and functionality for the current test run.
+        ///</summary>
+        public TestContext TestContext
+        {
+            get
+            {
+                return testContextInstance;
+            }
+            set
+            {
+                testContextInstance = value;
+            }
+        }
+
+        #region Additional test attributes
+
+        //Use ClassInitialize to run code before running the first test in the class
+        [ClassInitialize()]
+        public static void MyClassInitialize(TestContext testContext)
+        {
+            kernel = TestManager.ConfigureNInjectKernel();
+            TestUtil.productDao = kernel.Get<IProductDao>();
+            TestUtil.categoryDao = kernel.Get<ICategoryDao>();
+            TestUtil.computerDao = kernel.Get<IComputerDao>();
+            TestUtil.bookDao = kernel.Get<IBookDao>();
+            
+        }
+
+        //Use ClassCleanup to run code after all tests in a class have run
+        [ClassCleanup()]
+        public static void MyClassCleanup()
+        {
+            TestManager.ClearNInjectKernel(kernel);
+        }
+
+        //Use TestInitialize to run code before running each test
+        [TestInitialize()]
+        public void MyTestInitialize()
+        {
+            transactionScope = new TransactionScope();
+        }
+
+        //Use TestCleanup to run code after each test has run
+        [TestCleanup()]
+        public void MyTestCleanup()
+        {
+            transactionScope.Dispose();
+        }
+
+        #endregion Additional test attributes
+
+        [TestMethod()]
+        public void FindByProductNameTest()
+        {
+
+            Category category1 = TestUtil.CreateCategory("Ordenadores");
+
+            Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
+            Computer product2 = TestUtil.CreateComputer(category1, "ACER 3x2600", 2.5m, "Acer");
+            Computer product3 = TestUtil.CreateComputer(category1, "ACER 4x2600", 2.5m, "Acer");
+
+
+            List<Product> foundProducts = new List<Product>();
+            foundProducts = TestUtil.productDao.FindByProductName("Acer", 0, 10);
+
+            Assert.AreEqual(2, foundProducts.Count);
+            //Están ordenados alfabéticamente por nombre, por eso que sea primero el [1]
+            Assert.AreEqual(product3.product_name, foundProducts[1].product_name);
+            Assert.AreEqual(product3.price, foundProducts[1].price);   
+            Assert.AreEqual(product3.releaseDate, foundProducts[1].releaseDate);
+            Assert.AreEqual(product3.stock, foundProducts[1].stock);
+            Assert.AreEqual(product2.product_name, foundProducts[0].product_name);
+            Assert.AreEqual(product2.price, foundProducts[0].price);
+            Assert.AreEqual(product2.releaseDate, foundProducts[0].releaseDate);
+            Assert.AreEqual(product2.stock, foundProducts[0].stock);
+        }
+
+        [TestMethod()]
+        public void FindZeroByProductNameTest()
+        {
+            Category category1 = TestUtil.CreateCategory("Ordenadores");
+            Category category2 = TestUtil.CreateCategory("Libros");
+            Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
+            Computer product2 = TestUtil.CreateComputer(category1, "ACER 3x2600", 2.5m, "Acer");
+            Book product3 = TestUtil.CreateBook(category2, "El Quijote Nueva edición", 3.5m, "El Quijote");
+
+            List<Product> foundProducts = new List<Product>();
+            foundProducts = TestUtil.productDao.FindByProductName("Secador de pelo", 0, 10);
+
+            Assert.AreEqual(0, foundProducts.Count);
+        }
+
+        [TestMethod()]
+        public void FindByProductNameAndCategoryIdTest()
+        {
+            Category category1 = TestUtil.CreateCategory("Ordenadores");
+            Category category2 = TestUtil.CreateCategory("Libros");
+            Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
+            Computer product2 = TestUtil.CreateComputer(category1, "ACER 3x2600", 2.5m, "Acer");
+            Book product3 = TestUtil.CreateBook(category2, "El Quijote Nueva edición", 3.5m, "El Quijote");
+
+            List<Product> foundProducts = new List<Product>();
+            foundProducts = TestUtil.productDao.FindByProductNameAndCategoryName("Acer", category1.name, 0, 10);
+
+            Assert.AreEqual(1, foundProducts.Count);
+            Assert.AreEqual(product2.price, foundProducts[0].price);
+            Assert.AreEqual(product2.product_name, foundProducts[0].product_name);
+            Assert.AreEqual(product2.releaseDate, foundProducts[0].releaseDate);
+            Assert.AreEqual(product2.stock, foundProducts[0].stock);
+
+        }
+
+        [TestMethod()]
+        public void FindZeroByProductNameAndCategoryIdTest()
+        {
+            Category category1 = TestUtil.CreateCategory("Ordenadores");
+            Category category2 = TestUtil.CreateCategory("Libros");
+            Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
+            Computer product2 = TestUtil.CreateComputer(category1, "ACER 3x2600", 2.5m, "Acer");
+            Book product3 = TestUtil.CreateBook(category2, "El Quijote Nueva edición", 3.5m, "El Quijote");
+
+            List<Product> foundProducts = new List<Product>();
+            foundProducts = TestUtil.productDao.FindByProductNameAndCategoryName("Acer", category2.name, 0, 10);
+
+            Assert.AreEqual(0, foundProducts.Count);
+        }
+
+    }
+}

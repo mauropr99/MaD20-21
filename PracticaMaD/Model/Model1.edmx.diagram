@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2805dd586a5546859d559e8191e4df75" Name="Diagram1" ZoomLevel="89">
+        <EntityTypeShape EntityType="Es.Udc.DotNet.practicamadModel.Book" Width="1.5" PointX="1.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.practicamadModel.Category" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.practicamadModel.Comment" Width="1.5" PointX="5.875" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.practicamadModel.Computer" Width="1.5" PointX="4.375" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.practicamadModel.CreditCard" Width="1.5" PointX="10.625" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.practicamadModel.Label" Width="1.5" PointX="5.875" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.practicamadModel.Language" Width="1.5" PointX="9.5" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.practicamadModel.Order" Width="1.5" PointX="5.875" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.practicamadModel.OrderLine" Width="1.5" PointX="3.125" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.practicamadModel.Product" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.practicamadModel.User" Width="1.5" PointX="9.375" PointY="6.375" IsExpanded="true" />
+        <AssociationConnector Association="Es.Udc.DotNet.practicamadModel.FK_ProductCategoryId" ManuallyRouted="false" />
+        <AssociationConnector Association="Es.Udc.DotNet.practicamadModel.FK_Comment_ProductId" ManuallyRouted="false" />
+        <AssociationConnector Association="Es.Udc.DotNet.practicamadModel.FK_Comment_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Es.Udc.DotNet.practicamadModel.FK_Order_CreditCardId" ManuallyRouted="false" />
+        <AssociationConnector Association="Es.Udc.DotNet.practicamadModel.FK_LanguageId" ManuallyRouted="false" />
+        <AssociationConnector Association="Es.Udc.DotNet.practicamadModel.FK_OrderId" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="Es.Udc.DotNet.practicamadModel.FK_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Es.Udc.DotNet.practicamadModel.FK_ProductId" ManuallyRouted="false" />
+        <AssociationConnector Association="Es.Udc.DotNet.practicamadModel.CreditCard_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Es.Udc.DotNet.practicamadModel.Label_Comment" ManuallyRouted="false" />
+        <InheritanceConnector EntityType="Es.Udc.DotNet.practicamadModel.Computer" />
+        <InheritanceConnector EntityType="Es.Udc.DotNet.practicamadModel.Book" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
