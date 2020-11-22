@@ -117,7 +117,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             CommentDao.Find(commentId);
 
 
-            var labels = CommentDao.Find(commentId).Labels;
+            var labels = CommentDao.Find(commentId).Labels.ToList();
 
 
             //Removing unused labels
@@ -154,12 +154,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             }
 
             List<CommentDetails> detailComments = new List<CommentDetails>();
-            List<string> labelNames = new List<string>();
 
+            
             foreach (Comment comment in comments)
             {
-                foreach(Label label in comment.Labels)
+                List<string> labelNames = new List<string>();
+                foreach (Label label in comment.Labels)
                 {
+                    
                     labelNames.Add(label.lab);
                 }
 
