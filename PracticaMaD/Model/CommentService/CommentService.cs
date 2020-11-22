@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Es.Udc.DotNet.PracticaMaD.Model.LabelDao;
 using Ninject;
@@ -17,12 +18,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
         public Comment NewComment(long userId, long productId, string text, List<string> labels)
         {
-            Comment comment = new Comment();
-            comment.userId = userId;
-            comment.productId = productId;
-            comment.text = text;
+            Comment comment = new Comment
+            {
+                userId = userId,
+                productId = productId,
+                text = text,
+                commentDate = DateTime.Now
+            };
 
-            
             if (labels.Count != 0)
             {
                 foreach (string label in labels) {
@@ -31,7 +34,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
                     {
                         Label newLabel = new Label()
                         {
-                            lab = label
+                            lab = label,
+                            timesUsed = 0
                         };
                         LabelDao.Create(newLabel);
                     }

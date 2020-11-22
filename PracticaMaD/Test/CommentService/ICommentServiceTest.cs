@@ -74,6 +74,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
         public static void MyClassInitialize(TestContext testContext)
         {
             kernel = TestManager.ConfigureNInjectKernel();
+
             TestUtil.userDao = kernel.Get<IUserDao>();
             TestUtil.languageDao = kernel.Get<ILanguageDao>();
             TestUtil.creditCardDao = kernel.Get<ICreditCardDao>();
@@ -114,7 +115,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
         #endregion Additional test attributes
 
         [TestMethod()]
-        public void UpdateComment()
+        public void UpdateCommentTest()
         {
             using (var scope = new TransactionScope())
             {
@@ -127,23 +128,27 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
                 Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
-                List<string> labels = new List<String>();
-                labels.Add("Ganga");
-                labels.Add("Oferta");
-                labels.Add("Chollazo");
+                List<string> labels = new List<string>
+                {
+                    "Ganga",
+                    "Oferta",
+                    "Chollazo"
+                };
 
-                string text = "Muy buen ordenado y a buen precio. Funcionan todos los juegos a calidad máxima, muy fluidos y sin apenas calentarse el aparato.";
-                var comment = commentService.NewComment(userId, product1.id, text, labels);
+                string text = "Muy buen ordenador y a buen precio. Funcionan todos los juegos a calidad máxima, muy fluidos y sin apenas calentarse el aparato.";
+                Comment comment = commentService.NewComment(user.id, product1.id, text, labels);
 
                 text = "Es una bestia de portatil gaming , los juegos se ven genial y se inician en un momento , no se calienta y encima no es tan pesado .";
 
-                List<string> labels2 = new List<String>();
-                labels.Add("Irresistible");
-                labels.Add("Chollazo");
-                labels.Add("Ganga");
-                comment = commentService.UpdateComment(comment.id,text, labels);
+                List<string> labels2 = new List<String>
+                {
+                    "Irresistible",
+                    "Chollazo",
+                    "Ganga"
+                };
+                comment = commentService.UpdateComment(comment.id,text, labels2);
 
-                Assert.AreNotEqual(labels, comment.Labels);
+                Assert.AreNotEqual(labels2, comment.Labels);
 
                 var foundComment = TestUtil.commentDao.Find(comment.id);
 
@@ -164,7 +169,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
             using (var scope = new TransactionScope())
             {
                 Language language = TestUtil.CreateExistentLanguage();
-
                 long userId = userService.SingUpUser(login, password,
                        new UserDetails(name, lastName, email, language.name, language.country, address));
                 User user = TestUtil.userDao.Find(userId);
@@ -178,7 +182,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 labels.Add("Chollazo");
 
                 string text = "Muy buen ordenado y a buen precio. Funcionan todos los juegos a calidad máxima, muy fluidos y sin apenas calentarse el aparato.";
-                var comment = commentService.NewComment(userId, product1.id, text, labels);
+                Comment comment = commentService.NewComment(userId, product1.id, text, labels);
 
                 text = "Es una bestia de portatil gaming , los juegos se ven genial y se inician en un momento , no se calienta y encima no es tan pesado .";
 
