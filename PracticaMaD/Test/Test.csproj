@@ -112,6 +112,7 @@
     <Compile Include="OrderDao\IOrderDaoEntityFrameworkTests.cs" />
     <Compile Include="OrderLineDao\IOrderLineDaoEntityFrameworkTests.cs" />
     <Compile Include="ProductDao\IProductDaoEntityFrameworkTests.cs" />
+    <Compile Include="ProductService\IProductServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShoppingService\IShoppingServiceTest.cs" />
     <Compile Include="TestManager.cs" />

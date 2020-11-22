@@ -15,6 +15,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
 using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 using Es.Udc.DotNet.PracticaMaD.Model.LabelDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
 
 namespace Es.Udc.DotNet.PracticaMaD.Test
 {
@@ -44,9 +45,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             kernel.Bind<IUserService>().To<UserService>();
             kernel.Bind<IShoppingService>().To<ShoppingService>();
             kernel.Bind<ICommentService>().To<CommentService>();
-
-
-
+            kernel.Bind<IProductService>().To<ProductService>();
 
             string connectionString =
                 ConfigurationManager.ConnectionStrings["practicamad_testEntities"].ConnectionString;
