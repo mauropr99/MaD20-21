@@ -3,6 +3,7 @@ using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
@@ -155,9 +156,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 Assert.AreEqual(comment.id, foundComment.id);
                 Assert.AreEqual(text, foundComment.text);
                 Assert.AreEqual(userId, foundComment.userId);
-                Assert.AreEqual(labels2, foundComment.Labels);
-
-
+                Assert.AreEqual(3, foundComment.Labels.Count);
+                Assert.AreEqual(labels2[0], foundComment.Labels.ToList()[1].lab); //Irresistible
+                Assert.AreEqual(labels2[2], foundComment.Labels.ToList()[0].lab); //Ganga
+                Assert.AreEqual(labels2[1], foundComment.Labels.ToList()[2].lab); //Chollazo
+                
 
             }
         }
@@ -187,12 +190,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 text = "Es una bestia de portatil gaming , los juegos se ven genial y se inician en un momento , no se calienta y encima no es tan pesado .";
 
                 List<string> labels2 = new List<String>();
-                labels.Add("Irresistible");
-                labels.Add("Chollazo");
-                labels.Add("Ganga");
-                comment = commentService.UpdateComment(comment.id, text, labels);
+                labels2.Add("Irresistible");
+                labels2.Add("Chollazo");
+                labels2.Add("Ganga");
+                comment = commentService.UpdateComment(comment.id, text, labels2);
 
-                TestUtil.labelDao.FindByLabelName("oferta");
+                TestUtil.labelDao.FindByLabelName("Oferta");
 
             }
         }
