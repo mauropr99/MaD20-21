@@ -7,7 +7,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao
 {
     public interface ILanguageDao : IGenericDao<Language, Int64>
     {
-        Language FindByName(String name);
+        Language FindByNameAndCountry(String languageName, string languageCountry);
         ICollection<Language> FindLanguagesByCountry(String country);
     }
 }

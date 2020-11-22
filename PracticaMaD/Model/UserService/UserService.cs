@@ -54,7 +54,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             UserDetails userDetails =
                 new UserDetails(user.name,
                     user.lastName, user.email,
-                    user.Language.name, user.address);
+                    user.Language.name, user.Language.country, user.address);
 
             return userDetails;
         }
@@ -103,6 +103,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             catch (InstanceNotFoundException)
             {
                 string encryptedPassword = PasswordEncrypter.Crypt(clearPassword);
+                Language language = new Language();
+                try
+                {
+                    language = LanguageDao.FindByNameAndCountry(userDetails.LanguageName, userDetails.LanguageCountry);
+                } catch (InstanceNotFoundException)
+                {
+                    //Take browser default language
+                }
 
                 User user = new User
                 {
@@ -111,7 +119,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                     name = userDetails.Name,
                     lastName = userDetails.Lastname,
                     email = userDetails.Email,
-                    Language = LanguageDao.FindByName(userDetails.LanguageName),
+                    Language = language,
                     address = userDetails.Address,
                     role = "user"
                 };
@@ -130,7 +138,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             user.name = userDetails.Name;
             user.lastName = userDetails.Lastname;
             user.email = userDetails.Email;
-            user.languageId = LanguageDao.FindByName(userDetails.LanguageName).id;
+            user.languageId = LanguageDao.FindByNameAndCountry(userDetails.LanguageName, userDetails.LanguageCountry).id;
             user.address = userDetails.Address;
         }
 

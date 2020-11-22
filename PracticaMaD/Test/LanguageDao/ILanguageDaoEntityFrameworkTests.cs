@@ -16,6 +16,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao.Tests
 
         // Variables used in several tests are initialized here
         private const string NON_EXISTENT_LANGUAGE_NAME = "non_existent_language";
+        private const string NON_EXISTENT_LANGUAGE_COUNTRY = "non_existent_country";
 
         private TransactionScope transactionScope;
 
@@ -71,7 +72,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao.Tests
         #endregion Additional test attributes
 
         [TestMethod()]
-        public void FindByNameTest()
+        public void FindByNameAndCountryTest()
         {
             int numberOfLanguages = 11;
 
@@ -90,7 +91,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao.Tests
             }
 
             String expectedLanguageName = "language 8";
-            Language foundlanguage = languageDao.FindByName(expectedLanguageName);
+            String expectedLanguageCountry = "ES";
+            Language foundlanguage = languageDao.FindByNameAndCountry(expectedLanguageName, expectedLanguageCountry);
 
             Assert.AreEqual(foundlanguage.name, expectedLanguageName);
 
@@ -100,7 +102,28 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao.Tests
         [ExpectedException(typeof(InstanceNotFoundException))]
         public void FindByNonExistentLanguageNameTest()
         {
-            Language expectedLanguage = languageDao.FindByName(NON_EXISTENT_LANGUAGE_NAME);
+            Language language = new Language
+            {
+                name = "es",
+                country = "ES"
+            };
+            languageDao.Create(language);
+
+            Language expectedLanguage = languageDao.FindByNameAndCountry(NON_EXISTENT_LANGUAGE_NAME, "ES");
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(InstanceNotFoundException))]
+        public void FindByNonExistentLanguageCountryTest()
+        {
+            Language language = new Language
+            {
+                name = "es",
+                country = "ES"
+            };
+            languageDao.Create(language);
+
+            Language expectedLanguage = languageDao.FindByNameAndCountry("es", NON_EXISTENT_LANGUAGE_COUNTRY);
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao
 
         #region ILanguageDao Members. Specific Operations
 
-        public Language FindByName(string name)
+        public Language FindByNameAndCountry(string languageName, string languageCountry)
         {
             Language language = null;
 
@@ -38,7 +38,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao
 
             var result =
                 (from u in languages
-                 where u.name == name
+                 where u.name == languageName &&
+                    u.country == languageCountry
                  select u);
 
             language = result.FirstOrDefault();
@@ -46,7 +47,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao
             #endregion Option 1: Using Linq.
 
             if (language == null)
-                throw new InstanceNotFoundException(name,
+                throw new InstanceNotFoundException(languageName,
                     typeof(Language).FullName);
 
             return language;

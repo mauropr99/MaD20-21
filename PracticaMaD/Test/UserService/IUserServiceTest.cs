@@ -92,7 +92,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
 
                 var id =
                     userService.SingUpUser(login, password,
-                        new UserDetails(name, lastName, email, language.name, address));
+                        new UserDetails(name, lastName, email, language.name, language.country, address));
 
                 var user = TestUtil.userDao.Find(id);
 
@@ -116,10 +116,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
                 Language language = TestUtil.CreateExistentLanguage();
 
                 userService.SingUpUser(login, password,
-                         new UserDetails(name, lastName, email, language.name, address));
+                         new UserDetails(name, lastName, email, language.name, language.country, address));
 
                 userService.SingUpUser(login, password,
-                        new UserDetails(name, lastName, email, language.name, address));
+                        new UserDetails(name, lastName, email, language.name, language.country, address));
             }
         }
 
@@ -131,7 +131,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
                 Language language = TestUtil.CreateExistentLanguage();
 
                 var id = userService.SingUpUser(login, password,
-                         new UserDetails(name, lastName, email, language.name, address));
+                         new UserDetails(name, lastName, email, language.name, language.country, address));
 
                 var expected = new LoginResult(id, login, name, lastName,
                    PasswordEncrypter.Crypt(password), language.name, email, address);

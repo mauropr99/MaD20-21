@@ -124,7 +124,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                 Language language = TestUtil.CreateExistentLanguage();
 
                 long userId = userService.SingUpUser(login, password,
-                       new UserDetails(name, lastName, email, language.name, address));
+                       new UserDetails(name, lastName, email, language.name, language.country, address));
                 User user = TestUtil.userDao.Find(userId);
                 CreditCard creditCard = TestUtil.CreateCreditCard(user);
 
@@ -153,7 +153,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                 };
 
                 var order =
-                    shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, address), orderLineDetails,
+                    shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country, address), orderLineDetails,
                         address, creditCard, "Patatas asadas");
 
                 var foundOrder = TestUtil.orderDao.Find(order.id);
@@ -177,7 +177,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                 Language language = TestUtil.CreateExistentLanguage();
 
                 userService.SingUpUser(login, password,
-                new UserDetails(name, lastName, email, language.name, address));
+                new UserDetails(name, lastName, email, language.name, language.country, address));
                 CreditCard creditCard = new CreditCard
                 {
                     ownerName = "Name Surname",
@@ -210,7 +210,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                 };
 
                 var order =
-                    shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, address), orderLineDetails,
+                    shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country, address), orderLineDetails,
                         address, creditCard, "Patatas asadas");
             }
         }
@@ -225,7 +225,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                 Language language = TestUtil.CreateExistentLanguage();
 
                 long userId = userService.SingUpUser(login, password,
-                       new UserDetails(name, lastName, email, language.name, address));
+                       new UserDetails(name, lastName, email, language.name, language.country, address));
                 User user = TestUtil.userDao.Find(userId);
                 CreditCard creditCard = TestUtil.CreateCreditCard(user);
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
@@ -245,10 +245,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                 };
 
                 var order =
-                    shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, address), orderLineDetails,
+                    shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country, address), orderLineDetails,
                         address, creditCard, "Patatas asadas");
                 order =
-                    shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, address), orderLineDetails,
+                    shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country, address), orderLineDetails,
                         address, creditCard, "Patatas asadas");
             }
         }
