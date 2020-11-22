@@ -1,5 +1,4 @@
-﻿using System;
-using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
+﻿using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
 using Es.Udc.DotNet.PracticaMaD.Test;
 using Ninject;
 using System.Transactions;
@@ -10,7 +9,6 @@ using System.Collections.Generic;
 using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Test.Util;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao.Tests

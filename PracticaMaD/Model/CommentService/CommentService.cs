@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Es.Udc.DotNet.PracticaMaD.Model.LabelDao;
 using Ninject;
@@ -11,10 +7,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 {
     public class CommentService: ICommentService
     {
-        public CommentService()
-        {
-        }
-
+  
         [Inject]
         public ICommentDao CommentDao { private get; set; }
         [Inject]
@@ -25,6 +18,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         public Comment NewComment(long userId, long productId, string text, List<string> labels)
         {
             Comment comment = new Comment();
+            comment.userId = userId;
+            comment.productId = productId;
+            comment.text = text;
+
             
             if (labels.Count != 0)
             {
@@ -47,12 +44,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
                 }
             }
 
-            comment.userId = userId;
-            comment.productId = productId;
-            comment.text = text;
-
             CommentDao.Create(comment);
-
             return comment;
 
         }

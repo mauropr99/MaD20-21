@@ -1,7 +1,5 @@
 ﻿using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Transactions;
-using Ninject;
 using System;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService

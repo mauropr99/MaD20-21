@@ -103,6 +103,7 @@
   <ItemGroup>
     <Compile Include="CategoryDao\ICategoryDaoEntityFrameworkTests.cs" />
     <Compile Include="CommentDao\ICommentDaoEntityFrameworkTests.cs" />
+    <Compile Include="CommentService\ICommentServiceTest.cs" />
     <Compile Include="CreditCardDao\ICreditCardDaoEntityFrameworkTests.cs" />
     <Compile Include="LanguageDao\ILanguageDaoEntityFrameworkTests.cs" />
     <Compile Include="OrderDao\IOrderDaoEntityFrameworkTests.cs" />

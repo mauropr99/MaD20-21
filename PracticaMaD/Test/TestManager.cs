@@ -13,6 +13,8 @@ using System.Data.Entity;
 using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
 using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
 using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
+using Es.Udc.DotNet.PracticaMaD.Model.LabelDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Test
 {
@@ -30,6 +32,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
             kernel.Bind<IUserDao>().To<UserDaoEntityFramework>();
             kernel.Bind<ILanguageDao>().To<LanguageDaoEntityFramework>();
+            kernel.Bind<ILabelDao>().To<LabelDaoEntityFramework>();
             kernel.Bind<ICreditCardDao>().To<CreditCardDaoEntityFramework>();
             kernel.Bind<IOrderDao>().To<OrderDaoEntityFramework>();
             kernel.Bind<IOrderLineDao>().To<OrderLineDaoEntityFramework>();
@@ -40,6 +43,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             kernel.Bind<ICommentDao>().To<CommentDaoEntityFramework>();
             kernel.Bind<IUserService>().To<UserService>();
             kernel.Bind<IShoppingService>().To<ShoppingService>();
+            kernel.Bind<ICommentService>().To<CommentService>();
+
+
 
 
             string connectionString =

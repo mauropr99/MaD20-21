@@ -36,6 +36,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             Product product = new Product();
             decimal totalPrice = 0;
             OrderLine orderLine = new OrderLine();
+
             //Check expiration date
             if (creditCard.expirationDate < DateTime.Now)
             {
@@ -46,12 +47,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
            
             foreach (OrderLineDetails line in orderLinesDetails)
             {
-                product = ProductDao.FindByProductName(line.Product_Name);
+                product = ProductDao.Find(line.Product_Id);
                 if (product.stock < line.Quantity)
                 {
                     throw new NotEnoughStock(product.product_name, product.stock);
                 }
                 product.stock -= line.Quantity;
+                ProductDao.Update(product);
                 orderLine.price = line.Price;
                 orderLine.productId = product.id;
                 orderLine.quantity = line.Quantity;

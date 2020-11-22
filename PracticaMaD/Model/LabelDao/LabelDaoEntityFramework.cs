@@ -21,7 +21,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LabelDao
             var result =
                (from l in labels
                 where l.lab == labelName
-                select l);
+                select l).FirstOrDefault(); ;
 
             return result != null;
 

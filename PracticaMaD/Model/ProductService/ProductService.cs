@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Ninject;
 using Es.Udc.DotNet.ModelUtil.Dao;
+using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 {
@@ -14,9 +15,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         [Inject]
         public IProductDao ProductDao { private get; set; }
 
+        [Inject]
+        public ICategoryDao CategoryDao { private get; set; }
+
         #region IProductService Members
 
-        public ProductBlock ViewOrderHistorical(string productName, string categoryName, int startIndex, int count)
+        public ProductBlock ViewCatatalog(string productName, string categoryName, int startIndex, int count)
         {
             List<Product> products;
 
@@ -27,7 +31,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             if (categoryName == null)
             {
                 products = ProductDao.FindByProductName(productName, startIndex, count + 1);
-
             } 
             else
             {
@@ -55,7 +58,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
                 ProductDao.Update(prod);
   
         }
-       
+
+        public List<Category> ViewAallCategories()
+        {
+           return  CategoryDao.GetAllElements();
+        }
+
         #endregion IProductService Members
 
     }

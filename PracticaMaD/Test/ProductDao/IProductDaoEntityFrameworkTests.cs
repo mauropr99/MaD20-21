@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Ninject;
 using Es.Udc.DotNet.PracticaMaD.Test;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Transactions;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Test.Util;
 using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;

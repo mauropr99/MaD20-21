@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
+using Es.Udc.DotNet.PracticaMaD.Model.LabelDao;
 using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao;
@@ -27,6 +29,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
         public static IUserDao userDao;
         public static ILanguageDao languageDao;
         public static ICreditCardDao creditCardDao;
+        public static ICommentDao commentDao;
+        public static ILabelDao labelDao;
 
         public static Language CreateExistentLanguage()
         {
