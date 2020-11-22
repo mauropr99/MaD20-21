@@ -101,10 +101,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookDao\IBookDaoEntityFrameworkTests.cs" />
     <Compile Include="CategoryDao\ICategoryDaoEntityFrameworkTests.cs" />
     <Compile Include="CommentDao\ICommentDaoEntityFrameworkTests.cs" />
     <Compile Include="CommentService\ICommentServiceTest.cs" />
+    <Compile Include="ComputerDao\IComputerDaoEntityFrameworkTests.cs" />
     <Compile Include="CreditCardDao\ICreditCardDaoEntityFrameworkTests.cs" />
+    <Compile Include="LabelDao\ILabelDaoEntityFrameworkTests.cs" />
     <Compile Include="LanguageDao\ILanguageDaoEntityFrameworkTests.cs" />
     <Compile Include="OrderDao\IOrderDaoEntityFrameworkTests.cs" />
     <Compile Include="OrderLineDao\IOrderLineDaoEntityFrameworkTests.cs" />
