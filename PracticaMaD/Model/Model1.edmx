@@ -29,7 +29,7 @@
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="userId" Type="bigint" Nullable="false" />
           <Property Name="productId" Type="bigint" Nullable="false" />
-          <Property Name="text" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="text" Type="varchar" MaxLength="640" Nullable="false" />
           <Property Name="commentDate" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Computers">
@@ -413,7 +413,7 @@
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="userId" Type="Int64" Nullable="false" />
           <Property Name="productId" Type="Int64" Nullable="false" />
-          <Property Name="text" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="text" Type="String" MaxLength="640" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="commentDate" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Comment_ProductId" FromRole="Comment" ToRole="Product" />
           <NavigationProperty Name="User_Table" Relationship="Self.FK_Comment_UserId" FromRole="Comment" ToRole="User_Table" />

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Ninject;
-using Es.Udc.DotNet.ModelUtil.Dao;
+using System.Linq;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
@@ -61,7 +61,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
         public List<Category> ViewAallCategories()
         {
-           return  CategoryDao.GetAllElements();
+           return  CategoryDao.GetAllElements().ToList();
         }
 
         #endregion IProductService Members

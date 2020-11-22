@@ -3,6 +3,7 @@ using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
@@ -115,6 +116,44 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
         #endregion Additional test attributes
 
         [TestMethod()]
+        public void NewCommentTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                Language language = TestUtil.CreateExistentLanguage();
+
+                long userId = userService.SingUpUser(login, password,
+                       new UserDetails(name, lastName, email, language.name, language.country, address));
+                User user = TestUtil.userDao.Find(userId);
+                CreditCard creditCard = TestUtil.CreateCreditCard(user);
+
+                Category category1 = TestUtil.CreateCategory("Ordenadores");
+                Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
+                List<string> labels = new List<string>
+                {
+                    "Ganga",
+                    "Oferta",
+                    "Chollazo"
+                };
+
+                string text = "Muy buen ordenador y a buen precio. Funcionan todos los juegos a calidad máxima, muy fluidos y sin apenas calentarse el aparato.";
+                Comment comment = commentService.NewComment(user.id, product1.id, text, labels);
+
+                var foundComment = TestUtil.commentDao.Find(comment.id);
+
+                Assert.AreEqual(comment.id, foundComment.id);
+                Assert.AreEqual(text, foundComment.text);
+                Assert.AreEqual(userId, foundComment.userId);
+                Assert.AreEqual(3, foundComment.Labels.Count);
+                Assert.AreEqual(labels[0], foundComment.Labels.ToList()[0].lab);
+                Assert.AreEqual(labels[1], foundComment.Labels.ToList()[1].lab); 
+                Assert.AreEqual(labels[2], foundComment.Labels.ToList()[2].lab); 
+
+
+            }
+        }
+
+        [TestMethod()]
         public void UpdateCommentTest()
         {
             using (var scope = new TransactionScope())
@@ -155,9 +194,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 Assert.AreEqual(comment.id, foundComment.id);
                 Assert.AreEqual(text, foundComment.text);
                 Assert.AreEqual(userId, foundComment.userId);
-                Assert.AreEqual(labels2, foundComment.Labels);
-
-
+                Assert.AreEqual(3, foundComment.Labels.Count);
+                Assert.AreEqual(labels2[0], foundComment.Labels.ToList()[1].lab); //Irresistible
+                Assert.AreEqual(labels2[2], foundComment.Labels.ToList()[0].lab); //Ganga
+                Assert.AreEqual(labels2[1], foundComment.Labels.ToList()[2].lab); //Chollazo
+                
 
             }
         }
@@ -187,12 +228,97 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 text = "Es una bestia de portatil gaming , los juegos se ven genial y se inician en un momento , no se calienta y encima no es tan pesado .";
 
                 List<string> labels2 = new List<String>();
-                labels.Add("Irresistible");
-                labels.Add("Chollazo");
-                labels.Add("Ganga");
-                comment = commentService.UpdateComment(comment.id, text, labels);
+                labels2.Add("Irresistible");
+                labels2.Add("Chollazo");
+                labels2.Add("Ganga");
+                comment = commentService.UpdateComment(comment.id, text, labels2);
 
-                TestUtil.labelDao.FindByLabelName("oferta");
+                TestUtil.labelDao.FindByLabelName("Oferta");
+
+            }
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(InstanceNotFoundException))]
+        public void RemoveCommentTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                Language language = TestUtil.CreateExistentLanguage();
+
+                long userId = userService.SingUpUser(login, password,
+                       new UserDetails(name, lastName, email, language.name, language.country, address));
+                User user = TestUtil.userDao.Find(userId);
+                CreditCard creditCard = TestUtil.CreateCreditCard(user);
+
+                Category category1 = TestUtil.CreateCategory("Ordenadores");
+                Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
+                List<string> labels = new List<string>
+                {
+                    "Ganga",
+                    "Oferta",
+                    "Chollazo"
+                };
+
+                string text = "Muy buen ordenador y a buen precio. Funcionan todos los juegos a calidad máxima, muy fluidos y sin apenas calentarse el aparato.";
+                Comment comment = commentService.NewComment(user.id, product1.id, text, labels);
+
+                
+                commentService.RemoveComment(comment.id);
+                TestUtil.commentDao.Find(comment.id);
+
+            }
+        }
+
+        [TestMethod()]
+        public void ViewCommentTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                Language language = TestUtil.CreateExistentLanguage();
+
+                long userId = userService.SingUpUser(login, password,
+                       new UserDetails(name, lastName, email, language.name, language.country, address));
+                User user = TestUtil.userDao.Find(userId);
+                CreditCard creditCard = TestUtil.CreateCreditCard(user);
+
+                Category category1 = TestUtil.CreateCategory("Ordenadores");
+                Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
+                List<string> labels = new List<string>
+                {
+                    "Ganga",
+                    "Oferta",
+                    "Chollazo"
+                };
+
+                string text = "Muy buen ordenador y a buen precio. Funcionan todos los juegos a calidad máxima, muy fluidos y sin apenas calentarse el aparato.";
+                var comment1 = commentService.NewComment(user.id, product1.id, text, labels);
+
+                text = "Es una bestia de portatil gaming , los juegos se ven genial y se inician en un momento , no se calienta y encima no es tan pesado .";
+
+                List<string> labels2 = new List<String>
+                {
+                    "Irresistible",
+                    "Chollazo",
+                    "Ganga"
+                };
+                var comment2 = commentService.NewComment(user.id, product1.id, text, labels2);
+
+                CommentBlock comment = commentService.ViewComments(product1.id, 0,10);
+
+                Assert.AreEqual(comment1.id, comment.Comments[0].Id); 
+                Assert.AreEqual(comment2.id, comment.Comments[1].Id); 
+                Assert.AreEqual(comment1.commentDate, comment.Comments[0].Date); 
+                Assert.AreEqual(comment2.commentDate, comment.Comments[1].Date); 
+                Assert.AreEqual(comment1.text, comment.Comments[0].Text); 
+                Assert.AreEqual(comment2.text, comment.Comments[1].Text); 
+                Assert.AreEqual(labels[0], comment.Comments[0].Labels.ToList()[0]); 
+                Assert.AreEqual(labels[1], comment.Comments[0].Labels.ToList()[1]); 
+                Assert.AreEqual(labels[2], comment.Comments[0].Labels.ToList()[2]); 
+                Assert.AreEqual(labels2[0], comment.Comments[1].Labels.ToList()[0]); 
+                Assert.AreEqual(labels2[1], comment.Comments[1].Labels.ToList()[1]); 
+                Assert.AreEqual(labels2[2], comment.Comments[1].Labels.ToList()[2]); 
+                
 
             }
         }

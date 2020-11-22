@@ -409,7 +409,7 @@ CREATE TABLE Comment (
 	id BIGINT IDENTITY(1,1) NOT NULL, 
 	userId BIGINT  NOT NULL,
 	productId BIGINT NOT NULL,
-	text VARCHAR(64) NOT NULL,
+	text VARCHAR(640) NOT NULL,
 	commentDate date NOT NULL,
     
     CONSTRAINT [PK_Comment] PRIMARY KEY (id ASC),

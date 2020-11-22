@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Es.Udc.DotNet.PracticaMaD.Model.LabelDao;
 using Ninject;
+using System.Linq;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 {
@@ -58,9 +59,30 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             Comment comment = CommentDao.Find(commentId);
 
             //Recovering comment labels
-            List<Label> oldLabels = LabelDao.FindByCommentId(commentId);
-    
-            foreach(string label in labels)
+            List<Label> oldLabels = CommentDao.Find(commentId).Labels.ToList();
+
+
+
+            //Removing unused labels
+            foreach (Label oldLabel in oldLabels)
+            {
+                if (!labels.Contains(oldLabel.lab))
+                {
+                    Label foundLabel = LabelDao.FindByLabelName(oldLabel.lab);
+                    if (foundLabel.timesUsed == 1)
+                    {
+                        LabelDao.Remove(foundLabel.id);
+                    }
+                    else
+                    {
+                        foundLabel.timesUsed--;
+                        LabelDao.Update(foundLabel);
+                    }
+
+                }
+            }
+
+            foreach (string label in labels)
             {
 
                 if (!LabelDao.ExistByName(label))
@@ -83,29 +105,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
             }
 
-            //Removing unused labels
-            foreach (Label oldLabel in oldLabels)
-            {
-                if (!labels.Contains(oldLabel.lab))
-                {
-                    Label foundLabel = LabelDao.FindByLabelName(oldLabel.lab);
-                    if (foundLabel.timesUsed == 1)
-                    {
-                        LabelDao.Remove(foundLabel.id);
-                    } else
-                    {
-                        foundLabel.timesUsed--;
-                        LabelDao.Update(foundLabel);
-                    }
-                    
-                }
-            }
-
 
             comment.text = text;
-
             CommentDao.Update(comment);
-
             return comment;
         }
 
@@ -115,7 +117,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             CommentDao.Find(commentId);
 
 
-            List<Label> labels = LabelDao.FindByCommentId(commentId);
+            var labels = CommentDao.Find(commentId).Labels.ToList();
 
 
             //Removing unused labels
@@ -152,12 +154,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             }
 
             List<CommentDetails> detailComments = new List<CommentDetails>();
-            List<string> labelNames = new List<string>();
 
+            
             foreach (Comment comment in comments)
             {
-                foreach(Label label in comment.Labels)
+                List<string> labelNames = new List<string>();
+                foreach (Label label in comment.Labels)
                 {
+                    
                     labelNames.Add(label.lab);
                 }
 

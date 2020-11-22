@@ -28,24 +28,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LabelDao
             #endregion Using Linq.
         }
 
-        public List<Label> FindByCommentId(long commentId)
-        {
-            #region Using Linq.
-
-            DbSet<Label> labels = Context.Set<Label>();
-
-            List<Label> result =
-                (from l in labels
-                 where l.id == commentId
-                 orderby l.lab
-                 select l).ToList();
-
-
-            return result;
-
-            #endregion Using Linq.
-        }
-
         public Label FindByLabelName(string labelName)
         {
             #region Option 1: Using Linq.
