@@ -40,9 +40,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
         private const string address = "A Coruña";
         private const string role = "user";
 
-        // Variables used in several tests are initialized here
-        private const long userId = 123456;
-
         private const long NON_EXISTENT_ACCOUNT_ID = -1;
         private const long NON_EXISTENT_USER_ID = -1;
 
@@ -131,7 +128,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
                 Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
                 Computer product2 = TestUtil.CreateComputer(category1, "ACER 3x2600", 2.5m, "Acer");
- 
+
 
                 OrderLineDetails orderLineDetail1 = new OrderLineDetails(
                     product1.id,
@@ -253,7 +250,92 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
             }
         }
 
-        
-        
+        [TestMethod()]
+        public void FindOrdersByUserIdTest()
+        {
+            //Creating Language...
+            Language language = TestUtil.CreateExistentLanguage();
+
+            //Creating User...
+            long userId = userService.SingUpUser(login, password,
+                   new UserDetails(name, lastName, email, language.name, language.country, address));
+            User user = TestUtil.userDao.Find(userId);
+
+            //Creating CreditCard...
+            CreditCard creditCard = TestUtil.CreateCreditCard(user);
+
+            //Creating Category...
+            Category category1 = TestUtil.CreateCategory("Ordenadores");
+
+            //Products
+            Computer product1 = TestUtil.CreateComputer(category1, "Computer 1", 3, "Msi");
+            Computer product2 = TestUtil.CreateComputer(category1, "Computer 2", 3, "Acer");
+            Computer product3 = TestUtil.CreateComputer(category1, "Computer 3", 3, "Msi");
+            Computer product4 = TestUtil.CreateComputer(category1, "Computer 4", 3, "Acer");
+
+            //Creating OrderLineDetails
+            OrderLineDetails orderLineDetail1 = new OrderLineDetails(
+                product1.id,
+                product1.product_name,
+                10,
+                product1.price
+            );
+            OrderLineDetails orderLineDetail2 = new OrderLineDetails(
+               product2.id,
+               product2.product_name,
+               11,
+               product2.price
+            );
+            OrderLineDetails orderLineDetail3 = new OrderLineDetails(
+               product3.id,
+               product3.product_name,
+               12,
+               product3.price
+           );
+            OrderLineDetails orderLineDetail4 = new OrderLineDetails(
+               product4.id,
+               product4.product_name,
+               13,
+               product4.price
+           );
+
+            List<OrderLineDetails> orderLineDetails = new List<OrderLineDetails>
+                {
+                    orderLineDetail1,
+                    orderLineDetail2
+                };
+
+            List<OrderLineDetails> orderLineDetails2 = new List<OrderLineDetails>
+                {
+                    orderLineDetail3,
+                    orderLineDetail4
+                };
+
+
+            //Creating Orders...
+            string firstDescription = "First order";
+            string secondDescription = "Second order";
+            var order =
+                shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country, address), orderLineDetails,
+                    address, creditCard, firstDescription);
+
+            var order2 =
+                shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country, address), orderLineDetails,
+                    address, creditCard, secondDescription);
+
+
+            List<OrderDetails> foundOrders = shoppingService.FindOrdersByUserId(userId, 0, 10).Orders;
+
+            Order firstOrder = TestUtil.orderDao.Find(foundOrders[0].Id);
+            Order secondOrder = TestUtil.orderDao.Find(foundOrders[1].Id);
+
+            //Checking total number of orders
+            Assert.AreEqual(foundOrders.Count, 2);
+
+            Assert.AreEqual(foundOrders[0].Id, firstOrder.id);
+            Assert.AreEqual(foundOrders[1].Id, secondOrder.id);
+
+        }
+
     }
 }

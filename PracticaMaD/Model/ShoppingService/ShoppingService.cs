@@ -29,7 +29,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         #region IShoppingService Members
 
-        public Order BuyProducts(UserDetails user, ICollection<OrderLineDetails> orderLinesDetails,
+        public Order BuyProducts(UserDetails user, List<OrderLineDetails> orderLinesDetails,
             string postalAddress, CreditCard creditCard, string description)
         {
             List<OrderLine> orderLines = new List<OrderLine>();
@@ -80,6 +80,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             foreach (OrderLine line in orderLines)
             {
                 line.orderId = order.id;
+                OrderLineDao.Update(line);
             }
                 return order;
         }
@@ -181,22 +182,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             return new OrderBlock(detailOrders, existMoreOrders);
         }
 
-
-        public List<OrderDetails> ViewOrders(long userId,int startIndex, int count)
-        {
-            List<Order> orders;
-
-            orders = OrderDao.FindByUserId(userId, startIndex, count);
-
-            List<OrderDetails> detailOrders = new List<OrderDetails>();
-
-            foreach (Order order in orders)
-            {
-                detailOrders.Add(new OrderDetails(order.id,order.orderDate,order.description,order.totalPrice));
-            }
-
-            return detailOrders;
-        }
 
         public List<OrderLineDetails> ViewOrderLineDetails(long orderId)
         {
