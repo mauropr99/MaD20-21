@@ -91,7 +91,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService.Tests
                 Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
                 Book product2 = TestUtil.CreateBook(category2, "El Quijote Nueva edición", 3.5m, "El Quijote");
 
-                ProductBlock catalog = productService.ViewCatatalog("Msi", category1.name, 0, 10);
+                ProductBlock catalog = productService.ViewCatalog("Msi", category1.name, 0, 10);
 
                 Assert.AreEqual(1, catalog.Products.Count);
                 Assert.AreEqual(catalog.Products[0].id, product1.id);
@@ -123,7 +123,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService.Tests
             Category category1 = TestUtil.CreateCategory("Computers");
             Category category2 = TestUtil.CreateCategory("Books");
 
-            List<Category> foundedCategories = productService.ViewAallCategories();
+            List<Category> foundedCategories = productService.ViewAllCategories();
 
             Assert.AreEqual(2, foundedCategories.Count);
             Assert.AreEqual(category1.name, foundedCategories[0].name);

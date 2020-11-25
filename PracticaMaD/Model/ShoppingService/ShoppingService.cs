@@ -55,7 +55,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                 }
                 product.stock -= line.Quantity;
                 ProductDao.Update(product);
-                orderLine.price = line.Price;
+                if (!product.price.Equals(line.Price))
+                {
+                    throw new DifferentPrice(product.price, product.product_name);
+                }
+                orderLine.price = product.price;
                 orderLine.productId = product.id;
                 orderLine.quantity = line.Quantity;
                 OrderLineDao.Create(orderLine);
@@ -189,9 +193,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         {
             List<OrderLine> orderLines = new List<OrderLine>();
 
-            Order order = OrderDao.Find(orderId);
-            orderLines = order.OrderLines.ToList();
-
+            orderLines = OrderLineDao.FindByOrderId(orderId);
+        
             List<OrderLineDetails> detailLineOrders = new List<OrderLineDetails>();
 
             foreach (OrderLine orderLine in orderLines)

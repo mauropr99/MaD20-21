@@ -403,6 +403,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                     address, creditCard, firstDescription);
 
             var orderLines = TestUtil.orderLineDao.FindByOrderId(order.id);
+       
 
             List<OrderLineDetails> foundOrders = shoppingService.ViewOrderLineDetails(order.id);
 

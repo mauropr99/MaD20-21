@@ -10,5 +10,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LabelDao
         Boolean ExistByName(string labelName);
 
         Label FindByLabelName(string labelName);
+
     }
 }

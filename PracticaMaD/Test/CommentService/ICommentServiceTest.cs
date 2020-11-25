@@ -185,7 +185,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                     "Chollazo",
                     "Ganga"
                 };
-                comment = commentService.UpdateComment(comment.id,text, labels2);
+                comment = commentService.UpdateComment(userId, comment.id,text, labels2);
 
                 Assert.AreNotEqual(labels2, comment.Labels);
 
@@ -235,7 +235,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                     "Chollazo",
                     "Ganga"
                 };
-                comment = commentService.UpdateComment(comment.id, text, labels2);
+                comment = commentService.UpdateComment(userId, comment.id, text, labels2);
 
                 TestUtil.labelDao.FindByLabelName("Oferta");
 
@@ -268,7 +268,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 Comment comment = commentService.NewComment(user.id, product1.id, text, labels);
 
                 
-                commentService.RemoveComment(comment.id);
+                commentService.RemoveComment(userId,comment.id);
                 TestUtil.commentDao.Find(comment.id);
 
             }
@@ -308,7 +308,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 };
                 var comment2 = commentService.NewComment(user.id, product1.id, text, labels2);
 
-                CommentBlock comment = commentService.ViewComments(product1.id, 0,10);
+                CommentBlock comment = commentService.ViewComments(userId,product1.id, 0,10);
 
                 Assert.AreEqual(comment1.id, comment.Comments[0].Id); 
                 Assert.AreEqual(comment2.id, comment.Comments[1].Id); 
