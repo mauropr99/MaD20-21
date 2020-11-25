@@ -217,20 +217,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
                 Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
-                List<string> labels = new List<String>();
-                labels.Add("Ganga");
-                labels.Add("Oferta");
-                labels.Add("Chollazo");
+                List<string> labels = new List<String>
+                {
+                    "Ganga",
+                    "Oferta",
+                    "Chollazo"
+                };
 
                 string text = "Muy buen ordenado y a buen precio. Funcionan todos los juegos a calidad máxima, muy fluidos y sin apenas calentarse el aparato.";
                 Comment comment = commentService.NewComment(userId, product1.id, text, labels);
 
                 text = "Es una bestia de portatil gaming , los juegos se ven genial y se inician en un momento , no se calienta y encima no es tan pesado .";
 
-                List<string> labels2 = new List<String>();
-                labels2.Add("Irresistible");
-                labels2.Add("Chollazo");
-                labels2.Add("Ganga");
+                List<string> labels2 = new List<String>
+                {
+                    "Irresistible",
+                    "Chollazo",
+                    "Ganga"
+                };
                 comment = commentService.UpdateComment(comment.id, text, labels2);
 
                 TestUtil.labelDao.FindByLabelName("Oferta");

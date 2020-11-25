@@ -2,6 +2,7 @@
 using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao;
 using System;
+using System.Linq;
 using Ninject;
 using System.Collections.Generic;
 using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Exceptions;
@@ -82,7 +83,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                 line.orderId = order.id;
                 OrderLineDao.Update(line);
             }
-                return order;
+
+            return order;
         }
 
         public ShoppingCartDetails AddToShoppingCart(long productId,
@@ -185,9 +187,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         public List<OrderLineDetails> ViewOrderLineDetails(long orderId)
         {
-            List<OrderLine> orderLines;
+            List<OrderLine> orderLines = new List<OrderLine>();
 
-            orderLines = OrderLineDao.FindByOrderId(orderId);
+            Order order = OrderDao.Find(orderId);
+            orderLines = order.OrderLines.ToList();
 
             List<OrderLineDetails> detailLineOrders = new List<OrderLineDetails>();
 
