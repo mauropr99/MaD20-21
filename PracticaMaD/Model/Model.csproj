@@ -148,6 +148,7 @@
     <Compile Include="ProductDao\ProductDaoEntityFramework.cs" />
     <Compile Include="ProductService\IProductService.cs" />
     <Compile Include="ProductService\ProductBlock.cs" />
+    <Compile Include="ProductService\ProductDetails.cs" />
     <Compile Include="ProductService\ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShoppingService\Exceptions\DifferentsPrice.cs" />
