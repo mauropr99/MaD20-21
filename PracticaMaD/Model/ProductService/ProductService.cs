@@ -26,6 +26,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
             products = ProductDao.FindByProductName(productName, startIndex, count + 1);
 
+            List<ProductDetails> productsDetails = new List<ProductDetails>;
+            
+            foreach(Product product in products)
+            {
+                productsDetails.Add(new ProductDetails(product.id, product.product_name, product.price,
+                        product.releaseDate, product.stock, ProductDao.GetCategoryName(product.id)));
+            }
+
             bool existMoreProducts = (products.Count == count + 1);
 
             if (existMoreProducts)
@@ -33,7 +41,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
                 products.RemoveAt(count);
             }
 
-            return new ProductBlock(products, existMoreProducts);
+            return new ProductBlock(productsDetails, existMoreProducts);
 
         }
 
@@ -43,6 +51,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
             products = ProductDao.FindByProductNameAndCategoryName(productName, categoryName, startIndex, count + 1);
 
+            List<ProductDetails> productsDetails = new List<ProductDetails>;
+
+            foreach (Product product in products)
+            {
+                productsDetails.Add(new ProductDetails(product.id, product.product_name, product.price,
+                        product.releaseDate, product.stock, ProductDao.GetCategoryName(product.id)));
+            }
+
             bool existMoreProducts = (products.Count == count + 1);
 
             if (existMoreProducts)
@@ -50,7 +66,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
                 products.RemoveAt(count);
             }
 
-            return new ProductBlock(products, existMoreProducts);
+            return new ProductBlock(productsDetails, existMoreProducts);
 
         }
 

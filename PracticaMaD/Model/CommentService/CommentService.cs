@@ -51,7 +51,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
                     foundLabel.timesUsed++;
                     LabelDao.Update(foundLabel);
-                    comment.Labels.Add(foundLabel);
+                    CommentDao.AddLabel(foundLabel, comment.id);
                 }
             }
 
@@ -108,7 +108,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
                 //Adding new labels
                 if (!oldLabels.Contains(foundLabel))
                 {
-                    comment.Labels.Add(foundLabel);
+                    CommentDao.AddLabel(foundLabel, comment.id);
                 }
 
             }

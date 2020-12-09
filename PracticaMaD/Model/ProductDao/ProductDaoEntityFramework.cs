@@ -75,6 +75,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
             #endregion Using Linq.
         }
 
+        public string GetCategoryName(long productId)
+        {
+            DbSet<Product> products = Context.Set<Product>();
+
+            string categoryName =
+                (from p in products
+                 where p.id == productId
+                 select p.Category.name).FirstOrDefault();
+
+            return categoryName;
+        }
+
         #endregion Members
     }
 }

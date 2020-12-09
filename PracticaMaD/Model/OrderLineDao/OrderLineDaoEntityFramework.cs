@@ -27,11 +27,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao
                 (from o in orderLine
                  where o.orderId == orderId
                  orderby o.id
-                 select o).ToList();
+                 select o).Include("Order_Table").ToList();
 
-            if (result.Count > 0)
-                return result[0].Order_Table.OrderLines.ToList();
-            else return result;
+            return result;
+           
         }
         #endregion Public Constructors
 

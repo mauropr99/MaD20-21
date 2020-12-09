@@ -29,15 +29,26 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
         public List<Label> FindLabelsByCommentId(long commentId)
         {
 
-            DbSet<Comment> labels = Context.Set<Comment>();
+            DbSet<Comment> comments = Context.Set<Comment>();
 
             var result =
-                (from c in labels
+                (from c in comments
                  where c.id == commentId
                  orderby c.id
                  select c.Labels).FirstOrDefault().ToList();
 
             return result;
+        }
+
+        public void AddLabel(Label label, long commentId)
+        {
+            DbSet<Comment> comments = Context.Set<Comment>();
+
+            var query = this.Find(commentId);
+
+            query.Labels.Add(label);
+
+            this.Update(query);
         }
 
     }
