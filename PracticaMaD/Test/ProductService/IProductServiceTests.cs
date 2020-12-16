@@ -94,10 +94,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService.Tests
                 ProductBlock catalog = productService.ViewCatalog("Msi", category1.name, 0, 10);
 
                 Assert.AreEqual(1, catalog.Products.Count);
-                Assert.AreEqual(catalog.Products[0].id, product1.id);
-                Assert.AreEqual(catalog.Products[0].id, product1.id);
-                Assert.AreEqual(catalog.Products[0].price, product1.price);
-                Assert.AreEqual(catalog.Products[0].stock, product1.stock);
+                Assert.AreEqual(catalog.Products[0].Id, product1.id);
+                Assert.AreEqual(catalog.Products[0].Price, product1.price);
+                Assert.AreEqual(catalog.Products[0].Stock, product1.stock);
             }
         }
 

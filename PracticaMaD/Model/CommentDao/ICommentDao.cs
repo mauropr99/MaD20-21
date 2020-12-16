@@ -15,7 +15,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
         /// <param name="count">the maximum number of commmets to return</param>
         /// <returns>the list of comments</returns>
         List<Comment> FindByProductId(long productId, int startIndex, int count);
-        List<Label> FindLabelsByCommentId(long commentId);
 
         void AddLabel(Label label, long commentId);
     }

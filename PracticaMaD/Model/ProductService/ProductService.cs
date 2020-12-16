@@ -26,7 +26,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
             products = ProductDao.FindByProductName(productName, startIndex, count + 1);
 
-            List<ProductDetails> productsDetails = new List<ProductDetails>;
+            List<ProductDetails> productsDetails = new List<ProductDetails>();
             
             foreach(Product product in products)
             {
@@ -51,7 +51,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
             products = ProductDao.FindByProductNameAndCategoryName(productName, categoryName, startIndex, count + 1);
 
-            List<ProductDetails> productsDetails = new List<ProductDetails>;
+            List<ProductDetails> productsDetails = new List<ProductDetails>();
 
             foreach (Product product in products)
             {

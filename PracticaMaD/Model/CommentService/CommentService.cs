@@ -33,6 +33,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
                 commentDate = DateTime.Now
             };
 
+            CommentDao.Create(comment);
+
             if (labels.Count != 0)
             {
                 foreach (string label in labels) {
@@ -55,7 +57,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
                 }
             }
 
-            CommentDao.Create(comment);
+            CommentDao.Update(comment);
             return comment;
 
         }
@@ -67,7 +69,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             if (comment.userId != userId) throw new DifferentsUsers(userId);
 
             //Recovering comment labels
-            List<Label> oldLabels = CommentDao.FindLabelsByCommentId(commentId);
+            List<Label> oldLabels = LabelDao.FindLabelsByCommentId(commentId);
 
 
 

@@ -49,7 +49,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LabelDao
                 return result;
         }
 
-    #endregion ILabelDao Members. Specific Operations
+        public List<Label> FindLabelsByCommentId(long commentId)
+        {
 
-}
+            DbSet<Comment> comments = Context.Set<Comment>();
+
+            var result =
+                (from c in comments
+                 where c.id == commentId
+                 orderby c.id
+                 select c.Labels).FirstOrDefault().ToList();
+
+            return result;
+        }
+
+        #endregion ILabelDao Members. Specific Operations
+
+    }
 }

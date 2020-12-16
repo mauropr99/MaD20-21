@@ -185,19 +185,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                     "Chollazo",
                     "Ganga"
                 };
-                comment = commentService.UpdateComment(userId, comment.id,text, labels2);
+                comment = commentService.UpdateComment(userId, comment.id, text, labels2);
 
                 Assert.AreNotEqual(labels2, comment.Labels);
 
                 var foundComment = TestUtil.commentDao.Find(comment.id);
+                var foundLabels = TestUtil.labelDao.FindLabelsByCommentId(comment.id);
 
                 Assert.AreEqual(comment.id, foundComment.id);
                 Assert.AreEqual(text, foundComment.text);
                 Assert.AreEqual(userId, foundComment.userId);
-                Assert.AreEqual(3, foundComment.Labels.Count);
-                Assert.AreEqual(labels2[0], foundComment.Labels.ToList()[1].lab); //Irresistible
-                Assert.AreEqual(labels2[2], foundComment.Labels.ToList()[0].lab); //Ganga
-                Assert.AreEqual(labels2[1], foundComment.Labels.ToList()[2].lab); //Chollazo
+                Assert.AreEqual(3, foundLabels.Count);
+                Assert.AreEqual(labels2[0], foundLabels[2].lab); //Irresistible
+                Assert.AreEqual(labels2[1], foundLabels[1].lab); //Ganga
+                Assert.AreEqual(labels2[2], foundLabels[0].lab); //Chollazo
                 
 
             }
@@ -235,7 +236,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                     "Chollazo",
                     "Ganga"
                 };
-                comment = commentService.UpdateComment(userId, comment.id, text, labels2);
+                comment = commentService.UpdateComment(userId, -1L, text, labels2);
 
                 TestUtil.labelDao.FindByLabelName("Oferta");
 

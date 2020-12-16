@@ -26,19 +26,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
             #endregion Using Linq.
         }
 
-        public List<Label> FindLabelsByCommentId(long commentId)
-        {
-
-            DbSet<Comment> comments = Context.Set<Comment>();
-
-            var result =
-                (from c in comments
-                 where c.id == commentId
-                 orderby c.id
-                 select c.Labels).FirstOrDefault().ToList();
-
-            return result;
-        }
 
         public void AddLabel(Label label, long commentId)
         {

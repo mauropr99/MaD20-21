@@ -339,7 +339,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
         }
 
         [TestMethod()]
-        public void ViewCommentsTest()
+        public void ViewOrderLineDetailsTest()
         {
             //Creating Language...
             Language language = TestUtil.CreateExistentLanguage();
@@ -405,28 +405,28 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
             var orderLines = TestUtil.orderLineDao.FindByOrderId(order.id);
        
 
-            List<OrderLineDetails> foundOrders = shoppingService.ViewOrderLineDetails(order.id);
+            List<OrderLineDetails> foundOrderLineDetails = shoppingService.ViewOrderLineDetails(order.id);
 
 
             //Checking total number of orders
-            Assert.AreEqual(4, foundOrders.Count);
-            Assert.AreEqual(order.OrderLines.ToList()[0].productId, foundOrders[0].Product_Id);
-            Assert.AreEqual(order.OrderLines.ToList()[1].productId, foundOrders[1].Product_Id);
-            Assert.AreEqual(order.OrderLines.ToList()[2].productId, foundOrders[2].Product_Id);
-            Assert.AreEqual(order.OrderLines.ToList()[3].productId, foundOrders[3].Product_Id);Assert.AreEqual(4, foundOrders.Count);
-            Assert.AreEqual(order.OrderLines.ToList()[0].Product.product_name, foundOrders[0].Product_Name);
-            Assert.AreEqual(order.OrderLines.ToList()[1].Product.product_name, foundOrders[1].Product_Name);
-            Assert.AreEqual(order.OrderLines.ToList()[2].Product.product_name, foundOrders[2].Product_Name);
-            Assert.AreEqual(order.OrderLines.ToList()[3].Product.product_name, foundOrders[3].Product_Name);Assert.AreEqual(order.OrderLines.ToList()[3].productId, foundOrders[3].Product_Id);Assert.AreEqual(4, foundOrders.Count);
-            Assert.AreEqual(order.OrderLines.ToList()[0].quantity, foundOrders[0].Quantity);
-            Assert.AreEqual(order.OrderLines.ToList()[1].quantity, foundOrders[1].Quantity);
-            Assert.AreEqual(order.OrderLines.ToList()[2].quantity, foundOrders[2].Quantity);
-            Assert.AreEqual(order.OrderLines.ToList()[3].quantity, foundOrders[3].Quantity);
-            Assert.AreEqual(order.OrderLines.ToList()[0].price, foundOrders[0].Price);
-            Assert.AreEqual(order.OrderLines.ToList()[1].price, foundOrders[1].Price);
-            Assert.AreEqual(order.OrderLines.ToList()[2].price, foundOrders[2].Price);
-            Assert.AreEqual(order.OrderLines.ToList()[3].price, foundOrders[3].Price);
-
+            Assert.AreEqual(orderLineDetails.Count, foundOrderLineDetails.Count);
+            Assert.AreEqual(orderLineDetail1.Product_Id, foundOrderLineDetails[0].Product_Id);
+            Assert.AreEqual(orderLineDetail2.Product_Id, foundOrderLineDetails[1].Product_Id);
+            Assert.AreEqual(orderLineDetail3.Product_Id, foundOrderLineDetails[2].Product_Id);
+            Assert.AreEqual(orderLineDetail4.Product_Id, foundOrderLineDetails[3].Product_Id);
+            Assert.AreEqual(orderLineDetail1.Product_Name, foundOrderLineDetails[0].Product_Name);
+            Assert.AreEqual(orderLineDetail2.Product_Name, foundOrderLineDetails[1].Product_Name);
+            Assert.AreEqual(orderLineDetail3.Product_Name, foundOrderLineDetails[2].Product_Name);
+            Assert.AreEqual(orderLineDetail4.Product_Name, foundOrderLineDetails[3].Product_Name);
+            Assert.AreEqual(orderLineDetail1.Quantity, foundOrderLineDetails[0].Quantity);
+            Assert.AreEqual(orderLineDetail2.Quantity, foundOrderLineDetails[1].Quantity);
+            Assert.AreEqual(orderLineDetail3.Quantity, foundOrderLineDetails[2].Quantity);
+            Assert.AreEqual(orderLineDetail4.Quantity, foundOrderLineDetails[3].Quantity);
+            Assert.AreEqual(orderLineDetail1.Price, foundOrderLineDetails[0].Price);
+            Assert.AreEqual(orderLineDetail2.Price, foundOrderLineDetails[1].Price);
+            Assert.AreEqual(orderLineDetail3.Price, foundOrderLineDetails[2].Price);
+            Assert.AreEqual(orderLineDetail4.Price, foundOrderLineDetails[3].Price);
+            
 
         }
 

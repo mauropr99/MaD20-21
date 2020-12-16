@@ -11,5 +11,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LabelDao
 
         Label FindByLabelName(string labelName);
 
+        List<Label> FindLabelsByCommentId(long commentId);
+
     }
 }

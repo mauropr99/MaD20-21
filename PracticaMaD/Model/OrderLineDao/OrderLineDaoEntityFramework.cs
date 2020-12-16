@@ -22,12 +22,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao
         public List<OrderLine> FindByOrderId(long orderId)
         {
             DbSet<OrderLine> orderLine = Context.Set<OrderLine>();
-
+                
             var result =
                 (from o in orderLine
                  where o.orderId == orderId
                  orderby o.id
-                 select o).Include("Order_Table").ToList();
+                 select o).ToList();
 
             return result;
            
