@@ -94,6 +94,7 @@
     <Compile Include="CommentService\CommentService.cs" />
     <Compile Include="CommentService\Exceptions\DifferentsUsers.cs" />
     <Compile Include="CommentService\ICommentService.cs" />
+    <Compile Include="CommentService\LabelDetails.cs" />
     <Compile Include="Computer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

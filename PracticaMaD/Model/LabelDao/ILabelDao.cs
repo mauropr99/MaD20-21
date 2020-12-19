@@ -13,5 +13,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LabelDao
 
         List<Label> FindLabelsByCommentId(long commentId);
 
+        List<Label> FindMostUsedLabel(int quantity);
+
     }
 }

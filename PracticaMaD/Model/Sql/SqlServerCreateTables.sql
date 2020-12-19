@@ -174,11 +174,16 @@ CREATE TABLE User_Table (
 	email VARCHAR(64) NOT NULL,
 	languageId BIGINT NOT NULL,
 	role VARCHAR(30) NOT NULL CHECK(role IN ('admin','user')),
+	defaultCreditCardId bigint,
+
 
     CONSTRAINT [PK_User] PRIMARY KEY (id ASC),
 
 	CONSTRAINT [FK_LanguageId] FOREIGN KEY(languageId)
         REFERENCES Language (id) ON DELETE NO ACTION,
+
+	CONSTRAINT [FK_DefaultCreditCardId] FOREIGN KEY(defaultCreditCardId)
+        REFERENCES CreditCard (id) ON DELETE NO ACTION
 ) 
 
 CREATE NONCLUSTERED INDEX [IX_UserIndexById] 

@@ -29,7 +29,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 
         public void AddLabel(Label label, long commentId)
         {
-            DbSet<Comment> comments = Context.Set<Comment>();
 
             var query = this.Find(commentId);
 

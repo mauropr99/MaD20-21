@@ -100,12 +100,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
                     Label newLabel = new Label()
                     {
                         lab = label,
-                        timesUsed = 1
+                        timesUsed = 0
                     };
                     LabelDao.Create(newLabel);
                 }
 
                 Label foundLabel = LabelDao.FindByLabelName(label);
+                foundLabel.timesUsed++;
+                LabelDao.Update(foundLabel);
 
                 //Adding new labels
                 if (!oldLabels.Contains(foundLabel))
@@ -181,6 +183,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             }
 
             return new CommentBlock(detailComments, existMoreComments);
+        }
+
+        public List<LabelDetails> ViewMostUsedLabels(int quantity)
+        {
+            List<LabelDetails> mostUsedLabels = new List<LabelDetails>();
+
+            List<Label> labels = LabelDao.FindMostUsedLabel(quantity);
+
+            foreach (Label label in labels)
+            {
+                mostUsedLabels.Add(new LabelDetails(label.id, label.lab));
+            }
+
+            return mostUsedLabels;
         }
 
         #endregion ICommentSercice Members

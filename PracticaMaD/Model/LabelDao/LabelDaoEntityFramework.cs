@@ -63,7 +63,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LabelDao
             return result;
         }
 
+        public List<Label> FindMostUsedLabel(int quantity)
+        {
+            DbSet<Label> labels = Context.Set<Label>();
+
+            var result =
+                (from l in labels
+                 orderby l.timesUsed descending, l.lab ascending
+                 select l).Take(quantity).ToList();
+
+            return result;
+        }
+    }
+
         #endregion ILabelDao Members. Specific Operations
 
-    }
 }
+

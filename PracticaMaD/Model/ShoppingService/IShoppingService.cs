@@ -22,17 +22,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         Order BuyProducts(UserDetails user, List<OrderLineDetails> orderLinesDetails,
             string postalAddress, CreditCard creditCard, string description);
 
-        ShoppingCartDetails AddToShoppingCart(long productId, short quantity, Boolean giftWrap);
+        List<ShoppingCartDetails> AddToShoppingCart(long productId, short quantity, Boolean giftWrap);
 
-        ShoppingCartDetails RemoveFromShoppingCart(long productId);
+        List<ShoppingCartDetails> RemoveFromShoppingCart(long productId);
 
-        ShoppingCartDetails UpdateProductFromShoppingCart(long productId, short quantity, Boolean giftWrap);
+        List<ShoppingCartDetails> UpdateProductFromShoppingCart(long productId, short quantity, Boolean giftWrap);
 
         [Transactional]
         OrderBlock FindOrdersByUserId(long userId, int startIndex, int count);
 
         [Transactional]
         List<OrderLineDetails> ViewOrderLineDetails(long orderId);
+
+        [Transactional]
+        List<ShoppingCartDetails> ViewShoppingCart(long orderId);
     }
 }
 
