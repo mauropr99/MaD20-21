@@ -50,11 +50,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         public UserDetails FindUserDetails(long id)
         {
             User user = UserDao.Find(id);
+            Language language = LanguageDao.FindByUserId(user.id);
 
             UserDetails userDetails =
                 new UserDetails(user.name,
                     user.lastName, user.email,
-                    user.Language.name, user.Language.country, user.address);
+                    language.name, language.country, user.address);
 
             return userDetails;
         }
@@ -85,8 +86,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                 }
             }
 
+            Language language = LanguageDao.FindByUserId(user.id);
+
             return new LoginResult(user.id,user.login, user.name,user.lastName,
-                storedPassword, user.Language.name, user.email,user.address);
+                storedPassword, language.name, language.country, user.email,user.address);
         }
 
         /// <exception cref="DuplicateInstanceException"/>

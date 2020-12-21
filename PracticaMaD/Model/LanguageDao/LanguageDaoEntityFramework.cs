@@ -79,9 +79,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao
             return result;
         }
 
-        ICollection<Language> ILanguageDao.FindLanguagesByCountry(string country)
+        public Language FindByUserId(long userId)
         {
-            throw new NotImplementedException();
+            #region Using Linq.
+
+            DbSet<User> users = Context.Set<User>();
+
+            Language result =
+                (from u in users
+                 where u.id == userId
+                 select u.Language).Include("Language").FirstOrDefault();
+
+
+            return result;
+
+            #endregion Using Linq.
         }
 
         #endregion ILanguageDao Members

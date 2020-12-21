@@ -7,7 +7,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
     {
 
             public LoginResult(long id, string login, string name,
-                string lastName, string encryptedPassword, String language,
+                string lastName, string encryptedPassword, string language, string country,
                 string email, string address)
             {
                 this.Id = id;
@@ -16,6 +16,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                 this.LastName = lastName;
                 this.EncryptedPassword = encryptedPassword;
                 this.Language = language;
+                this.Country = country;
                 this.Email = email;
                 this.Address = Address;
             }
@@ -32,7 +33,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
             public string LastName { get; private set; }
 
-            public String Language { get; private set; }
+            public string Language { get; private set; }
+         
+            public string Country { get; private set; }
 
             public string Login { get; private set; }
 
@@ -66,13 +69,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
                 strLoginResult =
                     "[ userId = " + Id + " | " +
-                    "Name = " + Name + " | " +
-                    "LastName = " + LastName + " | " +
+                    "name = " + Name + " | " +
+                    "lastName = " + LastName + " | " +
                     "encryptedPassword = " + EncryptedPassword + " | " +
                     "language = " + Language + " | " +
                     "login = " + Login + " | " +
+                    "email = " + Email + " | " +
                     "Adress = " + Address + " | " +
-                    "country = " + Email + " ]";
+                    "country = " + Country + " ]";
 
                 return strLoginResult;
             }
