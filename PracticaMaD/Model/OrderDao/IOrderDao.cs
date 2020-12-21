@@ -17,5 +17,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderDao
         /// <returns>the list of orders</returns>
         List<Order> FindByUserId(long userId, int startIndex, int count);
 
+        List<OrderLine> FindOrderLinesByOrderId(long orderId);
+
     }
 }

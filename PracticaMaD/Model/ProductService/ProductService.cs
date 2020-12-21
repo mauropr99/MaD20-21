@@ -20,21 +20,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
         #region IProductService Members
 
-        public ProductBlock ViewCatatalog(string productName, string categoryName, int startIndex, int count)
+        public ProductBlock ViewCatalog(string productName, int startIndex, int count)
         {
             List<Product> products;
 
-            /*
-            * Find count+1 products to determine if there exist more products above
-            * the specified range.
-            */
-            if (categoryName == null)
+            products = ProductDao.FindByProductName(productName, startIndex, count + 1);
+
+            List<ProductDetails> productsDetails = new List<ProductDetails>();
+            
+            foreach(Product product in products)
             {
-                products = ProductDao.FindByProductName(productName, startIndex, count + 1);
-            } 
-            else
-            {
-                products = ProductDao.FindByProductNameAndCategoryName(productName, categoryName, startIndex, count + 1);
+                productsDetails.Add(new ProductDetails(product.id, product.product_name, product.price,
+                        product.releaseDate, product.stock, ProductDao.GetCategoryName(product.id)));
             }
 
             bool existMoreProducts = (products.Count == count + 1);
@@ -44,7 +41,32 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
                 products.RemoveAt(count);
             }
 
-            return new ProductBlock(products, existMoreProducts);
+            return new ProductBlock(productsDetails, existMoreProducts);
+
+        }
+
+        public ProductBlock ViewCatalog(string productName, string categoryName, int startIndex, int count)
+        {
+            List<Product> products;
+
+            products = ProductDao.FindByProductNameAndCategoryName(productName, categoryName, startIndex, count + 1);
+
+            List<ProductDetails> productsDetails = new List<ProductDetails>();
+
+            foreach (Product product in products)
+            {
+                productsDetails.Add(new ProductDetails(product.id, product.product_name, product.price,
+                        product.releaseDate, product.stock, ProductDao.GetCategoryName(product.id)));
+            }
+
+            bool existMoreProducts = (products.Count == count + 1);
+
+            if (existMoreProducts)
+            {
+                products.RemoveAt(count);
+            }
+
+            return new ProductBlock(productsDetails, existMoreProducts);
 
         }
 
@@ -59,7 +81,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
   
         }
 
-        public List<Category> ViewAallCategories()
+        public List<Category> ViewAllCategories()
         {
            return  CategoryDao.GetAllElements().ToList();
         }

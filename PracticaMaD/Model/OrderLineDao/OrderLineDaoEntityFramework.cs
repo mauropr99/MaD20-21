@@ -18,23 +18,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao
         public OrderLineDaoEntityFramework()
         {
         }
-        #endregion Public Constructors
-        
-        #region IOrderLineDao Members. Specific Operations
 
         public List<OrderLine> FindByOrderId(long orderId)
         {
-            DbSet<OrderLine> orderLines = Context.Set<OrderLine>();
-
+            DbSet<OrderLine> orderLine = Context.Set<OrderLine>();
+                
             var result =
-                 (from a in orderLines
-                  where a.orderId == orderId
-                  orderby a.id
-                  select a).ToList();
+                (from o in orderLine
+                 where o.orderId == orderId
+                 orderby o.id
+                 select o).ToList();
 
             return result;
+           
         }
+        #endregion Public Constructors
 
-        #endregion IUserProfileDao Members
     }
 }

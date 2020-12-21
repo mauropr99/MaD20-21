@@ -75,77 +75,88 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
         [TestMethod()]
         public void FindByProductNameTest()
         {
+            using (var scope = new TransactionScope())
+            {
+                Category category1 = TestUtil.CreateCategory("Ordenadores");
 
-            Category category1 = TestUtil.CreateCategory("Ordenadores");
-
-            Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
-            Computer product2 = TestUtil.CreateComputer(category1, "ACER 3x2600", 2.5m, "Acer");
-            Computer product3 = TestUtil.CreateComputer(category1, "ACER 4x2600", 2.5m, "Acer");
+                Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
+                Computer product2 = TestUtil.CreateComputer(category1, "ACER 3x2600", 2.5m, "Acer");
+                Computer product3 = TestUtil.CreateComputer(category1, "ACER 4x2600", 2.5m, "Acer");
 
 
-            List<Product> foundProducts = new List<Product>();
-            foundProducts = TestUtil.productDao.FindByProductName("Acer", 0, 10);
+                List<Product> foundProducts = new List<Product>();
+                foundProducts = TestUtil.productDao.FindByProductName("Acer", 0, 10);
 
-            Assert.AreEqual(2, foundProducts.Count);
-            //Están ordenados alfabéticamente por nombre, por eso que sea primero el [1]
-            Assert.AreEqual(product3.product_name, foundProducts[1].product_name);
-            Assert.AreEqual(product3.price, foundProducts[1].price);   
-            Assert.AreEqual(product3.releaseDate, foundProducts[1].releaseDate);
-            Assert.AreEqual(product3.stock, foundProducts[1].stock);
-            Assert.AreEqual(product2.product_name, foundProducts[0].product_name);
-            Assert.AreEqual(product2.price, foundProducts[0].price);
-            Assert.AreEqual(product2.releaseDate, foundProducts[0].releaseDate);
-            Assert.AreEqual(product2.stock, foundProducts[0].stock);
+                Assert.AreEqual(2, foundProducts.Count);
+                //Están ordenados alfabéticamente por nombre, por eso que sea primero el [1]
+                Assert.AreEqual(product3.product_name, foundProducts[1].product_name);
+                Assert.AreEqual(product3.price, foundProducts[1].price);
+                Assert.AreEqual(product3.releaseDate, foundProducts[1].releaseDate);
+                Assert.AreEqual(product3.stock, foundProducts[1].stock);
+                Assert.AreEqual(product2.product_name, foundProducts[0].product_name);
+                Assert.AreEqual(product2.price, foundProducts[0].price);
+                Assert.AreEqual(product2.releaseDate, foundProducts[0].releaseDate);
+                Assert.AreEqual(product2.stock, foundProducts[0].stock);
+            }
         }
 
         [TestMethod()]
         public void FindZeroByProductNameTest()
         {
-            Category category1 = TestUtil.CreateCategory("Ordenadores");
-            Category category2 = TestUtil.CreateCategory("Libros");
-            Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
-            Computer product2 = TestUtil.CreateComputer(category1, "ACER 3x2600", 2.5m, "Acer");
-            Book product3 = TestUtil.CreateBook(category2, "El Quijote Nueva edición", 3.5m, "El Quijote");
+            using (var scope = new TransactionScope())
+            {
+                Category category1 = TestUtil.CreateCategory("Ordenadores");
+                Category category2 = TestUtil.CreateCategory("Libros");
+                Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
+                Computer product2 = TestUtil.CreateComputer(category1, "ACER 3x2600", 2.5m, "Acer");
+                Book product3 = TestUtil.CreateBook(category2, "El Quijote Nueva edición", 3.5m, "El Quijote");
 
-            List<Product> foundProducts = new List<Product>();
-            foundProducts = TestUtil.productDao.FindByProductName("Secador de pelo", 0, 10);
+                List<Product> foundProducts = new List<Product>();
+                foundProducts = TestUtil.productDao.FindByProductName("Secador de pelo", 0, 10);
 
-            Assert.AreEqual(0, foundProducts.Count);
+                Assert.AreEqual(0, foundProducts.Count);
+            }
         }
 
         [TestMethod()]
         public void FindByProductNameAndCategoryIdTest()
         {
-            Category category1 = TestUtil.CreateCategory("Ordenadores");
-            Category category2 = TestUtil.CreateCategory("Libros");
-            Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
-            Computer product2 = TestUtil.CreateComputer(category1, "ACER 3x2600", 2.5m, "Acer");
-            Book product3 = TestUtil.CreateBook(category2, "El Quijote Nueva edición", 3.5m, "El Quijote");
+            using (var scope = new TransactionScope())
+            {
+                Category category1 = TestUtil.CreateCategory("Ordenadores");
+                Category category2 = TestUtil.CreateCategory("Libros");
+                Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
+                Computer product2 = TestUtil.CreateComputer(category1, "ACER 3x2600", 2.5m, "Acer");
+                Book product3 = TestUtil.CreateBook(category2, "El Quijote Nueva edición", 3.5m, "El Quijote");
 
-            List<Product> foundProducts = new List<Product>();
-            foundProducts = TestUtil.productDao.FindByProductNameAndCategoryName("Acer", category1.name, 0, 10);
+                List<Product> foundProducts = new List<Product>();
+                foundProducts = TestUtil.productDao.FindByProductNameAndCategoryName("Acer", category1.name, 0, 10);
 
-            Assert.AreEqual(1, foundProducts.Count);
-            Assert.AreEqual(product2.price, foundProducts[0].price);
-            Assert.AreEqual(product2.product_name, foundProducts[0].product_name);
-            Assert.AreEqual(product2.releaseDate, foundProducts[0].releaseDate);
-            Assert.AreEqual(product2.stock, foundProducts[0].stock);
+                Assert.AreEqual(1, foundProducts.Count);
+                Assert.AreEqual(product2.price, foundProducts[0].price);
+                Assert.AreEqual(product2.product_name, foundProducts[0].product_name);
+                Assert.AreEqual(product2.releaseDate, foundProducts[0].releaseDate);
+                Assert.AreEqual(product2.stock, foundProducts[0].stock);
+            }
 
         }
 
         [TestMethod()]
         public void FindZeroByProductNameAndCategoryIdTest()
         {
-            Category category1 = TestUtil.CreateCategory("Ordenadores");
-            Category category2 = TestUtil.CreateCategory("Libros");
-            Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
-            Computer product2 = TestUtil.CreateComputer(category1, "ACER 3x2600", 2.5m, "Acer");
-            Book product3 = TestUtil.CreateBook(category2, "El Quijote Nueva edición", 3.5m, "El Quijote");
+            using (var scope = new TransactionScope())
+            {
+                Category category1 = TestUtil.CreateCategory("Ordenadores");
+                Category category2 = TestUtil.CreateCategory("Libros");
+                Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
+                Computer product2 = TestUtil.CreateComputer(category1, "ACER 3x2600", 2.5m, "Acer");
+                Book product3 = TestUtil.CreateBook(category2, "El Quijote Nueva edición", 3.5m, "El Quijote");
 
-            List<Product> foundProducts = new List<Product>();
-            foundProducts = TestUtil.productDao.FindByProductNameAndCategoryName("Acer", category2.name, 0, 10);
+                List<Product> foundProducts = new List<Product>();
+                foundProducts = TestUtil.productDao.FindByProductNameAndCategoryName("Acer", category2.name, 0, 10);
 
-            Assert.AreEqual(0, foundProducts.Count);
+                Assert.AreEqual(0, foundProducts.Count);
+            }
         }
 
     }

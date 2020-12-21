@@ -31,6 +31,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         CreditCard AddCreditCard(long userId, string ownerName, string creditType,
             string creditCardNumber, short cvv, DateTime expirationDate);
 
+        [Transactional]
+        void SetCreditCardAsDefault(long userId,long creditCardId);
+
         bool UserExists(string login);
     }
 }

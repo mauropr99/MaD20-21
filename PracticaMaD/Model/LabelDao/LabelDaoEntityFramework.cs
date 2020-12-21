@@ -49,7 +49,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LabelDao
                 return result;
         }
 
-    #endregion ILabelDao Members. Specific Operations
+        public List<Label> FindLabelsByCommentId(long commentId)
+        {
+
+            DbSet<Comment> comments = Context.Set<Comment>();
+
+            var result =
+                (from c in comments
+                 where c.id == commentId
+                 orderby c.id
+                 select c.Labels).FirstOrDefault().ToList();
+
+            return result;
+        }
+
+        public List<Label> FindMostUsedLabel(int quantity)
+        {
+            DbSet<Label> labels = Context.Set<Label>();
+
+            var result =
+                (from l in labels
+                 orderby l.timesUsed descending, l.lab ascending
+                 select l).Take(quantity).ToList();
+
+            return result;
+        }
+    }
+
+        #endregion ILabelDao Members. Specific Operations
 
 }
-}
+

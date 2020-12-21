@@ -185,19 +185,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                     "Chollazo",
                     "Ganga"
                 };
-                comment = commentService.UpdateComment(comment.id,text, labels2);
+                comment = commentService.UpdateComment(userId, comment.id, text, labels2);
 
                 Assert.AreNotEqual(labels2, comment.Labels);
 
                 var foundComment = TestUtil.commentDao.Find(comment.id);
+                var foundLabels = TestUtil.labelDao.FindLabelsByCommentId(comment.id);
 
                 Assert.AreEqual(comment.id, foundComment.id);
                 Assert.AreEqual(text, foundComment.text);
                 Assert.AreEqual(userId, foundComment.userId);
-                Assert.AreEqual(3, foundComment.Labels.Count);
-                Assert.AreEqual(labels2[0], foundComment.Labels.ToList()[1].lab); //Irresistible
-                Assert.AreEqual(labels2[2], foundComment.Labels.ToList()[0].lab); //Ganga
-                Assert.AreEqual(labels2[1], foundComment.Labels.ToList()[2].lab); //Chollazo
+                Assert.AreEqual(3, foundLabels.Count);
+                Assert.AreEqual(labels2[0], foundLabels[2].lab); //Irresistible
+                Assert.AreEqual(labels2[1], foundLabels[1].lab); //Ganga
+                Assert.AreEqual(labels2[2], foundLabels[0].lab); //Chollazo
                 
 
             }
@@ -217,21 +218,25 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
                 Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
-                List<string> labels = new List<String>();
-                labels.Add("Ganga");
-                labels.Add("Oferta");
-                labels.Add("Chollazo");
+                List<string> labels = new List<String>
+                {
+                    "Ganga",
+                    "Oferta",
+                    "Chollazo"
+                };
 
                 string text = "Muy buen ordenado y a buen precio. Funcionan todos los juegos a calidad máxima, muy fluidos y sin apenas calentarse el aparato.";
                 Comment comment = commentService.NewComment(userId, product1.id, text, labels);
 
                 text = "Es una bestia de portatil gaming , los juegos se ven genial y se inician en un momento , no se calienta y encima no es tan pesado .";
 
-                List<string> labels2 = new List<String>();
-                labels2.Add("Irresistible");
-                labels2.Add("Chollazo");
-                labels2.Add("Ganga");
-                comment = commentService.UpdateComment(comment.id, text, labels2);
+                List<string> labels2 = new List<String>
+                {
+                    "Irresistible",
+                    "Chollazo",
+                    "Ganga"
+                };
+                comment = commentService.UpdateComment(userId, -1L, text, labels2);
 
                 TestUtil.labelDao.FindByLabelName("Oferta");
 
@@ -264,7 +269,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 Comment comment = commentService.NewComment(user.id, product1.id, text, labels);
 
                 
-                commentService.RemoveComment(comment.id);
+                commentService.RemoveComment(userId,comment.id);
                 TestUtil.commentDao.Find(comment.id);
 
             }
@@ -304,7 +309,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 };
                 var comment2 = commentService.NewComment(user.id, product1.id, text, labels2);
 
-                CommentBlock comment = commentService.ViewComments(product1.id, 0,10);
+                CommentBlock comment = commentService.ViewComments(userId,product1.id, 0,10);
 
                 Assert.AreEqual(comment1.id, comment.Comments[0].Id); 
                 Assert.AreEqual(comment2.id, comment.Comments[1].Id); 

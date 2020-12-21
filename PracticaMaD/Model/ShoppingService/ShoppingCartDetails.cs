@@ -8,44 +8,54 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
     [Serializable()]
     public class ShoppingCartDetails
     {
-        #region Properties Region
+        public long Product_Id { get; set; }
 
-        public long UserId { get; set; }
+        public string Product_Name { get; set; }
 
-        public decimal TotalPrice { get; set; }
+        public short Quantity { get; set; }
 
-        public virtual ICollection<OrderLine> OrderLines { get; set; }
-
-        #endregion
+        public decimal Price { get; set; }
 
         public ShoppingCartDetails()
         {
-            this.TotalPrice = 0;
-            this.OrderLines = OrderLines;
         }
 
-        public ShoppingCartDetails(decimal totalPrice, ICollection<OrderLine> orderLines)
+        public ShoppingCartDetails(long product_Id, string product_Name, short quantity, decimal price)
         {
-            this.TotalPrice = totalPrice;
-            this.OrderLines = orderLines;
+            Product_Id = product_Id;
+            Product_Name = product_Name;
+            Quantity = quantity;
+            Price = price;
+        }
+
+        public override string ToString()
+        {
+            string strShoppingCartDetails;
+
+            strShoppingCartDetails =
+                "[ productName = " + Product_Name + " | " +
+                "quantity = " + Quantity + " | " +
+                "price = " + Price + " ] ";
+
+            return strShoppingCartDetails;
         }
 
         public override bool Equals(object obj)
         {
-
-            ShoppingCartDetails target = (ShoppingCartDetails)obj;
-
-            return (this.TotalPrice == target.TotalPrice)
-                  && (this.OrderLines.Equals(target.OrderLines));
-
+            return obj is ShoppingCartDetails details &&
+                   Product_Id == details.Product_Id &&
+                   Product_Name == details.Product_Name &&
+                   Quantity == details.Quantity &&
+                   Price == details.Price;
         }
 
         public override int GetHashCode()
         {
-            var hashCode = -1395028349;
-            hashCode = hashCode * -1521134295 + UserId.GetHashCode();
-            hashCode = hashCode * -1521134295 + TotalPrice.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<ICollection<OrderLine>>.Default.GetHashCode(OrderLines);
+            var hashCode = 343921072;
+            hashCode = hashCode * -1521134295 + Product_Id.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Product_Name);
+            hashCode = hashCode * -1521134295 + Quantity.GetHashCode();
+            hashCode = hashCode * -1521134295 + Price.GetHashCode();
             return hashCode;
         }
     }

@@ -25,6 +25,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 
             #endregion Using Linq.
         }
+
+
+        public void AddLabel(Label label, long commentId)
+        {
+
+            var query = this.Find(commentId);
+
+            query.Labels.Add(label);
+
+            this.Update(query);
+        }
+
     }
 }
 

@@ -2,6 +2,7 @@
 using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao;
 using System;
+using System.Linq;
 using Ninject;
 using System.Collections.Generic;
 using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Exceptions;
@@ -24,7 +25,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         [Inject]
         public IOrderLineDao OrderLineDao { private get; set; }
 
-        private ShoppingCartDetails shoppingCart = new ShoppingCartDetails();
+        private List<ShoppingCartDetails> shoppingCart = new List <ShoppingCartDetails>();
 
 
         #region IShoppingService Members
@@ -35,7 +36,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             List<OrderLine> orderLines = new List<OrderLine>();
             Product product = new Product();
             decimal totalPrice = 0;
-            OrderLine orderLine = new OrderLine();
+            
 
             //Check expiration date
             if (creditCard.expirationDate < DateTime.Now)
@@ -47,6 +48,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
            
             foreach (OrderLineDetails line in orderLinesDetails)
             {
+                OrderLine orderLine = new OrderLine();
                 product = ProductDao.Find(line.Product_Id);
                 if (product.stock < line.Quantity)
                 {
@@ -54,7 +56,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                 }
                 product.stock -= line.Quantity;
                 ProductDao.Update(product);
-                orderLine.price = line.Price;
+                if (!product.price.Equals(line.Price))
+                {
+                    throw new DifferentPrice(product.price, product.product_name);
+                }
+                orderLine.price = product.price;
                 orderLine.productId = product.id;
                 orderLine.quantity = line.Quantity;
                 OrderLineDao.Create(orderLine);
@@ -82,75 +88,68 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                 line.orderId = order.id;
                 OrderLineDao.Update(line);
             }
-                return order;
+
+            return order;
         }
 
-        public ShoppingCartDetails AddToShoppingCart(long productId,
+        public List<ShoppingCartDetails> AddToShoppingCart(long productId,
             short quantity, Boolean giftWrap)
         {
             Product product = ProductDao.Find(productId);
 
             //Check if the product is inside the shopping cart already
-            foreach (OrderLine line in shoppingCart.OrderLines)
+            foreach (ShoppingCartDetails line in shoppingCart)
             {
-                if (line.productId == productId)
+                if (line.Product_Id == productId)
                 {
                     //Update product quantity
-                    line.quantity += quantity;
-                    //Update total price
-                    shoppingCart.TotalPrice += quantity + product.price;
+                    line.Quantity += quantity;
+
                     return shoppingCart;
                 }
             }
 
             //If it is a new product in the shopping cart
-            OrderLine orderLine = new OrderLine
+            ShoppingCartDetails orderLine = new ShoppingCartDetails
             {
-                quantity = quantity,
-                price = product.price,
-                productId = product.id
+                Quantity = quantity,
+                Price = product.price,
+                Product_Id = product.id
             };
-            shoppingCart.OrderLines.Add(orderLine);
+            shoppingCart.Add(orderLine);
 
-            foreach (OrderLine line in shoppingCart.OrderLines)
-            {
-                shoppingCart.TotalPrice += line.price * line.quantity;
-            }
             return shoppingCart;
         }
 
 
-        public ShoppingCartDetails RemoveFromShoppingCart(long productId)
+        public List<ShoppingCartDetails> RemoveFromShoppingCart(long productId)
         {
             //Check if the product is inside the shopping cart 
-            foreach (OrderLine line in shoppingCart.OrderLines)
+            foreach (ShoppingCartDetails line in shoppingCart)
             {
-                if (line.productId == productId)
+                if (line.Product_Id == productId)
                 {
                     //Remove element from collection
-                    shoppingCart.OrderLines.Remove(line);
-                    //Update total price
-                    shoppingCart.TotalPrice -= line.quantity * line.price;
+                    shoppingCart.Remove(line);
+                    break;
                 }
             }
 
             return shoppingCart;
+
         }
 
-        public ShoppingCartDetails UpdateProductFromShoppingCart(long productId, short quantity, bool giftWrap)
+        public List<ShoppingCartDetails> UpdateProductFromShoppingCart(long productId, short quantity, bool giftWrap)
         {
-            foreach (OrderLine line in shoppingCart.OrderLines)
+            foreach (ShoppingCartDetails line in shoppingCart)
             {
-                if (line.productId == productId)
+                if (line.Product_Id == productId)
                 {
-                    //Update total price
-                    shoppingCart.TotalPrice += (quantity - line.quantity) * line.price;
                     //Update quantity
-                    line.quantity = quantity;
-
+                    line.Quantity = quantity;
+                    break;
                 }
             }
-
             return shoppingCart;
         }
 
@@ -185,10 +184,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         public List<OrderLineDetails> ViewOrderLineDetails(long orderId)
         {
-            List<OrderLine> orderLines;
+            List<OrderLine> orderLines = new List<OrderLine>();
 
             orderLines = OrderLineDao.FindByOrderId(orderId);
-
+        
             List<OrderLineDetails> detailLineOrders = new List<OrderLineDetails>();
 
             foreach (OrderLine orderLine in orderLines)
@@ -199,7 +198,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             return detailLineOrders;
         }
 
-        #endregion IShoppingService Members
+        public List<ShoppingCartDetails> ViewShoppingCart(long orderId)
+        {
+            return shoppingCart;
+        }
 
+        #endregion IShoppingService Members
     }
 }

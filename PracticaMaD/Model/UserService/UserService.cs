@@ -166,7 +166,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             newCreditCard.creditCardNumber = creditCardNumber;
             newCreditCard.cvv = cvv;
             newCreditCard.expirationDate = expirationDate;
-            newCreditCard.User_Table.Add(user);
+            CreditCardDao.AddUser(user, newCreditCard.id);
             
             CreditCardDao.Create(newCreditCard);
 
@@ -174,10 +174,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             return newCreditCard;
         }
 
-
         public bool UserExists(string login)
         {
-
             try
             {
                 User userProfile = UserDao.FindByLogin(login);
@@ -189,7 +187,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
             return true;
         }
-
         #endregion IUserService Members
     }
 }

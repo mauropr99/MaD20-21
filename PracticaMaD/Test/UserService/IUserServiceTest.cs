@@ -151,7 +151,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
             {
                 Language language = TestUtil.CreateExistentLanguage();
                 User user = TestUtil.CreateExistentUser(language);
-
                 string ownerName = "Name Surname";
                 string creditType = "debit";
                 string creditCardNumber = "1234567891234567";
@@ -175,7 +174,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
             {
                 Language language = TestUtil.CreateExistentLanguage();
                 User user = TestUtil.CreateExistentUser(language);
-
                 string ownerName = "Name Surname";
                 string creditType = "debit";
                 string creditCardNumber = "1234567891234567";

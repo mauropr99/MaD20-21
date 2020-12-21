@@ -45,7 +45,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
             return language;
         }
 
-        public static User CreateExistentUser( Language language)
+        public static User CreateExistentUser(Language language)
         {
             User user = new User
             {
@@ -155,11 +155,25 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
                 creditType = "debit",
                 creditCardNumber = "1234567890123456",
                 cvv = 123,
-                expirationDate = DateTime.Now.AddYears(1),
+                expirationDate = DateTime.Now.AddYears(1)
             };
             creditCard.User_Table.Add(user);
             creditCardDao.Create(creditCard);
             return creditCard;
+        }
+
+        public static Comment CreateComment(User user,Product product)
+        {
+            Comment comment = new Comment
+            {
+                userId = user.id,
+                productId = product.id,
+                text = "Soy un comentario",
+                commentDate = DateTime.Now
+            };
+            commentDao.Create(comment);
+
+            return comment;
         }
     }
 }

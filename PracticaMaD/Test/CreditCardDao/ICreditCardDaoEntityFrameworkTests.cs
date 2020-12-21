@@ -79,8 +79,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao.Tests
         public void FindCreditCardsByUserLoginTest()
         {
             Language language = TestUtil.CreateExistentLanguage();
-            User user = TestUtil.CreateExistentUser(language);
-            CreditCard creditCard = TestUtil.CreateCreditCard(user);
+            User user = TestUtil.CreateExistentUser(language); CreditCard creditCard = TestUtil.CreateCreditCard(user);
 
             List<CreditCard> foundCreditCards = TestUtil.creditCardDao.FindCreditCardsByUserLogin(user.login);
 

@@ -8,5 +8,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao
     public interface ICreditCardDao : IGenericDao<CreditCard, Int64>
     {
         List<CreditCard> FindCreditCardsByUserLogin(string login);
+
+        void AddUser( User user, long creditCardId);
     }
 }

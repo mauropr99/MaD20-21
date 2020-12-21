@@ -81,6 +81,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
             TestUtil.categoryDao = kernel.Get<ICategoryDao>();
             TestUtil.productDao = kernel.Get<IProductDao>();
             TestUtil.orderDao = kernel.Get<IOrderDao>();
+            TestUtil.orderLineDao = kernel.Get<IOrderLineDao>();
             TestUtil.computerDao = kernel.Get<IComputerDao>();
             TestUtil.bookDao = kernel.Get<IBookDao>();
 
@@ -334,6 +335,98 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
 
             Assert.AreEqual(foundOrders[0].Id, firstOrder.id);
             Assert.AreEqual(foundOrders[1].Id, secondOrder.id);
+
+        }
+
+        [TestMethod()]
+        public void ViewOrderLineDetailsTest()
+        {
+            //Creating Language...
+            Language language = TestUtil.CreateExistentLanguage();
+
+            //Creating User...
+            long userId = userService.SingUpUser(login, password,
+                   new UserDetails(name, lastName, email, language.name, language.country, address));
+            User user = TestUtil.userDao.Find(userId);
+
+            //Creating CreditCard...
+            CreditCard creditCard = TestUtil.CreateCreditCard(user);
+
+            //Creating Category...
+            Category category1 = TestUtil.CreateCategory("Ordenadores");
+
+            //Products
+            Computer product1 = TestUtil.CreateComputer(category1, "Computer 1", 3, "Msi");
+            Computer product2 = TestUtil.CreateComputer(category1, "Computer 2", 3, "Acer");
+            Computer product3 = TestUtil.CreateComputer(category1, "Computer 3", 3, "Msi");
+            Computer product4 = TestUtil.CreateComputer(category1, "Computer 4", 3, "Acer");
+
+            //Creating OrderLineDetails
+            OrderLineDetails orderLineDetail1 = new OrderLineDetails(
+                product1.id,
+                product1.product_name,
+                10,
+                product1.price
+            );
+            OrderLineDetails orderLineDetail2 = new OrderLineDetails(
+               product2.id,
+               product2.product_name,
+               11,
+               product2.price
+            );
+            OrderLineDetails orderLineDetail3 = new OrderLineDetails(
+               product3.id,
+               product3.product_name,
+               12,
+               product3.price
+           );
+            OrderLineDetails orderLineDetail4 = new OrderLineDetails(
+               product4.id,
+               product4.product_name,
+               13,
+               product4.price
+           );
+
+            List<OrderLineDetails> orderLineDetails = new List<OrderLineDetails>
+                {
+                    orderLineDetail1,
+                    orderLineDetail2,
+                    orderLineDetail3,
+                    orderLineDetail4
+                };
+
+
+            //Creating Orders...
+            string firstDescription = "First order";
+            var order =
+                shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country, address), orderLineDetails,
+                    address, creditCard, firstDescription);
+
+            var orderLines = TestUtil.orderLineDao.FindByOrderId(order.id);
+       
+
+            List<OrderLineDetails> foundOrderLineDetails = shoppingService.ViewOrderLineDetails(order.id);
+
+
+            //Checking total number of orders
+            Assert.AreEqual(orderLineDetails.Count, foundOrderLineDetails.Count);
+            Assert.AreEqual(orderLineDetail1.Product_Id, foundOrderLineDetails[0].Product_Id);
+            Assert.AreEqual(orderLineDetail2.Product_Id, foundOrderLineDetails[1].Product_Id);
+            Assert.AreEqual(orderLineDetail3.Product_Id, foundOrderLineDetails[2].Product_Id);
+            Assert.AreEqual(orderLineDetail4.Product_Id, foundOrderLineDetails[3].Product_Id);
+            Assert.AreEqual(orderLineDetail1.Product_Name, foundOrderLineDetails[0].Product_Name);
+            Assert.AreEqual(orderLineDetail2.Product_Name, foundOrderLineDetails[1].Product_Name);
+            Assert.AreEqual(orderLineDetail3.Product_Name, foundOrderLineDetails[2].Product_Name);
+            Assert.AreEqual(orderLineDetail4.Product_Name, foundOrderLineDetails[3].Product_Name);
+            Assert.AreEqual(orderLineDetail1.Quantity, foundOrderLineDetails[0].Quantity);
+            Assert.AreEqual(orderLineDetail2.Quantity, foundOrderLineDetails[1].Quantity);
+            Assert.AreEqual(orderLineDetail3.Quantity, foundOrderLineDetails[2].Quantity);
+            Assert.AreEqual(orderLineDetail4.Quantity, foundOrderLineDetails[3].Quantity);
+            Assert.AreEqual(orderLineDetail1.Price, foundOrderLineDetails[0].Price);
+            Assert.AreEqual(orderLineDetail2.Price, foundOrderLineDetails[1].Price);
+            Assert.AreEqual(orderLineDetail3.Price, foundOrderLineDetails[2].Price);
+            Assert.AreEqual(orderLineDetail4.Price, foundOrderLineDetails[3].Price);
+            
 
         }
 

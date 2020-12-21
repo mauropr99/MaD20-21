@@ -42,6 +42,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderDao
 
         }
 
+        public List<OrderLine> FindOrderLinesByOrderId(long orderId)
+        {
+            DbSet<Order> order = Context.Set<Order>();
+
+            List<OrderLine> result =
+                (from o in order
+                 where o.id == orderId
+                 orderby o.id
+                 select o.OrderLines).FirstOrDefault().ToList();
+
+
+            return result;
+        }
+
         #endregion IOrderDao Members
     }
 }
