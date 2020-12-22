@@ -18,6 +18,7 @@ a {
         text-decoration: underline;
     }
 
+
 /* Window. */
 
 #window {
@@ -29,58 +30,40 @@ a {
 
 /* Page title. */
 
-#header {
+#pageTitle {
     background-color: #097099;
     color: #fff;
     text-align: center;
     font-weight: bold;
     padding: 5px 0 5px 5px;
     width: 99%;
+    font-weight: bold;
 }
 
-/* Page body. */
+/* Menu. */
 
-#pageBody {
-    margin-top: 5px;
-    width: 100%;
+#menu {
+    background-color: #094069;
+    color: #fff;
+    text-align: left;
+    padding: 5px 0 5px 5px;
+    width: 99%;
 }
 
-/* Sidebar. */
-
-#sidebar {
-    float: left;
-    background-color: #097099;
-    width: 20%;
+#menuWelcome {
+    font-weight: bold;
 }
 
-    #sidebar a {
-        color: #fffac6;
-    }
-
-        #sidebar a:hover {
-            color: #cc0000;
-        }
-
-    #sidebar ul {
-        list-style: none;
-        padding-top: 0px;
-        /* Hack for correct indentation (the following three lines). */
-        margin-left: 0;
-        padding-left: 1em;
-        text-indent: -1em;
-    }
-
-    #sidebar li {
-        padding: 0 0 3px 5px;
-    }
+#menuLinks a {
+    color: #fffac6;
+}
 
 /* Content. */
 
 #content {
-    padding-top: 20px;
-    float: right;
+    margin: 10px 0;
     text-align: center;
-    width: 80%;
+    width: 100%;
 }
 
 p.info {
@@ -103,6 +86,8 @@ div.field {
         float: left;
         text-align: right;
         font-weight: bold;
+        vertical-align: middle;
+        padding-top: 0.3em;
         width: 49.5%;
     }
 
@@ -111,6 +96,13 @@ div.field {
         text-align: left;
         width: 49.5%;
     }
+
+div.checkbox {
+    clear: both;
+    padding-top: 1em;
+    text-align: center;
+    width: 100%;
+}
 
 div.button {
     clear: both;
@@ -121,49 +113,6 @@ div.button {
 
 input, select, textarea {
     background-color: #f4f4f4;
-}
-
-/* General properties. */
-
-table th, strong {
-    font-weight: bold;
-}
-
-table th, td {
-    font-size: 12px;
-}
-
-/* Account details. */
-
-table.accountDetails {
-    margin: 0 auto;
-    border: #000 1px solid;
-    text-align: left;
-    width: 35%;
-}
-
-    table.accountDetails th {
-        width: 60%;
-    }
-
-    table.accountDetails td {
-        width: 30%;
-    }
-
-/* User's accounts. */
-
-table.userAccounts {
-    margin: 0 auto;
-    text-align: center;
-    width: 35%;
-}
-
-/* Account operations. */
-
-table.accountOperations {
-    margin: 0 auto;
-    text-align: center;
-    width: 45%;
 }
 
 /* Error messages. */
@@ -177,10 +126,9 @@ table.accountOperations {
 /* Footer. */
 
 #footer {
-    clear: both;
-    text-align: center;
-    margin-top: 5px;
+    border-top: 1px solid #000;
     padding-top: 5px;
-    border-top: #000 1px solid;
+    text-align: center;
     width: 100%;
+    padding-top: 5px;
 }

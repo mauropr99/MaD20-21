@@ -134,7 +134,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
                          new UserDetails(name, lastName, email, language.name, language.country, address));
 
                 var expected = new LoginResult(id, login, name, lastName,
-                   PasswordEncrypter.Crypt(password), language.name, email, address);
+                   PasswordEncrypter.Crypt(password), language.name, language.country, email, address);
 
                 var actual =
                     userService.Login(login,

@@ -81,7 +81,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao
             return user;
         }
 
-        #endregion IUserProfileDao Members
+        #endregion IUserDao Members
     }
 
 }

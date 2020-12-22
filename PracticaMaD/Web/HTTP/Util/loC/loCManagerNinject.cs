@@ -1,4 +1,6 @@
 ﻿using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
+using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.ModelUtil.IoC;
 using Ninject;
@@ -20,6 +22,14 @@ namespace Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC
             /* UserDao */
             kernel.Bind<IUserDao>().
                 To<UserDaoEntityFramework>();
+
+            /* LanguageDao */
+            kernel.Bind<ILanguageDao>().
+                To<LanguageDaoEntityFramework>();
+
+            /* CredirCardDao */
+            kernel.Bind<ICreditCardDao>().
+                To<CreditCardDaoEntityFramework>();
 
             /* UserService */
             kernel.Bind<IUserService>().

@@ -181,7 +181,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         {
             try
             {
-                User userProfile = UserDao.FindByLogin(login);
+                User user = UserDao.FindByLogin(login);
             }
             catch (InstanceNotFoundException)
             {
