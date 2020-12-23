@@ -8,7 +8,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
             public LoginResult(long id, string login, string name,
                 string lastName, string encryptedPassword, string language, string country,
-                string email, string address)
+                string email)
             {
                 this.Id = id;
                 this.Login = login;
@@ -18,7 +18,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                 this.Language = language;
                 this.Country = country;
                 this.Email = email;
-                this.Address = Address;
             }
 
             #region Properties Region
@@ -50,7 +49,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                 return (this.Id == target.Id)
                        && (this.Name == target.Name)
                        && (this.LastName == target.LastName)
-                       && (this.Address == target.Address)
                        && (this.Login == target.Login)
                        && (this.EncryptedPassword == target.EncryptedPassword)
                        && (this.Language == target.Language)
@@ -75,7 +73,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                     "language = " + Language + " | " +
                     "login = " + Login + " | " +
                     "email = " + Email + " | " +
-                    "Adress = " + Address + " | " +
                     "country = " + Country + " ]";
 
                 return strLoginResult;

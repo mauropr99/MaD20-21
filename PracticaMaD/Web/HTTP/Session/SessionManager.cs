@@ -42,7 +42,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
     /// These methods are as follows:
     /// <list>
     ///   <item>* <c>Login</c>.</item>
-    ///   <item>* <c>RegisterUser</c>.</item>
+    ///   <item>* <c>SignUpUser</c>.</item>
     ///   <item>* <c>FindUserDetails</c>.</item>
     ///   <item>* <c>UpdateUserDetails</c>.</item>
     ///   <item>* <c>ChangePassword</c>.</item>
@@ -72,7 +72,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
     /// Same as <c>UserService</c>, there exist some logical
     /// restrictions with regard to the order of method calling. In particular,
     /// <c>updateUserDetails</c> and <c>changePassword</c>
-    /// can not be called if <c>login</c> or <c>registerUser</c>
+    /// can not be called if <c>login</c> or <c>SignUpUser</c>
     /// have not been previously called. After the user calls one of these two
     ///  methods, the user is said to be authenticated.
     /// </summary>
@@ -99,18 +99,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
         }
 
         /// <summary>
-        /// Registers the user.
+        /// SignUps the user.
         /// </summary>
         /// <param name="context">Http Context includes request, response, etc.</param>
         /// <param name="loginName">Username</param>
         /// <param name="clearPassword">Password in clear text</param>
         /// <param name="UserDetails">The user profile details.</param>
         /// <exception cref="DuplicateInstanceException"/>
-        public static void RegisterUser(HttpContext context,
+        public static void SignUpUser(HttpContext context,
             String loginName, String clearPassword,
             UserDetails UserDetails)
         {
-            /* Register user. */
+            /* SignUp user. */
             long usrId = userService.SingUpUser(loginName, clearPassword,
                 UserDetails);
 

@@ -26,16 +26,16 @@
         <AssociationConnector Association="Es.Udc.DotNet.practicamadModel.FK_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="Es.Udc.DotNet.practicamadModel.FK_ProductId" ManuallyRouted="false" />
         <AssociationConnector Association="Es.Udc.DotNet.practicamadModel.CreditCard_User" ManuallyRouted="true" >
-          <ConnectorPoint PointX="11.500000499999999" PointY="4.3744921875" />
-          <ConnectorPoint PointX="11.500000499999999" PointY="7.0669775654308236" />
-          <ConnectorPoint PointX="10.94306255445" PointY="7.0669775654308236" />
-          <ConnectorPoint PointX="10.94306255445" PointY="7.0503054513551309" />
-          <ConnectorPoint PointX="10.875" PointY="7.0503054513551309" />
+          <ConnectorPoint PointX="11.500000499999999" PointY="4.5667936197916665" />
+          <ConnectorPoint PointX="11.500000499999999" PointY="8.143378116667888" />
+          <ConnectorPoint PointX="11.270833583333333" PointY="8.143378116667888" />
+          <ConnectorPoint PointX="11.104166916666665" PointY="8.143378116667888" />
+          <ConnectorPoint PointX="10.875" PointY="8.143378116667888" />
         </AssociationConnector>
         <AssociationConnector Association="Es.Udc.DotNet.practicamadModel.Label_Comment" ManuallyRouted="false" />
         <InheritanceConnector EntityType="Es.Udc.DotNet.practicamadModel.Computer" />
         <InheritanceConnector EntityType="Es.Udc.DotNet.practicamadModel.Book" />
-        <AssociationConnector Association="Es.Udc.DotNet.practicamadModel.FK_DefaultCreditCardId" />
+        <AssociationConnector Association="Es.Udc.DotNet.practicamadModel.FK_DefaultCreditCardId1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

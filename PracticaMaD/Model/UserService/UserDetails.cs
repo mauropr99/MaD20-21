@@ -23,14 +23,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         #endregion
 
         public UserDetails(string name, string lastName,
-            string email, string languageName, string languageCountry, string address)
+            string email, string languageName, string languageCountry)
         {
             this.Name = name;
             this.Lastname = lastName;
             this.Email = email;
             this.LanguageName = languageName;
             this.LanguageCountry = languageCountry;
-            this.Address = address;
         }
 
         public override bool Equals(object obj)
@@ -42,8 +41,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                   && (this.Lastname == target.Lastname)
                   && (this.Email == target.Email)
                   && (this.LanguageName == target.LanguageName)
-                  && (this.LanguageCountry == target.LanguageCountry)
-                  && (this.Address == target.Address);
+                  && (this.LanguageCountry == target.LanguageCountry);
         }
     
         public override int GetHashCode()
@@ -60,8 +58,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                 "lastName = " + Lastname + " | " +
                 "email = " + Email + " | " +
                 "language = " + LanguageName + " | " +
-                "country = " + LanguageCountry + " | " +
-                "address = " + Address + " ]";
+                "country = " + LanguageCountry + " ]";
 
 
             return strUserDetails;

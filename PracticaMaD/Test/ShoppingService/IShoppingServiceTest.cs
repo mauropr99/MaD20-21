@@ -122,7 +122,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                 Language language = TestUtil.CreateExistentLanguage();
 
                 long userId = userService.SingUpUser(login, password,
-                       new UserDetails(name, lastName, email, language.name, language.country, address));
+                       new UserDetails(name, lastName, email, language.name, language.country));
                 User user = TestUtil.userDao.Find(userId);
                 CreditCard creditCard = TestUtil.CreateCreditCard(user);
 
@@ -151,7 +151,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                 };
 
                 var order =
-                    shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country, address), orderLineDetails,
+                    shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country), orderLineDetails,
                         address, creditCard, "Patatas asadas");
 
                 var foundOrder = TestUtil.orderDao.Find(order.id);
@@ -175,7 +175,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                 Language language = TestUtil.CreateExistentLanguage();
 
                 userService.SingUpUser(login, password,
-                new UserDetails(name, lastName, email, language.name, language.country, address));
+                new UserDetails(name, lastName, email, language.name, language.country));
                 CreditCard creditCard = new CreditCard
                 {
                     ownerName = "Name Surname",
@@ -208,7 +208,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                 };
 
                 var order =
-                    shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country, address), orderLineDetails,
+                    shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country), orderLineDetails,
                         address, creditCard, "Patatas asadas");
             }
         }
@@ -223,7 +223,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                 Language language = TestUtil.CreateExistentLanguage();
 
                 long userId = userService.SingUpUser(login, password,
-                       new UserDetails(name, lastName, email, language.name, language.country, address));
+                       new UserDetails(name, lastName, email, language.name, language.country));
                 User user = TestUtil.userDao.Find(userId);
                 CreditCard creditCard = TestUtil.CreateCreditCard(user);
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
@@ -243,10 +243,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                 };
 
                 var order =
-                    shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country, address), orderLineDetails,
+                    shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country), orderLineDetails,
                         address, creditCard, "Patatas asadas");
                 order =
-                    shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country, address), orderLineDetails,
+                    shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country), orderLineDetails,
                         address, creditCard, "Patatas asadas");
             }
         }
@@ -259,7 +259,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
 
             //Creating User...
             long userId = userService.SingUpUser(login, password,
-                   new UserDetails(name, lastName, email, language.name, language.country, address));
+                   new UserDetails(name, lastName, email, language.name, language.country));
             User user = TestUtil.userDao.Find(userId);
 
             //Creating CreditCard...
@@ -317,11 +317,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
             string firstDescription = "First order";
             string secondDescription = "Second order";
             var order =
-                shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country, address), orderLineDetails,
+                shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country), orderLineDetails,
                     address, creditCard, firstDescription);
 
             var order2 =
-                shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country, address), orderLineDetails,
+                shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country), orderLineDetails,
                     address, creditCard, secondDescription);
 
 
@@ -346,7 +346,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
 
             //Creating User...
             long userId = userService.SingUpUser(login, password,
-                   new UserDetails(name, lastName, email, language.name, language.country, address));
+                   new UserDetails(name, lastName, email, language.name, language.country));
             User user = TestUtil.userDao.Find(userId);
 
             //Creating CreditCard...
@@ -399,7 +399,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
             //Creating Orders...
             string firstDescription = "First order";
             var order =
-                shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country, address), orderLineDetails,
+                shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country), orderLineDetails,
                     address, creditCard, firstDescription);
 
             var orderLines = TestUtil.orderLineDao.FindByOrderId(order.id);

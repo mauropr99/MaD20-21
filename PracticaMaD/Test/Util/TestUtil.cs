@@ -53,10 +53,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
                 name = "usuario",
                 lastName = "dePrueba",
                 password = "passwd",
-                address = "A Coruña",
                 email = "user@user",
                 role = "user",
-                languageId = language.id
+                languageId = language.id,
+                favouriteCreditCard = null
             };
             userDao.Create(user);
 

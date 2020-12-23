@@ -170,11 +170,10 @@ CREATE TABLE User_Table (
 	name VARCHAR(64) NOT NULL,
 	lastName VARCHAR(64) NOT NULL,
 	password VARCHAR(64) NOT NULL,
-	address VARCHAR(64) NOT NULL,
 	email VARCHAR(64) NOT NULL,
 	languageId BIGINT NOT NULL,
 	role VARCHAR(30) NOT NULL CHECK(role IN ('admin','user')),
-	defaultCreditCardId bigint,
+	favouriteCreditCard bigint,
 
 
     CONSTRAINT [PK_User] PRIMARY KEY (id ASC),
@@ -182,7 +181,7 @@ CREATE TABLE User_Table (
 	CONSTRAINT [FK_LanguageId] FOREIGN KEY(languageId)
         REFERENCES Language (id) ON DELETE NO ACTION,
 
-	CONSTRAINT [FK_DefaultCreditCardId] FOREIGN KEY(defaultCreditCardId)
+	CONSTRAINT [FK_DefaultCreditCardId] FOREIGN KEY(favouriteCreditCard)
         REFERENCES CreditCard (id) ON DELETE NO ACTION
 ) 
 
@@ -289,52 +288,6 @@ PRINT N'Table Computers created.'
 GO
 PRINT N'Done'
 
-
-/* Desktop 
-
-CREATE TABLE Desktop (
-	id bigint NOT NULL, 
-	allInOne BIT NOT NULL,
-
-
-    CONSTRAINT [PK_Desktop] PRIMARY KEY (id ASC),
-
-	CONSTRAINT [FK_DesktopComputer] FOREIGN KEY(id)
-        REFERENCES Computers (id) ON DELETE CASCADE
-
-)
-
-
-CREATE NONCLUSTERED INDEX IX_DesktopIndexById 
-ON Desktop (id);
-
-PRINT N'Table Desktop created.'
-GO
-*/
-
-/* Laptop 
-
-CREATE TABLE Laptop (
-	id bigint NOT NULL, 
-	screenResolution VARCHAR(64),
-	screenInches SMALLINT,
-
-    CONSTRAINT [PK_Laptop] PRIMARY KEY (id ASC),
-
-	CONSTRAINT [FK_LaptopComputer] FOREIGN KEY(id)
-        REFERENCES Computers (id) ON DELETE CASCADE
-
-)
-
-
-CREATE NONCLUSTERED INDEX IX_LaptopIndexById 
-ON Laptop (id);
-
-PRINT N'Table Laptop created.'
-GO
-
-*/
-/* Book */
 
 CREATE TABLE Book (
 	id bigint NOT NULL, 

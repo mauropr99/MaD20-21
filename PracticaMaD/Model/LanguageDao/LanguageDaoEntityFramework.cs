@@ -88,7 +88,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao
             Language result =
                 (from u in users
                  where u.id == userId
-                 select u.Language).Include("Language").FirstOrDefault();
+                 select u.Language).FirstOrDefault();
 
 
             return result;

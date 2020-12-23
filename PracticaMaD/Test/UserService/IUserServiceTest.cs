@@ -92,7 +92,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
 
                 var id =
                     userService.SingUpUser(login, password,
-                        new UserDetails(name, lastName, email, language.name, language.country, address));
+                        new UserDetails(name, lastName, email, language.name, language.country));
 
                 var user = TestUtil.userDao.Find(id);
 
@@ -101,7 +101,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
                 Assert.AreEqual(name, user.name);
                 Assert.AreEqual(lastName, user.lastName);
                 Assert.AreEqual(email, user.email);
-                Assert.AreEqual(address, user.address);
                 Assert.AreEqual(language.name, user.Language.name);
                 Assert.AreEqual(role, user.role);
             }
@@ -116,10 +115,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
                 Language language = TestUtil.CreateExistentLanguage();
 
                 userService.SingUpUser(login, password,
-                         new UserDetails(name, lastName, email, language.name, language.country, address));
+                         new UserDetails(name, lastName, email, language.name, language.country));
 
                 userService.SingUpUser(login, password,
-                        new UserDetails(name, lastName, email, language.name, language.country, address));
+                        new UserDetails(name, lastName, email, language.name, language.country));
             }
         }
 
@@ -131,10 +130,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
                 Language language = TestUtil.CreateExistentLanguage();
 
                 var id = userService.SingUpUser(login, password,
-                         new UserDetails(name, lastName, email, language.name, language.country, address));
+                         new UserDetails(name, lastName, email, language.name, language.country));
 
                 var expected = new LoginResult(id, login, name, lastName,
-                   PasswordEncrypter.Crypt(password), language.name, language.country, email, address);
+                   PasswordEncrypter.Crypt(password), language.name, language.country, email);
 
                 var actual =
                     userService.Login(login,
@@ -159,7 +158,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
 
                 CreditCard createdCreditCard = userService.AddCreditCard(user.id, ownerName, creditType, creditCardNumber, cvv, expirationDate);
 
-                List<CreditCard> creditCards = TestUtil.creditCardDao.FindCreditCardsByUserLogin(user.login);
+                List<CreditCard> creditCards = TestUtil.creditCardDao.FindCreditCardsByUserId(user.id);
 
                 Assert.IsTrue(creditCards.Contains(createdCreditCard));
 

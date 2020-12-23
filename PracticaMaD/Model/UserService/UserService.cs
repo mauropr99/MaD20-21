@@ -55,7 +55,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             UserDetails userDetails =
                 new UserDetails(user.name,
                     user.lastName, user.email,
-                    language.name, language.country, user.address);
+                    language.name, language.country);
 
             return userDetails;
         }
@@ -89,7 +89,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             Language language = LanguageDao.FindByUserId(user.id);
 
             return new LoginResult(user.id,user.login, user.name,user.lastName,
-                storedPassword, language.name, language.country, user.email,user.address);
+                storedPassword, language.name, language.country, user.email);
         }
 
         /// <exception cref="DuplicateInstanceException"/>
@@ -123,7 +123,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                     lastName = userDetails.Lastname,
                     email = userDetails.Email,
                     Language = language,
-                    address = userDetails.Address,
                     role = "user"
                 };
 
@@ -142,7 +141,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             user.lastName = userDetails.Lastname;
             user.email = userDetails.Email;
             user.languageId = LanguageDao.FindByNameAndCountry(userDetails.LanguageName, userDetails.LanguageCountry).id;
-            user.address = userDetails.Address;
         }
 
         /// <exception cref="DuplicateCreditCardException"/>
@@ -153,7 +151,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
             User user = UserDao.Find(userId);
 
-            List<CreditCard> creditCards = CreditCardDao.FindCreditCardsByUserLogin(user.login);
+            List<CreditCard> creditCards = CreditCardDao.FindCreditCardsByUserId(userId);
 
             foreach (CreditCard creditCard in creditCards)
             {
@@ -169,10 +167,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             newCreditCard.creditCardNumber = creditCardNumber;
             newCreditCard.cvv = cvv;
             newCreditCard.expirationDate = expirationDate;
-            CreditCardDao.AddUser(user, newCreditCard.id);
-            
             CreditCardDao.Create(newCreditCard);
-
+            CreditCardDao.AddUser(user, newCreditCard.id);
 
             return newCreditCard;
         }
