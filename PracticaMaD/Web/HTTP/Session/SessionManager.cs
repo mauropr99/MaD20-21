@@ -104,7 +104,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
         /// <param name="context">Http Context includes request, response, etc.</param>
         /// <param name="loginName">Username</param>
         /// <param name="clearPassword">Password in clear text</param>
-        /// <param name="UserDetails">The user profile details.</param>
+        /// <param name="UserDetails">The user  details.</param>
         /// <exception cref="DuplicateInstanceException"/>
         public static void SignUpUser(HttpContext context,
             String loginName, String clearPassword,
@@ -227,14 +227,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
         }
 
         /// <summary>
-        /// Updates the user profile details.
+        /// Updates the user  details.
         /// </summary>
         /// <param name="context">The context.</param>
-        /// <param name="UserDetails">The user profile details.</param>
+        /// <param name="UserDetails">The user  details.</param>
         public static void UpdateUserDetails(HttpContext context,
             UserDetails UserDetails)
         {
-            /* Update user's profile details. */
+            /* Update user's  details. */
 
             UserSession userSession =
                 (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
@@ -253,7 +253,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
         }
 
         /// <summary>
-        /// Finds the user profile with the id stored in the session.
+        /// Finds the user  with the id stored in the session.
         /// </summary>
         /// <param name="context">The context.</param>
         /// <returns></returns>

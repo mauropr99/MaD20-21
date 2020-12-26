@@ -138,7 +138,7 @@
   <data name="lclPassword.Text" xml:space="preserve">
     <value>Password</value>
   </data>
-  <data name="lnkSignUp.Text1" xml:space="preserve">
+  <data name="lnkSignUp.Text" xml:space="preserve">
     <value>SignUp (user not SignUped)</value>
   </data>
   <data name="Page.Title" xml:space="preserve">

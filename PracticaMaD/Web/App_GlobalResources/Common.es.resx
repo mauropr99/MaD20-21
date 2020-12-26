@@ -132,4 +132,7 @@
   <data name="userId" xml:space="preserve">
     <value>Identificador de Usuario</value>
   </data>
+  <data name="searchButton" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
 </root>

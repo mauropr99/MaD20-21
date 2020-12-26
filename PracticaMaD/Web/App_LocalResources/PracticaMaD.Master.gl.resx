@@ -129,4 +129,13 @@
   <data name="lclHeader.Text" xml:space="preserve">
     <value>PracticaMaD: Aplicación Web MVC  con .NET</value>
   </data>
+  <data name="lnkAuthenticate.Text" xml:space="preserve">
+    <value>Autenticación</value>
+  </data>
+  <data name="lnkLogout.Text" xml:space="preserve">
+    <value>Saír</value>
+  </data>
+  <data name="lnkUpdate.Text" xml:space="preserve">
+    <value>Actualizar información de usuario</value>
+  </data>
 </root>

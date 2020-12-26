@@ -18,7 +18,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
         protected override void InitializeCulture()
         {
             /* If the user had selected a especific language (from an
-             * application option of from a stored profile) the Web application
+             * application option of from a stored ) the Web application
              * will use the culture selected by the user. Otherwise, the
              * cultural preferences established in the Web browser will be
              * used.

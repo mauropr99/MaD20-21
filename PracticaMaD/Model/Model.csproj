@@ -186,6 +186,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Sql\SqlServerPopulateDatabas.sql" />
     <Content Include="Sql\SqlServerCreateDatabase.sql" />
     <Content Include="Sql\SqlServerCreateTables.sql" />
   </ItemGroup>

@@ -5,11 +5,13 @@ using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Log;
 using System;
 using System.Globalization;
+using System.Data.Entity.Validation;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 {
     public partial class SignUp : SpecificCulturePage
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
             lblLoginError.Visible = false;
@@ -92,7 +94,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         }
 
         /// <summary>
-        /// Handles the Click event of the btnRegister control.
+        /// Handles the Click event of the btnSignUp control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance
@@ -117,6 +119,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 catch (DuplicateInstanceException)
                 {
                     lblLoginError.Visible = true;
+                }
+                catch (DbEntityValidationException)
+                {
+                    throw;
                 }
             }
         }
