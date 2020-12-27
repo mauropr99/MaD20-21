@@ -6,6 +6,9 @@ using Es.Udc.DotNet.ModelUtil.IoC;
 using Ninject;
 using System.Configuration;
 using System.Data.Entity;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC
 {
@@ -27,13 +30,25 @@ namespace Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC
             kernel.Bind<ILanguageDao>().
                 To<LanguageDaoEntityFramework>();
 
-            /* CredirCardDao */
+            /* ProductDao */
+            kernel.Bind<ICategoryDao>().
+                To<CategoryDaoEntityFramework>();
+
+            /* CreditCardDao */
             kernel.Bind<ICreditCardDao>().
                 To<CreditCardDaoEntityFramework>();
+
+            /* ProductDao */
+            kernel.Bind<IProductDao>().
+                To<ProductDaoEntityFramework>();
 
             /* UserService */
             kernel.Bind<IUserService>().
                 To<UserService>();
+
+            /* ProductService */
+            kernel.Bind<IProductService>().
+                To<ProductService>();
 
             /* DbContext */
             string connectionString =

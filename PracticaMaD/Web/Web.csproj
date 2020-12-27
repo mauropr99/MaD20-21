@@ -90,6 +90,7 @@
     <Content Include="Global.asax" />
     <Content Include="Img\PracticaMaD.ico" />
     <Content Include="Pages\MainPage.aspx" />
+    <Content Include="Pages\Product\Catalog.aspx" />
     <Content Include="Pages\UserExists.aspx" />
     <Content Include="Pages\User\Authentication.aspx" />
     <Content Include="Pages\User\ChangePassword.aspx" />
@@ -133,6 +134,13 @@
     </Compile>
     <Compile Include="Pages\MainPage.aspx.designer.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Product\Catalog.aspx.cs">
+      <DependentUpon>Catalog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Product\Catalog.aspx.designer.cs">
+      <DependentUpon>Catalog.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\UserExists.aspx.cs">
       <DependentUpon>UserExists.aspx</DependentUpon>
@@ -184,10 +192,19 @@
       <DependentUpon>PracticaMaD.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="PracticaMaD.Master" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -279,6 +296,11 @@
     <Content Include="Pages\User\App_LocalResources\ChangePassword.aspx.es.resx" />
     <Content Include="Pages\User\App_LocalResources\ChangePassword.aspx.gl.resx" />
     <Content Include="Pages\User\App_LocalResources\ChangePassword.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\Catalog.aspx.es.resx" />
+    <Content Include="Pages\Product\App_LocalResources\Catalog.aspx.gl.resx" />
+    <Content Include="Pages\Product\App_LocalResources\Catalog.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
