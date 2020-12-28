@@ -11,6 +11,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            int startIndex, count = 5;
+
+            lnkPrevious.Visible = false;
+            lnkNext.Visible = false;
+
+            /* Get Start Index */
+            try
+            {
+                startIndex = Int32.Parse(Request.Params.Get("startIndex"));
+            }
+            catch (ArgumentNullException)
+            {
+                startIndex = 0;
+            }
+
             //1 Obtener contexto de inyección de dependencias
 
             IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
@@ -38,39 +53,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 
             this.DropDownCategoryList.Visible = true;
 
-
-
-
-
-        }
-
-        protected void btnViewCatalog_Click(object sender, EventArgs e)
-        {
-            int startIndex, count = 5;
-
-            lnkPrevious.Visible = false;
-            lnkNext.Visible = false;
-
-            /* Get Start Index */
-            try
-            {
-                startIndex = Int32.Parse(Request.Params.Get("startIndex"));
-            }
-            catch (ArgumentNullException)
-            {
-                startIndex = 0;
-            }
-
-
-
-            //1 Obtener contexto de inyección de dependencias
-
-            IIoCManager iocManager = (IIoCManager) Application["managerIoC"];
-
-            //2 Obtener el servicio
-
-            IProductService productService = iocManager.Resolve<IProductService>();
-
             //3 Llamar al caso de uso (lectura de parámetros y actualización de la vista)
             ProductBlock productBlock;
 
@@ -81,7 +63,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             if (DropDownCategoryList.SelectedIndex == 0)
             {
                 productBlock = productService.ViewCatalog(productName, startIndex, count);
-            } else
+            }
+            else
             {
                 productBlock = productService.ViewCatalog(productName, DropDownCategoryList.SelectedValue, startIndex, count);
             }
@@ -95,9 +78,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             if ((startIndex - count) >= 0)
             {
                 String url =
-                    Settings.Default.PracticaMaD_applicationURL +
-                    "/Pages/Product/Catalog.aspx" +
-                    "&startIndex=" + (startIndex - count) + "&count=" +
+                    "/Pages/Product/Catalog.aspx" + "?startIndex=" + (startIndex - count) + "&count=" +
                     count;
 
                 this.lnkPrevious.NavigateUrl =
@@ -109,15 +90,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             if (productBlock.ExistMoreProducts)
             {
                 String url =
-                    Settings.Default.PracticaMaD_applicationURL +
-                    "/Pages/Product/Catalog.aspx" +
-                    "&startIndex=" + (startIndex + count) + "&count=" +
+                    "/Pages/Product/Catalog.aspx" + "?startIndex=" + (startIndex + count) + "&count=" +
                     count;
 
                 this.lnkNext.NavigateUrl =
                     Response.ApplyAppPathModifier(url);
                 this.lnkNext.Visible = true;
             }
+
+
+        }
+
+        protected void btnViewCatalog_Click(object sender, EventArgs e)
+        {
+
+
+
+
         }
 
 

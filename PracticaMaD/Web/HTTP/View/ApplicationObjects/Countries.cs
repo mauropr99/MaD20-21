@@ -32,19 +32,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects
             #region set the countries
 
             countries_es.Add(new ListItem("España", "ES"));
-            countries_es.Add(new ListItem("Estados Unidos", "US"));
-            countries_es.Add(new ListItem("Reino Unido", "GB"));
 
-            countries_en.Add(new ListItem("Spain", "ES"));
-            countries_en.Add(new ListItem("United Kingdom", "GB"));
             countries_en.Add(new ListItem("United States", "US"));
 
             countries_gl.Add(new ListItem("España", "ES"));
-            countries_gl.Add(new ListItem("Estados Unidos", "US"));
-            countries_gl.Add(new ListItem("Reino Unido", "GB"));
+
 
             countrieCodes.Add("ES");
-            countrieCodes.Add("GB");
             countrieCodes.Add("US");
 
             countries.Add("es", countries_es);

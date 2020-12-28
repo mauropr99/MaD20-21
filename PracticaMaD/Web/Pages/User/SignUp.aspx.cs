@@ -26,7 +26,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
                 /* Combo box initialization */
                 UpdateComboLanguage(defaultLanguage);
-                UpdateComboCountry(defaultLanguage, defaultCountry);
             }
         }
 
@@ -79,19 +78,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             this.comboLanguage.SelectedValue = selectedLanguage;
         }
 
-        /// <summary>
-        /// Loads the countries in the comboBox in the *selectedLanguage*.
-        /// Also, the *selectedCountry* will appear selected in the
-        /// ComboBox
-        /// </summary>
-        private void UpdateComboCountry(String selectedLanguage, String selectedCountry)
-        {
-            this.comboCountry.DataSource = Countries.GetCountries(selectedLanguage);
-            this.comboCountry.DataTextField = "text";
-            this.comboCountry.DataValueField = "value";
-            this.comboCountry.DataBind();
-            this.comboCountry.SelectedValue = selectedCountry;
-        }
 
         /// <summary>
         /// Handles the Click event of the btnSignUp control.
@@ -107,8 +93,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 {
                     UserDetails userDetailsVO =
                         new UserDetails(txtFirstName.Text, txtSurname.Text,
-                            txtEmail.Text, comboLanguage.SelectedValue,
-                            comboCountry.SelectedValue);
+                            txtEmail.Text, comboLanguage.SelectedValue.Split(' ')[0],
+                            comboLanguage.SelectedValue.Split(' ')[0]);
 
                     SessionManager.SignUpUser(Context, txtLogin.Text,
                         txtPassword.Text, userDetailsVO);
@@ -127,13 +113,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             }
         }
 
+
         protected void ComboLanguageSelectedIndexChanged(object sender, EventArgs e)
         {
             /* After a language change, the countries are printed in the
              * correct language.
              */
-            this.UpdateComboCountry(comboLanguage.SelectedValue,
-                comboCountry.SelectedValue);
+            this.UpdateComboLanguage(comboLanguage.SelectedValue);
         }
     }
 }

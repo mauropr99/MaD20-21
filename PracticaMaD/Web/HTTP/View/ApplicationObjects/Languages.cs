@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Globalization;
 using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects
@@ -27,22 +28,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects
         static Languages()
         {
             #region set the languages
+            
+            languages_es.Add(new ListItem("Español-España", "es ES"));
+            languages_es.Add(new ListItem("Gallego-España", "gl ES"));
+            languages_es.Add(new ListItem("Inglés-Estados unidos", "en US"));
 
-            languages_es.Add(new ListItem("Español", "es"));
-            languages_es.Add(new ListItem("Gallego", "gl"));
-            languages_es.Add(new ListItem("Inglés", "en"));
+            languages_en.Add(new ListItem("English-United State", "en US"));
+            languages_en.Add(new ListItem("Galician-Spain", "gl ES"));
+            languages_en.Add(new ListItem("Spanish-Spain", "es ES"));
 
-            languages_en.Add(new ListItem("English", "en"));
-            languages_en.Add(new ListItem("Galician", "gl"));
-            languages_en.Add(new ListItem("Spanish", "es"));
+            languages_gl.Add(new ListItem("Español-España", "es ES"));
+            languages_gl.Add(new ListItem("Galego-España", "gl ES"));
+            languages_gl.Add(new ListItem("Inglés-Estados Unidos", "en US"));
 
-            languages_gl.Add(new ListItem("Español", "es"));
-            languages_gl.Add(new ListItem("Galego", "gl"));
-            languages_gl.Add(new ListItem("Inglés", "en"));
-
-            languages.Add("es", languages_es);
-            languages.Add("en", languages_en);
-            languages.Add("gl", languages_gl);
+            languages.Add("es ES", languages_es);
+            languages.Add("en US", languages_en);
+            languages.Add("gl ES", languages_gl);
 
             #endregion
         }
@@ -62,7 +63,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects
             }
             else
             {
-                return (ArrayList)languages["en"];
+                return (ArrayList)languages["en US"];
             }
         }
     }
