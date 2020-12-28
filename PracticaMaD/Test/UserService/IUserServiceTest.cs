@@ -185,5 +185,41 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
 
             }
         }
+
+        [TestMethod()]
+        public void FindCreditCardsByUserId()
+        {
+            using (var scope = new TransactionScope())
+            {
+                Language language = TestUtil.CreateExistentLanguage();
+                User user = TestUtil.CreateExistentUser(language);
+                string ownerName = "Name Surname";
+                string creditType = "debit";
+                string creditCardNumber1 = "1234567891234567";
+                string creditCardNumber2 = "2234567891234567";
+                string creditCardNumber3 = "3234567891234567";
+                string creditCardNumber4 = "4234567891234567";
+                short cvv = 123;
+                DateTime expirationDate = DateTime.Now.AddYears(1);
+
+                CreditCard creditCard1 = userService.AddCreditCard(user.id, ownerName, creditType, creditCardNumber1, cvv, expirationDate);
+                Assert.AreEqual(1, userService.FindCreditCardsByUserId(user.id).Count);
+                Assert.AreEqual(creditCard1.id, userService.FindCreditCardsByUserId(user.id)[0].CreditCardId);
+
+                CreditCard creditCard2 = userService.AddCreditCard(user.id, ownerName, creditType, creditCardNumber2, cvv, expirationDate);
+                Assert.AreEqual(2, userService.FindCreditCardsByUserId(user.id).Count);
+                Assert.AreEqual(creditCard2.id, userService.FindCreditCardsByUserId(user.id)[1].CreditCardId);
+
+                CreditCard creditCard3 = userService.AddCreditCard(user.id, ownerName, creditType, creditCardNumber3, cvv, expirationDate);
+                Assert.AreEqual(3, userService.FindCreditCardsByUserId(user.id).Count);
+                Assert.AreEqual(creditCard3.id, userService.FindCreditCardsByUserId(user.id)[2].CreditCardId);
+
+                CreditCard creditCard4 = userService.AddCreditCard(user.id, ownerName, creditType, creditCardNumber4, cvv, expirationDate);
+                Assert.AreEqual(4, userService.FindCreditCardsByUserId(user.id).Count);
+                Assert.AreEqual(creditCard4.id, userService.FindCreditCardsByUserId(user.id)[3].CreditCardId);
+
+            }
+        }
+
     }
 }
