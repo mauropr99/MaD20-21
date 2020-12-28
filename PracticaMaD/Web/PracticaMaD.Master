@@ -24,14 +24,14 @@
 
                 <ul>
                     <li>
-                        <asp:HyperLink ID="HyperLinkCatalog" runat="server"
-                        NavigateUrl="~/Pages/Product/Catalog.aspx"
-                        meta:resourcekey="lnkCatalog" />
-                    </li>
-                    <li>
                         <asp:HyperLink ID="HyperLinkAuth" runat="server"
                         NavigateUrl="~/Pages/User/Authentication.aspx"
                         meta:resourcekey="lnkAuthenticate" />
+                    </li>
+                    <li>
+                        <asp:HyperLink ID="HyperLinkCatalog" runat="server"
+                        NavigateUrl="~/Pages/Product/Catalog.aspx"
+                        meta:resourcekey="lnkCatalog" />
                     </li>
                     <li>
                         <asp:HyperLink ID="HyperLinkUpdate" runat="server"

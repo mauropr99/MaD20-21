@@ -17,6 +17,7 @@
  
 USE practicamad
 
+
 /* LANGUAGE */
 INSERT INTO Language (name, country) VALUES ('es', 'ES');
 INSERT INTO Language (name, country) VALUES ('gl', 'ES');
@@ -24,8 +25,47 @@ INSERT INTO Language (name, country) VALUES ('en', 'US');
 INSERT INTO Language (name, country) VALUES ('en', 'GB');
 
 /* CATEGORY */
+
 INSERT INTO Category (name) VALUES ('Books');
 INSERT INTO Category (name) VALUES ('Computers');
 
 /* PRODUCT */
+INSERT INTO Product
+(product_name
+,price
+,releaseDate
+,stock
+,categoryId)
+VALUES
+('Product1'
+,10.3
+, '20190618 10:34:09 AM'
+, 20
+,1)
+
+INSERT INTO Product
+(product_name
+,price
+,releaseDate
+,stock
+,categoryId)
+VALUES
+('Product2'
+,10.3
+, '20201118 16:28:55 PM'
+, 20
+,2)
+
+INSERT INTO Product
+(product_name
+,price
+,releaseDate
+,stock
+,categoryId)
+VALUES
+('Product3'
+,847.23
+, '20201118 16:28:55 PM'
+, 80
+,2)
 

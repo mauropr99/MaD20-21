@@ -7,7 +7,7 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Web.Pages.Product {
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product {
     
     
     public partial class Catalog {

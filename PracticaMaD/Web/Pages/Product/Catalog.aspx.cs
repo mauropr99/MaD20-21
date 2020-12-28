@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using Web.Properties;
 
-namespace Web.Pages.Product
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 {
     public partial class Catalog : System.Web.UI.Page
     {
@@ -22,15 +22,18 @@ namespace Web.Pages.Product
             //Llamar a los casos de uso
             List<Category> categoryList = productService.ViewAllCategories();
 
-            //Cargamos las categorías en la DropDownList
-            this.DropDownCategoryList.Items.Clear();
-            
-            this.DropDownCategoryList.Items.Insert(0, "All categories");
-
-            foreach (Category category in categoryList)
+            //Cargamos las categorías en la DropDownList la primera vez que carguemos la página
+            if (DropDownCategoryList.Items.Count == 0)
             {
-                this.DropDownCategoryList.Items.Add(category.name);
-            }           
+                this.DropDownCategoryList.Items.Clear();
+
+                this.DropDownCategoryList.Items.Insert(0, "All categories");
+
+                foreach (Category category in categoryList)
+                {
+                    this.DropDownCategoryList.Items.Add(category.name);
+                }
+            }
             
 
             this.DropDownCategoryList.Visible = true;
@@ -82,6 +85,7 @@ namespace Web.Pages.Product
             {
                 productBlock = productService.ViewCatalog(productName, DropDownCategoryList.SelectedValue, startIndex, count);
             }
+            this.DropDownCategoryList.SelectedIndex = DropDownCategoryList.SelectedIndex;
 
 
             //Cargamos los resultados en la lista de productos

@@ -132,6 +132,9 @@
   <data name="lnkAuthenticate.Text" xml:space="preserve">
     <value>Authentication</value>
   </data>
+  <data name="lnkCatalog.Text" xml:space="preserve">
+    <value>View catalog</value>
+  </data>
   <data name="lnkLogout.Text" xml:space="preserve">
     <value>Logout</value>
   </data>
