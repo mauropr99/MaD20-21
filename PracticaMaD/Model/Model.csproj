@@ -167,6 +167,7 @@
     </Compile>
     <Compile Include="UserDao\UserDaoEntityFramework.cs" />
     <Compile Include="UserDao\IUserDao.cs" />
+    <Compile Include="UserService\CreditCardDetails.cs" />
     <Compile Include="UserService\Exceptions\DuplicatedCreditCardException.cs" />
     <Compile Include="UserService\Exceptions\IncorrectPasswordException.cs" />
     <Compile Include="UserService\IUserService.cs" />
