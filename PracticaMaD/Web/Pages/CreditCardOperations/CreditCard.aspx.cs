@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using System.Globalization;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
 {
@@ -40,7 +41,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
             DateTime expirationDate = DateTime.Parse(expirationDateString, cultureInfo);
 
 
-            productService.AddCreditCard(1, creditCardOwner, creditCardType, creditCardNumber, short.Parse(creditCardCvv), expirationDate);
+            UserSession userSession =
+                (UserSession)Context.Session[SessionManager.USER_SESSION_ATTRIBUTE];
+
+            productService.AddCreditCard(userSession.UserId, creditCardOwner, creditCardType, creditCardNumber, short.Parse(creditCardCvv), expirationDate);
         }
     }
 }

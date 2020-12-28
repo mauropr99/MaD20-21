@@ -130,7 +130,7 @@
     <value>Number</value>
   </data>
   <data name="creditCardOwner" xml:space="preserve">
-    <value>Credit card owner</value>
+    <value>Owner</value>
   </data>
   <data name="creditCardType" xml:space="preserve">
     <value>Credit card type</value>

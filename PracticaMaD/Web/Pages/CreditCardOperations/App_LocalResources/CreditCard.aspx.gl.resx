@@ -130,7 +130,7 @@
     <value>Número</value>
   </data>
   <data name="creditCardOwner" xml:space="preserve">
-    <value>Titular da tarxeta</value>
+    <value>Titular</value>
   </data>
   <data name="creditCardType" xml:space="preserve">
     <value>Tipo de tarxeta</value>
