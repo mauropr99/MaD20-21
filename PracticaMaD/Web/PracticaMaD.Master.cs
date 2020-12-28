@@ -19,7 +19,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
                     HyperLinkUpdate.Visible = false;
                 if (HyperLinkLogout != null)
                     HyperLinkLogout.Visible = false;
-                
+                if (HyperLinkAddCreditCard != null)
+                    HyperLinkAddCreditCard.Visible = false;
+
             }
             else
             {

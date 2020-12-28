@@ -39,6 +39,11 @@
                         meta:resourcekey="lnkUpdate" />
                     </li>
                     <li>
+                        <asp:HyperLink ID="HyperLinkAddCreditCard" runat="server"
+                        NavigateUrl="~/Pages/CreditCardOperations/CreditCard.aspx"
+                        meta:resourcekey="lnkAddCreditCard" />
+                    </li>
+                    <li>
                         <asp:HyperLink ID="HyperLinkLogout" runat="server"
                         NavigateUrl="~/Pages/User/Logout.aspx"
                         meta:resourcekey="lnkLogout" />

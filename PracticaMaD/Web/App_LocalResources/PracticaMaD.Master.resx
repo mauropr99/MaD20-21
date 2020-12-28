@@ -129,6 +129,9 @@
   <data name="lclHeader.Text" xml:space="preserve">
     <value>PracticaMaD: MVC Application with .NET</value>
   </data>
+  <data name="lnkAddCreditCard.Text" xml:space="preserve">
+    <value>Add credit card</value>
+  </data>
   <data name="lnkAuthenticate.Text" xml:space="preserve">
     <value>Authentication</value>
   </data>
