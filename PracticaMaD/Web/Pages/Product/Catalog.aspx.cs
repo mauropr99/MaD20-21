@@ -3,15 +3,18 @@ using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
 using System;
 using System.Collections.Generic;
-using Web.Properties;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 {
     public partial class Catalog : System.Web.UI.Page
     {
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             int startIndex, count = 5;
+            string categoryName = Request.Params.Get("categoryName");
+            if (categoryName == null) categoryName = "All categories";
+            ProductBlock productBlock;
 
             lnkPrevious.Visible = false;
             lnkNext.Visible = false;
@@ -54,21 +57,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             this.DropDownCategoryList.Visible = true;
 
             //3 Llamar al caso de uso (lectura de parámetros y actualización de la vista)
-            ProductBlock productBlock;
-
 
             String productName = txtProductName.Text;
 
-
-            if (DropDownCategoryList.SelectedIndex == 0)
+            if (categoryName == "All categories")
             {
                 productBlock = productService.ViewCatalog(productName, startIndex, count);
             }
             else
             {
-                productBlock = productService.ViewCatalog(productName, DropDownCategoryList.SelectedValue, startIndex, count);
+                productBlock = productService.ViewCatalog(productName, categoryName, startIndex, count);
+
             }
-            this.DropDownCategoryList.SelectedIndex = DropDownCategoryList.SelectedIndex;
 
 
             //Cargamos los resultados en la lista de productos
@@ -79,7 +79,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             {
                 String url =
                     "/Pages/Product/Catalog.aspx" + "?startIndex=" + (startIndex - count) + "&count=" +
-                    count;
+                    count + "&categoryName=" + categoryName;
 
                 this.lnkPrevious.NavigateUrl =
                     Response.ApplyAppPathModifier(url);
@@ -91,7 +91,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             {
                 String url =
                     "/Pages/Product/Catalog.aspx" + "?startIndex=" + (startIndex + count) + "&count=" +
-                    count;
+                    count + "&categoryName=" + categoryName;
 
                 this.lnkNext.NavigateUrl =
                     Response.ApplyAppPathModifier(url);
@@ -101,30 +101,50 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 
         }
 
-        protected void BtnViewCatalog_Click(object sender, EventArgs e)
-        {
-
-
-
-
-        }
-
-
         protected void LoadCatalog(ProductBlock productBlock)
         {
             //Cargamos los datos en el grid
-            this.GridViewCatalog.DataSource = productBlock.Products;
+            this.GridViewCatalog.DataSource = productBlock.Products; 
 
             this.GridViewCatalog.DataBind();
-
-
         }
 
-        
 
-        protected void ListProducts_SelectedIndexChanged(object sender, EventArgs e)
+        protected void btnViewCatalog_Click(object sender, EventArgs e)
         {
+            int startIndex=0, count = 5;
+            ProductBlock productBlock;
+            IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
+            IProductService productService = iocManager.Resolve<IProductService>();
 
+            String productName = txtProductName.Text;
+
+            if (DropDownCategoryList.SelectedValue == "All categories")
+            {
+                productBlock = productService.ViewCatalog(productName, startIndex, count);
+            }
+            else
+            {
+                productBlock = productService.ViewCatalog(productName, DropDownCategoryList.SelectedValue, startIndex, count);
+
+            }
+
+            LoadCatalog(productBlock);
+
+            /* "Next" link */
+            if (productBlock.ExistMoreProducts)
+            {
+                String url =
+                    "/Pages/Product/Catalog.aspx" + "?startIndex=" + (startIndex + count) + "&count=" +
+                    count + "&categoryName=" + DropDownCategoryList.SelectedValue;
+
+                this.lnkNext.NavigateUrl =
+                    Response.ApplyAppPathModifier(url);
+                this.lnkNext.Visible = true;
+                this.lnkPrevious.Visible = false;
+
+            }
         }
+
     }
 }

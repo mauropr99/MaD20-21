@@ -94,7 +94,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                     UserDetails userDetailsVO =
                         new UserDetails(txtFirstName.Text, txtSurname.Text,
                             txtEmail.Text, comboLanguage.SelectedValue.Split(' ')[0],
-                            comboLanguage.SelectedValue.Split(' ')[0]);
+                            comboLanguage.SelectedValue.Split(' ')[1]);
 
                     SessionManager.SignUpUser(Context, txtLogin.Text,
                         txtPassword.Text, userDetailsVO);

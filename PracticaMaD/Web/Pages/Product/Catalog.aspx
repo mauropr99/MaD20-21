@@ -15,7 +15,6 @@
             <br />
             <br />
             <br />
-            <br />
             <asp:GridView ID="GridViewCatalog"  runat="server" CellPadding="4" ForeColor="#333333" GridLines="None"
                 AutoGenerateColumns="False" >
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />

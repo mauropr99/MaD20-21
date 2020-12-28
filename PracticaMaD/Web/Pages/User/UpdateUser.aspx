@@ -36,11 +36,6 @@
                     Width="100px" onselectedindexchanged="ComboLanguageSelectedIndexChanged">
                     </asp:DropDownList></span>
             </div>
-            <div class="field">
-                <span class="label"><asp:Localize ID="lclCountry" runat="server" meta:resourcekey="lclCountry" /></span><span class="entry">
-                    <asp:DropDownList ID="comboCountry" runat="server" Width="100px">
-                    </asp:DropDownList></span>
-            </div>
             <div class="button">
                 <asp:Button ID="btnUpdate" runat="server" OnClick="BtnUpdateClick" meta:resourcekey="btnUpdate"/>
             </div>
