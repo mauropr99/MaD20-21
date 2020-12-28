@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="addCreditCard" xml:space="preserve">
-    <value>Add credit card</value>
+    <value>Add</value>
   </data>
   <data name="credit" xml:space="preserve">
     <value>Credit</value>
@@ -133,13 +133,13 @@
     <value>Owner</value>
   </data>
   <data name="creditCardType" xml:space="preserve">
-    <value>Credit card type</value>
+    <value>Type</value>
   </data>
   <data name="debit" xml:space="preserve">
     <value>Debit</value>
   </data>
   <data name="expirationDate" xml:space="preserve">
-    <value>Expiration date (mm/dd/yyyy)</value>
+    <value>Expiration date (MM/dd/yyyy)</value>
   </data>
   <data name="validationDateExpression" xml:space="preserve">
     <value>^[0-1m]{1}[0-9m]{1}/[0-3m]{1}[0-9m]{1}/[0-9y]{4}$</value>

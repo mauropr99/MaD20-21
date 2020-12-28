@@ -7,11 +7,11 @@
         <asp:GridView ID="GridViewCreditCards" runat="server" AutoGenerateColumns="False" CellPadding="8" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridViewCreditCards_SelectedIndexChanged">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:BoundField DataField="OwnerName" HeaderText="Titular" />
-                <asp:BoundField DataField="AnonymizedCreditCardNumber" HeaderText="Número" />
-                <asp:BoundField DataField="CreditCardType" HeaderText="Tipo" />
-                <asp:BoundField DataField="ExpirationDate" HeaderText="Fecha de expiracion" />
-                <asp:TemplateField HeaderText="Defecto">
+                <asp:BoundField DataField="OwnerName" HeaderText="<%$ Resources: , creditCardOwner %>" />
+                <asp:BoundField DataField="AnonymizedCreditCardNumber" HeaderText="<%$ Resources: , creditCardNumber %>" />
+                <asp:BoundField DataField="CreditCardType" HeaderText="<%$ Resources: , creditCardType %>" />
+                <asp:BoundField DataField="ExpirationDate" HeaderText="<%$ Resources: , creditCardExpirationDate %>" />
+                <asp:TemplateField HeaderText="<%$ Resources: , isDefaultCreditCard %>">
                 <ItemTemplate>
                     <asp:CheckBox ID="chkDefault" runat="server"/>
                 </ItemTemplate>
@@ -29,7 +29,7 @@
             <SortedDescendingHeaderStyle BackColor="#4870BE" />
         </asp:GridView>
         <br />
-        <asp:Button ID="btnAddNewCreditCard" runat="server" Text="Add new credit card" OnClick="btnAddNewCreditCard_Click" />
+        <asp:Button ID="btnAddNewCreditCard" runat="server" Text="<%$ Resources: , btnAddCreditCard %>" OnClick="btnAddNewCreditCard_Click" />
         <br />
         <br />
     </form>

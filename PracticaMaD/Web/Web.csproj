@@ -89,6 +89,8 @@
     <Content Include="Css\PracticaMaD.Styles.css" />
     <Content Include="Global.asax" />
     <Content Include="Img\PracticaMaD.ico" />
+    <Content Include="Pages\CreditCardOperations\CreditCardAdd.aspx" />
+    <Content Include="Pages\CreditCardOperations\CreditCardView.aspx" />
     <Content Include="Pages\MainPage.aspx" />
     <Content Include="Pages\Product\Catalog.aspx" />
     <Content Include="Pages\UserExists.aspx" />
@@ -127,6 +129,20 @@
     <Compile Include="HTTP\Util\loC\loCManagerNinject.cs" />
     <Compile Include="HTTP\View\ApplicationObjects\Languages.cs" />
     <Compile Include="HTTP\View\ApplicationObjects\Locale.cs" />
+    <Compile Include="Pages\CreditCardOperations\CreditCardAdd.aspx.cs">
+      <DependentUpon>CreditCardAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\CreditCardOperations\CreditCardAdd.aspx.designer.cs">
+      <DependentUpon>CreditCardAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CreditCardOperations\CreditCardView.aspx.cs">
+      <DependentUpon>CreditCardView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\CreditCardOperations\CreditCardView.aspx.designer.cs">
+      <DependentUpon>CreditCardView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MainPage.aspx.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -300,6 +316,20 @@
     <Content Include="Pages\Product\App_LocalResources\Catalog.aspx.es.resx" />
     <Content Include="Pages\Product\App_LocalResources\Catalog.aspx.gl.resx" />
     <Content Include="Pages\Product\App_LocalResources\Catalog.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\CreditCardOperations\App_LocalResources\CreditCardAdd.aspx.es.resx" />
+    <Content Include="Pages\CreditCardOperations\App_LocalResources\CreditCardAdd.aspx.gl.resx" />
+    <Content Include="Pages\CreditCardOperations\App_LocalResources\CreditCardAdd.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\CreditCardOperations\App_LocalResources\CreditCardView.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\CreditCardOperations\App_LocalResources\CreditCardView.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\CreditCardOperations\App_LocalResources\CreditCardView.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
