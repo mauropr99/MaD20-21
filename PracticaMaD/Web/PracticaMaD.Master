@@ -40,8 +40,13 @@
                     </li>
                     <li>
                         <asp:HyperLink ID="HyperLinkAddCreditCard" runat="server"
-                        NavigateUrl="~/Pages/CreditCardOperations/CreditCard.aspx"
+                        NavigateUrl="~/Pages/CreditCardOperations/CreditCardAdd.aspx"
                         meta:resourcekey="lnkAddCreditCard" />
+                    </li>
+                    <li>
+                        <asp:HyperLink ID="HyperLinkViewCreditCards" runat="server"
+                        NavigateUrl="~/Pages/CreditCardOperations/CreditCardView.aspx"
+                        meta:resourcekey="lnkViewCreditCards" />
                     </li>
                     <li>
                         <asp:HyperLink ID="HyperLinkLogout" runat="server"

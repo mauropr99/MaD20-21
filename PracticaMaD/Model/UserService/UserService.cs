@@ -206,6 +206,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
             return true;
         }
+
+        public List<CreditCardDetails> FindCreditCardsByUserId(long userId)
+        {
+            User user = UserDao.Find(userId);
+            List<CreditCard> creditCards = CreditCardDao.FindCreditCardsByUserId(userId);
+
+            return CreditCardDetails.fromCreditCardToCreditCardDetails(creditCards);
+        }
+
+
         #endregion IUserService Members
     }
 }

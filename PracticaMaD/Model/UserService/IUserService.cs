@@ -1,6 +1,7 @@
 ﻿using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using System;
+using System.Collections.Generic;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 {
@@ -30,6 +31,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         [Transactional]
         CreditCard AddCreditCard(long userId, string ownerName, string creditType,
             string creditCardNumber, short cvv, DateTime expirationDate);
+
+        [Transactional]
+        List<CreditCardDetails> FindCreditCardsByUserId(long userId);
 
         bool UserExists(string login);
     }

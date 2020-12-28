@@ -101,7 +101,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 
         }
 
-        protected void btnViewCatalog_Click(object sender, EventArgs e)
+        protected void BtnViewCatalog_Click(object sender, EventArgs e)
         {
 
 

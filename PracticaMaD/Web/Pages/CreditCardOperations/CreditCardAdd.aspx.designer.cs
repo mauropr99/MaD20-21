@@ -10,7 +10,7 @@
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations {
     
     
-    public partial class CreditCard {
+    public partial class CreditCardAdd {
         
         /// <summary>
         /// Control form1.
@@ -119,32 +119,5 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddCreditCard;
-        
-        /// <summary>
-        /// Control GridCreditCards.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridCreditCards;
-        
-        /// <summary>
-        /// Control lnkPrevious.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkPrevious;
-        
-        /// <summary>
-        /// Control lnkNext.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkNext;
     }
 }

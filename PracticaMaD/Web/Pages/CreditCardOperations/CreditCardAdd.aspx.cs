@@ -11,7 +11,7 @@ using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
 {
-    public partial class CreditCard : System.Web.UI.Page
+    public partial class CreditCardAdd : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -46,5 +46,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
 
             productService.AddCreditCard(userSession.UserId, creditCardOwner, creditCardType, creditCardNumber, short.Parse(creditCardCvv), expirationDate);
         }
+
     }
 }

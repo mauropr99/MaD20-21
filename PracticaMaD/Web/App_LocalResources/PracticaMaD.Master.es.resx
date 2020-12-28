@@ -144,4 +144,7 @@
   <data name="lnkUpdate.Text" xml:space="preserve">
     <value>Actualizar información de usuario</value>
   </data>
+  <data name="lnkViewCreditCards.Text" xml:space="preserve">
+    <value>Métodos de pago</value>
+  </data>
 </root>
