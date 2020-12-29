@@ -81,7 +81,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao.Tests
             Language language = TestUtil.CreateExistentLanguage();
             User user = TestUtil.CreateExistentUser(language); CreditCard creditCard = TestUtil.CreateCreditCard(user);
 
-            List<CreditCard> foundCreditCards = TestUtil.creditCardDao.FindCreditCardsByUserLogin(user.login);
+            List<CreditCard> foundCreditCards = TestUtil.creditCardDao.FindCreditCardsByUserId(user.id);
 
             Assert.AreEqual(creditCard.id, foundCreditCards[0].id);
             Assert.AreEqual(creditCard.creditCardNumber, foundCreditCards[0].creditCardNumber);

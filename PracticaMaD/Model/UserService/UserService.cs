@@ -8,6 +8,8 @@ using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
+using System.Linq;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 {
@@ -50,11 +52,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         public UserDetails FindUserDetails(long id)
         {
             User user = UserDao.Find(id);
+            Language language = LanguageDao.FindByUserId(user.id);
 
             UserDetails userDetails =
                 new UserDetails(user.name,
                     user.lastName, user.email,
-                    user.Language.name, user.Language.country, user.address);
+                    language.name, language.country);
 
             return userDetails;
         }
@@ -85,8 +88,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                 }
             }
 
+            Language language = LanguageDao.FindByUserId(user.id);
+
             return new LoginResult(user.id,user.login, user.name,user.lastName,
-                storedPassword, user.Language.name, user.email,user.address);
+                storedPassword, language.name, language.country, user.email);
         }
 
         /// <exception cref="DuplicateInstanceException"/>
@@ -120,13 +125,28 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                     lastName = userDetails.Lastname,
                     email = userDetails.Email,
                     Language = language,
-                    address = userDetails.Address,
                     role = "user"
                 };
 
                 UserDao.Create(user);
 
                 return user.id;
+            }
+            catch (DbEntityValidationException ex)
+            {
+                // Retrieve the error messages as a list of strings.
+                var errorMessages = ex.EntityValidationErrors
+                        .SelectMany(x => x.ValidationErrors)
+                        .Select(x => x.ErrorMessage);
+
+                // Join the list to a single string.
+                var fullErrorMessage = string.Join("; ", errorMessages);
+
+                // Combine the original exception message with the new one.
+                var exceptionMessage = string.Concat(ex.Message, " The validation errors are: ", fullErrorMessage);
+
+                // Throw a new DbEntityValidationException with the improved exception message.
+                throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
             }
         }
 
@@ -139,7 +159,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             user.lastName = userDetails.Lastname;
             user.email = userDetails.Email;
             user.languageId = LanguageDao.FindByNameAndCountry(userDetails.LanguageName, userDetails.LanguageCountry).id;
-            user.address = userDetails.Address;
         }
 
         /// <exception cref="DuplicateCreditCardException"/>
@@ -150,7 +169,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
             User user = UserDao.Find(userId);
 
-            List<CreditCard> creditCards = CreditCardDao.FindCreditCardsByUserLogin(user.login);
+            List<CreditCard> creditCards = CreditCardDao.FindCreditCardsByUserId(userId);
 
             foreach (CreditCard creditCard in creditCards)
             {
@@ -160,16 +179,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                 }
             }
 
-            CreditCard newCreditCard = new CreditCard();
-            newCreditCard.ownerName = ownerName;
-            newCreditCard.creditType = creditType;
-            newCreditCard.creditCardNumber = creditCardNumber;
-            newCreditCard.cvv = cvv;
-            newCreditCard.expirationDate = expirationDate;
-            CreditCardDao.AddUser(user, newCreditCard.id);
-            
+            CreditCard newCreditCard = new CreditCard
+            {
+                ownerName = ownerName,
+                creditType = creditType,
+                creditCardNumber = creditCardNumber,
+                cvv = cvv,
+                expirationDate = expirationDate
+            };
             CreditCardDao.Create(newCreditCard);
-
+            CreditCardDao.AddUser(user, newCreditCard.id);
 
             return newCreditCard;
         }
@@ -178,7 +197,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         {
             try
             {
-                User userProfile = UserDao.FindByLogin(login);
+                User user = UserDao.FindByLogin(login);
             }
             catch (InstanceNotFoundException)
             {
@@ -187,6 +206,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
             return true;
         }
+
+        public List<CreditCardDetails> FindCreditCardsByUserId(long userId)
+        {
+            User user = UserDao.Find(userId);
+            List<CreditCard> creditCards = CreditCardDao.FindCreditCardsByUserId(userId);
+
+            return CreditCardDetails.fromCreditCardToCreditCardDetails(creditCards);
+        }
+
+
         #endregion IUserService Members
     }
 }

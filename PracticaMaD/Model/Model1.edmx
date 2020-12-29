@@ -126,11 +126,10 @@
           <Property Name="name" Type="varchar" MaxLength="64" Nullable="false" />
           <Property Name="lastName" Type="varchar" MaxLength="64" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="64" Nullable="false" />
-          <Property Name="address" Type="varchar" MaxLength="64" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="64" Nullable="false" />
           <Property Name="languageId" Type="bigint" Nullable="false" />
           <Property Name="role" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="defaultCreditCardId" Type="bigint" />
+          <Property Name="favouriteCreditCard" Type="bigint" />
         </EntityType>
         <Association Name="FK_BookId">
           <End Role="Product" Type="Self.Product" Multiplicity="1">
@@ -220,7 +219,7 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="User_Table">
-              <PropertyRef Name="defaultCreditCardId" />
+              <PropertyRef Name="favouriteCreditCard" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -453,7 +452,7 @@
           <NavigationProperty Name="Order_Table" Relationship="Self.FK_Order_CreditCardId" FromRole="CreditCard" ToRole="Order_Table" />
           <NavigationProperty Name="User_Table" Relationship="Self.CreditCard_User" FromRole="CreditCard" ToRole="User_Table" />
           <Property Name="ownerName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="User_Table1" Relationship="Es.Udc.DotNet.practicamadModel.FK_DefaultCreditCardId" FromRole="CreditCard" ToRole="User" />
+          <NavigationProperty Name="User_Table2" Relationship="Es.Udc.DotNet.practicamadModel.FK_DefaultCreditCardId1" FromRole="CreditCard" ToRole="User" />
         </EntityType>
         <EntityType Name="Label">
           <Key>
@@ -523,7 +522,6 @@
           <Property Name="name" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="lastName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="address" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="languageId" Type="Int64" Nullable="false" />
           <Property Name="role" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
@@ -531,8 +529,8 @@
           <NavigationProperty Name="Language" Relationship="Self.FK_LanguageId" FromRole="User_Table" ToRole="Language" />
           <NavigationProperty Name="Order_Table" Relationship="Self.FK_UserId" FromRole="User_Table" ToRole="Order_Table" />
           <NavigationProperty Name="CreditCards" Relationship="Self.CreditCard_User" FromRole="User_Table" ToRole="CreditCard" />
-          <Property Name="defaultCreditCardId" Type="Int64" />
-          <NavigationProperty Name="CreditCard" Relationship="Es.Udc.DotNet.practicamadModel.FK_DefaultCreditCardId" FromRole="User" ToRole="CreditCard" />
+          <Property Name="favouriteCreditCard" Type="Int64" />
+          <NavigationProperty Name="CreditCard1" Relationship="Es.Udc.DotNet.practicamadModel.FK_DefaultCreditCardId1" FromRole="User" ToRole="CreditCard" />
         </EntityType>
         <Association Name="FK_ProductCategoryId">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
@@ -694,12 +692,12 @@
             <End Role="Comment" EntitySet="Comments" />
             <End Role="Label" EntitySet="Labels" />
           </AssociationSet>
-          <AssociationSet Name="FK_DefaultCreditCardId" Association="Es.Udc.DotNet.practicamadModel.FK_DefaultCreditCardId">
+          <AssociationSet Name="FK_DefaultCreditCardId1" Association="Es.Udc.DotNet.practicamadModel.FK_DefaultCreditCardId1">
             <End Role="CreditCard" EntitySet="CreditCards" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_DefaultCreditCardId">
+        <Association Name="FK_DefaultCreditCardId1">
           <End Type="Es.Udc.DotNet.practicamadModel.CreditCard" Role="CreditCard" Multiplicity="0..1" />
           <End Type="Es.Udc.DotNet.practicamadModel.User" Role="User" Multiplicity="*" />
           <ReferentialConstraint>
@@ -707,7 +705,7 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="User">
-              <PropertyRef Name="defaultCreditCardId" />
+              <PropertyRef Name="favouriteCreditCard" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -822,13 +820,12 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="Es.Udc.DotNet.practicamadModel.User">
               <MappingFragment StoreEntitySet="User_Table">
-                <ScalarProperty Name="defaultCreditCardId" ColumnName="defaultCreditCardId" />
+                <ScalarProperty Name="favouriteCreditCard" ColumnName="favouriteCreditCard" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="login" ColumnName="login" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="lastName" ColumnName="lastName" />
                 <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="address" ColumnName="address" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="languageId" ColumnName="languageId" />
                 <ScalarProperty Name="role" ColumnName="role" />

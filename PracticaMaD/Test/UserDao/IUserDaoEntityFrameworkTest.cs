@@ -81,7 +81,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao.Test
             Assert.AreEqual(user.name, foundUser.name);
             Assert.AreEqual(user.lastName, foundUser.lastName);
             Assert.AreEqual(user.password, foundUser.password);
-            Assert.AreEqual(user.address, foundUser.address);
             Assert.AreEqual(user.email, foundUser.email);
             Assert.AreEqual(user.languageId, foundUser.languageId);
             Assert.AreEqual(user.role, foundUser.role);

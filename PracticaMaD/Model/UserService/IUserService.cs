@@ -1,6 +1,7 @@
 ﻿using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using System;
+using System.Collections.Generic;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 {
@@ -13,7 +14,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             String newClearPassword);
 
         [Transactional]
-        UserDetails FindUserDetails(long userProfileId);
+        UserDetails FindUserDetails(long UserId);
 
         [Transactional]
         LoginResult Login(String login, String password,
@@ -32,7 +33,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             string creditCardNumber, short cvv, DateTime expirationDate);
 
         [Transactional]
-        void SetCreditCardAsDefault(long userId,long creditCardId);
+        List<CreditCardDetails> FindCreditCardsByUserId(long userId);
 
         bool UserExists(string login);
     }

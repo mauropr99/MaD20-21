@@ -27,11 +27,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public string name { get; set; }
         public string lastName { get; set; }
         public string password { get; set; }
-        public string address { get; set; }
         public string email { get; set; }
         public long languageId { get; set; }
         public string role { get; set; }
-        public Nullable<long> defaultCreditCardId { get; set; }
+        public Nullable<long> favouriteCreditCard { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
@@ -40,6 +39,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public virtual ICollection<Order> Order_Table { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CreditCard> CreditCards { get; set; }
-        public virtual CreditCard CreditCard { get; set; }
+        public virtual CreditCard CreditCard1 { get; set; }
     }
 }

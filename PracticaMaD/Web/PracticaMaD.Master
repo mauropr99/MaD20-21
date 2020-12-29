@@ -1,0 +1,74 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="PracticaMaD.master.cs"
+    Inherits="Es.Udc.DotNet.PracticaMaD.Web.PracticaMaD" %>
+
+<!DOCTYPE html html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>PracticaMaD</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link href="~/Img/PracticaMaD.ico" rel="Shortcut Icon" />
+    <link href="~/Css/PracticaMaD.Styles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="window">
+        <!-- Page title. -->
+
+        <div id="pageTitle">
+            <asp:Localize ID="lclHeader" runat="server" meta:resourcekey="lclHeader" />
+        </div>
+
+        <!-- Main Content. -->
+        <div id="pageBody">
+            <div id="sidebar">
+
+                <ul>
+                    <li>
+                        <asp:HyperLink ID="HyperLinkAuth" runat="server"
+                        NavigateUrl="~/Pages/User/Authentication.aspx"
+                        meta:resourcekey="lnkAuthenticate" />
+                    </li>
+                    <li>
+                        <asp:HyperLink ID="HyperLinkCatalog" runat="server"
+                        NavigateUrl="~/Pages/Product/Catalog.aspx"
+                        meta:resourcekey="lnkCatalog" />
+                    </li>
+                    <li>
+                        <asp:HyperLink ID="HyperLinkUpdate" runat="server"
+                        NavigateUrl="~/Pages/User/UpdateUser.aspx"
+                        meta:resourcekey="lnkUpdate" />
+                    </li>
+                    <li>
+                        <asp:HyperLink ID="HyperLinkAddCreditCard" runat="server"
+                        NavigateUrl="~/Pages/CreditCardOperations/CreditCardAdd.aspx"
+                        meta:resourcekey="lnkAddCreditCard" />
+                    </li>
+                    <li>
+                        <asp:HyperLink ID="HyperLinkViewCreditCards" runat="server"
+                        NavigateUrl="~/Pages/CreditCardOperations/CreditCardView.aspx"
+                        meta:resourcekey="lnkViewCreditCards" />
+                    </li>
+                    <li>
+                        <asp:HyperLink ID="HyperLinkLogout" runat="server"
+                        NavigateUrl="~/Pages/User/Logout.aspx"
+                        meta:resourcekey="lnkLogout" />
+                    </li>
+                </ul>
+            </div>
+        
+
+             <!-- Body content. -->
+            <div id="content">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder_BodyContent" runat="server" />
+            </div>
+        </div>
+
+        <!-- Footer. -->
+        <div id="footer">
+            <asp:Localize ID="lclFooter" runat="server" meta:resourcekey="lclFooter" />
+        </div>
+        <!-- End of Window. -->
+    </div>
+    <!-- End of HTML body. --> 
+</body>
+</html>

@@ -123,7 +123,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 Language language = TestUtil.CreateExistentLanguage();
 
                 long userId = userService.SingUpUser(login, password,
-                       new UserDetails(name, lastName, email, language.name, language.country, address));
+                       new UserDetails(name, lastName, email, language.name, language.country));
                 User user = TestUtil.userDao.Find(userId);
                 CreditCard creditCard = TestUtil.CreateCreditCard(user);
 
@@ -161,7 +161,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 Language language = TestUtil.CreateExistentLanguage();
 
                 long userId = userService.SingUpUser(login, password,
-                       new UserDetails(name, lastName, email, language.name,language.country, address));
+                       new UserDetails(name, lastName, email, language.name,language.country));
                 User user = TestUtil.userDao.Find(userId);
                 CreditCard creditCard = TestUtil.CreateCreditCard(user);
 
@@ -212,7 +212,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
             {
                 Language language = TestUtil.CreateExistentLanguage();
                 long userId = userService.SingUpUser(login, password,
-                       new UserDetails(name, lastName, email, language.name, language.country, address));
+                       new UserDetails(name, lastName, email, language.name, language.country));
                 User user = TestUtil.userDao.Find(userId);
                 CreditCard creditCard = TestUtil.CreateCreditCard(user);
 
@@ -252,7 +252,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 Language language = TestUtil.CreateExistentLanguage();
 
                 long userId = userService.SingUpUser(login, password,
-                       new UserDetails(name, lastName, email, language.name, language.country, address));
+                       new UserDetails(name, lastName, email, language.name, language.country));
                 User user = TestUtil.userDao.Find(userId);
                 CreditCard creditCard = TestUtil.CreateCreditCard(user);
 
@@ -283,7 +283,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 Language language = TestUtil.CreateExistentLanguage();
 
                 long userId = userService.SingUpUser(login, password,
-                       new UserDetails(name, lastName, email, language.name, language.country, address));
+                       new UserDetails(name, lastName, email, language.name, language.country));
                 User user = TestUtil.userDao.Find(userId);
                 CreditCard creditCard = TestUtil.CreateCreditCard(user);
 
