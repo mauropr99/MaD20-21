@@ -92,6 +92,7 @@
     <Content Include="Pages\CreditCardOperations\CreditCardAdd.aspx" />
     <Content Include="Pages\CreditCardOperations\CreditCardView.aspx" />
     <Content Include="Pages\MainPage.aspx" />
+    <Content Include="Pages\Product\BookDetailsView.aspx" />
     <Content Include="Pages\Product\Catalog.aspx" />
     <Content Include="Pages\UserExists.aspx" />
     <Content Include="Pages\User\Authentication.aspx" />
@@ -149,6 +150,13 @@
     </Compile>
     <Compile Include="Pages\MainPage.aspx.designer.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Product\BookDetailsView.aspx.cs">
+      <DependentUpon>BookDetailsView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Product\BookDetailsView.aspx.designer.cs">
+      <DependentUpon>BookDetailsView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Product\Catalog.aspx.cs">
       <DependentUpon>Catalog.aspx</DependentUpon>
