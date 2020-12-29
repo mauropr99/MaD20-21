@@ -4,34 +4,34 @@
     <form id="form1" runat="server">
         <br />
         <br />
-        <asp:Label ID="lblTitle" runat="server" Text="Title: "></asp:Label>
+        <asp:Label ID="lblTitle" runat="server" Text="<%$ Resources: , title %>"></asp:Label>
         <asp:Label ID="lblTitleContent" runat="server"></asp:Label>
         <br />
-        <asp:Label ID="lblAuthor" runat="server" Text="Author: "></asp:Label>
+        <asp:Label ID="lblAuthor" runat="server" Text="<%$ Resources: , author %>"></asp:Label>
         <asp:Label ID="lblAuthorContent" runat="server"></asp:Label>
         <br />
         <br />
-        <asp:Label ID="lblPrice" runat="server" Text="Price: "></asp:Label>
+        <asp:Label ID="lblPrice" runat="server" Text="<%$ Resources: , price %>"></asp:Label>
         <asp:Label ID="lblPriceContent" runat="server"></asp:Label>
         <br />
-        <asp:Label ID="lblStock" runat="server" Text="Available stock: "></asp:Label>
+        <asp:Label ID="lblStock" runat="server" Text="<%$ Resources: , availableStock %>"></asp:Label>
         <asp:Label ID="lblStockContent" runat="server"></asp:Label>
         <br />
         <br />
-        <asp:Label ID="lblGenre" runat="server" Text="Genre: "></asp:Label>
+        <asp:Label ID="lblGenre" runat="server" Text="<%$ Resources: , genre %>"></asp:Label>
         <asp:Label ID="lblGenreContent" runat="server"></asp:Label>
         <br />
         <br />
-        <asp:Label ID="lblReleaseDate" runat="server" Text="Release date: "></asp:Label>
+        <asp:Label ID="lblReleaseDate" runat="server" Text="<%$ Resources: , releaseDate %>"></asp:Label>
         <asp:Label ID="lblReleaseDateContent" runat="server"></asp:Label>
         <br />
         <br />
-        <asp:Label ID="lblIsbnCode" runat="server" Text="ISBN: "></asp:Label>
+        <asp:Label ID="lblIsbnCode" runat="server" Text="<%$ Resources: , isbnCode %>"></asp:Label>
         <asp:Label ID="lblIsbnCodeContent" runat="server"></asp:Label>
         <br />
         <br />
         <br />
-        <asp:Label ID="lblQuantity" runat="server" Text="Quantity: "></asp:Label>
+        <asp:Label ID="lblQuantity" runat="server" Text="<%$ Resources: , quantity %>"></asp:Label>
         <asp:DropDownList ID="DropDownListQuantity" runat="server">
             <asp:ListItem Enabled="False">1</asp:ListItem>
             <asp:ListItem Enabled="False">2</asp:ListItem>
@@ -47,7 +47,7 @@
         <br />
         <br />
         <br />
-        <asp:Button ID="btnAddToShoppingCart" runat="server" Text="Add to shopping cart" />
+        <asp:Button ID="btnAddToShoppingCart" runat="server" Text="<%$ Resources: , addToShoppingCart %>" />
         <br />
         <br />
         

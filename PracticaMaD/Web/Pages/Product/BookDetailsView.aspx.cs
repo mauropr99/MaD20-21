@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace Web.Pages.Product
 {
-    public partial class BookDetailsView : System.Web.UI.Page
+    public partial class BookDetailsView : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -53,7 +53,7 @@ namespace Web.Pages.Product
                         DropDownListQuantity.Items[i].Enabled = true;
                     }
 
-                    lblQuantity.Visible = false;
+                    lblQuantity.Visible = true;
                     DropDownListQuantity.Visible = true;
                     btnAddToShoppingCart.Visible = true;
 
