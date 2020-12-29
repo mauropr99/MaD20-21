@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
-{
-
-
-    public partial class Catalog
-    {
-
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product {
+    
+    
+    public partial class Catalog {
+        
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -22,7 +20,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-
+        
         /// <summary>
         /// txtProductName control.
         /// </summary>
@@ -31,7 +29,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtProductName;
-
+        
         /// <summary>
         /// BtnViewCatalog control.
         /// </summary>
@@ -40,7 +38,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnViewCatalog;
-
+        
         /// <summary>
         /// lblCategory control.
         /// </summary>
@@ -49,7 +47,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCategory;
-
+        
         /// <summary>
         /// DropDownCategoryList control.
         /// </summary>
@@ -58,7 +56,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DropDownCategoryList;
-
+        
         /// <summary>
         /// GridViewCatalog control.
         /// </summary>
@@ -67,7 +65,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewCatalog;
-
+        
         /// <summary>
         /// lnkPrevious control.
         /// </summary>
@@ -76,7 +74,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink lnkPrevious;
-
+        
         /// <summary>
         /// lnkNext control.
         /// </summary>
