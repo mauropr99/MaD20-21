@@ -129,5 +129,39 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService.Tests
             Assert.AreEqual(category2.name, foundedCategories[1].name);
         }
 
+        [TestMethod()]
+        public void FindBookTest()
+        {
+            Category category1 = TestUtil.CreateCategory("Books");
+
+            Book book = TestUtil.CreateBook(category1, "Libro_de_bolsillo", 10, "Titulo_del_libro");
+
+            ProductBlock productBlock = productService.ViewCatalog("Libro_de_bolsillo", 0, 1);
+
+            long productId = productBlock.Products[0].Id;
+
+            Book foundBook = productService.FindBook(productId);
+
+            Assert.IsTrue(book.Equals(foundBook));
+            
+        }
+
+        [TestMethod()]
+        public void FindComputerTest()
+        {
+            Category category1 = TestUtil.CreateCategory("Books");
+
+            Computer computer = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
+
+            ProductBlock productBlock = productService.ViewCatalog("Msi GL 62 6QD", 0, 1);
+
+            long productId = productBlock.Products[0].Id;
+
+            Computer foundComputer = productService.FindComputer(productId);
+
+            Assert.IsTrue(computer.Equals(foundComputer));
+
+        }
+
     }
 }

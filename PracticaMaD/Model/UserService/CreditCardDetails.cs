@@ -18,9 +18,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
         public string ExpirationDate { get; private set; }
 
-        #endregion
-
-
         public CreditCardDetails(long creditCardId, string ownerName, string creditCardType, string creditCardNumber, DateTime expirationDate)
         {
             CreditCardId = creditCardId;
@@ -29,6 +26,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             AnonymizedCreditCardNumber = "**** **** **** " + creditCardNumber.Substring(12);
             ExpirationDate = expirationDate.ToString("MM/dd/yyyy");
         }
+
+        #endregion Properties Region
 
 
         public static List<CreditCardDetails> fromCreditCardToCreditCardDetails(List<CreditCard> creditCards)
