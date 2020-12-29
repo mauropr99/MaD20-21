@@ -106,6 +106,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 
         }
 
+        protected void GridViewCatalog_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         protected void BtnViewCatalog_Click(object sender, EventArgs e)
         {
             startIndex = 0;

@@ -18,10 +18,10 @@
             <br />
             <br />
             <asp:GridView ID="GridViewCatalog"  runat="server" CellPadding="4" ForeColor="#333333" GridLines="None"
-                AutoGenerateColumns="False" >
+                AutoGenerateColumns="False" OnSelectedIndexChanged="GridViewCatalog_SelectedIndexChanged" >
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
-                    <asp:BoundField DataField="ProductName" HeaderText="<%$ Resources: , productName %>" />
+                    <asp:HyperLinkField DataTextField="ProductName" HeaderText="ProductName" DataNavigateUrlFields="Id" NavigateUrl="~/Pages/Product/BookDetailsView.aspx" DataNavigateUrlFormatString="BookDetailsView.aspx?productId={0}"/>
                     <asp:BoundField DataField="CategoryName" HeaderText="<%$ Resources: , category %>" />
                     <asp:BoundField DataField="ReleaseDate" HeaderText="<%$ Resources: , releaseDate %>" />
                     <asp:BoundField DataField="Price" HeaderText="<%$ Resources: , price %>" />
