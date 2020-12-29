@@ -11,7 +11,7 @@ using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
 {
-    public partial class CreditCardAdd : System.Web.UI.Page
+    public partial class CreditCardAdd : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

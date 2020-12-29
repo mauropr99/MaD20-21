@@ -1,5 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true" CodeBehind="CreditCardAdd.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations.CreditCardAdd" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true"
+    CodeBehind="CreditCardAdd.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations.CreditCardAdd"
+     meta:resourcekey="Page"%>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
+
+
     <form id="form1" runat="server">
         <asp:Label ID="lblCreditCardOwner" runat="server" Text="<%$ Resources: , creditCardOwner %>"></asp:Label>
         <asp:TextBox ID="txtCreditCardOwner" runat="server"></asp:TextBox>
