@@ -369,7 +369,7 @@ GO
 
 CREATE TABLE Book (
 	id bigint NOT NULL, 
-	title VARCHAR(64) NOT NULL,
+	author VARCHAR(64) NOT NULL,
 	genre VARCHAR(64) NOT NULL,
 	editorial VARCHAR(64) NOT NULL,
 	isbnCode VARCHAR(64) NOT NULL,
