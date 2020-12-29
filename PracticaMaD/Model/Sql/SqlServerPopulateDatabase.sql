@@ -63,15 +63,15 @@ INSERT INTO Book (id, author, genre, editorial, isbnCode) VALUES (10, 'Geronimo 
 INSERT INTO Product (product_name, price, releaseDate, stock, categoryId) VALUES ('Segundo viaje al reino de la fantasía ', 15.3, '20030618 10:34:09 AM', 23, 2)
 INSERT INTO Book (id, author, genre, editorial, isbnCode) VALUES (11, 'Geronimo Stilton', 'Literatura Juvenil', 'Planeta', '213-0-222-26421-4')
 
-INSERT INTO Product (product_name, price, releaseDate, stock, categoryId) VALUES ('Tercer viaje al reino de la fantasía', 15.3, '20030618 10:34:09 AM', 20, 2)
+INSERT INTO Product (product_name, price, releaseDate, stock, categoryId) VALUES ('Tercer viaje al reino de la fantasía', 15.3, '20030618 10:34:09 AM', 8, 2)
 INSERT INTO Book (id, author, genre, editorial, isbnCode) VALUES (12, 'Geronimo Stilton', 'Literatura Juvenil', 'Planeta', '214-0-222-26421-4')
 
-INSERT INTO Product (product_name, price, releaseDate, stock, categoryId) VALUES ('El Señor de los Anillos: La Comunidad del Anillo', 21.6, '20100618 10:34:09 AM', 66, 2) 
+INSERT INTO Product (product_name, price, releaseDate, stock, categoryId) VALUES ('El Señor de los Anillos: La Comunidad del Anillo', 21.6, '20100618 10:34:09 AM', 10, 2) 
 INSERT INTO Book (id, author, genre, editorial, isbnCode) VALUES (13, 'J.R.R.Tolkien', 'Ciencia Ficción', 'Minotauro', '112-23-205-3557-2') 
 
-INSERT INTO Product (product_name, price, releaseDate, stock, categoryId) VALUES ('El Señor de los Anillos: Las Dos Torres', 21.6, '20110618 10:34:09 AM', 66, 2) 
+INSERT INTO Product (product_name, price, releaseDate, stock, categoryId) VALUES ('El Señor de los Anillos: Las Dos Torres', 21.6, '20110618 10:34:09 AM', 7, 2) 
 INSERT INTO Book (id, author, genre, editorial, isbnCode) VALUES (14, 'J.R.R.Tolkien', 'Ciencia Ficción', 'Minotauro', '112-23-205-3557-2') 
 
-INSERT INTO Product (product_name, price, releaseDate, stock, categoryId) VALUES ('El Señor de los Anillos: El Retorno del Rey', 22.6, '20120618 10:34:09 AM', 34, 2) 
+INSERT INTO Product (product_name, price, releaseDate, stock, categoryId) VALUES ('El Señor de los Anillos: El Retorno del Rey', 22.6, '20120618 10:34:09 AM', 4, 2) 
 INSERT INTO Book (id, author, genre, editorial, isbnCode) VALUES (15, 'J.R.R.Tolkien', 'Ciencia Ficción', 'Minotauro', '111-23-205-3557-1') 
 
