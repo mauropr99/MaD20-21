@@ -331,6 +331,9 @@
   <ItemGroup>
     <Content Include="Pages\CreditCardOperations\App_LocalResources\CreditCardView.aspx.resx" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pages\Errors\App_LocalResources\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

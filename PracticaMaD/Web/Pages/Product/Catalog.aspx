@@ -1,14 +1,16 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true" CodeBehind="Catalog.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Product.Catalog" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true"
+    CodeBehind="Catalog.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Product.Catalog"
+    %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
     <div id="form">
         <form id="form1" runat="server">
             <br />
             <br />
             <asp:TextBox ID="txtProductName" runat="server"></asp:TextBox>
-            <asp:Button ID="BtnViewCatalog" runat="server" Text="Search" OnClick="BtnViewCatalog_Click" />
+            <asp:Button ID="BtnViewCatalog" runat="server" Text="<%$ Resources: , search %>" OnClick="BtnViewCatalog_Click" />
             <br />
             <br />
-            <asp:Label ID="lblCategory" runat="server" Text="Category: "></asp:Label>
+            <asp:Label ID="lblCategory" runat="server" Text="<%$ Resources: , category %>"></asp:Label>
             <asp:DropDownList ID="DropDownCategoryList" runat="server">
             </asp:DropDownList>
             <br />

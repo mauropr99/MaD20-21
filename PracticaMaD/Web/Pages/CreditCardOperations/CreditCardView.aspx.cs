@@ -6,7 +6,7 @@ using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
 {
-    public partial class CreditCardView : System.Web.UI.Page
+    public partial class CreditCardView : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
