@@ -3,6 +3,7 @@ using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
 using System;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,6 +16,7 @@ namespace Web.Pages.Product
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string format = "MM/dd/yyyy";
             long productId;
             IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
             IProductService productService = iocManager.Resolve<IProductService>();
@@ -32,8 +34,8 @@ namespace Web.Pages.Product
                 lblOperatingSystemContent.Text = computer.os;
                 lblPriceContent.Text = computer.price.ToString("C2");
                 lblProcessorContent.Text = computer.processor;
-                lblReleaseDateContent.Text = computer.releaseDate.ToString("MM/dd/yyyy");
-                lblStockContent.Text = computer.stock.ToString();
+                lblStockContent.Text = computer.stock.ToString();                
+                lblReleaseDateContent.Text = computer.releaseDate.ToString(format);
 
 
                 if (computer.stock == 0 || !SessionManager.IsUserAuthenticated(Context))
@@ -44,9 +46,10 @@ namespace Web.Pages.Product
                 }
                 else
                 {
-                    /*If the user is authenticated we offer 
-                     - A drop down list with the quantity of objects to add to the shopping cart.
-                     - The option of adding the product to the shopping cart.
+                    /*If the user is authenticated we have to:
+                     - Offer a drop down list with the quantity of objects to add to the shopping cart.
+                     - Offer the option of adding the product to the shopping cart.
+                     - Change the date format
                      */
 
                     int limit = (computer.stock < 10) ? computer.stock : 10;
@@ -58,6 +61,24 @@ namespace Web.Pages.Product
                     lblQuantity.Visible = true;
                     DropDownListQuantity.Visible = true;
                     btnAddToShoppingCart.Visible = true;
+
+                    //Changing the date format...
+                    Locale locale = SessionManager.GetLocale(Context);
+
+                    switch (locale.Country)
+                    {
+                        case "ES":
+                            format = "dd/MM/yyyy";
+                            break;
+                        case "US":
+                            format = "MM/dd/yyyy";
+                            break;
+
+                        default:
+                            format = "MM/dd/yyyy";
+                            break;
+                    }
+                    lblReleaseDateContent.Text = computer.releaseDate.ToString(format);
 
                 }
 

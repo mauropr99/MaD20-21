@@ -3,6 +3,7 @@ using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
 using System;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,6 +16,7 @@ namespace Web.Pages.Product
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string format = "MM/dd/yyyy";
             long productId;
             IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
             IProductService productService = iocManager.Resolve<IProductService>();
@@ -56,6 +58,24 @@ namespace Web.Pages.Product
                     lblQuantity.Visible = true;
                     DropDownListQuantity.Visible = true;
                     btnAddToShoppingCart.Visible = true;
+
+                    //Changing the date format...
+                    Locale locale = SessionManager.GetLocale(Context);
+
+                    switch (locale.Country)
+                    {
+                        case "ES":
+                            format = "dd/MM/yyyy";
+                            break;
+                        case "US":
+                            format = "MM/dd/yyyy";
+                            break;
+
+                        default:
+                            format = "MM/dd/yyyy";
+                            break;
+                    }
+                    lblReleaseDateContent.Text = book.releaseDate.ToString(format);
 
                 }
 

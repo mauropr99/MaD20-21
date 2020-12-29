@@ -142,6 +142,6 @@
     <value>Cantidade: </value>
   </data>
   <data name="addToShoppingCart" xml:space="preserve">
-    <value>Engadir ao carrito: </value>
+    <value>Engadir ao carrito</value>
   </data>
 </root>

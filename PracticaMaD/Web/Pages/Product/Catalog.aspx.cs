@@ -10,7 +10,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
     public partial class Catalog : SpecificCulturePage
     {
         int startIndex, index;
-        int count = 5;
+        int count = 4;
 
         protected void Page_Load(object sender, EventArgs e)
         {
