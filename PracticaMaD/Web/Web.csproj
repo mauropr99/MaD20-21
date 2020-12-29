@@ -94,6 +94,8 @@
     <Content Include="Pages\MainPage.aspx" />
     <Content Include="Pages\Product\BookDetailsView.aspx" />
     <Content Include="Pages\Product\Catalog.aspx" />
+    <Content Include="Pages\Product\ComputerDetailsView.aspx" />
+    <Content Include="Pages\Product\DetailsViewController.aspx" />
     <Content Include="Pages\UserExists.aspx" />
     <Content Include="Pages\User\Authentication.aspx" />
     <Content Include="Pages\User\ChangePassword.aspx" />
@@ -164,6 +166,20 @@
     </Compile>
     <Compile Include="Pages\Product\Catalog.aspx.designer.cs">
       <DependentUpon>Catalog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Product\ComputerDetailsView.aspx.cs">
+      <DependentUpon>ComputerDetailsView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Product\ComputerDetailsView.aspx.designer.cs">
+      <DependentUpon>ComputerDetailsView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Product\DetailsViewController.aspx.cs">
+      <DependentUpon>DetailsViewController.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Product\DetailsViewController.aspx.designer.cs">
+      <DependentUpon>DetailsViewController.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\UserExists.aspx.cs">
       <DependentUpon>UserExists.aspx</DependentUpon>
@@ -341,6 +357,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\Errors\App_LocalResources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\BookDetailsView.aspx.es.resx" />
+    <Content Include="Pages\Product\App_LocalResources\BookDetailsView.aspx.gl.resx" />
+    <Content Include="Pages\Product\App_LocalResources\BookDetailsView.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\ComputerDetailsView.aspx.es.resx" />
+    <Content Include="Pages\Product\App_LocalResources\ComputerDetailsView.aspx.gl.resx" />
+    <Content Include="Pages\Product\App_LocalResources\ComputerDetailsView.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
