@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using System.Globalization;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
 {
@@ -37,7 +38,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
             String creditCardType = DropDownCreditCardTypeList.SelectedValue;
             String expirationDateString = txtExpirationDate.Text;
 
-            var cultureInfo = new CultureInfo("en-US");
+            //Changing the date format...
+            Locale locale = SessionManager.GetLocale(Context);
+            string culture = "en-US";
+            switch (locale.Country)
+            {
+                case "ES":
+                    culture = "es-ES";
+                    break;
+                case "US":
+                    culture = "en-US";
+                    break;
+
+                default:
+                    culture = "en-US";
+                    break;
+            }
+
+            var cultureInfo = new CultureInfo(culture);
             DateTime expirationDate = DateTime.Parse(expirationDateString, cultureInfo);
 
 
