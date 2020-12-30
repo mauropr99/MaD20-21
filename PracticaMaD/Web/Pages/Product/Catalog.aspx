@@ -17,7 +17,7 @@
             <br />
             <br />
             <asp:GridView ID="GridViewCatalog"  runat="server" CellPadding="4" ForeColor="#333333" GridLines="None"
-                AutoGenerateColumns="False" OnRowCommand="GridViewCatalog_RowCommand" >
+                AutoGenerateColumns="False" OnRowCommand="GridViewCatalog_RowCommand" DataKeyNames="Id" >
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
                     <asp:HyperLinkField DataTextField="ProductName" HeaderText="<%$ Resources: , productName %>" 
@@ -26,14 +26,8 @@
                     <asp:BoundField DataField="CategoryName" HeaderText="<%$ Resources: , category %>" />
                     <asp:BoundField DataField="ReleaseDate" HeaderText="<%$ Resources: , releaseDate %>" />
                     <asp:BoundField DataField="Price" HeaderText="<%$ Resources: , price %>" />
-
-                    <asp:TemplateField>
-                        <ItemTemplate>
-                            <asp:ImageButton CssClass="img" id="img" runat="server"
-                               ImageUrl="~/Img/shopping-cart.png"
-                               CommandName="AddToCart"/>
-                        </ItemTemplate>
-                    </asp:TemplateField>
+                    <asp:ButtonField Text="<%$ Resources: , addItem %>" CommandName="AddToCart"/>
+                    <asp:BoundField DataField="Id" Visible="false"/>
                 </Columns>
                 <EditRowStyle BackColor="#999999" />         
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

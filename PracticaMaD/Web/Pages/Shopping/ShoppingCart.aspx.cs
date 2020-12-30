@@ -24,32 +24,30 @@ namespace Web.Pages.Shopping
             this.GridViewCart.DataBind();
         }
 
-        protected void GridViewCart_SelectedIndexChanged(object sender, GridViewCommandEventArgs e)
+        protected void GridViewCart_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
             IShoppingService shoppingService = iocManager.Resolve<IShoppingService>();
 
             int index = Convert.ToInt32(e.CommandArgument);
-            GridViewRow row = GridViewCart.Rows[index];
-
-            ShoppingCartDetails cart = (ShoppingCartDetails)row.DataItem;
+            long productId = long.Parse(GridViewCart.DataKeys[index].Values[0].ToString());
 
             switch (e.CommandName)
             {
                 case "AddItem":
-                    shoppingService.UpdateProductFromShoppingCart(cart.Product_Id, 1);
+                    shoppingService.UpdateProductFromShoppingCart(productId, 1);
                     break;
 
-                case "RemoveItem":
-                    if (cart.Quantity == 1)
-                        shoppingService.RemoveFromShoppingCart(cart.Product_Id);
-                    else
-                        shoppingService.UpdateProductFromShoppingCart(cart.Product_Id, -1);
-                    break;
+                //case "RemoveItem":
+                //    if (cart.Quantity == 1)
+                //        shoppingService.RemoveFromShoppingCart(productId);
+                //    else
+                //        shoppingService.UpdateProductFromShoppingCart(cart.Product_Id, -1);
+                //    break;
 
-                case "CheckGift":
-                    shoppingService.MarkAsGift(cart.Product_Id, !cart.GiftWrap);
-                    break;
+                //case "CheckGift":
+                //    shoppingService.MarkAsGift(cart.Product_Id, !cart.GiftWrap);
+                //    break;
             }
 
         }

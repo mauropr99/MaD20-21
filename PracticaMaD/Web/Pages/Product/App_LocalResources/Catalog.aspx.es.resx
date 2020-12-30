@@ -132,7 +132,7 @@
   <data name="search" xml:space="preserve">
     <value>Buscar</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value>Nombre del producto</value>
+  <data name="addItem" xml:space="preserve">
+    <value>Añadir</value>
   </data>
 </root>

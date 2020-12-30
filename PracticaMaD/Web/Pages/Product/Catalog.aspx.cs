@@ -19,11 +19,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
     {
         int startIndex, index;
         int count = 4;
-
+      
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (!IsPostBack)
             {
+
                 /* Get Start Index */
                 try
                 {
@@ -44,6 +45,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
         protected void LoadPage()
         {
             IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
+
             IProductService productService = iocManager.Resolve<IProductService>();
 
             LoadDropDownCategoryList(productService, index);
@@ -152,36 +154,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             index = DropDownCategoryList.SelectedIndex;
             LoadPage();
         }
-   
+
         protected void GridViewCatalog_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-           if (e.CommandName == "AddToCart") { 
-               
+            if (e.CommandName == "AddToCart")
+            {
+
                 try
                 {
-                    IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
-                    IShoppingService shoppingService = iocManager.Resolve<IShoppingService>();
-
+                    IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
+                    IShoppingService shoppingService  = iocManager.Resolve<IShoppingService>(); 
                     int index = Convert.ToInt32(e.CommandArgument);
-                    GridViewRow row = GridViewCatalog.Rows[index];
+                        long productId = long.Parse(GridViewCatalog.DataKeys[index].Values[0].ToString());
 
-                    ProductDetails product = (ProductDetails)row.DataItem;
+                        shoppingService.AddToShoppingCart(productId);
 
-                    shoppingService.AddToShoppingCart(product.Id);
+                        //Para comprobar si se añadio algo al carrito
 
-                    //Para comprobar si se añadio algo al carrito
-
-                    //List<ShoppingCartDetails> shoppingCart = shoppingService.ViewShoppingCart();
-                    //Response.Redirect(Response.ApplyAppPathModifier("~/Pages" + shoppingCart[0].Product_Name));
+                        List<ShoppingCartDetails> shoppingCart = shoppingService.ViewShoppingCart();
+                        Response.Redirect(Response.ApplyAppPathModifier("~/Pages?productname=" + shoppingCart.Count.ToString()));
 
                 }
                 catch (InstanceNotFoundException)
                 {
-                    Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Errors/InternalError.aspx" ));
+                    Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Errors/InternalError.aspx"));
                 }
+
             }
         }
-
 
     }
 }
