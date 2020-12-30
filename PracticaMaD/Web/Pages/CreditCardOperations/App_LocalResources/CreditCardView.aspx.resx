@@ -135,4 +135,7 @@
   <data name="isDefaultCreditCard" xml:space="preserve">
     <value>Default credit cart</value>
   </data>
+  <data name="setAsDefault" xml:space="preserve">
+    <value>Set as default</value>
+  </data>
 </root>
