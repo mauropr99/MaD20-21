@@ -3,13 +3,16 @@ using System;
 using System.Collections.Generic;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
+
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
 {
-    public partial class CreditCardView : System.Web.UI.Page
+    public partial class CreditCardView : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string format = "MM/dd/yyyy";
             //1 Obtener contexto de inyección de dependencias
 
             IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
@@ -23,11 +26,35 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
                 (UserSession)Context.Session[SessionManager.USER_SESSION_ATTRIBUTE];
 
             List<CreditCardDetails> creditCards = userService.FindCreditCardsByUserId(userSession.UserId);
-
+            
 
             this.GridViewCreditCards.DataSource = creditCards;
 
             this.GridViewCreditCards.DataBind();
+
+
+
+            //Changing the date format...
+            Locale locale = SessionManager.GetLocale(Context);
+
+            switch (locale.Country)
+            {
+                case "ES":
+                    format = "dd/MM/yyyy";
+                    break;
+                case "US":
+                    format = "MM/dd/yyyy";
+                    break;
+
+                default:
+                    format = "MM/dd/yyyy";
+                    break;
+            }
+
+            for (int i = 0; i < GridViewCreditCards.Rows.Count; i++)
+            {
+                GridViewCreditCards.Rows[i].Cells[3].Text = creditCards[i].ExpirationDate.ToString(format);
+            }
 
         }
 

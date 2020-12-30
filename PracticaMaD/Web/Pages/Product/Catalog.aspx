@@ -1,14 +1,16 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true" CodeBehind="Catalog.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Product.Catalog" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true"
+    CodeBehind="Catalog.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Product.Catalog"
+    %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
     <div id="form">
         <form id="form1" runat="server">
             <br />
             <br />
             <asp:TextBox ID="txtProductName" runat="server"></asp:TextBox>
-            <asp:Button ID="BtnViewCatalog" runat="server" Text="Search" OnClick="BtnViewCatalog_Click" />
+            <asp:Button ID="BtnViewCatalog" runat="server" Text="<%$ Resources: , search %>" OnClick="BtnViewCatalog_Click" />
             <br />
             <br />
-            <asp:Label ID="lblCategory" runat="server" Text="Category: "></asp:Label>
+            <asp:Label ID="lblCategory" runat="server" Text="<%$ Resources: , category %>"></asp:Label>
             <asp:DropDownList ID="DropDownCategoryList" runat="server">
             </asp:DropDownList>
             <br />
@@ -16,10 +18,10 @@
             <br />
             <br />
             <asp:GridView ID="GridViewCatalog"  runat="server" CellPadding="4" ForeColor="#333333" GridLines="None"
-                AutoGenerateColumns="False" >
+                AutoGenerateColumns="False" OnSelectedIndexChanged="GridViewCatalog_SelectedIndexChanged" >
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
-                    <asp:BoundField DataField="ProductName" HeaderText="<%$ Resources: , productName %>" />
+                    <asp:HyperLinkField DataTextField="ProductName" HeaderText="<%$ Resources: , productName %>" DataNavigateUrlFields="Id,CategoryName" NavigateUrl="~/Pages/Product/DetailsViewController.aspx" DataNavigateUrlFormatString="DetailsViewController.aspx?productId={0}&categoryName={1}"/>
                     <asp:BoundField DataField="CategoryName" HeaderText="<%$ Resources: , category %>" />
                     <asp:BoundField DataField="ReleaseDate" HeaderText="<%$ Resources: , releaseDate %>" />
                     <asp:BoundField DataField="Price" HeaderText="<%$ Resources: , price %>" />

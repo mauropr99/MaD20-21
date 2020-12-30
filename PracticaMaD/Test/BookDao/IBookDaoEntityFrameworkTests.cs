@@ -74,11 +74,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.BookDao.Tests
 
             Category category1 = TestUtil.CreateCategory("Books");
 
-            Book product1 = TestUtil.CreateBook(category1, "El Quijote Nueva edición", 3.5m, "El Quijote");
-            Book product2 = TestUtil.CreateBook(category1, "Libros de la colección Geronimo Stilton", 3.5m, "Viaje al mundo de la fantasía");
-            Book product3 = TestUtil.CreateBook(category1, "Libros de la colección Tea Stilton", 3.5m, "Misterio en París");
+            Book product1 = TestUtil.CreateBook(category1, "El Quijote", 3.5m, "Miguel de cervantes");
+            Book product2 = TestUtil.CreateBook(category1, "Viaje al mundo de la fantasía", 3.5m, "Geronimo Stilton");
+            Book product3 = TestUtil.CreateBook(category1, "Viaje al mundo de la fantasía 2", 3.5m, "Tea Stilton");
 
-            List<Book>  foundBooks = TestUtil.bookDao.FindByProductName("Stilton", 0, 10);
+            List<Book>  foundBooks = TestUtil.bookDao.FindByProductName("mundo de la fantasía", 0, 10);
 
             Assert.AreEqual(2, foundBooks.Count);
 
@@ -87,7 +87,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.BookDao.Tests
             Assert.AreEqual(product2.releaseDate, foundBooks[0].releaseDate);
             Assert.AreEqual(product2.stock, foundBooks[0].stock);
             Assert.AreEqual(product2.genre, foundBooks[0].genre);
-            Assert.AreEqual(product2.title, foundBooks[0].title);
+            Assert.AreEqual(product2.author, foundBooks[0].author);
             Assert.AreEqual(product2.isbnCode, foundBooks[0].isbnCode);
             Assert.AreEqual(product2.editorial, foundBooks[0].editorial);
 
@@ -96,7 +96,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.BookDao.Tests
             Assert.AreEqual(product3.releaseDate, foundBooks[1].releaseDate);
             Assert.AreEqual(product3.stock, foundBooks[1].stock);
             Assert.AreEqual(product3.genre, foundBooks[1].genre);
-            Assert.AreEqual(product3.title, foundBooks[1].title);
+            Assert.AreEqual(product3.author, foundBooks[1].author);
             Assert.AreEqual(product3.isbnCode, foundBooks[1].isbnCode);
             Assert.AreEqual(product3.editorial, foundBooks[1].editorial);
         }
@@ -106,9 +106,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.BookDao.Tests
         {
             Category category1 = TestUtil.CreateCategory("Books");
 
-            Book product1 = TestUtil.CreateBook(category1, "El Quijote Nueva edición", 3.5m, "El Quijote");
-            Book product2 = TestUtil.CreateBook(category1, "Libros de la colección Geronimo Stilton", 3.5m, "Viaje al mundo de la fantasía");
-            Book product3 = TestUtil.CreateBook(category1, "Libros de la colección Tea Stilton", 3.5m, "Misterio en París");
+            Book product1 = TestUtil.CreateBook(category1, "El Quijote", 3.5m, "Miguel de cervantes");
+            Book product2 = TestUtil.CreateBook(category1, "Viaje al mundo de la fantasía", 3.5m, "Geronimo Stilton");
+            Book product3 = TestUtil.CreateBook(category1, "Viaje al mundo de la fantasía 2", 3.5m, "Tea Stilton");
 
 
             List<Book> foundBooks = TestUtil.bookDao.FindByProductName("Libro de cocina de Chicote", 0, 10);

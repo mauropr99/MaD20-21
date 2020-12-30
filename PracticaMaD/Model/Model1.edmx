@@ -10,7 +10,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" Nullable="false" />
-          <Property Name="title" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="author" Type="varchar" MaxLength="64" Nullable="false" />
           <Property Name="genre" Type="varchar" MaxLength="64" Nullable="false" />
           <Property Name="editorial" Type="varchar" MaxLength="64" Nullable="false" />
           <Property Name="isbnCode" Type="varchar" MaxLength="64" Nullable="false" />
@@ -409,10 +409,10 @@
     <edmx:ConceptualModels>
       <Schema Namespace="Es.Udc.DotNet.practicamadModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Book" BaseType="Es.Udc.DotNet.practicamadModel.Product">
-          <Property Name="title" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="genre" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="editorial" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="isbnCode" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="author" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -809,10 +809,10 @@
             </EntityTypeMapping>
             <EntityTypeMapping TypeName="IsTypeOf(Es.Udc.DotNet.practicamadModel.Book)">
               <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="author" ColumnName="author" />
                 <ScalarProperty Name="isbnCode" ColumnName="isbnCode" />
                 <ScalarProperty Name="editorial" ColumnName="editorial" />
                 <ScalarProperty Name="genre" ColumnName="genre" />
-                <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

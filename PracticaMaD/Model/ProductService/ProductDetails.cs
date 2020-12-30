@@ -22,6 +22,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
         public string CategoryName { get; private set; }
 
+        #endregion Properties Region
+
         public ProductDetails(long id, string productName, decimal price, DateTime releaseDate, int stock, string categoryName)
         {
             Id = id;
@@ -69,7 +71,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
             return strProductDetails;
         }
-        #endregion Properties Region
+        
 
 
     }

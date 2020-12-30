@@ -144,6 +144,9 @@
   <data name="lnkShoppingCart.Text" xml:space="preserve">
     <value>Cart</value>
   </data>
+  <data name="lnkOrderHistory.Text" xml:space="preserve">
+    <value>My orders</value>
+  </data>
   <data name="lnkUpdate.Text" xml:space="preserve">
     <value>Update </value>
   </data>

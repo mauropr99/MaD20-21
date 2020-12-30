@@ -2,8 +2,9 @@
 using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
-using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
+using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
 using System;
 using System.Collections.Generic;
 using System.Web;
@@ -11,43 +12,44 @@ using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 {
-    public partial class Catalog : System.Web.UI.Page
+    public partial class Catalog : SpecificCulturePage
     {
-        
+        int startIndex, index;
+        int count = 4;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            int startIndex, count = 5;
-            string categoryName = Request.Params.Get("categoryName");
-            if (categoryName == null) categoryName = "All categories";
-            ProductBlock productBlock;
-
-            lnkPrevious.Visible = false;
-            lnkNext.Visible = false;
-
             /* Get Start Index */
             try
             {
                 startIndex = Int32.Parse(Request.Params.Get("startIndex"));
+                index = Int32.Parse(Request.Params.Get("index"));
             }
             catch (ArgumentNullException)
             {
                 startIndex = 0;
+                index = 0;
             }
 
-            //1 Obtener contexto de inyección de dependencias
 
+            LoadPage();
+        }
+
+        protected void LoadPage()
+        {
             IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
-
-            //2 Obtener el servicio
-
             IProductService productService = iocManager.Resolve<IProductService>();
+            
+            LoadDropDownCategoryList(productService, index);
 
-            //Llamar a los casos de uso
-            List<Category> categoryList = productService.ViewAllCategories();
-
-            //Cargamos las categorías en la DropDownList la primera vez que carguemos la página
+            LoadCatalog(productService);
+        }
+        protected void LoadDropDownCategoryList(IProductService productService, int index)
+        {
             if (DropDownCategoryList.Items.Count == 0)
             {
+                List<Category> categoryList = productService.ViewAllCategories();
+
                 this.DropDownCategoryList.Items.Clear();
 
                 this.DropDownCategoryList.Items.Insert(0, "All categories");
@@ -56,71 +58,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 {
                     this.DropDownCategoryList.Items.Add(category.name);
                 }
+
+                this.DropDownCategoryList.SelectedIndex = index;
             }
-            
 
             this.DropDownCategoryList.Visible = true;
-
-            //3 Llamar al caso de uso (lectura de parámetros y actualización de la vista)
-
-            String productName = txtProductName.Text;
-
-            if (categoryName == "All categories")
-            {
-                productBlock = productService.ViewCatalog(productName, startIndex, count);
-            }
-            else
-            {
-                productBlock = productService.ViewCatalog(productName, categoryName, startIndex, count);
-
-            }
-
-
-            //Cargamos los resultados en la lista de productos
-            LoadCatalog(productBlock);
-
-            /* "Previous" link */
-            if ((startIndex - count) >= 0)
-            {
-                String url =
-                    "/Pages/Product/Catalog.aspx" + "?startIndex=" + (startIndex - count) + "&count=" +
-                    count + "&categoryName=" + categoryName;
-
-                this.lnkPrevious.NavigateUrl =
-                    Response.ApplyAppPathModifier(url);
-                this.lnkPrevious.Visible = true;
-            }
-
-            /* "Next" link */
-            if (productBlock.ExistMoreProducts)
-            {
-                String url =
-                    "/Pages/Product/Catalog.aspx" + "?startIndex=" + (startIndex + count) + "&count=" +
-                    count + "&categoryName=" + categoryName;
-
-                this.lnkNext.NavigateUrl =
-                    Response.ApplyAppPathModifier(url);
-                this.lnkNext.Visible = true;
-            }
-
-
         }
 
-        protected void LoadCatalog(ProductBlock productBlock)
+        protected void LoadCatalog(IProductService productService)
         {
-            //Cargamos los datos en el grid
-            this.GridViewCatalog.DataSource = productBlock.Products; 
-
-            this.GridViewCatalog.DataBind();
-        }
-
-
-        protected void BtnViewCatalog_Click(object sender, EventArgs e)
-        {
-            int startIndex=0, count = 5;
+            string dateFormat = "MM/dd/yyyy";
             ProductBlock productBlock;
-            IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
-            IProductService productService = iocManager.Resolve<IProductService>();
 
             String productName = txtProductName.Text;
 
@@ -131,24 +79,77 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             else
             {
                 productBlock = productService.ViewCatalog(productName, DropDownCategoryList.SelectedValue, startIndex, count);
-
             }
 
-            LoadCatalog(productBlock);
+            this.GridViewCatalog.DataSource = productBlock.Products;
 
-            /* "Next" link */
+            this.GridViewCatalog.DataBind();
+
+            //We can access the locale information only if the user is authenticated
+            if (SessionManager.IsUserAuthenticated(Context))
+            {
+                //Changing the date format...
+                Locale locale = SessionManager.GetLocale(Context);
+
+                switch (locale.Country)
+                {
+                    case "ES":
+                        dateFormat = "dd/MM/yyyy";
+                        break;
+                    case "US":
+                        dateFormat = "MM/dd/yyyy";
+                        break;
+
+                    default:
+                        dateFormat = "MM/dd/yyyy";
+                        break;
+                }
+            }
+
+            for (int i = 0; i < GridViewCatalog.Rows.Count; i++)
+            {
+                GridViewCatalog.Rows[i].Cells[2].Text = productBlock.Products[i].ReleaseDate.ToString(dateFormat);
+                GridViewCatalog.Rows[i].Cells[3].Text = productBlock.Products[i].Price.ToString("C2");
+            }
+            
+
+            lnkPrevious.Visible = false;
+            lnkNext.Visible = false;
+
             if (productBlock.ExistMoreProducts)
             {
                 String url =
                     "/Pages/Product/Catalog.aspx" + "?startIndex=" + (startIndex + count) + "&count=" +
-                    count + "&categoryName=" + DropDownCategoryList.SelectedValue;
+                    count + "&index=" + index;
 
                 this.lnkNext.NavigateUrl =
                     Response.ApplyAppPathModifier(url);
                 this.lnkNext.Visible = true;
-                this.lnkPrevious.Visible = false;
-
             }
+
+            if ((startIndex - count) >= 0)
+            {
+                String url =
+                    "/Pages/Product/Catalog.aspx" + "?startIndex=" + (startIndex - count) + "&count=" +
+                    count + "&index=" + index;
+
+                this.lnkPrevious.NavigateUrl =
+                    Response.ApplyAppPathModifier(url);
+                this.lnkPrevious.Visible = true;
+            }
+
+        }
+
+        protected void GridViewCatalog_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void BtnViewCatalog_Click(object sender, EventArgs e)
+        {
+            startIndex = 0;
+            index = DropDownCategoryList.SelectedIndex;
+            LoadPage();
         }
 
 

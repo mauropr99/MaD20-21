@@ -129,4 +129,10 @@
   <data name="releaseDate" xml:space="preserve">
     <value>Data de lanzamento</value>
   </data>
+  <data name="search" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>Nome do producto</value>
+  </data>
 </root>

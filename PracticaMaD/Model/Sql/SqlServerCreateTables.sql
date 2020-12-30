@@ -53,18 +53,6 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Label]')
 AND type in ('U')) DROP TABLE [Label]
 GO
 
-/* Drop Table Laptop if already exists */
-
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Laptop]') 
-AND type in ('U')) DROP TABLE [Laptop]
-GO
-
-/* Drop Table Desktop if already exists */
-
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Desktop]') 
-AND type in ('U')) DROP TABLE [Desktop]
-GO
-
 /* Drop Table Computer if already exists */
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Computers]') 
@@ -233,7 +221,7 @@ CREATE TABLE Category (
 CREATE NONCLUSTERED INDEX IX_CategoryIndexById 
 ON Category (id);
 
-PRINT N'Table Desktop created.'
+PRINT N'Table Category created.'
 GO
 
 
@@ -291,7 +279,7 @@ PRINT N'Done'
 
 CREATE TABLE Book (
 	id bigint NOT NULL, 
-	title VARCHAR(64) NOT NULL,
+	author VARCHAR(64) NOT NULL,
 	genre VARCHAR(64) NOT NULL,
 	editorial VARCHAR(64) NOT NULL,
 	isbnCode VARCHAR(64) NOT NULL,
