@@ -1,16 +1,21 @@
 ﻿using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
 using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
+using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
+using Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao;
 using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
+using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
+
 using Es.Udc.DotNet.ModelUtil.IoC;
 using Ninject;
 using System.Configuration;
 using System.Data.Entity;
-using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
-using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
-using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+
 
 namespace Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC
 {
@@ -31,6 +36,14 @@ namespace Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC
             /* ComputerDao */
             kernel.Bind<IComputerDao>().
                 To<ComputerDaoEntityFramework>();
+
+            /* OrderDao */
+            kernel.Bind<IOrderDao>().
+                To<OrderDaoEntityFramework>();
+
+            /* OrderLineDao */
+            kernel.Bind<IOrderLineDao>().
+                To<OrderLineDaoEntityFramework>();
 
             /* UserDao */
             kernel.Bind<IUserDao>().
@@ -55,6 +68,10 @@ namespace Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC
             /* UserService */
             kernel.Bind<IUserService>().
                 To<UserService>();
+
+            /* ShoppingService */
+            kernel.Bind<IShoppingService>().
+                To<ShoppingService>();
 
             /* ProductService */
             kernel.Bind<IProductService>().

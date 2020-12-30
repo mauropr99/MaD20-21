@@ -23,6 +23,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
                     HyperLinkAddCreditCard.Visible = false;
                 if (HyperLinkViewCreditCards != null)
                     HyperLinkViewCreditCards.Visible = false;
+                if (HyperLinkOrderHistory != null)
+                    HyperLinkOrderHistory.Visible = false;
 
             }
             else

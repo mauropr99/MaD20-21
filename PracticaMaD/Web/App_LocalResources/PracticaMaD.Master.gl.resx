@@ -141,6 +141,9 @@
   <data name="lnkLogout.Text" xml:space="preserve">
     <value>Saír</value>
   </data>
+  <data name="lnkOrderHistory.Text" xml:space="preserve">
+    <value>Os meus pedidos</value>
+  </data>
   <data name="lnkUpdate.Text" xml:space="preserve">
     <value>Actualizar información de usuario</value>
   </data>

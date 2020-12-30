@@ -96,6 +96,8 @@
     <Content Include="Pages\Product\Catalog.aspx" />
     <Content Include="Pages\Product\ComputerDetailsView.aspx" />
     <Content Include="Pages\Product\DetailsViewController.aspx" />
+    <Content Include="Pages\Shopping\OrderHistory.aspx" />
+    <Content Include="Pages\Shopping\OrderHistoryDetails.aspx" />
     <Content Include="Pages\UserExists.aspx" />
     <Content Include="Pages\User\Authentication.aspx" />
     <Content Include="Pages\User\ChangePassword.aspx" />
@@ -180,6 +182,20 @@
     </Compile>
     <Compile Include="Pages\Product\DetailsViewController.aspx.designer.cs">
       <DependentUpon>DetailsViewController.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Shopping\OrderHistory.aspx.cs">
+      <DependentUpon>OrderHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Shopping\OrderHistory.aspx.designer.cs">
+      <DependentUpon>OrderHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Shopping\OrderHistoryDetails.aspx.cs">
+      <DependentUpon>OrderHistoryDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Shopping\OrderHistoryDetails.aspx.designer.cs">
+      <DependentUpon>OrderHistoryDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\UserExists.aspx.cs">
       <DependentUpon>UserExists.aspx</DependentUpon>
@@ -367,6 +383,16 @@
     <Content Include="Pages\Product\App_LocalResources\ComputerDetailsView.aspx.es.resx" />
     <Content Include="Pages\Product\App_LocalResources\ComputerDetailsView.aspx.gl.resx" />
     <Content Include="Pages\Product\App_LocalResources\ComputerDetailsView.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Shopping\App_LocalResources\OrderHistoryDetails.aspx.es.resx" />
+    <Content Include="Pages\Shopping\App_LocalResources\OrderHistoryDetails.aspx.gl.resx" />
+    <Content Include="Pages\Shopping\App_LocalResources\OrderHistoryDetails.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Shopping\App_LocalResources\OrderHistory.aspx.es.resx" />
+    <Content Include="Pages\Shopping\App_LocalResources\OrderHistory.aspx.gl.resx" />
+    <Content Include="Pages\Shopping\App_LocalResources\OrderHistory.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
