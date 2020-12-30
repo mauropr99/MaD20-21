@@ -37,15 +37,15 @@ INSERT INTO Language (name, country) VALUES ('gl', 'ES');
 INSERT INTO Language (name, country) VALUES ('en', 'US');
 INSERT INTO Language (name, country) VALUES ('en', 'GB');
 
-/* User */
+/* USER */
 	
 INSERT INTO User_Table (login, name, lastName, password, email, languageId, role, favouriteCreditCard) VALUES ('admin', 'admin', 'admin', 'jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=', 'admin@gmail.com', 1, 'admin', NULL);
 INSERT INTO User_Table (login, name, lastName, password, email, languageId, role, favouriteCreditCard) VALUES ('user', 'user', 'user', 'BPiZbadjt6lpsQKO4wB1aerzpjVIbdqyEdUSyFud+Ps=', 'user@user.com', 1, 'user', NULL);
 
-/* CreditCard */
+/* CREDITCARD */
 INSERT INTO CreditCard (ownerName, creditType, creditCardNumber,cvv, expirationDate) VALUES(user,'debit','012345678912345',123,'20240618 00:00:00 AM')
 
-/* CreditCard_User */
+/* CREDITCARD_USER */
 INSERT INTO CreditCard_User(userId, creditCardId)  VALUES (2,1);
 
 /* CATEGORY */
@@ -102,7 +102,12 @@ INSERT INTO Book (id, author, genre, editorial, isbnCode) VALUES (15, 'J.R.R.Tol
 
 
 /* ORDERS */
-INSERT INTO Order_Table(postalAddress, orderDate, totalPrice, userId, creditCardId, description) VALUES ('Calle inventada Nº1', '20201229 00:00:00 AM', 20, 1, 1, 'Descripcion del pedido');
+INSERT INTO Order_Table(postalAddress, orderDate, totalPrice, userId, creditCardId, description) VALUES ('Calle inventada Nº1', '20201229 00:00:00 AM', 2533.1, 2, 1, 'Pedido variado de 5 elementos');
 
 /* ORDER_LINE */
-INSERT INTO OrderLine(quantity, price, productId, orderId) VALUES(1, 0, 2, 1)
+INSERT INTO OrderLine(quantity, price, productId, orderId) VALUES(1, 999.3, 1, 1)
+INSERT INTO OrderLine(quantity, price, productId, orderId) VALUES(2, 700.4, 4, 1)
+INSERT INTO OrderLine(quantity, price, productId, orderId) VALUES(1, 30.6, 8, 1)
+INSERT INTO OrderLine(quantity, price, productId, orderId) VALUES(3, 23.6, 9, 1)
+INSERT INTO OrderLine(quantity, price, productId, orderId) VALUES(2, 15.3, 10, 1)
+

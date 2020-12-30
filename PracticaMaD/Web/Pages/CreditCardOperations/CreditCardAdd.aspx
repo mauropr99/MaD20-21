@@ -40,7 +40,7 @@
         ErrorMessage="Invalid date format."/>
         <br />
         <br />
-        <asp:Button ID="btnAddCreditCard" runat="server" Text="<%$ Resources: , addCreditCard %>" OnClick="btnAddCreditCard_Click" />
+        <asp:Button ID="btnAddCreditCard" runat="server" Text="<%$ Resources: , addCreditCard %>" OnClick="BtnAddCreditCard_Click" />
         <br />
         <br />
         <br />
