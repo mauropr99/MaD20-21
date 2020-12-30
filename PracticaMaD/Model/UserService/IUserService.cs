@@ -33,6 +33,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             string creditCardNumber, short cvv, DateTime expirationDate);
 
         [Transactional]
+        void SetCreditCardAsDefault(long userId, long creditCardId);
+
+        [Transactional]
         List<CreditCardDetails> FindCreditCardsByUserId(long userId);
 
         bool UserExists(string login);

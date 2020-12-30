@@ -18,6 +18,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
         public DateTime ExpirationDate { get; private set; }
 
+        public bool IsDefaultCreditCard { get; set; }
+
         public CreditCardDetails(long creditCardId, string ownerName, string creditCardType, string creditCardNumber, DateTime expirationDate)
         {
             CreditCardId = creditCardId;
@@ -25,6 +27,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             CreditCardType = creditCardType;
             AnonymizedCreditCardNumber = "**** **** **** " + creditCardNumber.Substring(12);
             ExpirationDate = expirationDate;
+            IsDefaultCreditCard = false;
         }
 
         #endregion Properties Region
