@@ -2,6 +2,7 @@
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
 using System;
 using System.Collections.Generic;
 
@@ -62,6 +63,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 
         protected void LoadCatalog(IProductService productService)
         {
+            string dateFormat = "MM/dd/yyyy";
             ProductBlock productBlock;
 
             String productName = txtProductName.Text;
@@ -78,6 +80,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             this.GridViewCatalog.DataSource = productBlock.Products;
 
             this.GridViewCatalog.DataBind();
+
+            //We can access the locale information only if the user is authenticated
+            if (SessionManager.IsUserAuthenticated(Context))
+            {
+                //Changing the date format...
+                Locale locale = SessionManager.GetLocale(Context);
+
+                switch (locale.Country)
+                {
+                    case "ES":
+                        dateFormat = "dd/MM/yyyy";
+                        break;
+                    case "US":
+                        dateFormat = "MM/dd/yyyy";
+                        break;
+
+                    default:
+                        dateFormat = "MM/dd/yyyy";
+                        break;
+                }
+            }
+
+            for (int i = 0; i < GridViewCatalog.Rows.Count; i++)
+            {
+                GridViewCatalog.Rows[i].Cells[2].Text = productBlock.Products[i].ReleaseDate.ToString(dateFormat);
+                GridViewCatalog.Rows[i].Cells[3].Text = productBlock.Products[i].Price.ToString("C2");
+            }
+            
 
             lnkPrevious.Visible = false;
             lnkNext.Visible = false;

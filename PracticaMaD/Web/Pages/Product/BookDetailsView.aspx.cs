@@ -28,14 +28,7 @@ namespace Web.Pages.Product
                 productId = long.Parse(Request.Params.Get("productId"));
                 Book book = productService.FindBook(productId);
 
-                //Fill place holders
-                lblAuthorContent.Text = book.author;
-                lblGenreContent.Text = book.genre;
-                lblIsbnCodeContent.Text = book.isbnCode;
-                lblPriceContent.Text = book.price.ToString("C2");
-                lblReleaseDateContent.Text = book.releaseDate.ToString("MM/dd/yyyy");
-                lblStockContent.Text = book.stock.ToString();
-                lblTitleContent.Text = book.product_name;
+                
 
 
                 if(book.stock == 0 || !SessionManager.IsUserAuthenticated(Context))
@@ -75,9 +68,16 @@ namespace Web.Pages.Product
                             format = "MM/dd/yyyy";
                             break;
                     }
-                    lblReleaseDateContent.Text = book.releaseDate.ToString(format);
 
                 }
+                //Fill place holders
+                lblAuthorContent.Text = book.author;
+                lblGenreContent.Text = book.genre;
+                lblIsbnCodeContent.Text = book.isbnCode;
+                lblPriceContent.Text = book.price.ToString("C2");
+                lblReleaseDateContent.Text = book.releaseDate.ToString(format);
+                lblStockContent.Text = book.stock.ToString();
+                lblTitleContent.Text = book.product_name;
 
 
             }

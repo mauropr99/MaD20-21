@@ -28,15 +28,6 @@ namespace Web.Pages.Product
                 productId = long.Parse(Request.Params.Get("productId"));
                 Computer computer = productService.FindComputer(productId);
 
-                //Fill place holders
-                lblBrandContent.Text = computer.brand;
-                lblComputerNameContent.Text = computer.product_name;
-                lblOperatingSystemContent.Text = computer.os;
-                lblPriceContent.Text = computer.price.ToString("C2");
-                lblProcessorContent.Text = computer.processor;
-                lblStockContent.Text = computer.stock.ToString();                
-                lblReleaseDateContent.Text = computer.releaseDate.ToString(format);
-
 
                 if (computer.stock == 0 || !SessionManager.IsUserAuthenticated(Context))
                 {
@@ -62,25 +53,38 @@ namespace Web.Pages.Product
                     DropDownListQuantity.Visible = true;
                     btnAddToShoppingCart.Visible = true;
 
-                    //Changing the date format...
-                    Locale locale = SessionManager.GetLocale(Context);
-
-                    switch (locale.Country)
+                    if (SessionManager.IsUserAuthenticated(Context))
                     {
-                        case "ES":
-                            format = "dd/MM/yyyy";
-                            break;
-                        case "US":
-                            format = "MM/dd/yyyy";
-                            break;
+                        //Changing the date format...
+                        Locale locale = SessionManager.GetLocale(Context);
 
-                        default:
-                            format = "MM/dd/yyyy";
-                            break;
+                        switch (locale.Country)
+                        {
+                            case "ES":
+                                format = "dd/MM/yyyy";
+                                break;
+                            case "US":
+                                format = "MM/dd/yyyy";
+                                break;
+
+                            default:
+                                format = "MM/dd/yyyy";
+                                break;
+                        }
                     }
-                    lblReleaseDateContent.Text = computer.releaseDate.ToString(format);
+                    
 
                 }
+                //Fill place holders
+                lblBrandContent.Text = computer.brand;
+                lblComputerNameContent.Text = computer.product_name;
+                lblOperatingSystemContent.Text = computer.os;
+                lblProcessorContent.Text = computer.processor;
+                lblStockContent.Text = computer.stock.ToString();
+                lblReleaseDateContent.Text = computer.releaseDate.ToString(format);
+                lblReleaseDateContent.Text = computer.releaseDate.ToString(format);
+                lblPriceContent.Text = computer.price.ToString("C2");
+
 
 
             }
