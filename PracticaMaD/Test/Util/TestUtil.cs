@@ -116,7 +116,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
             return computer;
         }
 
-        public static Book CreateBook(Category category, string productName, decimal price, string title)
+        public static Book CreateBook(Category category, string productName, decimal price, string author)
         {
             Book book = new Book
             {
@@ -125,7 +125,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
                 releaseDate = DateTime.Now,
                 stock = 100,
                 categoryId = category.id,
-                title = title,
+                author = author,
                 genre = "Fantasy",
                 editorial = "Planeta",
                 isbnCode = "978-0-226-26421-9"

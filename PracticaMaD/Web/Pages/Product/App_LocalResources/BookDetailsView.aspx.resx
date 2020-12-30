@@ -117,22 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="category" xml:space="preserve">
-    <value>Category</value>
+  <data name="title" xml:space="preserve">
+    <value>TITLE: </value>
+  </data>
+  <data name="author" xml:space="preserve">
+    <value>AUTHOR: </value>
   </data>
   <data name="price" xml:space="preserve">
-    <value>Price</value>
+    <value>PRICE: </value>
   </data>
-  <data name="productName" xml:space="preserve">
-    <value>Product name</value>
+  <data name="availableStock" xml:space="preserve">
+    <value>AVAILABLE STOCK: </value>
+  </data>
+  <data name="genre" xml:space="preserve">
+    <value>GENRE: </value>
   </data>
   <data name="releaseDate" xml:space="preserve">
-    <value>Release date</value>
+    <value>RELEASE DATE: </value>
   </data>
-  <data name="search" xml:space="preserve">
-    <value>Search</value>
+  <data name="isbnCode" xml:space="preserve">
+    <value>ISBN: </value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value>Product name</value>
+  <data name="quantity" xml:space="preserve">
+    <value>Quantity: </value>
+  </data>
+  <data name="addToShoppingCart" xml:space="preserve">
+    <value>Add to shopping cart</value>
   </data>
 </root>

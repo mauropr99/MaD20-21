@@ -117,22 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="category" xml:space="preserve">
-    <value>Category</value>
+  <data name="computerName" xml:space="preserve">
+    <value>STOCK DISPONIBLE:</value>
+  </data>
+  <data name="brand" xml:space="preserve">
+    <value>PRECIO:</value>
   </data>
   <data name="price" xml:space="preserve">
-    <value>Price</value>
+    <value>FECHA DE LANZAMIENTO:</value>
   </data>
-  <data name="productName" xml:space="preserve">
-    <value>Product name</value>
+  <data name="availableStock" xml:space="preserve">
+    <value>MARCA:</value>
+  </data>
+  <data name="processor" xml:space="preserve">
+    <value>SISTEMA OPERATIVO:</value>
   </data>
   <data name="releaseDate" xml:space="preserve">
-    <value>Release date</value>
+    <value>Añadir al carrito</value>
   </data>
-  <data name="search" xml:space="preserve">
-    <value>Search</value>
+  <data name="operatingSystem" xml:space="preserve">
+    <value>PROCESADOR:</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value>Product name</value>
+  <data name="quantity" xml:space="preserve">
+    <value>Cantidad:</value>
+  </data>
+  <data name="addToShoppingCart" xml:space="preserve">
+    <value>MODELO DE ORDENADOR:</value>
   </data>
 </root>

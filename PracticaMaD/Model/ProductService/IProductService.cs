@@ -21,10 +21,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         ProductBlock ViewCatalog(string productName, string categoryName,  int startIndex, int count);
 
         [Transactional]
-        void UpdateProduct(long productId, string productName, int stock, decimal price);[Transactional]
+        void UpdateProduct(long productId, string productName, int stock, decimal price);
 
         [Transactional]
         List<Category> ViewAllCategories();
+
+        [Transactional]
+        Book FindBook(long productId);
+
+        [Transactional]
+        Computer FindComputer(long productId);
     }
 }
 

@@ -1,4 +1,6 @@
 ﻿using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
+using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
 using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
@@ -21,6 +23,14 @@ namespace Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC
         {
             settings = new NinjectSettings() { LoadExtensions = true };
             kernel = new StandardKernel(settings);
+
+            /* BookDao */
+            kernel.Bind<IBookDao>().
+                To<BookDaoEntityFramework>();
+
+            /* ComputerDao */
+            kernel.Bind<IComputerDao>().
+                To<ComputerDaoEntityFramework>();
 
             /* UserDao */
             kernel.Bind<IUserDao>().

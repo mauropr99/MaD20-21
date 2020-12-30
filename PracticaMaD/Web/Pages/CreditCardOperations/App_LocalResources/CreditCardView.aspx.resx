@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="btnAddCreditCard" xml:space="preserve">
-    <value>Add</value>
+    <value>Add new card</value>
   </data>
   <data name="creditCardExpirationDate" xml:space="preserve">
     <value>Expiration date</value>
