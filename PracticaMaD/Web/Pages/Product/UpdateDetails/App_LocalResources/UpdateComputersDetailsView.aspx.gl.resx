@@ -118,30 +118,33 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="computerName" xml:space="preserve">
-    <value>STOCK DISPONIBLE:</value>
+    <value>MODELO DE ORDENADOR: </value>
   </data>
   <data name="brand" xml:space="preserve">
-    <value>PRECIO:</value>
+    <value>MARCA: </value>
   </data>
   <data name="price" xml:space="preserve">
-    <value>FECHA DE LANZAMIENTO:</value>
+    <value>PREZO: </value>
   </data>
   <data name="availableStock" xml:space="preserve">
-    <value>MARCA:</value>
+    <value>STOCK DISPOÑIBLE: </value>
   </data>
   <data name="processor" xml:space="preserve">
-    <value>SISTEMA OPERATIVO:</value>
+    <value>PROCESADOR: </value>
   </data>
   <data name="releaseDate" xml:space="preserve">
-    <value>Añadir al carrito</value>
+    <value>DATA DE LANZAMENTO: </value>
   </data>
   <data name="operatingSystem" xml:space="preserve">
-    <value>PROCESADOR:</value>
+    <value>SISTEMA OPERATIVO: </value>
   </data>
   <data name="quantity" xml:space="preserve">
-    <value>Cantidad:</value>
+    <value>Cantidade: </value>
   </data>
   <data name="addToShoppingCart" xml:space="preserve">
-    <value>MODELO DE ORDENADOR:</value>
+    <value>Engadir ao carrito</value>
+  </data>
+  <data name="submit" xml:space="preserve">
+    <value>confirmar</value>
   </data>
 </root>

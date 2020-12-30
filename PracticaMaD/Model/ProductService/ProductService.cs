@@ -78,15 +78,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
         }
 
-        public void UpdateProduct(long productId, string productName,  int stock, decimal price)
+        public void UpdateProduct(Product product)
         {
-      
-                Product prod = ProductDao.Find(productId);
-                prod.product_name = productName;
-                prod.stock = stock;
-                prod.price = price;
-                ProductDao.Update(prod);
-  
+                ProductDao.Update(product);
         }
 
         public List<Category> ViewAllCategories()
@@ -106,6 +100,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             Computer computer = ComputerDao.Find(productId);
 
             return computer;
+        }
+
+        public void UpdateComputer(Computer product)
+        {
+            ComputerDao.Update(product);
+        }
+
+        public void UpdateBook(Book product)
+        {
+            BookDao.Update(product);
         }
 
         #endregion IProductService Members

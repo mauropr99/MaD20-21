@@ -117,31 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="computerName" xml:space="preserve">
-    <value>MODELO DE ORDENADOR: </value>
+  <data name="title" xml:space="preserve">
+    <value>TITLE: </value>
   </data>
-  <data name="brand" xml:space="preserve">
-    <value>MARCA: </value>
+  <data name="author" xml:space="preserve">
+    <value>AUTHOR: </value>
   </data>
   <data name="price" xml:space="preserve">
-    <value>PREZO: </value>
+    <value>PRICE: </value>
   </data>
   <data name="availableStock" xml:space="preserve">
-    <value>STOCK DISPOÑIBLE: </value>
+    <value>AVAILABLE STOCK: </value>
   </data>
-  <data name="processor" xml:space="preserve">
-    <value>PROCESADOR: </value>
+  <data name="genre" xml:space="preserve">
+    <value>GENRE: </value>
   </data>
   <data name="releaseDate" xml:space="preserve">
-    <value>DATA DE LANZAMENTO: </value>
+    <value>RELEASE DATE: </value>
   </data>
-  <data name="operatingSystem" xml:space="preserve">
-    <value>SISTEMA OPERATIVO: </value>
+  <data name="isbnCode" xml:space="preserve">
+    <value>ISBN: </value>
   </data>
   <data name="quantity" xml:space="preserve">
-    <value>Cantidade: </value>
+    <value>Quantity: </value>
   </data>
   <data name="addToShoppingCart" xml:space="preserve">
-    <value>Engadir ao carrito</value>
+    <value>Add to shopping cart</value>
+  </data>
+  <data name="submit" xml:space="preserve">
+    <value>submit</value>
   </data>
 </root>

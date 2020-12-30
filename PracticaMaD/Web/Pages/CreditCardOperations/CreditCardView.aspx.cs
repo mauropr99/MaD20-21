@@ -63,7 +63,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
             
         }
 
-        protected void btnAddNewCreditCard_Click(object sender, EventArgs e)
+        protected void BtnAddNewCreditCard_Click(object sender, EventArgs e)
         {
             Response.Redirect(Response.ApplyAppPathModifier("~/Pages/CreditCardOperations/CreditCardAdd.aspx"));
         }
