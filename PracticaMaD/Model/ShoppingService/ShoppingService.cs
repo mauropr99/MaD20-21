@@ -92,8 +92,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             return order;
         }
 
-        public List<ShoppingCartDetails> AddToShoppingCart(long productId,
-            short quantity, Boolean giftWrap)
+        public List<ShoppingCartDetails> ViewShoppingCart()
+        {
+            return shoppingCart;
+        }
+
+        public void AddToShoppingCart(long productId)
         {
             Product product = ProductDao.Find(productId);
 
@@ -103,26 +107,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                 if (line.Product_Id == productId)
                 {
                     //Update product quantity
-                    line.Quantity += quantity;
-
-                    return shoppingCart;
+                    line.Quantity += 1;
                 }
             }
 
             //If it is a new product in the shopping cart
             ShoppingCartDetails orderLine = new ShoppingCartDetails
             {
-                Quantity = quantity,
+                Quantity = 1,
                 Price = product.price,
                 Product_Id = product.id
             };
+
             shoppingCart.Add(orderLine);
 
-            return shoppingCart;
         }
 
 
-        public List<ShoppingCartDetails> RemoveFromShoppingCart(long productId)
+        public void RemoveFromShoppingCart(long productId)
         {
             //Check if the product is inside the shopping cart 
             foreach (ShoppingCartDetails line in shoppingCart)
@@ -134,23 +136,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                     break;
                 }
             }
-
-            return shoppingCart;
-
         }
 
-        public List<ShoppingCartDetails> UpdateProductFromShoppingCart(long productId, short quantity, bool giftWrap)
+        //bool giftWrap
+        public void UpdateProductFromShoppingCart(long productId, short quantity)
         {
             foreach (ShoppingCartDetails line in shoppingCart)
             {
                 if (line.Product_Id == productId)
                 {
                     //Update quantity
-                    line.Quantity = quantity;
+                    line.Quantity += quantity;
                     break;
                 }
             }
-            return shoppingCart;
         }
 
 
@@ -196,11 +195,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             }
 
             return detailLineOrders;
-        }
-
-        public List<ShoppingCartDetails> ViewShoppingCart(long orderId)
-        {
-            return shoppingCart;
         }
 
         #endregion IShoppingService Members

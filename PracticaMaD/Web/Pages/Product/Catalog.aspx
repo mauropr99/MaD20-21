@@ -23,7 +23,7 @@
                     <asp:BoundField DataField="CategoryName" HeaderText="<%$ Resources: , category %>" />
                     <asp:BoundField DataField="ReleaseDate" HeaderText="<%$ Resources: , releaseDate %>" />
                     <asp:BoundField DataField="Price" HeaderText="<%$ Resources: , price %>" />
-                    <asp:ButtonField Text="Add to shopping cart" ButtonType="Button" />
+                    <asp:ButtonField Text="Add to shopping cart" ButtonType="Button" CommandName="BtnAddToCart_Click"/>
                 </Columns>
                 <EditRowStyle BackColor="#999999" />
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

@@ -1,8 +1,13 @@
-﻿using Es.Udc.DotNet.ModelUtil.IoC;
+﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
+using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using System;
 using System.Collections.Generic;
+using System.Web;
+using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 {
@@ -146,5 +151,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             }
         }
 
+
+        protected void BtnAddToCart_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
+                IShoppingService shoppingService = iocManager.Resolve<IShoppingService>();
+
+                ProductDetails product = (ProductDetails)GridViewCatalog.SelectedRow.DataItem;
+
+                shoppingService.AddToShoppingCart(product.Id);
+            }
+            catch (InstanceNotFoundException)
+            {
+                Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Errors/InternalError.aspx"));
+            }
+        }
     }
 }

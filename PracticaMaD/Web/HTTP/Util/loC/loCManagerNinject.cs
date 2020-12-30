@@ -9,6 +9,9 @@ using System.Data.Entity;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
+using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
+using Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC
 {
@@ -42,6 +45,14 @@ namespace Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC
             kernel.Bind<IProductDao>().
                 To<ProductDaoEntityFramework>();
 
+            /* OrderDao */
+            kernel.Bind<IOrderDao>().
+                To<OrderDaoEntityFramework>();
+
+            /* OrderLineDao */
+            kernel.Bind<IOrderLineDao>().
+                To<OrderLineDaoEntityFramework>();
+
             /* UserService */
             kernel.Bind<IUserService>().
                 To<UserService>();
@@ -49,6 +60,10 @@ namespace Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC
             /* ProductService */
             kernel.Bind<IProductService>().
                 To<ProductService>();
+
+            /* ShoppingService */
+            kernel.Bind<IShoppingService>().
+                To<ShoppingService>();
 
             /* DbContext */
             string connectionString =

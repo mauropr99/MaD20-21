@@ -34,6 +34,11 @@
                         meta:resourcekey="lnkCatalog" />
                     </li>
                     <li>
+                        <asp:HyperLink ID="HyperLinkShoppingCart" runat="server"
+                        NavigateUrl="~/Pages/Shopping/ShoppingCart.aspx"
+                        meta:resourcekey="lnkShoppingCart" />
+                    </li>
+                    <li>
                         <asp:HyperLink ID="HyperLinkUpdate" runat="server"
                         NavigateUrl="~/Pages/User/UpdateUser.aspx"
                         meta:resourcekey="lnkUpdate" />
