@@ -1,14 +1,14 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true" CodeBehind="ComputerDetailsView.aspx.cs" Inherits="Web.Pages.Product.ComputerDetailsView" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true" CodeBehind="BooksDetailsView.aspx.cs" Inherits="Web.Pages.Product.BooksDetailsView" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
 
     <form id="form1" runat="server">
         <br />
         <br />
-        <asp:Label ID="lblComputerName" runat="server" Text="<%$ Resources: , computerName %>"></asp:Label>
-        <asp:Label ID="lblComputerNameContent" runat="server"></asp:Label>
+        <asp:Label ID="lblTitle" runat="server" Text="<%$ Resources: , title %>"></asp:Label>
+        <asp:Label ID="lblTitleContent" runat="server"></asp:Label>
         <br />
-        <asp:Label ID="lblBrand" runat="server" Text="<%$ Resources: , brand %>"></asp:Label>
-        <asp:Label ID="lblBrandContent" runat="server"></asp:Label>
+        <asp:Label ID="lblAuthor" runat="server" Text="<%$ Resources: , author %>"></asp:Label>
+        <asp:Label ID="lblAuthorContent" runat="server"></asp:Label>
         <br />
         <br />
         <asp:Label ID="lblPrice" runat="server" Text="<%$ Resources: , price %>"></asp:Label>
@@ -18,16 +18,16 @@
         <asp:Label ID="lblStockContent" runat="server"></asp:Label>
         <br />
         <br />
-        <asp:Label ID="lblProcessor" runat="server" Text="<%$ Resources: , processor %>"></asp:Label>
-        <asp:Label ID="lblProcessorContent" runat="server"></asp:Label>
+        <asp:Label ID="lblGenre" runat="server" Text="<%$ Resources: , genre %>"></asp:Label>
+        <asp:Label ID="lblGenreContent" runat="server"></asp:Label>
         <br />
         <br />
         <asp:Label ID="lblReleaseDate" runat="server" Text="<%$ Resources: , releaseDate %>"></asp:Label>
         <asp:Label ID="lblReleaseDateContent" runat="server"></asp:Label>
         <br />
         <br />
-        <asp:Label ID="lblOperatingSystem" runat="server" Text="<%$ Resources: , operatingSystem %>"></asp:Label>
-        <asp:Label ID="lblOperatingSystemContent" runat="server"></asp:Label>
+        <asp:Label ID="lblIsbnCode" runat="server" Text="<%$ Resources: , isbnCode %>"></asp:Label>
+        <asp:Label ID="lblIsbnCodeContent" runat="server"></asp:Label>
         <br />
         <br />
         <br />
@@ -57,4 +57,3 @@
 
 
 </asp:Content>
-
