@@ -1,4 +1,5 @@
 ﻿using System;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace Web.Pages.Product
 {
-    public partial class DetailsViewController : System.Web.UI.Page
+    public partial class DetailsViewController : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

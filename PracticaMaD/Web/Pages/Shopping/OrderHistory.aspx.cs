@@ -13,7 +13,7 @@ namespace Web.Pages.Shopping
 {
     public partial class OrderHistory : SpecificCulturePage
     {
-        int startIndex, index;
+        int startIndex = 0, index = 0;
         int count = 4;
 
         protected void Page_Load(object sender, EventArgs e)
