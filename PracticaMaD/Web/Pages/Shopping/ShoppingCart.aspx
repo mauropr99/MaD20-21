@@ -6,14 +6,19 @@
          <br />
             <br />
             <asp:GridView ID="GridViewCart"  runat="server" CellPadding="4" ForeColor="#333333" GridLines="None"
-                AutoGenerateColumns="False" >
+                AutoGenerateColumns="False" onrowcommand="GridViewCart_SelectedIndexChanged" >
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
                     <asp:BoundField DataField="Product_Name" HeaderText="<%$ Resources: , productName %>" />
                     <asp:BoundField DataField="Quantity" HeaderText="<%$ Resources: , quantity %>" />
                     <asp:BoundField DataField="Price" HeaderText="<%$ Resources: , price %>" />
-                    <asp:ButtonField ButtonType="Button" CommandName="Btn_AddItem" Text="+" />
-                    <asp:ButtonField ButtonType="Button" CommandName="Btn_RemoveItem" Text="-" />
+                    <asp:ButtonField ButtonType="Button" CommandName="AddItem" Text="+" />
+                    <asp:ButtonField ButtonType="Button" CommandName="RemoveItem" Text="-" />
+                     <asp:TemplateField>
+                        <ItemTemplate>
+                            <asp:CheckBox ID="Gift" runat="server" CommandName="CheckGift"  headertext="<%$ Resources: , gift %>"/>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                 </Columns>
                 <EditRowStyle BackColor="#999999" />
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

@@ -28,8 +28,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         void RemoveFromShoppingCart(long productId);
 
-        //Boolean giftWrap
         void UpdateProductFromShoppingCart(long productId, short quantity);
+
+        void MarkAsGift(long productId, bool giftWrap);
 
         [Transactional]
         OrderBlock FindOrdersByUserId(long userId, int startIndex, int count);

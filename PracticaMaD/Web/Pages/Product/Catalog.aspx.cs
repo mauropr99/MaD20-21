@@ -9,6 +9,9 @@ using System;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.UI.WebControls;
+using System.Web.UI;
+using System.Data;
+using System.Windows.Forms;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 {
@@ -19,27 +22,30 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            /* Get Start Index */
-            try
+            if (!Page.IsPostBack)
             {
-                startIndex = Int32.Parse(Request.Params.Get("startIndex"));
-                index = Int32.Parse(Request.Params.Get("index"));
-            }
-            catch (ArgumentNullException)
-            {
-                startIndex = 0;
-                index = 0;
-            }
+                /* Get Start Index */
+                try
+                {
+                    startIndex = Int32.Parse(Request.Params.Get("startIndex"));
+                    index = Int32.Parse(Request.Params.Get("index"));
+                }
+                catch (ArgumentNullException)
+                {
+                    startIndex = 0;
+                    index = 0;
+                }
 
 
-            LoadPage();
+                LoadPage();
+            }
         }
 
         protected void LoadPage()
         {
             IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
             IProductService productService = iocManager.Resolve<IProductService>();
-            
+
             LoadDropDownCategoryList(productService, index);
 
             LoadCatalog(productService);
@@ -111,7 +117,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 GridViewCatalog.Rows[i].Cells[2].Text = productBlock.Products[i].ReleaseDate.ToString(dateFormat);
                 GridViewCatalog.Rows[i].Cells[3].Text = productBlock.Products[i].Price.ToString("C2");
             }
-            
+
 
             lnkPrevious.Visible = false;
             lnkNext.Visible = false;
@@ -140,34 +146,42 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 
         }
 
-        protected void GridViewCatalog_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         protected void BtnViewCatalog_Click(object sender, EventArgs e)
         {
             startIndex = 0;
             index = DropDownCategoryList.SelectedIndex;
             LoadPage();
         }
-
-
-        protected void BtnAddToCart_Click(object sender, EventArgs e)
+   
+        protected void GridViewCatalog_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            try
-            {
-                IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
-                IShoppingService shoppingService = iocManager.Resolve<IShoppingService>();
+           if (e.CommandName == "AddToCart") { 
+               
+                try
+                {
+                    IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
+                    IShoppingService shoppingService = iocManager.Resolve<IShoppingService>();
 
-                ProductDetails product = (ProductDetails)GridViewCatalog.SelectedRow.DataItem;
+                    int index = Convert.ToInt32(e.CommandArgument);
+                    GridViewRow row = GridViewCatalog.Rows[index];
 
-                shoppingService.AddToShoppingCart(product.Id);
-            }
-            catch (InstanceNotFoundException)
-            {
-                Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Errors/InternalError.aspx"));
+                    ProductDetails product = (ProductDetails)row.DataItem;
+
+                    shoppingService.AddToShoppingCart(product.Id);
+
+                    //Para comprobar si se añadio algo al carrito
+
+                    //List<ShoppingCartDetails> shoppingCart = shoppingService.ViewShoppingCart();
+                    //Response.Redirect(Response.ApplyAppPathModifier("~/Pages" + shoppingCart[0].Product_Name));
+
+                }
+                catch (InstanceNotFoundException)
+                {
+                    Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Errors/InternalError.aspx" ));
+                }
             }
         }
+
+
     }
 }

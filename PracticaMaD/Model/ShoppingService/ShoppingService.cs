@@ -151,7 +151,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                 }
             }
         }
-
+        public void MarkAsGift(long productId, bool giftWrap)
+        {
+            foreach (ShoppingCartDetails line in shoppingCart)
+            {
+                if (line.Product_Id == productId)
+                {
+                    //Update quantity
+                    line.GiftWrap = giftWrap;
+                    break;
+                }
+            }
+        }
 
         public OrderBlock FindOrdersByUserId(long userId, int startIndex, int count)
         {

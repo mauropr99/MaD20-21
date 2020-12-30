@@ -71,21 +71,9 @@ namespace Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC
             kernel.Bind<IProductDao>().
                 To<ProductDaoEntityFramework>();
 
-            /* OrderDao */
-            kernel.Bind<IOrderDao>().
-                To<OrderDaoEntityFramework>();
-
-            /* OrderLineDao */
-            kernel.Bind<IOrderLineDao>().
-                To<OrderLineDaoEntityFramework>();
-
             /* UserService */
             kernel.Bind<IUserService>().
                 To<UserService>();
-
-            /* ShoppingService */
-            kernel.Bind<IShoppingService>().
-                To<ShoppingService>();
 
             /* ProductService */
             kernel.Bind<IProductService>().

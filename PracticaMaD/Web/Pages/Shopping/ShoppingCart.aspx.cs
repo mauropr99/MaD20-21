@@ -24,29 +24,34 @@ namespace Web.Pages.Shopping
             this.GridViewCart.DataBind();
         }
 
-
-        protected void Btn_AddItem(object sender, EventArgs e)
+        protected void GridViewCart_SelectedIndexChanged(object sender, GridViewCommandEventArgs e)
         {
             IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
             IShoppingService shoppingService = iocManager.Resolve<IShoppingService>();
 
-            ShoppingCartDetails cart = (ShoppingCartDetails)GridViewCart.SelectedRow.DataItem;
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = GridViewCart.Rows[index];
 
-            shoppingService.UpdateProductFromShoppingCart(cart.Product_Id, 1);
+            ShoppingCartDetails cart = (ShoppingCartDetails)row.DataItem;
+
+            switch (e.CommandName)
+            {
+                case "AddItem":
+                    shoppingService.UpdateProductFromShoppingCart(cart.Product_Id, 1);
+                    break;
+
+                case "RemoveItem":
+                    if (cart.Quantity == 1)
+                        shoppingService.RemoveFromShoppingCart(cart.Product_Id);
+                    else
+                        shoppingService.UpdateProductFromShoppingCart(cart.Product_Id, -1);
+                    break;
+
+                case "CheckGift":
+                    shoppingService.MarkAsGift(cart.Product_Id, !cart.GiftWrap);
+                    break;
+            }
+
         }
-
-        protected void Btn_RemoveItem(object sender, EventArgs e)
-        {
-            IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
-            IShoppingService shoppingService = iocManager.Resolve<IShoppingService>();
-
-            ShoppingCartDetails cart = (ShoppingCartDetails)GridViewCart.SelectedRow.DataItem;
-
-            if (cart.Quantity == 1)
-                shoppingService.RemoveFromShoppingCart(cart.Product_Id);
-            else
-                shoppingService.UpdateProductFromShoppingCart(cart.Product_Id, -1);
-        }
-
     }
 }
