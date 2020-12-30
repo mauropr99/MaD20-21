@@ -10,7 +10,7 @@
 namespace Web.Pages.Product {
     
     
-    public partial class ComputerDetailsView {
+    public partial class ComputersDetailsView {
         
         /// <summary>
         /// form1 control.

@@ -12,7 +12,7 @@ using System.Web.UI.WebControls;
 
 namespace Web.Pages.Product
 {
-    public partial class ComputerDetailsView : SpecificCulturePage
+    public partial class ComputersDetailsView : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

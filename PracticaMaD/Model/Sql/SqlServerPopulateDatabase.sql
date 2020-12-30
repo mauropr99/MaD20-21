@@ -17,12 +17,36 @@
  
 USE practicamad
 
+DELETE FROM OrderLine		DBCC CHECKIDENT ('[OrderLine]', RESEED, 0);
+DELETE FROM Order_Table		DBCC CHECKIDENT ('[Order_Table]', RESEED, 0);
+DELETE FROM Book;
+DELETE FROM Computers; 
+DELETE FROM Product			DBCC CHECKIDENT ('[Product]', RESEED, 0);
+DELETE FROM CreditCard_User;
+DELETE FROM CreditCard		DBCC CHECKIDENT ('[CreditCard]', RESEED, 0);
+DELETE FROM User_Table		DBCC CHECKIDENT ('[User_Table]', RESEED, 0);
+DELETE FROM Category		DBCC CHECKIDENT ('[Category]', RESEED, 0);
+DELETE FROM Language		DBCC CHECKIDENT ('[Language]', RESEED, 0);
+
+
+
 
 /* LANGUAGE */
 INSERT INTO Language (name, country) VALUES ('es', 'ES');
 INSERT INTO Language (name, country) VALUES ('gl', 'ES');
 INSERT INTO Language (name, country) VALUES ('en', 'US');
 INSERT INTO Language (name, country) VALUES ('en', 'GB');
+
+/* User */
+	
+INSERT INTO User_Table (login, name, lastName, password, email, languageId, role, favouriteCreditCard) VALUES ('admin', 'admin', 'admin', 'jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=', 'admin@gmail.com', 1, 'admin', NULL);
+INSERT INTO User_Table (login, name, lastName, password, email, languageId, role, favouriteCreditCard) VALUES ('user', 'user', 'user', 'BPiZbadjt6lpsQKO4wB1aerzpjVIbdqyEdUSyFud+Ps=', 'user@user.com', 1, 'user', NULL);
+
+/* CreditCard */
+INSERT INTO CreditCard (ownerName, creditType, creditCardNumber,cvv, expirationDate) VALUES(user,'debit','012345678912345',123,'20240618 00:00:00 AM')
+
+/* CreditCard_User */
+INSERT INTO CreditCard_User(userId, creditCardId)  VALUES (2,1);
 
 /* CATEGORY */
 INSERT INTO Category (name) VALUES ('Computers');
@@ -75,3 +99,10 @@ INSERT INTO Book (id, author, genre, editorial, isbnCode) VALUES (14, 'J.R.R.Tol
 INSERT INTO Product (product_name, price, releaseDate, stock, categoryId) VALUES ('El Señor de los Anillos: El Retorno del Rey', 22.6, '20120618 10:34:09 AM', 4, 2) 
 INSERT INTO Book (id, author, genre, editorial, isbnCode) VALUES (15, 'J.R.R.Tolkien', 'Ciencia Ficción', 'Minotauro', '111-23-205-3557-1') 
 
+
+
+/* ORDERS */
+INSERT INTO Order_Table(postalAddress, orderDate, totalPrice, userId, creditCardId, description) VALUES ('Calle inventada Nº1', '20201229 00:00:00 AM', 20, 1, 1, 'Descripcion del pedido');
+
+/* ORDER_LINE */
+INSERT INTO OrderLine(quantity, price, productId, orderId) VALUES(1, 0, 2, 1)

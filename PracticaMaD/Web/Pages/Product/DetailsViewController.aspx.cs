@@ -1,10 +1,8 @@
 ﻿using System;
-using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using Es.Udc.DotNet.ModelUtil.IoC;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 
 namespace Web.Pages.Product
 {
@@ -13,25 +11,37 @@ namespace Web.Pages.Product
         protected void Page_Load(object sender, EventArgs e)
         {
             string categoryName, productId;
+            
+            IUserService userService;
+
+            IIoCManager iocManager =
+                (IIoCManager)HttpContext.Current.Application["managerIoC"];
+
+            userService = iocManager.Resolve<IUserService>();
+
+            UserSession userSession =
+                (UserSession)Context.Session[SessionManager.USER_SESSION_ATTRIBUTE];
+
+            string userRole = "";
+            try
+            {
+                userRole = userService.GetRolByUserId(userSession.UserId);
+            }
+            catch {
+            }
+                       
             try
             {
                 productId = Request.Params.Get("productId");
                 categoryName = Request.Params.Get("categoryName");
 
-                switch (categoryName)
-                {
-                    case "Books":
-                        Response.Redirect("~/Pages/Product/BookDetailsView.aspx?productId=" + productId);
-                        break;
-                    case "Computers":
-                        Response.Redirect("~/Pages/Product/ComputerDetailsView.aspx?productId=" + productId);
-                        break;
-                    default:
-                        break;
+                if(userRole == "admin") { 
+                    Response.Redirect("~/Pages/Product/UpdateDetails/Update"+categoryName+"DetailsView.aspx?productId=" + productId);
                 }
-
-               
-
+                else
+                {
+                    Response.Redirect("~/Pages/Product/ViewDetails/"+ categoryName + "DetailsView.aspx?productId=" + productId);
+                }
             }
             catch (ArgumentNullException)
             {

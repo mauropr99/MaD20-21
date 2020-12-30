@@ -21,8 +21,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 txtSurname.Text = userDetails.Lastname;
                 txtEmail.Text = userDetails.Email;
 
+                Locale locale = SessionManager.GetLocale(Context);
                 /* Combo box initialization */
-                UpdateComboLanguage(userDetails.LanguageName);              
+                UpdateComboLanguage(locale.Language+' '+locale.Country);              
             }  
          
         }
@@ -72,6 +73,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
              * correct language.
              */
             this.UpdateComboLanguage(comboLanguage.SelectedValue);
+        }
+
+        protected void txtFirstName_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

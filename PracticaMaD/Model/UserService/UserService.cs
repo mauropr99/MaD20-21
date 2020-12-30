@@ -215,6 +215,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             return CreditCardDetails.fromCreditCardToCreditCardDetails(creditCards);
         }
 
+        public String GetRolByUserId(long userId)
+        {
+            return UserDao.Find(userId).role;
+        }
+
 
         #endregion IUserService Members
     }

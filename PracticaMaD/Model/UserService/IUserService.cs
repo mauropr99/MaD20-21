@@ -35,6 +35,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         [Transactional]
         List<CreditCardDetails> FindCreditCardsByUserId(long userId);
 
+        [Transactional]
+        String GetRolByUserId(long userId);
+
         bool UserExists(string login);
     }
 }

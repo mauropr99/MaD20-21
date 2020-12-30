@@ -19,7 +19,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
             
         }
 
-        protected void btnAddCreditCard_Click(object sender, EventArgs e)
+        protected void BtnAddCreditCard_Click(object sender, EventArgs e)
         {
             //1 Obtener contexto de inyección de dependencias
 
