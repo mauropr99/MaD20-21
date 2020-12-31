@@ -1,10 +1,10 @@
-﻿using Es.Udc.DotNet.ModelUtil.IoC;
+﻿using System;
+using System.Collections.Generic;
+using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
-using System;
-using System.Collections.Generic;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 {
@@ -35,7 +35,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
         {
             IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
             IProductService productService = iocManager.Resolve<IProductService>();
-            
+
             LoadDropDownCategoryList(productService, index);
 
             LoadCatalog(productService);
@@ -107,7 +107,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 GridViewCatalog.Rows[i].Cells[2].Text = productBlock.Products[i].ReleaseDate.ToString(dateFormat);
                 GridViewCatalog.Rows[i].Cells[3].Text = productBlock.Products[i].Price.ToString("C2");
             }
-            
+
 
             lnkPrevious.Visible = false;
             lnkNext.Visible = false;
@@ -133,11 +133,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                     Response.ApplyAppPathModifier(url);
                 this.lnkPrevious.Visible = true;
             }
-
-        }
-
-        protected void GridViewCatalog_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
         }
 

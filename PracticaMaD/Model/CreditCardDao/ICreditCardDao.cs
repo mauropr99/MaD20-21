@@ -1,7 +1,6 @@
-﻿using Es.Udc.DotNet.ModelUtil.Dao;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Es.Udc.DotNet.ModelUtil.Dao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao
 {
@@ -9,6 +8,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao
     {
         List<CreditCard> FindCreditCardsByUserId(long userId);
 
-        void AddUser( User user, long creditCardId);
+        void AddUser(User user, long creditCardId);
     }
 }

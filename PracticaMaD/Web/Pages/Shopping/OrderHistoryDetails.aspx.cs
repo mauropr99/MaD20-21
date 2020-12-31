@@ -1,14 +1,8 @@
 ﻿using System;
-using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
-using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
-using Es.Udc.DotNet.ModelUtil.IoC;
-using Es.Udc.DotNet.PracticaMaD.Model;
-using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using Es.Udc.DotNet.ModelUtil.IoC;
+using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 
 namespace Web.Pages.Shopping
 {

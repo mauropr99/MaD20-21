@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true" CodeBehind="BooksDetailsView.aspx.cs" Inherits="Web.Pages.Product.BooksDetailsView" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
 
     <form id="form1" runat="server">
@@ -50,7 +51,7 @@
         <asp:Button ID="btnAddToShoppingCart" runat="server" Text="<%$ Resources: , addToShoppingCart %>" />
         <br />
         <br />
-        
+
     </form>
 
 

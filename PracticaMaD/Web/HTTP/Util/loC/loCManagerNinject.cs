@@ -1,20 +1,19 @@
-﻿using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
+﻿using System.Configuration;
+using System.Data.Entity;
+using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
+using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao;
-using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
-using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
-using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
-
-using Es.Udc.DotNet.ModelUtil.IoC;
+using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Ninject;
-using System.Configuration;
-using System.Data.Entity;
 
 
 namespace Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC

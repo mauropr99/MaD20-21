@@ -11,7 +11,7 @@ namespace Web.Pages.Product
         protected void Page_Load(object sender, EventArgs e)
         {
             string categoryName, productId;
-            
+
             IUserService userService;
 
             IIoCManager iocManager =
@@ -27,20 +27,22 @@ namespace Web.Pages.Product
             {
                 userRole = userService.GetRolByUserId(userSession.UserId);
             }
-            catch {
+            catch
+            {
             }
-                       
+
             try
             {
                 productId = Request.Params.Get("productId");
                 categoryName = Request.Params.Get("categoryName");
 
-                if(userRole == "admin") { 
-                    Response.Redirect("~/Pages/Product/UpdateDetails/Update"+categoryName+"DetailsView.aspx?productId=" + productId);
+                if (userRole == "admin")
+                {
+                    Response.Redirect("~/Pages/Product/UpdateDetails/Update" + categoryName + "DetailsView.aspx?productId=" + productId);
                 }
                 else
                 {
-                    Response.Redirect("~/Pages/Product/ViewDetails/"+ categoryName + "DetailsView.aspx?productId=" + productId);
+                    Response.Redirect("~/Pages/Product/ViewDetails/" + categoryName + "DetailsView.aspx?productId=" + productId);
                 }
             }
             catch (ArgumentNullException)

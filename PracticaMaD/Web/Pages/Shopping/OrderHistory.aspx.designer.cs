@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Web.Pages.Shopping {
-    
-    
-    public partial class OrderHistory {
-        
+namespace Web.Pages.Shopping
+{
+
+
+    public partial class OrderHistory
+    {
+
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Web.Pages.Shopping {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
+
         /// <summary>
         /// GridOrderHistory control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Web.Pages.Shopping {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridOrderHistory;
-        
+
         /// <summary>
         /// lnkPrevious control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Web.Pages.Shopping {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink lnkPrevious;
-        
+
         /// <summary>
         /// lnkNext control.
         /// </summary>

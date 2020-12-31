@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Globalization;
 using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects
@@ -28,7 +27,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects
         static Languages()
         {
             #region set the languages
-            
+
             languages_es.Add(new ListItem("Español-España", "es ES"));
             languages_es.Add(new ListItem("Gallego-España", "gl ES"));
             languages_es.Add(new ListItem("Inglés-Estados unidos", "en US"));

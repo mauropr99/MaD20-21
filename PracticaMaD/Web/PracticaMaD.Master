@@ -3,7 +3,7 @@
 
 <!DOCTYPE html html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html  xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title>PracticaMaD</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
@@ -25,44 +25,44 @@
                 <ul>
                     <li>
                         <asp:HyperLink ID="HyperLinkAuth" runat="server"
-                        NavigateUrl="~/Pages/User/Authentication.aspx"
-                        meta:resourcekey="lnkAuthenticate" />
+                            NavigateUrl="~/Pages/User/Authentication.aspx"
+                            meta:resourcekey="lnkAuthenticate" />
                     </li>
                     <li>
                         <asp:HyperLink ID="HyperLinkCatalog" runat="server"
-                        NavigateUrl="~/Pages/Product/Catalog.aspx"
-                        meta:resourcekey="lnkCatalog" />
+                            NavigateUrl="~/Pages/Product/Catalog.aspx"
+                            meta:resourcekey="lnkCatalog" />
                     </li>
                     <li>
                         <asp:HyperLink ID="HyperLinkUpdate" runat="server"
-                        NavigateUrl="~/Pages/User/UpdateUser.aspx"
-                        meta:resourcekey="lnkUpdate" />
+                            NavigateUrl="~/Pages/User/UpdateUser.aspx"
+                            meta:resourcekey="lnkUpdate" />
                     </li>
                     <li>
                         <asp:HyperLink ID="HyperLinkAddCreditCard" runat="server"
-                        NavigateUrl="~/Pages/CreditCardOperations/CreditCardAdd.aspx"
-                        meta:resourcekey="lnkAddCreditCard" />
+                            NavigateUrl="~/Pages/CreditCardOperations/CreditCardAdd.aspx"
+                            meta:resourcekey="lnkAddCreditCard" />
                     </li>
                     <li>
                         <asp:HyperLink ID="HyperLinkViewCreditCards" runat="server"
-                        NavigateUrl="~/Pages/CreditCardOperations/CreditCardView.aspx"
-                        meta:resourcekey="lnkViewCreditCards" />
+                            NavigateUrl="~/Pages/CreditCardOperations/CreditCardView.aspx"
+                            meta:resourcekey="lnkViewCreditCards" />
                     </li>
                     <li>
                         <asp:HyperLink ID="HyperLinkOrderHistory" runat="server"
-                        NavigateUrl="~/Pages/Shopping/OrderHistory.aspx"
-                        meta:resourcekey="lnkOrderHistory" />
+                            NavigateUrl="~/Pages/Shopping/OrderHistory.aspx"
+                            meta:resourcekey="lnkOrderHistory" />
                     </li>
                     <li>
                         <asp:HyperLink ID="HyperLinkLogout" runat="server"
-                        NavigateUrl="~/Pages/User/Logout.aspx"
-                        meta:resourcekey="lnkLogout" />
+                            NavigateUrl="~/Pages/User/Logout.aspx"
+                            meta:resourcekey="lnkLogout" />
                     </li>
                 </ul>
             </div>
-        
 
-             <!-- Body content. -->
+
+            <!-- Body content. -->
             <div id="content">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder_BodyContent" runat="server" />
             </div>
@@ -74,6 +74,6 @@
         </div>
         <!-- End of Window. -->
     </div>
-    <!-- End of HTML body. --> 
+    <!-- End of HTML body. -->
 </body>
 </html>

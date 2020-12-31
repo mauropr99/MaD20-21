@@ -1,23 +1,23 @@
-﻿using Es.Udc.DotNet.PracticaMaD.Test;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Transactions;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
+using Es.Udc.DotNet.PracticaMaD.Model.LabelDao;
+using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
+using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
+using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService;
+using Es.Udc.DotNet.PracticaMaD.Test;
+using Es.Udc.DotNet.PracticaMaD.Test.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Transactions;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService;
-using Es.Udc.DotNet.PracticaMaD.Test.Util;
-using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
-using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
-using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
-using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
-using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
-using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
-using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
-using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
-using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
-using Es.Udc.DotNet.PracticaMaD.Model.LabelDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 {
@@ -146,8 +146,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 Assert.AreEqual(userId, foundComment.userId);
                 Assert.AreEqual(3, foundComment.Labels.Count);
                 Assert.AreEqual(labels[0], foundComment.Labels.ToList()[0].lab);
-                Assert.AreEqual(labels[1], foundComment.Labels.ToList()[1].lab); 
-                Assert.AreEqual(labels[2], foundComment.Labels.ToList()[2].lab); 
+                Assert.AreEqual(labels[1], foundComment.Labels.ToList()[1].lab);
+                Assert.AreEqual(labels[2], foundComment.Labels.ToList()[2].lab);
 
 
             }
@@ -161,7 +161,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 Language language = TestUtil.CreateExistentLanguage();
 
                 long userId = userService.SingUpUser(login, password,
-                       new UserDetails(name, lastName, email, language.name,language.country));
+                       new UserDetails(name, lastName, email, language.name, language.country));
                 User user = TestUtil.userDao.Find(userId);
                 CreditCard creditCard = TestUtil.CreateCreditCard(user);
 
@@ -199,7 +199,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 Assert.AreEqual(labels2[0], foundLabels[2].lab); //Irresistible
                 Assert.AreEqual(labels2[1], foundLabels[1].lab); //Ganga
                 Assert.AreEqual(labels2[2], foundLabels[0].lab); //Chollazo
-                
+
 
             }
         }
@@ -268,8 +268,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 string text = "Muy buen ordenador y a buen precio. Funcionan todos los juegos a calidad máxima, muy fluidos y sin apenas calentarse el aparato.";
                 Comment comment = commentService.NewComment(user.id, product1.id, text, labels);
 
-                
-                commentService.RemoveComment(userId,comment.id);
+
+                commentService.RemoveComment(userId, comment.id);
                 TestUtil.commentDao.Find(comment.id);
 
             }
@@ -309,21 +309,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 };
                 var comment2 = commentService.NewComment(user.id, product1.id, text, labels2);
 
-                CommentBlock comment = commentService.ViewComments(userId,product1.id, 0,10);
+                CommentBlock comment = commentService.ViewComments(userId, product1.id, 0, 10);
 
-                Assert.AreEqual(comment1.id, comment.Comments[0].Id); 
-                Assert.AreEqual(comment2.id, comment.Comments[1].Id); 
-                Assert.AreEqual(comment1.commentDate, comment.Comments[0].Date); 
-                Assert.AreEqual(comment2.commentDate, comment.Comments[1].Date); 
-                Assert.AreEqual(comment1.text, comment.Comments[0].Text); 
-                Assert.AreEqual(comment2.text, comment.Comments[1].Text); 
-                Assert.AreEqual(labels[0], comment.Comments[0].Labels.ToList()[0]); 
-                Assert.AreEqual(labels[1], comment.Comments[0].Labels.ToList()[1]); 
-                Assert.AreEqual(labels[2], comment.Comments[0].Labels.ToList()[2]); 
-                Assert.AreEqual(labels2[0], comment.Comments[1].Labels.ToList()[0]); 
-                Assert.AreEqual(labels2[1], comment.Comments[1].Labels.ToList()[1]); 
-                Assert.AreEqual(labels2[2], comment.Comments[1].Labels.ToList()[2]); 
-                
+                Assert.AreEqual(comment1.id, comment.Comments[0].Id);
+                Assert.AreEqual(comment2.id, comment.Comments[1].Id);
+                Assert.AreEqual(comment1.commentDate, comment.Comments[0].Date);
+                Assert.AreEqual(comment2.commentDate, comment.Comments[1].Date);
+                Assert.AreEqual(comment1.text, comment.Comments[0].Text);
+                Assert.AreEqual(comment2.text, comment.Comments[1].Text);
+                Assert.AreEqual(labels[0], comment.Comments[0].Labels.ToList()[0]);
+                Assert.AreEqual(labels[1], comment.Comments[0].Labels.ToList()[1]);
+                Assert.AreEqual(labels[2], comment.Comments[0].Labels.ToList()[2]);
+                Assert.AreEqual(labels2[0], comment.Comments[1].Labels.ToList()[0]);
+                Assert.AreEqual(labels2[1], comment.Comments[1].Labels.ToList()[1]);
+                Assert.AreEqual(labels2[2], comment.Comments[1].Labels.ToList()[2]);
+
 
             }
         }

@@ -1,11 +1,8 @@
-﻿using Es.Udc.DotNet.ModelUtil.Dao;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Linq;
+using Es.Udc.DotNet.ModelUtil.Dao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao
 {
@@ -44,7 +41,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao
             #endregion Option 1: Using Linq
         }
 
-        public void AddUser(User user,long creditCardId)
+        public void AddUser(User user, long creditCardId)
         {
             DbSet<CreditCard> creditCards = Context.Set<CreditCard>();
 

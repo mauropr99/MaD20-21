@@ -1,8 +1,8 @@
-﻿using Es.Udc.DotNet.ModelUtil.Dao;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using Es.Udc.DotNet.ModelUtil.Dao;
 
 
 
@@ -19,9 +19,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ComputerDao
 
             DbSet<Computer> products = Context.Set<Computer>();
 
-            List<Computer> result = 
+            List<Computer> result =
                 (from p in products
-                 where p.product_name.Contains (product_name)
+                 where p.product_name.Contains(product_name)
                  orderby p.product_name
                  select p).Skip(startIndex).Take(count).ToList();
 

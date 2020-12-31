@@ -1,14 +1,14 @@
 using System.Collections.Generic;
-using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
-using Ninject;
 using System.Linq;
 using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
-using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
+using Ninject;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 {
-    public class ProductService:  IProductService
+    public class ProductService : IProductService
     {
         public ProductService()
         {
@@ -35,8 +35,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             products = ProductDao.FindByProductName(productName, startIndex, count + 1);
 
             List<ProductDetails> productsDetails = new List<ProductDetails>();
-            
-            foreach(Product product in products)
+
+            foreach (Product product in products)
             {
                 productsDetails.Add(new ProductDetails(product.id, product.product_name, product.price,
                         product.releaseDate, product.stock, ProductDao.GetCategoryName(product.id)));
@@ -80,12 +80,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
         public void UpdateProduct(Product product)
         {
-                ProductDao.Update(product);
+            ProductDao.Update(product);
         }
 
         public List<Category> ViewAllCategories()
         {
-           return  CategoryDao.GetAllElements().ToList();
+            return CategoryDao.GetAllElements().ToList();
         }
 
         public Book FindBook(long productId)

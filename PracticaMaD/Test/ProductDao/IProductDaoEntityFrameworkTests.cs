@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using Ninject;
-using Es.Udc.DotNet.PracticaMaD.Test;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Transactions;
-using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
-using Es.Udc.DotNet.PracticaMaD.Test.Util;
-using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
 using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
+using Es.Udc.DotNet.PracticaMaD.Test;
+using Es.Udc.DotNet.PracticaMaD.Test.Util;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ninject;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
 {
@@ -46,7 +46,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
             TestUtil.categoryDao = kernel.Get<ICategoryDao>();
             TestUtil.computerDao = kernel.Get<IComputerDao>();
             TestUtil.bookDao = kernel.Get<IBookDao>();
-            
+
         }
 
         //Use ClassCleanup to run code after all tests in a class have run

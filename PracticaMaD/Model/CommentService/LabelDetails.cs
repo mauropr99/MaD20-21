@@ -8,7 +8,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
         public long Id { get; private set; }
 
-        public string LabelName  { get; private set; }
+        public string LabelName { get; private set; }
 
         #endregion Properties Region
 
@@ -18,7 +18,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             LabelName = labelName;
         }
 
-            
+
 
         public override string ToString()
         {
