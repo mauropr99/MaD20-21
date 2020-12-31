@@ -53,11 +53,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         {
             User user = UserDao.Find(id);
             Language language = LanguageDao.FindByUserId(user.id);
+            UserDetails userDetails;
 
-            UserDetails userDetails =
+            if (user.favouriteCreditCard == null)
+            {
+                userDetails = 
                 new UserDetails(user.name,
                     user.lastName, user.email,
                     language.name, language.country);
+            } else
+            {
+                userDetails =
+                new UserDetails(user.name,
+                    user.lastName, user.email,
+                    language.name, language.country, user.favouriteCreditCard.Value);
+            }
+            
 
             return userDetails;
         }
@@ -171,6 +182,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
             List<CreditCard> creditCards = CreditCardDao.FindCreditCardsByUserId(userId);
 
+           
+
+
             foreach (CreditCard creditCard in creditCards)
             {
                 if (creditCard.creditCardNumber == creditCardNumber)
@@ -188,9 +202,28 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                 expirationDate = expirationDate
             };
             CreditCardDao.Create(newCreditCard);
+
+            //If this is the only creditCard, it'll be the default card
+            if (creditCards.Count() == 0)
+            {
+                user.favouriteCreditCard = newCreditCard.id;
+                UserDao.Update(user);
+            }
+
             CreditCardDao.AddUser(user, newCreditCard.id);
 
             return newCreditCard;
+        }
+
+        public void SetCreditCardAsDefault(long userId, long creditCardId)
+        {
+
+            User user = UserDao.Find(userId);
+
+            user.favouriteCreditCard = creditCardId;
+
+            UserDao.Update(user);
+           
         }
 
         public bool UserExists(string login)
@@ -213,6 +246,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             List<CreditCard> creditCards = CreditCardDao.FindCreditCardsByUserId(userId);
 
             return CreditCardDetails.fromCreditCardToCreditCardDetails(creditCards);
+        }
+
+        public String GetRolByUserId(long userId)
+        {
+            return UserDao.Find(userId).role;
         }
 
 

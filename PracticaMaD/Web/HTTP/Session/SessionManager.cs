@@ -115,9 +115,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
                 UserDetails);
 
             /* Insert necessary objects in the session. */
-            UserSession userSession = new UserSession();
-            userSession.UserId = usrId;
-            userSession.FirstName = UserDetails.Name;
+            UserSession userSession = new UserSession
+            {
+                UserId = usrId,
+                FirstName = UserDetails.Name
+            };
 
             Locale locale = new Locale(UserDetails.LanguageName,
                 UserDetails.LanguageCountry);
@@ -176,9 +178,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
 
             /* Insert necessary objects in the session. */
 
-            UserSession userSession = new UserSession();
-            userSession.UserId = loginResult.Id;
-            userSession.FirstName = loginResult.Name;
+            UserSession userSession = new UserSession
+            {
+                UserId = loginResult.Id,
+                FirstName = loginResult.Name
+            };
 
             Locale locale =
                 new Locale(loginResult.Language, loginResult.Country);

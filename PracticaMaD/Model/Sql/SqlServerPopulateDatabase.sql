@@ -17,12 +17,36 @@
  
 USE practicamad
 
+DELETE FROM OrderLine		DBCC CHECKIDENT ('[OrderLine]', RESEED, 0);
+DELETE FROM Order_Table		DBCC CHECKIDENT ('[Order_Table]', RESEED, 0);
+DELETE FROM Book;
+DELETE FROM Computers; 
+DELETE FROM Product			DBCC CHECKIDENT ('[Product]', RESEED, 0);
+DELETE FROM CreditCard_User;
+DELETE FROM CreditCard		DBCC CHECKIDENT ('[CreditCard]', RESEED, 0);
+DELETE FROM User_Table		DBCC CHECKIDENT ('[User_Table]', RESEED, 0);
+DELETE FROM Category		DBCC CHECKIDENT ('[Category]', RESEED, 0);
+DELETE FROM Language		DBCC CHECKIDENT ('[Language]', RESEED, 0);
+
+
+
 
 /* LANGUAGE */
 INSERT INTO Language (name, country) VALUES ('es', 'ES');
 INSERT INTO Language (name, country) VALUES ('gl', 'ES');
 INSERT INTO Language (name, country) VALUES ('en', 'US');
 INSERT INTO Language (name, country) VALUES ('en', 'GB');
+
+/* USER */
+	
+INSERT INTO User_Table (login, name, lastName, password, email, languageId, role, favouriteCreditCard) VALUES ('admin', 'admin', 'admin', 'jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=', 'admin@gmail.com', 1, 'admin', NULL);
+INSERT INTO User_Table (login, name, lastName, password, email, languageId, role, favouriteCreditCard) VALUES ('user', 'user', 'user', 'BPiZbadjt6lpsQKO4wB1aerzpjVIbdqyEdUSyFud+Ps=', 'user@user.com', 1, 'user', NULL);
+
+/* CREDITCARD */
+INSERT INTO CreditCard (ownerName, creditType, creditCardNumber,cvv, expirationDate) VALUES(user,'debit','012345678912345',123,'20240618 00:00:00 AM')
+
+/* CREDITCARD_USER */
+INSERT INTO CreditCard_User(userId, creditCardId)  VALUES (2,1);
 
 /* CATEGORY */
 INSERT INTO Category (name) VALUES ('Computers');
@@ -51,24 +75,39 @@ INSERT INTO Product (product_name, price, releaseDate, stock, categoryId) VALUES
 INSERT INTO Computers (id, brand,processor, os) VALUES(7,'HP','AMD Ryzen 7','Ubuntu 20.04')  
  
 /* BOOKS */
-INSERT INTO Product (product_name, price, releaseDate, stock, categoryId) VALUES ('Edicion Bolsillo El Quijote', 30.6, '20190618 10:34:09 AM', 100, 2) 
-INSERT INTO Book (id, title, genre, editorial, isbnCode) VALUES (8, 'El Quijote', 'Aventura', 'ALFAGUARA', '978-84-204-3547-3') 
+INSERT INTO Product (product_name, price, releaseDate, stock, categoryId) VALUES ('El Quijote', 30.6, '20190618 10:34:09 AM', 100, 2) 
+INSERT INTO Book (id, author, genre, editorial, isbnCode) VALUES (8, 'Miguel de Cervantes', 'Aventura', 'ALFAGUARA', '978-84-204-3547-3') 
 
-INSERT INTO Product (product_name, price, releaseDate, stock, categoryId) VALUES ('Libro científico de Stephen Hawking', 23.6, '20190618 10:34:09 AM', 120, 2) 
-INSERT INTO Book (id, title, genre, editorial, isbnCode) VALUES (9, 'BREVES RESPUESTAS A LAS GRANDES PREGUNTAS', 'Ciencia', 'John Murray', '476-44-234-9876-6') 
+INSERT INTO Product (product_name, price, releaseDate, stock, categoryId) VALUES ('Brief answers to the big questions', 23.6, '20190618 10:34:09 AM', 120, 2) 
+INSERT INTO Book (id, author, genre, editorial, isbnCode) VALUES (9, 'Stephen Hawking', 'Ciencia', 'John Murray', '476-44-234-9876-6') 
 
-INSERT INTO Product (product_name, price, releaseDate, stock, categoryId) VALUES ('Libros de la colección Geronimo Stilton', 15.3, '20030618 10:34:09 AM', 12, 2)
-INSERT INTO Book (id, title, genre, editorial, isbnCode) VALUES (10, 'El reino de la fantasía', 'Literatura Juvenil', 'Planeta', '212-0-222-26421-4')
+INSERT INTO Product (product_name, price, releaseDate, stock, categoryId) VALUES ('El reino de la fantasía', 15.3, '20030618 10:34:09 AM', 12, 2)
+INSERT INTO Book (id, author, genre, editorial, isbnCode) VALUES (10, 'Geronimo Stilton', 'Literatura Juvenil', 'Planeta', '212-0-222-26421-4')
 
-INSERT INTO Product (product_name, price, releaseDate, stock, categoryId) VALUES ('Libros de la colección Geronimo Stilton', 15.3, '20030618 10:34:09 AM', 23, 2)
-INSERT INTO Book (id, title, genre, editorial, isbnCode) VALUES (11, 'Segundo viaje al reino de la fantasía', 'Literatura Juvenil', 'Planeta', '213-0-222-26421-4')
+INSERT INTO Product (product_name, price, releaseDate, stock, categoryId) VALUES ('Segundo viaje al reino de la fantasía ', 15.3, '20030618 10:34:09 AM', 23, 2)
+INSERT INTO Book (id, author, genre, editorial, isbnCode) VALUES (11, 'Geronimo Stilton', 'Literatura Juvenil', 'Planeta', '213-0-222-26421-4')
 
-INSERT INTO Product (product_name, price, releaseDate, stock, categoryId) VALUES ('Libros de la colección Geronimo Stilton', 15.3, '20030618 10:34:09 AM', 20, 2)
-INSERT INTO Book (id, title, genre, editorial, isbnCode) VALUES (12, 'Tercer viaje al reino de la fantasía', 'Literatura Juvenil', 'Planeta', '214-0-222-26421-4')
+INSERT INTO Product (product_name, price, releaseDate, stock, categoryId) VALUES ('Tercer viaje al reino de la fantasía', 15.3, '20030618 10:34:09 AM', 8, 2)
+INSERT INTO Book (id, author, genre, editorial, isbnCode) VALUES (12, 'Geronimo Stilton', 'Literatura Juvenil', 'Planeta', '214-0-222-26421-4')
 
-INSERT INTO Product (product_name, price, releaseDate, stock, categoryId) VALUES ('Trilogía El Señor de los Anillos', 22.6, '20190618 10:34:09 AM', 34, 2) 
-INSERT INTO Book (id, title, genre, editorial, isbnCode) VALUES (13, 'El Retorno del Rey', 'Ciencia Ficción', 'Minotauro', '111-23-205-3557-1') 
+INSERT INTO Product (product_name, price, releaseDate, stock, categoryId) VALUES ('El Señor de los Anillos: La Comunidad del Anillo', 21.6, '20100618 10:34:09 AM', 10, 2) 
+INSERT INTO Book (id, author, genre, editorial, isbnCode) VALUES (13, 'J.R.R.Tolkien', 'Ciencia Ficción', 'Minotauro', '112-23-205-3557-2') 
 
-INSERT INTO Product (product_name, price, releaseDate, stock, categoryId) VALUES ('Trilogía El Señor de los Anillos', 21.6, '20190618 10:34:09 AM', 66, 2) 
-INSERT INTO Book (id, title, genre, editorial, isbnCode) VALUES (14, 'La Comunidad del Anillo', 'Ciencia Ficción', 'Minotauro', '112-23-205-3557-2') 
+INSERT INTO Product (product_name, price, releaseDate, stock, categoryId) VALUES ('El Señor de los Anillos: Las Dos Torres', 21.6, '20110618 10:34:09 AM', 7, 2) 
+INSERT INTO Book (id, author, genre, editorial, isbnCode) VALUES (14, 'J.R.R.Tolkien', 'Ciencia Ficción', 'Minotauro', '112-23-205-3557-2') 
+
+INSERT INTO Product (product_name, price, releaseDate, stock, categoryId) VALUES ('El Señor de los Anillos: El Retorno del Rey', 22.6, '20120618 10:34:09 AM', 4, 2) 
+INSERT INTO Book (id, author, genre, editorial, isbnCode) VALUES (15, 'J.R.R.Tolkien', 'Ciencia Ficción', 'Minotauro', '111-23-205-3557-1') 
+
+
+
+/* ORDERS */
+INSERT INTO Order_Table(postalAddress, orderDate, totalPrice, userId, creditCardId, description) VALUES ('Calle inventada Nº1', '20201229 00:00:00 AM', 2533.1, 2, 1, 'Pedido variado de 5 elementos');
+
+/* ORDER_LINE */
+INSERT INTO OrderLine(quantity, price, productId, orderId) VALUES(1, 999.3, 1, 1)
+INSERT INTO OrderLine(quantity, price, productId, orderId) VALUES(2, 700.4, 4, 1)
+INSERT INTO OrderLine(quantity, price, productId, orderId) VALUES(1, 30.6, 8, 1)
+INSERT INTO OrderLine(quantity, price, productId, orderId) VALUES(3, 23.6, 9, 1)
+INSERT INTO OrderLine(quantity, price, productId, orderId) VALUES(2, 15.3, 10, 1)
 

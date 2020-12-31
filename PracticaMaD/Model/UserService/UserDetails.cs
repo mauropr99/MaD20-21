@@ -20,7 +20,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
         public string Address { get; private set; }
 
+        public Nullable<long> DefaultCreditCardId { get; private set; }
+
         #endregion
+
+        public UserDetails(string name, string lastName,
+            string email, string languageName, string languageCountry, long defaultCreditCardId)
+        {
+            this.Name = name;
+            this.Lastname = lastName;
+            this.Email = email;
+            this.LanguageName = languageName;
+            this.LanguageCountry = languageCountry;
+            this.DefaultCreditCardId = defaultCreditCardId;
+        }
 
         public UserDetails(string name, string lastName,
             string email, string languageName, string languageCountry)
@@ -30,6 +43,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             this.Email = email;
             this.LanguageName = languageName;
             this.LanguageCountry = languageCountry;
+            this.DefaultCreditCardId = null;
         }
 
         public override bool Equals(object obj)

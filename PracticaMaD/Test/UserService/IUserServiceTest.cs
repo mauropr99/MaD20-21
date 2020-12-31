@@ -187,6 +187,35 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
         }
 
         [TestMethod()]
+        public void SetCreditCardAsDefaultTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                Language language = TestUtil.CreateExistentLanguage();
+                User user = TestUtil.CreateExistentUser(language);
+                string ownerName = "Name Surname";
+                string creditType = "debit";
+                string creditCardNumber1 = "1234567891234567";
+                string creditCardNumber2 = "1114567891234567";
+                short cvv = 123;
+                DateTime expirationDate = DateTime.Now.AddYears(1);
+
+                CreditCard creditCard1 = userService.AddCreditCard(user.id, ownerName, creditType, creditCardNumber1, cvv, expirationDate);
+                User foundUser = TestUtil.userDao.Find(user.id);
+                Assert.AreEqual(creditCard1.id, foundUser.favouriteCreditCard);
+
+                
+                CreditCard creditCard2 = userService.AddCreditCard(user.id, ownerName, creditType, creditCardNumber2, cvv, expirationDate);
+                userService.SetCreditCardAsDefault(user.id, creditCard2.id);
+                User foundUser2 = TestUtil.userDao.Find(user.id);
+                Assert.AreEqual(creditCard2.id, foundUser2.favouriteCreditCard);
+
+
+
+            }
+        }
+
+        [TestMethod()]
         public void FindCreditCardsByUserId()
         {
             using (var scope = new TransactionScope())

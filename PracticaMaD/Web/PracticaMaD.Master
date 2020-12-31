@@ -49,6 +49,11 @@
                         meta:resourcekey="lnkViewCreditCards" />
                     </li>
                     <li>
+                        <asp:HyperLink ID="HyperLinkOrderHistory" runat="server"
+                        NavigateUrl="~/Pages/Shopping/OrderHistory.aspx"
+                        meta:resourcekey="lnkOrderHistory" />
+                    </li>
+                    <li>
                         <asp:HyperLink ID="HyperLinkLogout" runat="server"
                         NavigateUrl="~/Pages/User/Logout.aspx"
                         meta:resourcekey="lnkLogout" />
