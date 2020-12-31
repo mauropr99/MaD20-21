@@ -1,9 +1,6 @@
-﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
+﻿using System.Collections.Generic;
 using Es.Udc.DotNet.ModelUtil.Transactions;
-using Ninject;
-using System;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
-using System.Collections.Generic;
 using Es.Udc.DotNet.PracticaMaD.Model.LabelDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
 

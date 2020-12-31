@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Ninject;
-using Es.Udc.DotNet.PracticaMaD.Test;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Test;
 using Es.Udc.DotNet.PracticaMaD.Test.Util;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ninject;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.BookDao.Tests
 {
@@ -71,49 +71,55 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.BookDao.Tests
         [TestMethod()]
         public void FindByProductNameTest()
         {
+            using (var scope = new TransactionScope())
+            {
 
-            Category category1 = TestUtil.CreateCategory("Books");
+                Category category1 = TestUtil.CreateCategory("Books");
 
-            Book product1 = TestUtil.CreateBook(category1, "El Quijote", 3.5m, "Miguel de cervantes");
-            Book product2 = TestUtil.CreateBook(category1, "Viaje al mundo de la fantasía", 3.5m, "Geronimo Stilton");
-            Book product3 = TestUtil.CreateBook(category1, "Viaje al mundo de la fantasía 2", 3.5m, "Tea Stilton");
+                Book product1 = TestUtil.CreateBook(category1, "El Quijote", 3.5m, "Miguel de cervantes");
+                Book product2 = TestUtil.CreateBook(category1, "Viaje al mundo de la fantasía", 3.5m, "Geronimo Stilton");
+                Book product3 = TestUtil.CreateBook(category1, "Viaje al mundo de la fantasía 2", 3.5m, "Tea Stilton");
 
-            List<Book>  foundBooks = TestUtil.bookDao.FindByProductName("mundo de la fantasía", 0, 10);
+                List<Book> foundBooks = TestUtil.bookDao.FindByProductName("mundo de la fantasía", 0, 10);
 
-            Assert.AreEqual(2, foundBooks.Count);
+                Assert.AreEqual(2, foundBooks.Count);
 
-            Assert.AreEqual(product2.product_name, foundBooks[0].product_name);
-            Assert.AreEqual(product2.price, foundBooks[0].price);
-            Assert.AreEqual(product2.releaseDate, foundBooks[0].releaseDate);
-            Assert.AreEqual(product2.stock, foundBooks[0].stock);
-            Assert.AreEqual(product2.genre, foundBooks[0].genre);
-            Assert.AreEqual(product2.author, foundBooks[0].author);
-            Assert.AreEqual(product2.isbnCode, foundBooks[0].isbnCode);
-            Assert.AreEqual(product2.editorial, foundBooks[0].editorial);
+                Assert.AreEqual(product2.product_name, foundBooks[0].product_name);
+                Assert.AreEqual(product2.price, foundBooks[0].price);
+                Assert.AreEqual(product2.releaseDate, foundBooks[0].releaseDate);
+                Assert.AreEqual(product2.stock, foundBooks[0].stock);
+                Assert.AreEqual(product2.genre, foundBooks[0].genre);
+                Assert.AreEqual(product2.author, foundBooks[0].author);
+                Assert.AreEqual(product2.isbnCode, foundBooks[0].isbnCode);
+                Assert.AreEqual(product2.editorial, foundBooks[0].editorial);
 
-            Assert.AreEqual(product3.product_name, foundBooks[1].product_name);
-            Assert.AreEqual(product3.price, foundBooks[1].price);
-            Assert.AreEqual(product3.releaseDate, foundBooks[1].releaseDate);
-            Assert.AreEqual(product3.stock, foundBooks[1].stock);
-            Assert.AreEqual(product3.genre, foundBooks[1].genre);
-            Assert.AreEqual(product3.author, foundBooks[1].author);
-            Assert.AreEqual(product3.isbnCode, foundBooks[1].isbnCode);
-            Assert.AreEqual(product3.editorial, foundBooks[1].editorial);
+                Assert.AreEqual(product3.product_name, foundBooks[1].product_name);
+                Assert.AreEqual(product3.price, foundBooks[1].price);
+                Assert.AreEqual(product3.releaseDate, foundBooks[1].releaseDate);
+                Assert.AreEqual(product3.stock, foundBooks[1].stock);
+                Assert.AreEqual(product3.genre, foundBooks[1].genre);
+                Assert.AreEqual(product3.author, foundBooks[1].author);
+                Assert.AreEqual(product3.isbnCode, foundBooks[1].isbnCode);
+                Assert.AreEqual(product3.editorial, foundBooks[1].editorial);
+            }
         }
 
         [TestMethod()]
         public void FindZeroByProductNameTest()
         {
-            Category category1 = TestUtil.CreateCategory("Books");
+            using (var scope = new TransactionScope())
+            {
+                Category category1 = TestUtil.CreateCategory("Books");
 
-            Book product1 = TestUtil.CreateBook(category1, "El Quijote", 3.5m, "Miguel de cervantes");
-            Book product2 = TestUtil.CreateBook(category1, "Viaje al mundo de la fantasía", 3.5m, "Geronimo Stilton");
-            Book product3 = TestUtil.CreateBook(category1, "Viaje al mundo de la fantasía 2", 3.5m, "Tea Stilton");
+                Book product1 = TestUtil.CreateBook(category1, "El Quijote", 3.5m, "Miguel de cervantes");
+                Book product2 = TestUtil.CreateBook(category1, "Viaje al mundo de la fantasía", 3.5m, "Geronimo Stilton");
+                Book product3 = TestUtil.CreateBook(category1, "Viaje al mundo de la fantasía 2", 3.5m, "Tea Stilton");
 
 
-            List<Book> foundBooks = TestUtil.bookDao.FindByProductName("Libro de cocina de Chicote", 0, 10);
+                List<Book> foundBooks = TestUtil.bookDao.FindByProductName("Libro de cocina de Chicote", 0, 10);
 
-            Assert.AreEqual(0, foundBooks.Count);
+                Assert.AreEqual(0, foundBooks.Count);
+            }
         }
     }
 }

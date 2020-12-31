@@ -38,7 +38,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             List<CreditCardDetails> creditCardDetailsList = new List<CreditCardDetails>();
             foreach (var creditCard in creditCards)
             {
-                CreditCardDetails newCreditCardDetails = new CreditCardDetails(creditCard.id, 
+                CreditCardDetails newCreditCardDetails = new CreditCardDetails(creditCard.id,
                     creditCard.ownerName, creditCard.creditType, creditCard.creditCardNumber, creditCard.expirationDate);
 
                 creditCardDetailsList.Add(newCreditCardDetails);
@@ -47,6 +47,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             return creditCardDetailsList;
         }
 
-       
+
     }
 }

@@ -1,9 +1,9 @@
-﻿using Es.Udc.DotNet.ModelUtil.IoC;
+﻿using System;
+using System.Text.RegularExpressions;
+using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
-using System;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
-using System.Text.RegularExpressions;
 
 namespace Web.Pages.Product
 {
@@ -54,7 +54,7 @@ namespace Web.Pages.Product
                     book.genre = lblGenreContent.Text;
                     productService.UpdateBook(book);
                     Response.Redirect("~/Pages/Product/Catalog.aspx");
-                 }
+                }
             }
             catch (ArgumentNullException)
             {

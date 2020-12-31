@@ -8,35 +8,43 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Web.Properties {
-    
-    
+namespace Web.Properties
+{
+
+
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
+    {
+
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-        
-        public static Settings Default {
-            get {
+
+        public static Settings Default
+        {
+            get
+            {
                 return defaultInstance;
             }
         }
-        
+
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("2")]
-        public int PracticaMaD_defaultCount {
-            get {
+        public int PracticaMaD_defaultCount
+        {
+            get
+            {
                 return ((int)(this["PracticaMaD_defaultCount"]));
             }
         }
-        
+
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("/PracticaMaD")]
-        public string PracticaMaD_applicationURL {
-            get {
+        public string PracticaMaD_applicationURL
+        {
+            get
+            {
                 return ((string)(this["PracticaMaD_applicationURL"]));
             }
         }

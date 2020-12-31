@@ -1,11 +1,11 @@
-﻿using Es.Udc.DotNet.ModelUtil.IoC;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Web.UI.WebControls;
+using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
-using System.Web.UI.WebControls;
-using System.Globalization;
+
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
 {
@@ -63,7 +63,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
 
             for (int i = 0; i < GridViewCreditCards.Rows.Count; i++)
             {
-                if(GridViewCreditCards.DataKeys[i].Values[1].ToString() == "True")
+                if (GridViewCreditCards.DataKeys[i].Values[1].ToString() == "True")
                 {
                     GridViewCreditCards.Rows[i].Cells[4].Visible = false;
                 }
@@ -72,7 +72,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
 
         }
 
-        protected void btnAddNewCreditCard_Click(object sender, EventArgs e)
+        protected void BtnAddNewCreditCard_Click(object sender, EventArgs e)
         {
             Response.Redirect(Response.ApplyAppPathModifier("~/Pages/CreditCardOperations/CreditCardAdd.aspx"));
         }
@@ -81,7 +81,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
         {
             if (e.CommandName == "SetAsDefault")
             {
-                
+
                 //1 Obtener contexto de inyección de dependencias
 
                 IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
@@ -93,7 +93,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
                 //Llamar a los casos de uso
                 UserSession userSession =
                     (UserSession)Context.Session[SessionManager.USER_SESSION_ATTRIBUTE];
-                
+
 
                 int index = Convert.ToInt32(e.CommandArgument);
 

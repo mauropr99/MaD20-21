@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true"
-    CodeBehind="Catalog.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Product.Catalog"
-    %>
+    CodeBehind="Catalog.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Product.Catalog" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
     <div id="form">
         <form id="form1" runat="server">
@@ -17,11 +17,11 @@
             <br />
             <br />
             <br />
-            <asp:GridView ID="GridViewCatalog"  runat="server" CellPadding="4" ForeColor="#333333" GridLines="None"
-                AutoGenerateColumns="False" OnSelectedIndexChanged="GridViewCatalog_SelectedIndexChanged" >
+            <asp:GridView ID="GridViewCatalog" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None"
+                AutoGenerateColumns="False">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
-                    <asp:HyperLinkField DataTextField="ProductName" HeaderText="<%$ Resources: , productName %>" DataNavigateUrlFields="Id,CategoryName" NavigateUrl="~/Pages/Product/DetailsViewController.aspx" DataNavigateUrlFormatString="DetailsViewController.aspx?productId={0}&categoryName={1}"/>
+                    <asp:HyperLinkField DataTextField="ProductName" HeaderText="<%$ Resources: , productName %>" DataNavigateUrlFields="Id,CategoryName" NavigateUrl="~/Pages/Product/DetailsViewController.aspx" DataNavigateUrlFormatString="DetailsViewController.aspx?productId={0}&categoryName={1}" />
                     <asp:BoundField DataField="CategoryName" HeaderText="<%$ Resources: , category %>" />
                     <asp:BoundField DataField="ReleaseDate" HeaderText="<%$ Resources: , releaseDate %>" />
                     <asp:BoundField DataField="Price" HeaderText="<%$ Resources: , price %>" />
@@ -40,12 +40,12 @@
             </asp:GridView>
             <br />
             <div class="previousNextLinks">
-            <span class="previousLink">
-                <asp:HyperLink ID="lnkPrevious" Text="<%$ Resources:Common, Previous %>" runat="server"
-                    Visible="False"></asp:HyperLink>
-            </span><span class="nextLink">
-                <asp:HyperLink ID="lnkNext" Text="<%$ Resources:Common, Next %>" runat="server" Visible="False"></asp:HyperLink>
-            </span>
+                <span class="previousLink">
+                    <asp:HyperLink ID="lnkPrevious" Text="<%$ Resources:Common, Previous %>" runat="server"
+                        Visible="False"></asp:HyperLink>
+                </span><span class="nextLink">
+                    <asp:HyperLink ID="lnkNext" Text="<%$ Resources:Common, Next %>" runat="server" Visible="False"></asp:HyperLink>
+                </span>
             </div>
             <br />
             <br />

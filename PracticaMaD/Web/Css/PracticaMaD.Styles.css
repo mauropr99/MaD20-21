@@ -19,13 +19,13 @@ a {
     }
 
 
-    /* Sidebar. */
+/* Sidebar. */
 
-    #sidebar {
-        float: left;
-        background-color: #097099;
-        width: 20%;
-    }
+#sidebar {
+    float: left;
+    background-color: #097099;
+    width: 20%;
+}
 
     #sidebar a {
         color: #fffac6;

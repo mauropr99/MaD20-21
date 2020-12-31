@@ -1,15 +1,15 @@
-﻿using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
-using Es.Udc.DotNet.PracticaMaD.Test;
-using Ninject;
+﻿using System.Collections.Generic;
 using System.Transactions;
-using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
-using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
-using System.Collections.Generic;
 using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
+using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
+using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
+using Es.Udc.DotNet.PracticaMaD.Test;
 using Es.Udc.DotNet.PracticaMaD.Test.Util;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ninject;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao.Tests
 {
@@ -20,7 +20,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao.Tests
 
         private const long NON_EXISTENT_ID_ORDER = -1;
 
-      
+
         private TransactionScope transactionScope;
 
         private TestContext testContextInstance;
@@ -83,49 +83,52 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao.Tests
         [TestMethod()]
         public void FindByOrderIdTest()
         {
-            Category category1 = TestUtil.CreateCategory("Ordenadores");
-            Category category2 = TestUtil.CreateCategory("Libros");
-            Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
-            Computer product2 = TestUtil.CreateComputer(category1, "ACER 3x2600", 2.5m, "Acer");
-            Book product3 = TestUtil.CreateBook(category2, "El quijote Nueva edición", 3.5m, "El quijote");
-            OrderLine orderline1 = TestUtil.CreateOrderLine(product1);
-            OrderLine orderline2 = TestUtil.CreateOrderLine(product2);
-            OrderLine orderline3 = TestUtil.CreateOrderLine(product3);
-            List<OrderLine> orderLines = new List<OrderLine>
+            using (var scope = new TransactionScope())
+            {
+                Category category1 = TestUtil.CreateCategory("Ordenadores");
+                Category category2 = TestUtil.CreateCategory("Libros");
+                Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
+                Computer product2 = TestUtil.CreateComputer(category1, "ACER 3x2600", 2.5m, "Acer");
+                Book product3 = TestUtil.CreateBook(category2, "El quijote Nueva edición", 3.5m, "El quijote");
+                OrderLine orderline1 = TestUtil.CreateOrderLine(product1);
+                OrderLine orderline2 = TestUtil.CreateOrderLine(product2);
+                OrderLine orderline3 = TestUtil.CreateOrderLine(product3);
+                List<OrderLine> orderLines = new List<OrderLine>
             {
                 orderline1,
                 orderline2
             };
-            Language language = TestUtil.CreateExistentLanguage();
-            User user = TestUtil.CreateExistentUser(language); CreditCard creditCard = TestUtil.CreateCreditCard(user);
-            Order order1 = TestUtil.CreateOrder(user, creditCard, orderLines);
+                Language language = TestUtil.CreateExistentLanguage();
+                User user = TestUtil.CreateExistentUser(language); CreditCard creditCard = TestUtil.CreateCreditCard(user);
+                Order order1 = TestUtil.CreateOrder(user, creditCard, orderLines);
 
-            List<OrderLine> foundOrderLines = new List<OrderLine>();
-            foundOrderLines = TestUtil.orderLineDao.FindByOrderId(order1.id);
+                List<OrderLine> foundOrderLines = new List<OrderLine>();
+                foundOrderLines = TestUtil.orderLineDao.FindByOrderId(order1.id);
 
-            Assert.AreEqual(2, foundOrderLines.Count);
-            Assert.AreEqual(orderline1.id, foundOrderLines[0].id);
-            Assert.AreEqual(orderline1.quantity, foundOrderLines[0].quantity);
-            Assert.AreEqual(orderline1.productId, foundOrderLines[0].productId);
-            Assert.AreEqual(orderline1.price, foundOrderLines[0].price);
+                Assert.AreEqual(2, foundOrderLines.Count);
+                Assert.AreEqual(orderline1.id, foundOrderLines[0].id);
+                Assert.AreEqual(orderline1.quantity, foundOrderLines[0].quantity);
+                Assert.AreEqual(orderline1.productId, foundOrderLines[0].productId);
+                Assert.AreEqual(orderline1.price, foundOrderLines[0].price);
 
-            Assert.AreEqual(orderline2.id, foundOrderLines[1].id);
-            Assert.AreEqual(orderline2.quantity, foundOrderLines[1].quantity);
-            Assert.AreEqual(orderline2.productId, foundOrderLines[1].productId);
-            Assert.AreEqual(orderline2.price, foundOrderLines[1].price);
+                Assert.AreEqual(orderline2.id, foundOrderLines[1].id);
+                Assert.AreEqual(orderline2.quantity, foundOrderLines[1].quantity);
+                Assert.AreEqual(orderline2.productId, foundOrderLines[1].productId);
+                Assert.AreEqual(orderline2.price, foundOrderLines[1].price);
 
 
-            foundOrderLines = TestUtil.orderLineDao.FindByOrderId(NON_EXISTENT_ID_ORDER);
+                foundOrderLines = TestUtil.orderLineDao.FindByOrderId(NON_EXISTENT_ID_ORDER);
 
-            Assert.AreEqual(0, foundOrderLines.Count);
+                Assert.AreEqual(0, foundOrderLines.Count);
 
-            OrderLine foundOrderLine = new OrderLine();
-            foundOrderLine = TestUtil.orderLineDao.Find(orderline1.id);
+                OrderLine foundOrderLine = new OrderLine();
+                foundOrderLine = TestUtil.orderLineDao.Find(orderline1.id);
 
-            Assert.AreEqual(orderline1.id, foundOrderLine.id);
-            Assert.AreEqual(orderline1.quantity, foundOrderLine.quantity);
-            Assert.AreEqual(orderline1.productId, foundOrderLine.productId);
-            Assert.AreEqual(orderline1.price, foundOrderLine.price);
+                Assert.AreEqual(orderline1.id, foundOrderLine.id);
+                Assert.AreEqual(orderline1.quantity, foundOrderLine.quantity);
+                Assert.AreEqual(orderline1.productId, foundOrderLine.productId);
+                Assert.AreEqual(orderline1.price, foundOrderLine.price);
+            }
         }
     }
 }

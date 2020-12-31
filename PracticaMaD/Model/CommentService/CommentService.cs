@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
-using Es.Udc.DotNet.PracticaMaD.Model.LabelDao;
-using Ninject;
 using System.Linq;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentService.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.LabelDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
+using Ninject;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 {
-    public class CommentService: ICommentService
+    public class CommentService : ICommentService
     {
- 
+
 
         [Inject]
         public ICommentDao CommentDao { private get; set; }
@@ -37,9 +37,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
             if (labels.Count != 0)
             {
-                foreach (string label in labels) {
+                foreach (string label in labels)
+                {
 
-                    if (!LabelDao.ExistByName(label)) 
+                    if (!LabelDao.ExistByName(label))
                     {
                         Label newLabel = new Label()
                         {
@@ -126,7 +127,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         public void RemoveComment(long userId, long commentId)
         {
             //Check if comment exists
-            Comment comment =  CommentDao.Find(commentId);
+            Comment comment = CommentDao.Find(commentId);
 
             if (comment.userId != userId) throw new DifferentsUsers(userId);
 
@@ -139,7 +140,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
                 if (label.timesUsed == 1)
                 {
                     LabelDao.Remove(label.id);
-                } else
+                }
+                else
                 {
                     label.timesUsed--;
                     LabelDao.Update(label);
@@ -157,7 +159,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             * Find count+1 orders to determine if there exist more orders above
             * the specified range.
             */
-            comments = CommentDao.FindByProductId(productId, startIndex, count + 1);
+            comments = CommentDao.FindCommentsByProductId(productId, startIndex, count + 1);
             User user = UserDao.Find(userId);
 
             bool existMoreComments = (comments.Count == count + 1);
@@ -169,13 +171,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
             List<CommentDetails> detailComments = new List<CommentDetails>();
 
-            
+
             foreach (Comment comment in comments)
             {
                 List<string> labelNames = new List<string>();
                 foreach (Label label in comment.Labels)
                 {
-                    
+
                     labelNames.Add(label.lab);
                 }
 

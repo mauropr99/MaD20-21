@@ -35,7 +35,6 @@ DELETE FROM Language		DBCC CHECKIDENT ('[Language]', RESEED, 0);
 INSERT INTO Language (name, country) VALUES ('es', 'ES');
 INSERT INTO Language (name, country) VALUES ('gl', 'ES');
 INSERT INTO Language (name, country) VALUES ('en', 'US');
-INSERT INTO Language (name, country) VALUES ('en', 'GB');
 
 /* USER */
 	

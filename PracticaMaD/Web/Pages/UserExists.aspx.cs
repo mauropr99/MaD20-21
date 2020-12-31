@@ -1,7 +1,7 @@
-﻿using Es.Udc.DotNet.PracticaMaD.Model.UserService;
-using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
+﻿using System;
 using Es.Udc.DotNet.ModelUtil.IoC;
-using System;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
 {

@@ -1,15 +1,15 @@
-﻿using Es.Udc.DotNet.ModelUtil.Dao;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using Es.Udc.DotNet.ModelUtil.Dao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 {
     public class CommentDaoEntityFramework :
         GenericDaoEntityFramework<Comment, Int64>, ICommentDao
     {
-        public List<Comment> FindByProductId(long productId, int startIndex, int count)
+        public List<Comment> FindCommentsByProductId(long productId, int startIndex, int count)
         {
             #region Using Linq.
 

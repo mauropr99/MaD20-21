@@ -1,9 +1,9 @@
-﻿using Es.Udc.DotNet.ModelUtil.IoC;
+﻿using System;
+using System.Text.RegularExpressions;
+using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
-using System;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
-using System.Text.RegularExpressions;
 
 namespace Web.Pages.Product
 {
@@ -50,13 +50,13 @@ namespace Web.Pages.Product
                     Computer computer = productService.FindComputer(productId);
                     computer.product_name = lblComputerNameContent.Text;
                     computer.brand = lblBrandContent.Text;
-                    computer.price = decimal.Parse(Regex.Match(lblPriceContent.Text, @"-?\d{1,3}(,\d{3})*(\.\d+)?").Value); 
+                    computer.price = decimal.Parse(Regex.Match(lblPriceContent.Text, @"-?\d{1,3}(,\d{3})*(\.\d+)?").Value);
                     computer.stock = Int32.Parse(lblStockContent.Text);
                     computer.processor = lblProcessorContent.Text;
                     computer.os = lblOperatingSystemContent.Text;
                     productService.UpdateComputer(computer);
                     Response.Redirect("~/Pages/Product/Catalog.aspx");
-                 }
+                }
             }
             catch (ArgumentNullException)
             {

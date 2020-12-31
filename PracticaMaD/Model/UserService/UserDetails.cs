@@ -57,7 +57,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                   && (this.LanguageName == target.LanguageName)
                   && (this.LanguageCountry == target.LanguageCountry);
         }
-    
+
         public override int GetHashCode()
         {
             return this.Name.GetHashCode();

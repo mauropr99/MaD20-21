@@ -1,4 +1,7 @@
-﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
+﻿using System;
+using System.Collections.Generic;
+using System.Transactions;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
@@ -8,9 +11,6 @@ using Es.Udc.DotNet.PracticaMaD.Test;
 using Es.Udc.DotNet.PracticaMaD.Test.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
-using System;
-using System.Collections.Generic;
-using System.Transactions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
 {
@@ -204,7 +204,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
                 User foundUser = TestUtil.userDao.Find(user.id);
                 Assert.AreEqual(creditCard1.id, foundUser.favouriteCreditCard);
 
-                
+
                 CreditCard creditCard2 = userService.AddCreditCard(user.id, ownerName, creditType, creditCardNumber2, cvv, expirationDate);
                 userService.SetCreditCardAsDefault(user.id, creditCard2.id);
                 User foundUser2 = TestUtil.userDao.Find(user.id);

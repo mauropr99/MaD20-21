@@ -1,14 +1,10 @@
-﻿using Es.Udc.DotNet.ModelUtil.IoC;
+﻿using System;
+using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
-using System;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+
 
 namespace Web.Pages.Product
 {
@@ -28,15 +24,17 @@ namespace Web.Pages.Product
                 productId = long.Parse(Request.Params.Get("productId"));
                 Book book = productService.FindBook(productId);
 
-                
 
 
-                if(book.stock == 0 || !SessionManager.IsUserAuthenticated(Context))
+
+                if (book.stock == 0 || !SessionManager.IsUserAuthenticated(Context))
                 {
                     lblQuantity.Visible = false;
                     DropDownListQuantity.Visible = false;
                     btnAddToShoppingCart.Visible = false;
-                } else {
+                }
+                else
+                {
                     /*If the user is authenticated we offer 
                      - A drop down list with the quantity of objects to add to the shopping cart.
                      - The option of adding the product to the shopping cart.
@@ -86,9 +84,9 @@ namespace Web.Pages.Product
             }
 
 
-            
 
-            
+
+
 
         }
     }

@@ -1,8 +1,8 @@
-﻿using Es.Udc.DotNet.ModelUtil.Dao;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
-using System;
+﻿using System;
 using System.Data.Entity;
 using System.Linq;
+using Es.Udc.DotNet.ModelUtil.Dao;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao
 {
@@ -48,7 +48,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao
 
             #endregion Option 1: Using Linq.
 
-            
+
             if (user == null)
                 throw new InstanceNotFoundException(login,
                     typeof(User).FullName);
@@ -73,7 +73,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao
 
             #endregion Option 1: Using Linq.
 
-            
+
             if (user == null)
                 throw new InstanceNotFoundException(email,
                     typeof(User).FullName);

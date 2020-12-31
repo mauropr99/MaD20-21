@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Ninject;
-using Es.Udc.DotNet.PracticaMaD.Test;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Transactions;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Test;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ninject;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao.Tests
 {
@@ -74,27 +74,30 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao.Tests
         [TestMethod()]
         public void FindByNameAndCountryTest()
         {
-            int numberOfLanguages = 11;
-
-            List<Language> createdLanguage = new List<Language>(numberOfLanguages);
-
-            /* Create 11 numberOfLanguages */
-            for (int i = 0; i < numberOfLanguages; i++)
+            using (var scope = new TransactionScope())
             {
-                Language language = new Language
+                int numberOfLanguages = 11;
+
+                List<Language> createdLanguage = new List<Language>(numberOfLanguages);
+
+                /* Create 11 numberOfLanguages */
+                for (int i = 0; i < numberOfLanguages; i++)
                 {
-                    name = "language " + i.ToString(),
-                    country = "ES"
-                };
-                languageDao.Create(language);
-                createdLanguage.Add(language);
+                    Language language = new Language
+                    {
+                        name = "language " + i.ToString(),
+                        country = "ES"
+                    };
+                    languageDao.Create(language);
+                    createdLanguage.Add(language);
+                }
+
+                String expectedLanguageName = "language 8";
+                String expectedLanguageCountry = "ES";
+                Language foundlanguage = languageDao.FindByNameAndCountry(expectedLanguageName, expectedLanguageCountry);
+
+                Assert.AreEqual(foundlanguage.name, expectedLanguageName);
             }
-
-            String expectedLanguageName = "language 8";
-            String expectedLanguageCountry = "ES";
-            Language foundlanguage = languageDao.FindByNameAndCountry(expectedLanguageName, expectedLanguageCountry);
-
-            Assert.AreEqual(foundlanguage.name, expectedLanguageName);
 
         }
 
@@ -102,28 +105,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao.Tests
         [ExpectedException(typeof(InstanceNotFoundException))]
         public void FindByNonExistentLanguageNameTest()
         {
-            Language language = new Language
+            using (var scope = new TransactionScope())
             {
-                name = "es",
-                country = "ES"
-            };
-            languageDao.Create(language);
+                Language language = new Language
+                {
+                    name = "es",
+                    country = "ES"
+                };
+                languageDao.Create(language);
 
-            Language expectedLanguage = languageDao.FindByNameAndCountry(NON_EXISTENT_LANGUAGE_NAME, "ES");
+                Language expectedLanguage = languageDao.FindByNameAndCountry(NON_EXISTENT_LANGUAGE_NAME, "ES");
+            }
         }
 
         [TestMethod()]
         [ExpectedException(typeof(InstanceNotFoundException))]
         public void FindByNonExistentLanguageCountryTest()
         {
-            Language language = new Language
+            using (var scope = new TransactionScope())
             {
-                name = "es",
-                country = "ES"
-            };
-            languageDao.Create(language);
+                Language language = new Language
+                {
+                    name = "es",
+                    country = "ES"
+                };
+                languageDao.Create(language);
 
-            Language expectedLanguage = languageDao.FindByNameAndCountry("es", NON_EXISTENT_LANGUAGE_COUNTRY);
+                Language expectedLanguage = languageDao.FindByNameAndCountry("es", NON_EXISTENT_LANGUAGE_COUNTRY);
+            }
         }
     }
 }

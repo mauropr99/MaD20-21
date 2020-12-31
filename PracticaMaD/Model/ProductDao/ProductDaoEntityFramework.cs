@@ -1,10 +1,9 @@
-﻿using Es.Udc.DotNet.ModelUtil.Dao;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using Es.Udc.DotNet.ModelUtil.Dao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
-using System.Security.Cryptography;
 
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
@@ -20,9 +19,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 
             DbSet<Product> products = Context.Set<Product>();
 
-            List<Product> result = 
+            List<Product> result =
                 (from p in products
-                 where p.product_name.Contains (product_name)
+                 where p.product_name.Contains(product_name)
                  orderby p.product_name
                  select p).Skip(startIndex).Take(count).ToList();
 
@@ -49,7 +48,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
                 throw new InstanceNotFoundException(product_name,
                     typeof(User).FullName);
 
-           
+
             return product;
 
             #endregion Using Linq.
