@@ -20,8 +20,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
                     HyperLinkUpdate.Visible = false;
                 if (HyperLinkLogout != null)
                     HyperLinkLogout.Visible = false;
-                if (HyperLinkAddCreditCard != null)
-                    HyperLinkAddCreditCard.Visible = false;
                 if (HyperLinkViewCreditCards != null)
                     HyperLinkViewCreditCards.Visible = false;
                 if (HyperLinkOrderHistory != null)
@@ -36,7 +34,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
             }
 
             IShoppingService shoppingService = SessionManager.GetShoppingService();
-            ShoppingCartSize.Text = shoppingService.ViewShoppingCart().Count.ToString();
+            ShoppingCartSize.Text = "(" + shoppingService.ViewShoppingCart().Count.ToString() + ")";
 
         }
     }

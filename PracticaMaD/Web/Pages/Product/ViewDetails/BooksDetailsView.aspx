@@ -48,7 +48,7 @@
         <br />
         <br />
         <br />
-        <asp:Button ID="btnAddToShoppingCart" runat="server" Text="<%$ Resources: , addToShoppingCart %>" />
+        <asp:Button ID="btnAddToShoppingCart" runat="server" Text="<%$ Resources: , addToShoppingCart %>" OnClick="btnAddToShoppingCart_Click" />
         <br />
         <br />
 

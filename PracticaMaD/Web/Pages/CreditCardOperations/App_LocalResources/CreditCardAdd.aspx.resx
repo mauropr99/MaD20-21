@@ -139,9 +139,9 @@
     <value>Debit</value>
   </data>
   <data name="expirationDate" xml:space="preserve">
-    <value>Expiration date (MM/dd/yyyy)</value>
+    <value>Expiration date (dd/yyyy)</value>
   </data>
   <data name="validationDateExpression" xml:space="preserve">
-    <value>^[0-1m]{1}[0-9m]{1}/[0-3m]{1}[0-9m]{1}/[0-9y]{4}$</value>
+    <value>^[0-1m]{1}[0-9m]{1}/[0-9y]{4}$</value>
   </data>
 </root>

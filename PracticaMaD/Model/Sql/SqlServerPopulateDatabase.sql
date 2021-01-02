@@ -17,16 +17,16 @@
  
 USE practicamad
 
-DELETE FROM OrderLine		DBCC CHECKIDENT ('[OrderLine]', RESEED, 0);
-DELETE FROM Order_Table		DBCC CHECKIDENT ('[Order_Table]', RESEED, 0);
+DELETE FROM OrderLine		DBCC CHECKIDENT ('[OrderLine]', RESEED, 1);
+DELETE FROM Order_Table		DBCC CHECKIDENT ('[Order_Table]', RESEED, 1);
 DELETE FROM Book;
 DELETE FROM Computers; 
-DELETE FROM Product			DBCC CHECKIDENT ('[Product]', RESEED, 0);
+DELETE FROM Product			DBCC CHECKIDENT ('[Product]', RESEED, 1);
 DELETE FROM CreditCard_User;
-DELETE FROM CreditCard		DBCC CHECKIDENT ('[CreditCard]', RESEED, 0);
-DELETE FROM User_Table		DBCC CHECKIDENT ('[User_Table]', RESEED, 0);
-DELETE FROM Category		DBCC CHECKIDENT ('[Category]', RESEED, 0);
-DELETE FROM Language		DBCC CHECKIDENT ('[Language]', RESEED, 0);
+DELETE FROM CreditCard		DBCC CHECKIDENT ('[CreditCard]', RESEED, 1);
+DELETE FROM User_Table		DBCC CHECKIDENT ('[User_Table]', RESEED, 1);
+DELETE FROM Category		DBCC CHECKIDENT ('[Category]', RESEED, 1);
+DELETE FROM Language		DBCC CHECKIDENT ('[Language]', RESEED, 1);
 
 
 
@@ -42,7 +42,7 @@ INSERT INTO User_Table (login, name, lastName, password, email, languageId, role
 INSERT INTO User_Table (login, name, lastName, password, email, languageId, role, favouriteCreditCard) VALUES ('user', 'user', 'user', 'BPiZbadjt6lpsQKO4wB1aerzpjVIbdqyEdUSyFud+Ps=', 'user@user.com', 1, 'user', NULL);
 
 /* CREDITCARD */
-INSERT INTO CreditCard (ownerName, creditType, creditCardNumber,cvv, expirationDate) VALUES(user,'debit','0123456789123456',123,'20240618 00:00:00 AM')
+INSERT INTO CreditCard (ownerName, creditType, creditCardNumber,cvv, expirationDate) VALUES(user,'debit','0123456789123456',123,'20240601 00:00:00 AM')
 
 /* CREDITCARD_USER */
 INSERT INTO CreditCard_User(userId, creditCardId)  VALUES (2,1);

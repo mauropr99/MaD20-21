@@ -1,7 +1,9 @@
 ﻿using System;
 using Es.Udc.DotNet.ModelUtil.IoC;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
+using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
 
@@ -92,6 +94,25 @@ namespace Web.Pages.Product
 
 
 
+        }
+
+        protected void btnAddToShoppingCart_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                IShoppingService shoppingService = SessionManager.GetShoppingService();
+
+                long productId = long.Parse(Request.Params.Get("productId"));
+
+                shoppingService.AddToShoppingCart(productId);
+
+                Response.Redirect("~/Pages/Shopping/ShoppingCart.aspx");
+
+            }
+            catch (InstanceNotFoundException)
+            {
+                Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Errors/InternalError.aspx"));
+            }
         }
     }
 }

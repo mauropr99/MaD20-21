@@ -33,25 +33,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
             String creditCardType = DropDownCreditCardTypeList.SelectedValue;
             String expirationDateString = txtExpirationDate.Text;
 
-            //Changing the date format...
-            Locale locale = SessionManager.GetLocale(Context);
-            string culture = "en-US";
-            switch (locale.Country)
-            {
-                case "ES":
-                    culture = "es-ES";
-                    break;
-                case "US":
-                    culture = "en-US";
-                    break;
 
-                default:
-                    culture = "en-US";
-                    break;
-            }
-
-            var cultureInfo = new CultureInfo(culture);
-            DateTime expirationDate = DateTime.Parse(expirationDateString, cultureInfo);
+            DateTime expirationDate = DateTime.ParseExact(expirationDateString, "MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
 
             UserSession userSession =

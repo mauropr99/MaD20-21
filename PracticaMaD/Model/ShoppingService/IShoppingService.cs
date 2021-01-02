@@ -24,6 +24,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         void AddToShoppingCart(long productId);
 
+        void AddToShoppingCart(long productId, short quantity);
+
         void RemoveFromShoppingCart(long productId);
 
         void MarkAsGift(long productId);

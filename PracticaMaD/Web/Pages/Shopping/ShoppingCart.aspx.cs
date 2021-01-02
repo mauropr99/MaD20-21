@@ -77,7 +77,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
 
         protected void Btn_BuyProducts(object sender, EventArgs e)
         {
-            Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Shopping/Purchase.aspx"));
+            IShoppingService shoppingService = SessionManager.GetShoppingService();
+            List<ShoppingCartDetails> shoppingCart = shoppingService.ViewShoppingCart();
+
+            if (shoppingCart.Count == 0)
+            {
+                Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Product/Catalog.aspx"));
+            } else
+            {
+                Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Shopping/Purchase.aspx"));
+            }
         }
 
         //protected void chkview_CheckedChanged(object sender, EventArgs e)

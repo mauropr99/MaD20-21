@@ -105,6 +105,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         public void AddToShoppingCart(long productId)
         {
+            AddToShoppingCart(productId, 1);
+
+        }
+
+
+        public void AddToShoppingCart(long productId, short quantity)
+        {
             Product product = ProductDao.Find(productId);
             bool existsInCart = false;
 
@@ -114,7 +121,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                 if (line.Product_Id == productId)
                 {
                     //Update product quantity
-                    line.Quantity += 1;
+                    line.Quantity += quantity;
                     existsInCart = true;
                     break;
 
@@ -126,10 +133,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             {
                 ShoppingCartDetails shoppingCartLine = new ShoppingCartDetails
                 {
-                    Quantity = 1,
+                    Quantity = quantity,
                     Product_Name = product.product_name,
                     Price = product.price,
-                    Product_Id = product.id, 
+                    Product_Id = product.id,
                     GiftWrap = false
                 };
 

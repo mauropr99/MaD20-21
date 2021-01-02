@@ -36,18 +36,13 @@
                     <li>
                         <asp:HyperLink ID="HyperLinkShoppingCart" runat="server"
                         NavigateUrl="~/Pages/Shopping/ShoppingCart.aspx"
-                        meta:resourcekey="lnkShoppingCart" /> ( <asp:Label ID="ShoppingCartSize" runat="server" /> )
+                        meta:resourcekey="lnkShoppingCart" /> <asp:Label ID="ShoppingCartSize" runat="server" style="color:wheat"/>
                         
                     </li>
                     <li>
                         <asp:HyperLink ID="HyperLinkUpdate" runat="server"
                             NavigateUrl="~/Pages/User/UpdateUser.aspx"
                             meta:resourcekey="lnkUpdate" />
-                    </li>
-                    <li>
-                        <asp:HyperLink ID="HyperLinkAddCreditCard" runat="server"
-                            NavigateUrl="~/Pages/CreditCardOperations/CreditCardAdd.aspx"
-                            meta:resourcekey="lnkAddCreditCard" />
                     </li>
                     <li>
                         <asp:HyperLink ID="HyperLinkViewCreditCards" runat="server"

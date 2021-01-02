@@ -124,7 +124,7 @@
     <value>CVV</value>
   </data>
   <data name="expirationDate" xml:space="preserve">
-    <value>Fecha de expiración (dd/MM/yyyy)</value>
+    <value>Fecha de expiración (MM/yyyy)</value>
   </data>
   <data name="creditCardNumber" xml:space="preserve">
     <value>Número</value>
@@ -133,7 +133,7 @@
     <value>Añadir</value>
   </data>
   <data name="validationDateExpression" xml:space="preserve">
-    <value>^[0-3m]{1}[0-9m]{1}/[0-1m]{1}[0-9m]{1}/[0-9y]{4}$</value>
+    <value>^[0-1m]{1}[0-9m]{1}/[0-9y]{4}$</value>
   </data>
   <data name="creditCardOwner" xml:space="preserve">
     <value>Titular</value>
