@@ -24,6 +24,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// imgEmptyCart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgEmptyCart;
+
+        /// <summary>
+        /// txtEmptyCart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txtEmptyCart;
+
+        /// <summary>
         /// GridViewCart control.
         /// </summary>
         /// <remarks>
@@ -31,5 +49,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewCart;
+
+        /// <summary>
+        /// btn_BuyProducts control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_BuyProducts;
     }
 }

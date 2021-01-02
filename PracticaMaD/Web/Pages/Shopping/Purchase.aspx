@@ -7,30 +7,36 @@
     runat="server">
     <div id="form">
         <form id="PurchaseForm" method="POST" runat="server">
-            
+             
             <div class="field">
-                <span class="label"><asp:Localize ID="lclCreditCards" runat="server" meta:resourcekey="lclCreditCards" /></span><span class="entry">
-                    <asp:DropDownList ID="creditCards" runat="server" AutoPostBack="True" 
-                    Width="100px" onselectedindexchanged="CreditCardsSelectedIndexChanged">
-                    </asp:DropDownList></span>
+                <asp:Label ID="lclCreditCards" runat="server" Text="<%$ Resources: , lclCreditCards %>"></asp:Label>
+                <span class="entry">
+                    <asp:DropDownList ID="DropDownCreditCardsList" runat="server" AutoPostBack="True" 
+                    Width="130px">
+                    </asp:DropDownList>&nbsp;&nbsp;&nbsp;
+                <asp:HyperLink ID="lnkAddNewCreditCard" runat="server" Text="<%$ Resources: , lnkAddCreditCard %>" 
+                    NavigateUrl="~/Pages/CreditCardOperations/CreditCardAdd.aspx"></asp:HyperLink>
+                </span>
             </div>
 
             <div class="field">
-                <span class="label"><asp:Localize ID="lclPostalAddress" runat="server" meta:resourcekey="lclPostalAddress" /></span><span class="entry">
+                <asp:Label ID="lclPostalAddress1" runat="server" Text="<%$ Resources: , lclPostalAddress %>"></asp:Label>
+                <span class="entry">
                     <asp:TextBox ID="txtPostalAddress" runat="server" Width="100" Columns="16"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvPostalAddress" runat="server"
                         ControlToValidate="txtPostalAddress" Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>"/></span>
             </div>
 
             <div class="field">
-                <span class="label"><asp:Localize ID="lclDeliveryDescription" runat="server" meta:resourcekey="lclDeliveryDescription" /></span><span class="entry">
+                <asp:Label ID="lclDeliveryDescription1" runat="server" Text="<%$ Resources: , lclDeliveryDescription %>"></asp:Label>
+                <span class="entry">
                     <asp:TextBox ID="txtDeliveryDescription" mode="multiline" runat="server" Width="100" Columns="16"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvDeliveryDescription" runat="server"
                         ControlToValidate="txtDeliveryDescription" Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>"/></span>
             </div>
             
             <div class="button">
-                <asp:Button ID="btnPurchase" runat="server" OnClick="BtnPurchaseClick" meta:resourcekey="btnPurchase"/>
+                <asp:Button ID="btnPurchase" runat="server" OnClick="BtnPurchaseClick" Text="<%$ Resources: , btnPurchase %>"/>
             </div>
         </form>
     </div>

@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btn_BuyProducts" xml:space="preserve">
+    <value>Mercar</value>
+  </data>
+  <data name="empty" xml:space="preserve">
+    <value>O teu carro está vacío, triste e só:(</value>
+  </data>
   <data name="gift" xml:space="preserve">
     <value>Agasallo</value>
   </data>

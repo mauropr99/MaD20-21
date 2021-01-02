@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Es.Udc.DotNet.ModelUtil.Transactions;
+using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
@@ -12,12 +13,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
     {
         IOrderDao OrderDao { set; }
         IProductDao ProductDao { set; }
-
         IUserDao UserDao { set; }
+        ICreditCardDao CreditCardDao { set; }
 
 
-        Order BuyProducts(UserDetails user, List<ShoppingCartDetails> shoppingCart,
-            string postalAddress, CreditCard creditCard, string description);
+        Order BuyProducts(long userId, List<ShoppingCartDetails> shoppingCart,
+            string postalAddress, long creditCardId, string description);
 
         List<ShoppingCartDetails> ViewShoppingCart();
 
