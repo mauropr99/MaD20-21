@@ -25,11 +25,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         public IOrderLineDao OrderLineDao { private get; set; }
 
         private List<ShoppingCartDetails> shoppingCart = new List<ShoppingCartDetails>();
-
-
+        
         #region IShoppingService Members
 
-        public Order BuyProducts(UserDetails user, List<OrderLineDetails> orderLinesDetails,
+        public Order BuyProducts(UserDetails user, List<ShoppingCartDetails> shoppingCart,
             string postalAddress, CreditCard creditCard, string description)
         {
             List<OrderLine> orderLines = new List<OrderLine>();
@@ -44,8 +43,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             }
 
             //Calculate total price
-
-            foreach (OrderLineDetails line in orderLinesDetails)
+           
+            foreach (ShoppingCartDetails line in shoppingCart)
             {
                 OrderLine orderLine = new OrderLine();
                 product = ProductDao.Find(line.Product_Id);
@@ -92,13 +91,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         }
 
         public List<ShoppingCartDetails> ViewShoppingCart()
-        {
+        { 
             return shoppingCart;
         }
 
         public void AddToShoppingCart(long productId)
         {
             Product product = ProductDao.Find(productId);
+            bool existsInCart = false;
 
             //Check if the product is inside the shopping cart already
             foreach (ShoppingCartDetails line in shoppingCart)
@@ -107,62 +107,67 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                 {
                     //Update product quantity
                     line.Quantity += 1;
+                    existsInCart = true;
+                    break;
+
                 }
             }
 
             //If it is a new product in the shopping cart
-            ShoppingCartDetails orderLine = new ShoppingCartDetails
+            if (!existsInCart)
             {
-                Quantity = 1,
-                Price = product.price,
-                Product_Id = product.id
-            };
+                ShoppingCartDetails shoppingCartLine = new ShoppingCartDetails
+                {
+                    Quantity = 1,
+                    Product_Name = product.product_name,
+                    Price = product.price,
+                    Product_Id = product.id, 
+                    GiftWrap = false
+                };
 
-            shoppingCart.Add(orderLine);
+                shoppingCart.Add(shoppingCartLine);
+            }
 
         }
 
 
         public void RemoveFromShoppingCart(long productId)
         {
+            
             //Check if the product is inside the shopping cart 
             foreach (ShoppingCartDetails line in shoppingCart)
             {
                 if (line.Product_Id == productId)
                 {
-                    //Remove element from collection
-                    shoppingCart.Remove(line);
-                    break;
+                    if (line.Quantity == 1)
+                    {
+                        //Remove element from collection
+                        shoppingCart.Remove(line);
+                    }
+                    else
+                    {
+                        //Update product quantity
+                        line.Quantity -= 1;
+                    }
+
+                    break;   
                 }
             }
         }
 
-        //bool giftWrap
-        public void UpdateProductFromShoppingCart(long productId, short quantity)
+        public void MarkAsGift(long productId)
         {
             foreach (ShoppingCartDetails line in shoppingCart)
             {
                 if (line.Product_Id == productId)
                 {
-                    //Update quantity
-                    line.Quantity += quantity;
+                    line.Product_Name = "NO FUNCIONA";
+                    //line.GiftWrap = !line.GiftWrap;
                     break;
                 }
             }
         }
-        public void MarkAsGift(long productId, bool giftWrap)
-        {
-            foreach (ShoppingCartDetails line in shoppingCart)
-            {
-                if (line.Product_Id == productId)
-                {
-                    //Update quantity
-                    line.GiftWrap = giftWrap;
-                    break;
-                }
-            }
-        }
-
+       
         public OrderBlock FindOrdersByUserId(long userId, int startIndex, int count)
         {
             List<Order> orders;

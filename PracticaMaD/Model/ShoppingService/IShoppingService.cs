@@ -16,7 +16,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         IUserDao UserDao { set; }
 
 
-        Order BuyProducts(UserDetails user, List<OrderLineDetails> orderLinesDetails,
+        Order BuyProducts(UserDetails user, List<ShoppingCartDetails> shoppingCart,
             string postalAddress, CreditCard creditCard, string description);
 
         List<ShoppingCartDetails> ViewShoppingCart();
@@ -25,9 +25,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         void RemoveFromShoppingCart(long productId);
 
-        void UpdateProductFromShoppingCart(long productId, short quantity);
-
-        void MarkAsGift(long productId, bool giftWrap);
+        void MarkAsGift(long productId);
 
         [Transactional]
         OrderBlock FindOrdersByUserId(long userId, int startIndex, int count);

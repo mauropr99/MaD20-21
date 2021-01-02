@@ -7,128 +7,101 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Es.Udc.DotNet.PracticaMaD.Web
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
 {
 
 
-    public partial class PracticaMaD
+    public partial class Purchase
     {
 
         /// <summary>
-        /// Head1 control.
+        /// PurchaseForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
+        protected global::System.Web.UI.HtmlControls.HtmlForm PurchaseForm;
 
         /// <summary>
-        /// lclHeader control.
+        /// lclCreditCards control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Localize lclHeader;
+        protected global::System.Web.UI.WebControls.Localize lclCreditCards;
 
         /// <summary>
-        /// HyperLinkAuth control.
+        /// creditCards control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLinkAuth;
+        protected global::System.Web.UI.WebControls.DropDownList creditCards;
 
         /// <summary>
-        /// HyperLinkCatalog control.
+        /// lclPostalAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLinkCatalog;
+        protected global::System.Web.UI.WebControls.Localize lclPostalAddress;
 
         /// <summary>
-        /// HyperLinkShoppingCart control.
+        /// txtPostalAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLinkShoppingCart;
+        protected global::System.Web.UI.WebControls.TextBox txtPostalAddress;
 
         /// <summary>
-        /// ShoppingCartSize control.
+        /// rfvPostalAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ShoppingCartSize;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPostalAddress;
 
         /// <summary>
-        /// HyperLinkUpdate control.
+        /// lclDeliveryDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLinkUpdate;
+        protected global::System.Web.UI.WebControls.Localize lclDeliveryDescription;
 
         /// <summary>
-        /// HyperLinkAddCreditCard control.
+        /// txtDeliveryDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLinkAddCreditCard;
+        protected global::System.Web.UI.WebControls.TextBox txtDeliveryDescription;
 
         /// <summary>
-        /// HyperLinkViewCreditCards control.
+        /// rfvDeliveryDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLinkViewCreditCards;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDeliveryDescription;
 
         /// <summary>
-        /// HyperLinkOrderHistory control.
+        /// btnPurchase control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLinkOrderHistory;
-
-        /// <summary>
-        /// HyperLinkLogout control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLinkLogout;
-
-        /// <summary>
-        /// ContentPlaceHolder_BodyContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder_BodyContent;
-
-        /// <summary>
-        /// lclFooter control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Localize lclFooter;
+        protected global::System.Web.UI.WebControls.Button btnPurchase;
     }
 }

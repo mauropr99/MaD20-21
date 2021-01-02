@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Web.Pages.Shopping
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
 {
 
 

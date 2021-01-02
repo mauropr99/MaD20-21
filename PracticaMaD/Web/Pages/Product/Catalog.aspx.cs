@@ -162,17 +162,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 
                 try
                 {
-                    IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
-                    IShoppingService shoppingService  = iocManager.Resolve<IShoppingService>(); 
-                    int index = Convert.ToInt32(e.CommandArgument);
-                        long productId = long.Parse(GridViewCatalog.DataKeys[index].Values[0].ToString());
+                    IShoppingService shoppingService = SessionManager.GetShoppingService();
+                    //Session["List<ShoppingCartDetails>"] = shoppingCart;
 
-                        shoppingService.AddToShoppingCart(productId);
+                    int index = Convert.ToInt32(e.CommandArgument);    
+                    long productId = long.Parse(GridViewCatalog.DataKeys[index].Values[0].ToString());
+                        
+                    shoppingService.AddToShoppingCart(productId);
 
-                        //Para comprobar si se añadio algo al carrito
-
-                        List<ShoppingCartDetails> shoppingCart = shoppingService.ViewShoppingCart();
-                        Response.Redirect(Response.ApplyAppPathModifier("~/Pages?productname=" + shoppingCart.Count.ToString()));
+                    Page.Response.Redirect(Page.Request.Url.ToString(), true);
 
                 }
                 catch (InstanceNotFoundException)

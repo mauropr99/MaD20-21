@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true" 
-    CodeBehind="ShoppingCart.aspx.cs" Inherits="Web.Pages.Shopping.ShoppingCart" %>
+    CodeBehind="ShoppingCart.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping.ShoppingCart" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
     <div id="form">
         <form id="form1" runat="server">
          <br />
             <br />
-            <asp:GridView ID="GridViewCart"  runat="server" CellPadding="4" ForeColor="#333333" GridLines="None"
-                AutoGenerateColumns="False" onrowcommand="GridViewCart_RowCommand" DataKeyNames="Product_Id" >
+            <asp:GridView ID="GridViewCart"  runat="server" CellPadding="8" ForeColor="#333333" GridLines="None"
+                AutoGenerateColumns="False" OnRowCommand="GridViewCart_RowCommand" DataKeyNames="Product_Id" >
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
                     <asp:BoundField DataField="Product_Name" HeaderText="<%$ Resources: , productName %>" />
@@ -14,12 +14,13 @@
                     <asp:BoundField DataField="Price" HeaderText="<%$ Resources: , price %>" />
                     <asp:ButtonField ButtonType="Button" CommandName="AddItem" Text="+" />
                     <asp:ButtonField ButtonType="Button" CommandName="RemoveItem" Text="-" />
-                     <asp:TemplateField>
-                        <ItemTemplate>
-                            <asp:CheckBox ID="Gift" runat="server" CommandName="CheckGift"  headertext="<%$ Resources: , gift %>"/>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                     <asp:BoundField DataField="Product_Id"/>
+                    
+                   <%-- <asp:TemplateField headertext="<%$ Resources: , gift %>">
+                    <ItemTemplate>
+                      <asp:CheckBox ID="gift" AutoPostBack="true" OnCheckedChanged="chkview_CheckedChanged"  runat="server" />
+                    </ItemTemplate>
+                    </asp:TemplateField>--%>
+                    <%--<asp:CheckBoxField runat="server"  headertext="<%$ Resources: , gift %>"/>--%>
                 </Columns>
                 <EditRowStyle BackColor="#999999" />
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

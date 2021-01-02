@@ -1,4 +1,5 @@
 ﻿using System;
+using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 
 
@@ -33,6 +34,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
                     HyperLinkAuth.Visible = false;
 
             }
+
+            IShoppingService shoppingService = SessionManager.GetShoppingService();
+            ShoppingCartSize.Text = shoppingService.ViewShoppingCart().Count.ToString();
+
         }
     }
 }

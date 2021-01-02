@@ -36,7 +36,8 @@
                     <li>
                         <asp:HyperLink ID="HyperLinkShoppingCart" runat="server"
                         NavigateUrl="~/Pages/Shopping/ShoppingCart.aspx"
-                        meta:resourcekey="lnkShoppingCart" />
+                        meta:resourcekey="lnkShoppingCart" /> ( <asp:Label ID="ShoppingCartSize" runat="server" /> )
+                        
                     </li>
                     <li>
                         <asp:HyperLink ID="HyperLinkUpdate" runat="server"
