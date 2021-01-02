@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
-using Ninject;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 {
@@ -18,10 +16,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         ProductBlock ViewCatalog(string productName, int startIndex, int count);
 
         [Transactional]
-        ProductBlock ViewCatalog(string productName, string categoryName,  int startIndex, int count);
+        ProductBlock ViewCatalog(string productName, string categoryName, int startIndex, int count);
 
         [Transactional]
-        void UpdateProduct(long productId, string productName, int stock, decimal price);
+        void UpdateProduct(Product product);
+
+        [Transactional]
+        void UpdateComputer(Computer product);
+
+        [Transactional]
+        void UpdateBook(Book product);
 
         [Transactional]
         List<Category> ViewAllCategories();

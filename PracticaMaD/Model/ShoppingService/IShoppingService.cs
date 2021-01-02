@@ -1,12 +1,9 @@
-﻿using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
-using Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao;
-using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
+﻿using System;
 using System.Collections.Generic;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Transactions;
-using Ninject;
-using System;
+using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
+using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
@@ -16,7 +13,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         IOrderDao OrderDao { set; }
         IProductDao ProductDao { set; }
 
-        IUserDao UserDao {  set; }
+        IUserDao UserDao { set; }
 
 
         Order BuyProducts(UserDetails user, List<OrderLineDetails> orderLinesDetails,

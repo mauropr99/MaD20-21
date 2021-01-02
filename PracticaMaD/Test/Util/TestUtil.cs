@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
@@ -98,7 +95,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
             return orderLine;
         }
 
-        public static Computer CreateComputer(Category category, string productName, decimal price,string brand)
+        public static Computer CreateComputer(Category category, string productName, decimal price, string brand)
         {
             Computer computer = new Computer
             {
@@ -135,7 +132,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
             return book;
         }
 
-        public static Category CreateCategory( string categoryName)
+        public static Category CreateCategory(string categoryName)
         {
             Category category = new Category
             {
@@ -162,7 +159,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
             return creditCard;
         }
 
-        public static Comment CreateComment(User user,Product product)
+        public static Comment CreateComment(User user, Product product)
         {
             Comment comment = new Comment
             {

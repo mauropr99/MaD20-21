@@ -1,15 +1,15 @@
-﻿using Ninject;
-using System;
-using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService.Util;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
-using Es.Udc.DotNet.ModelUtil.Transactions;
-using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
-using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.ModelUtil.Transactions;
+using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
+using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
+using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService.Util;
+using Ninject;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 {
@@ -53,11 +53,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         {
             User user = UserDao.Find(id);
             Language language = LanguageDao.FindByUserId(user.id);
+            UserDetails userDetails;
 
-            UserDetails userDetails =
+            if (user.favouriteCreditCard == null)
+            {
+                userDetails =
                 new UserDetails(user.name,
                     user.lastName, user.email,
                     language.name, language.country);
+            }
+            else
+            {
+                userDetails =
+                new UserDetails(user.name,
+                    user.lastName, user.email,
+                    language.name, language.country, user.favouriteCreditCard.Value);
+            }
+
 
             return userDetails;
         }
@@ -90,7 +102,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
             Language language = LanguageDao.FindByUserId(user.id);
 
-            return new LoginResult(user.id,user.login, user.name,user.lastName,
+            return new LoginResult(user.id, user.login, user.name, user.lastName,
                 storedPassword, language.name, language.country, user.email);
         }
 
@@ -112,7 +124,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                 try
                 {
                     language = LanguageDao.FindByNameAndCountry(userDetails.LanguageName, userDetails.LanguageCountry);
-                } catch (InstanceNotFoundException)
+                }
+                catch (InstanceNotFoundException)
                 {
                     //Take browser default language
                 }
@@ -171,6 +184,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
             List<CreditCard> creditCards = CreditCardDao.FindCreditCardsByUserId(userId);
 
+
+
+
             foreach (CreditCard creditCard in creditCards)
             {
                 if (creditCard.creditCardNumber == creditCardNumber)
@@ -188,9 +204,28 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                 expirationDate = expirationDate
             };
             CreditCardDao.Create(newCreditCard);
+
+            //If this is the only creditCard, it'll be the default card
+            if (creditCards.Count() == 0)
+            {
+                user.favouriteCreditCard = newCreditCard.id;
+                UserDao.Update(user);
+            }
+
             CreditCardDao.AddUser(user, newCreditCard.id);
 
             return newCreditCard;
+        }
+
+        public void SetCreditCardAsDefault(long userId, long creditCardId)
+        {
+
+            User user = UserDao.Find(userId);
+
+            user.favouriteCreditCard = creditCardId;
+
+            UserDao.Update(user);
+
         }
 
         public bool UserExists(string login)
@@ -213,6 +248,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             List<CreditCard> creditCards = CreditCardDao.FindCreditCardsByUserId(userId);
 
             return CreditCardDetails.fromCreditCardToCreditCardDetails(creditCards);
+        }
+
+        public String GetRolByUserId(long userId)
+        {
+            return UserDao.Find(userId).role;
         }
 
 

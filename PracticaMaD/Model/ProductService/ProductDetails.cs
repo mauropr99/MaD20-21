@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 {
@@ -66,12 +63,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
                 "[ productName = " + ProductName + " | " +
                 "price = " + Price + " | " +
                 "releaseDate = " + ReleaseDate + " | " +
-                "stock = " + Stock +" | " +
+                "stock = " + Stock + " | " +
                 "categoryName" + CategoryName + " ] ";
 
             return strProductDetails;
         }
-        
+
 
 
     }

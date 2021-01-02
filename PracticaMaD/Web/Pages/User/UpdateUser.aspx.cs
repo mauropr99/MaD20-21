@@ -1,7 +1,7 @@
 using System;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 {
@@ -14,17 +14,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
             if (!IsPostBack)
             {
-                UserDetails userDetails = 
+                UserDetails userDetails =
                     SessionManager.FindUserDetails(Context);
 
                 txtFirstName.Text = userDetails.Name;
                 txtSurname.Text = userDetails.Lastname;
                 txtEmail.Text = userDetails.Email;
 
+                Locale locale = SessionManager.GetLocale(Context);
                 /* Combo box initialization */
-                UpdateComboLanguage(userDetails.LanguageName);              
-            }  
-         
+                UpdateComboLanguage(locale.Language + ' ' + locale.Country);
+            }
+
         }
 
         /// <summary>

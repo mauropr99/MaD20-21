@@ -40,13 +40,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LabelDao
                  select u).FirstOrDefault();
 
 
-                #endregion Option 1: Using Linq.
+            #endregion Option 1: Using Linq.
 
-                if (result == null)
-                    throw new InstanceNotFoundException(labelName,
-                        typeof(Label).FullName);
+            if (result == null)
+                throw new InstanceNotFoundException(labelName,
+                    typeof(Label).FullName);
 
-                return result;
+            return result;
         }
 
         public List<Label> FindLabelsByCommentId(long commentId)
@@ -76,7 +76,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LabelDao
         }
     }
 
-        #endregion ILabelDao Members. Specific Operations
+    #endregion ILabelDao Members. Specific Operations
 
 }
 

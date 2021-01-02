@@ -1,14 +1,13 @@
 ﻿using System;
-using Es.Udc.DotNet.ModelUtil.Dao;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
 using System.Collections.Generic;
+using Es.Udc.DotNet.ModelUtil.Dao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.OrderDao
 {
     public interface IOrderDao : IGenericDao<Order, Int64>
     {
 
-         /// <summary>
+        /// <summary>
         /// Returns a list of orders that matches to a given user identifier.
         /// </summary>
         /// <param name="userId">the user identifier</param>

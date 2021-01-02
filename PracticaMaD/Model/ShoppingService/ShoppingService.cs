@@ -1,13 +1,12 @@
-﻿using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
+﻿using System;
+using System.Collections.Generic;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao;
-using System;
-using System.Linq;
-using Ninject;
-using System.Collections.Generic;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Exceptions;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService;
+using Ninject;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 {
@@ -25,7 +24,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         [Inject]
         public IOrderLineDao OrderLineDao { private get; set; }
 
-        private List<ShoppingCartDetails> shoppingCart = new List <ShoppingCartDetails>();
+        private List<ShoppingCartDetails> shoppingCart = new List<ShoppingCartDetails>();
 
 
         #region IShoppingService Members
@@ -36,7 +35,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             List<OrderLine> orderLines = new List<OrderLine>();
             Product product = new Product();
             decimal totalPrice = 0;
-            
+
 
             //Check expiration date
             if (creditCard.expirationDate < DateTime.Now)
@@ -45,7 +44,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             }
 
             //Calculate total price
-           
+
             foreach (OrderLineDetails line in orderLinesDetails)
             {
                 OrderLine orderLine = new OrderLine();
@@ -66,7 +65,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                 OrderLineDao.Create(orderLine);
 
                 totalPrice += line.Quantity * line.Price;
-                orderLines.Add(orderLine);  
+                orderLines.Add(orderLine);
             }
 
             Order order = new Order
@@ -183,7 +182,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
             List<OrderDetails> detailOrders = new List<OrderDetails>();
 
-            foreach(Order order in orders)
+            foreach (Order order in orders)
             {
                 detailOrders.Add(new OrderDetails(order.id, order.orderDate, order.description, order.totalPrice));
             }
@@ -197,12 +196,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             List<OrderLine> orderLines = new List<OrderLine>();
 
             orderLines = OrderLineDao.FindByOrderId(orderId);
-        
+
             List<OrderLineDetails> detailLineOrders = new List<OrderLineDetails>();
 
             foreach (OrderLine orderLine in orderLines)
             {
-                detailLineOrders.Add(new OrderLineDetails(orderLine.productId,orderLine.Product.product_name, orderLine.quantity, orderLine.price));
+                detailLineOrders.Add(new OrderLineDetails(orderLine.productId, orderLine.Product.product_name, orderLine.quantity, orderLine.price));
             }
 
             return detailLineOrders;

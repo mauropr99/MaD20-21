@@ -1,21 +1,21 @@
-﻿using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+﻿using System.Configuration;
+using System.Data.Entity;
+using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
+using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
+using Es.Udc.DotNet.PracticaMaD.Model.LabelDao;
 using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
+using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
 using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
-using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Ninject;
-using System.Configuration;
-using System.Data.Entity;
-using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
-using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
-using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
-using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
-using Es.Udc.DotNet.PracticaMaD.Model.LabelDao;
-using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
 
 namespace Es.Udc.DotNet.PracticaMaD.Test
 {

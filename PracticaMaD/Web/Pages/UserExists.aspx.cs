@@ -1,7 +1,7 @@
-﻿using Es.Udc.DotNet.PracticaMaD.Model.UserService;
-using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
+﻿using System;
 using Es.Udc.DotNet.ModelUtil.IoC;
-using System;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
 {
@@ -16,7 +16,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
         /// </summary>
         /// <param name="sender"> The source of the event. </param>
         /// <param name="e"> The <see cref="EventArgs"/> instance containing the event data. </param>
-        protected void btnUserExists_Click(object sender, EventArgs e)
+        protected void BtnUserExists_Click(object sender, EventArgs e)
         {
             // 1) Obtener contexto de Inyección de Dependencias
 

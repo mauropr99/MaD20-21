@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.SessionState;
-using Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC;
-using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.ModelUtil.Log;
+using Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Ninject;
 
 namespace Web

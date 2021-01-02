@@ -1,12 +1,12 @@
-﻿using Es.Udc.DotNet.PracticaMaD.Model.UserService;
+﻿using System;
+using System.Web;
+using System.Web.Security;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.ModelUtil.IoC;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Util;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
-using Es.Udc.DotNet.ModelUtil.IoC;
-using System;
-using System.Web;
-using System.Web.Security;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
 {
@@ -115,9 +115,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
                 UserDetails);
 
             /* Insert necessary objects in the session. */
-            UserSession userSession = new UserSession();
-            userSession.UserId = usrId;
-            userSession.FirstName = UserDetails.Name;
+            UserSession userSession = new UserSession
+            {
+                UserId = usrId,
+                FirstName = UserDetails.Name
+            };
 
             Locale locale = new Locale(UserDetails.LanguageName,
                 UserDetails.LanguageCountry);
@@ -176,9 +178,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
 
             /* Insert necessary objects in the session. */
 
-            UserSession userSession = new UserSession();
-            userSession.UserId = loginResult.Id;
-            userSession.FirstName = loginResult.Name;
+            UserSession userSession = new UserSession
+            {
+                UserId = loginResult.Id,
+                FirstName = loginResult.Name
+            };
 
             Locale locale =
                 new Locale(loginResult.Language, loginResult.Country);

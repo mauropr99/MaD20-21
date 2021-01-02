@@ -1,11 +1,11 @@
+using System;
+using System.Data.Entity.Validation;
+using System.Globalization;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.ModelUtil.Log;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
-using Es.Udc.DotNet.ModelUtil.Log;
-using System;
-using System.Globalization;
-using System.Data.Entity.Validation;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 {

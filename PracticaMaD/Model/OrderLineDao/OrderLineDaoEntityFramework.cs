@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Es.Udc.DotNet.ModelUtil.Dao;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao
 {
@@ -22,7 +21,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao
         public List<OrderLine> FindByOrderId(long orderId)
         {
             DbSet<OrderLine> orderLine = Context.Set<OrderLine>();
-                
+
             var result =
                 (from o in orderLine
                  where o.orderId == orderId
@@ -30,7 +29,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao
                  select o).ToList();
 
             return result;
-           
+
         }
         #endregion Public Constructors
 

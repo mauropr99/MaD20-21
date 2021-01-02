@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Web.Pages.Product {
-    
-    
-    public partial class BookDetailsView {
-        
+namespace Web.Pages.Product
+{
+
+
+    public partial class UpdateComputersDetailsView
+    {
+
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -20,43 +22,43 @@ namespace Web.Pages.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
+
         /// <summary>
-        /// lblTitle control.
+        /// lblComputerName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTitle;
-        
+        protected global::System.Web.UI.WebControls.Label lblComputerName;
+
         /// <summary>
-        /// lblTitleContent control.
+        /// lblComputerNameContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTitleContent;
-        
+        protected global::System.Web.UI.WebControls.TextBox lblComputerNameContent;
+
         /// <summary>
-        /// lblAuthor control.
+        /// lblBrand control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAuthor;
-        
+        protected global::System.Web.UI.WebControls.Label lblBrand;
+
         /// <summary>
-        /// lblAuthorContent control.
+        /// lblBrandContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAuthorContent;
-        
+        protected global::System.Web.UI.WebControls.TextBox lblBrandContent;
+
         /// <summary>
         /// lblPrice control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace Web.Pages.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblPrice;
-        
+
         /// <summary>
         /// lblPriceContent control.
         /// </summary>
@@ -73,8 +75,8 @@ namespace Web.Pages.Product {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPriceContent;
-        
+        protected global::System.Web.UI.WebControls.TextBox lblPriceContent;
+
         /// <summary>
         /// lblStock control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace Web.Pages.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblStock;
-        
+
         /// <summary>
         /// lblStockContent control.
         /// </summary>
@@ -91,87 +93,51 @@ namespace Web.Pages.Product {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStockContent;
-        
+        protected global::System.Web.UI.WebControls.TextBox lblStockContent;
+
         /// <summary>
-        /// lblGenre control.
+        /// lblProcessor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblGenre;
-        
+        protected global::System.Web.UI.WebControls.Label lblProcessor;
+
         /// <summary>
-        /// lblGenreContent control.
+        /// lblProcessorContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblGenreContent;
-        
+        protected global::System.Web.UI.WebControls.TextBox lblProcessorContent;
+
         /// <summary>
-        /// lblReleaseDate control.
+        /// lblOperatingSystem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblReleaseDate;
-        
+        protected global::System.Web.UI.WebControls.Label lblOperatingSystem;
+
         /// <summary>
-        /// lblReleaseDateContent control.
+        /// lblOperatingSystemContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblReleaseDateContent;
-        
+        protected global::System.Web.UI.WebControls.TextBox lblOperatingSystemContent;
+
         /// <summary>
-        /// lblIsbnCode control.
+        /// Submit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIsbnCode;
-        
-        /// <summary>
-        /// lblIsbnCodeContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIsbnCodeContent;
-        
-        /// <summary>
-        /// lblQuantity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblQuantity;
-        
-        /// <summary>
-        /// DropDownListQuantity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownListQuantity;
-        
-        /// <summary>
-        /// btnAddToShoppingCart control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddToShoppingCart;
+        protected global::System.Web.UI.WebControls.Button Submit;
     }
 }

@@ -95,9 +95,11 @@
     <Content Include="Pages\CreditCardOperations\CreditCardView.aspx" />
     <Content Include="Pages\Errors\InternalError.aspx" />
     <Content Include="Pages\MainPage.aspx" />
-    <Content Include="Pages\Product\BookDetailsView.aspx" />
+    <Content Include="Pages\Product\ViewDetails\BooksDetailsView.aspx" />
     <Content Include="Pages\Product\Catalog.aspx" />
-    <Content Include="Pages\Product\ComputerDetailsView.aspx" />
+    <Content Include="Pages\Product\ViewDetails\ComputersDetailsView.aspx" />
+    <Content Include="Pages\Product\UpdateDetails\UpdateBooksDetailsView.aspx" />
+    <Content Include="Pages\Product\UpdateDetails\UpdateComputersDetailsView.aspx" />
     <Content Include="Pages\Product\DetailsViewController.aspx" />
     <Content Include="Pages\Shopping\OrderHistory.aspx" />
     <Content Include="Pages\Shopping\OrderHistoryDetails.aspx" />
@@ -163,12 +165,12 @@
     <Compile Include="Pages\MainPage.aspx.designer.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Product\BookDetailsView.aspx.cs">
-      <DependentUpon>BookDetailsView.aspx</DependentUpon>
+    <Compile Include="Pages\Product\ViewDetails\BooksDetailsView.aspx.cs">
+      <DependentUpon>BooksDetailsView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Product\BookDetailsView.aspx.designer.cs">
-      <DependentUpon>BookDetailsView.aspx</DependentUpon>
+    <Compile Include="Pages\Product\ViewDetails\BooksDetailsView.aspx.designer.cs">
+      <DependentUpon>BooksDetailsView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Product\Catalog.aspx.cs">
       <DependentUpon>Catalog.aspx</DependentUpon>
@@ -177,12 +179,26 @@
     <Compile Include="Pages\Product\Catalog.aspx.designer.cs">
       <DependentUpon>Catalog.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Product\ComputerDetailsView.aspx.cs">
-      <DependentUpon>ComputerDetailsView.aspx</DependentUpon>
+    <Compile Include="Pages\Product\ViewDetails\ComputersDetailsView.aspx.cs">
+      <DependentUpon>ComputersDetailsView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Product\ComputerDetailsView.aspx.designer.cs">
-      <DependentUpon>ComputerDetailsView.aspx</DependentUpon>
+    <Compile Include="Pages\Product\ViewDetails\ComputersDetailsView.aspx.designer.cs">
+      <DependentUpon>ComputersDetailsView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Product\UpdateDetails\UpdateBooksDetailsView.aspx.cs">
+      <DependentUpon>UpdateBooksDetailsView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Product\UpdateDetails\UpdateBooksDetailsView.aspx.designer.cs">
+      <DependentUpon>UpdateBooksDetailsView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Product\UpdateDetails\UpdateComputersDetailsView.aspx.cs">
+      <DependentUpon>UpdateComputersDetailsView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Product\UpdateDetails\UpdateComputersDetailsView.aspx.designer.cs">
+      <DependentUpon>UpdateComputersDetailsView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Product\DetailsViewController.aspx.cs">
       <DependentUpon>DetailsViewController.aspx</DependentUpon>
@@ -402,13 +418,39 @@
     <Content Include="Pages\Product\App_LocalResources\BookDetailsView.aspx.gl.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Product\App_LocalResources\BookDetailsView.aspx.resx" />
+    <Content Include="Pages\Product\ViewDetails\App_LocalResources\BooksDetailsView.aspx.es.resx" />
+    <Content Include="Pages\Product\ViewDetails\App_LocalResources\BooksDetailsView.aspx.gl.resx" />
+    <Content Include="Pages\Product\ViewDetails\App_LocalResources\BooksDetailsView.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Product\App_LocalResources\ComputerDetailsView.aspx.es.resx" />
+    <Content Include="Pages\Product\ViewDetails\App_LocalResources\ComputersDetailsView.aspx.gl.resx" />
+    <Content Include="Pages\Product\ViewDetails\App_LocalResources\ComputersDetailsView.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Product\App_LocalResources\ComputerDetailsView.aspx.gl.resx" />
+    <Content Include="Pages\Product\UpdateDetails\App_LocalResources\UpdateComputersDetailsView.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\UpdateDetails\App_LocalResources\UpdateComputersDetailsView.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\UpdateDetails\App_LocalResources\UpdateComputersDetailsView.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\ViewDetails\App_LocalResources\ComputersDetailsView.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\UpdateDetails\App_LocalResources\UpdateBooksDetailsView.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\UpdateDetails\App_LocalResources\UpdateBooksDetailsView.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\UpdateDetails\App_LocalResources\UpdateBooksDetailsView.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Shopping\App_LocalResources\OrderHistoryDetails.aspx.es.resx" />
+    <Content Include="Pages\Shopping\App_LocalResources\OrderHistoryDetails.aspx.gl.resx" />
+    <Content Include="Pages\Shopping\App_LocalResources\OrderHistoryDetails.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Product\App_LocalResources\ComputerDetailsView.aspx.resx" />

@@ -1,13 +1,13 @@
-﻿using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
-using Es.Udc.DotNet.ModelUtil.Transactions;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Es.Udc.DotNet.ModelUtil.Transactions;
+using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 {
     public interface IUserService
     {
- 
+
         IUserDao UserDao { set; }
 
         void ChangePassword(long id, String oldClearPassword,
@@ -33,7 +33,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             string creditCardNumber, short cvv, DateTime expirationDate);
 
         [Transactional]
+        void SetCreditCardAsDefault(long userId, long creditCardId);
+
+        [Transactional]
         List<CreditCardDetails> FindCreditCardsByUserId(long userId);
+
+        [Transactional]
+        String GetRolByUserId(long userId);
 
         bool UserExists(string login);
     }

@@ -1,13 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true" CodeBehind="OrderHistory.aspx.cs" Inherits="Web.Pages.Shopping.OrderHistory" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
 
-<div id="form">
+    <div id="form">
         <form id="form1" runat="server">
             <br />
             <br />
             <br />
-            <asp:GridView ID="GridOrderHistory"  runat="server" CellPadding="4" ForeColor="#333333" GridLines="None"
-                AutoGenerateColumns="False" >
+            <asp:GridView ID="GridOrderHistory" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None"
+                AutoGenerateColumns="False">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
                     <asp:HyperLinkField DataTextField="Description" HeaderText="<%$ Resources: , description %>" DataNavigateUrlFields="Id" DataNavigateUrlFormatString="OrderHistoryDetails.aspx?orderId={0}" NavigateUrl="~/Pages/Shopping/OrderHistoryDetails.aspx" />
@@ -27,12 +28,12 @@
             </asp:GridView>
             <br />
             <div class="previousNextLinks">
-            <span class="previousLink">
-                <asp:HyperLink ID="lnkPrevious" Text="<%$ Resources:Common, Previous %>" runat="server"
-                    Visible="False"></asp:HyperLink>
-            </span><span class="nextLink">
-                <asp:HyperLink ID="lnkNext" Text="<%$ Resources:Common, Next %>" runat="server" Visible="False"></asp:HyperLink>
-            </span>
+                <span class="previousLink">
+                    <asp:HyperLink ID="lnkPrevious" Text="<%$ Resources:Common, Previous %>" runat="server"
+                        Visible="False"></asp:HyperLink>
+                </span><span class="nextLink">
+                    <asp:HyperLink ID="lnkNext" Text="<%$ Resources:Common, Next %>" runat="server" Visible="False"></asp:HyperLink>
+                </span>
             </div>
             <br />
             <br />

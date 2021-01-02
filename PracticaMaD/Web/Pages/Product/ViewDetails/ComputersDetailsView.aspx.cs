@@ -1,18 +1,13 @@
-﻿using Es.Udc.DotNet.ModelUtil.IoC;
+﻿using System;
+using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
-using System;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Web.Pages.Product
 {
-    public partial class ComputerDetailsView : SpecificCulturePage
+    public partial class ComputersDetailsView : SpecificCulturePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -72,7 +67,7 @@ namespace Web.Pages.Product
                                 break;
                         }
                     }
-                    
+
 
                 }
                 //Fill place holders

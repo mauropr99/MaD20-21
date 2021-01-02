@@ -6,7 +6,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Exceptions
     public class NotEnoughStock : Exception
     {
         public NotEnoughStock(String productName, int stock)
-            : base("Not enough stock of product = " + productName + "/ available stock = "+ stock)
+            : base("Not enough stock of product = " + productName + "/ available stock = " + stock)
         {
             this.ProductName = productName;
             this.Stock = stock;

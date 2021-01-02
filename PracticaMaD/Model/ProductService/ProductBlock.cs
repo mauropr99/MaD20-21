@@ -5,7 +5,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 {
     public class ProductBlock
     {
-        public List<ProductDetails> Products { get; private set; } 
+        public List<ProductDetails> Products { get; private set; }
 
         public bool ExistMoreProducts { get; private set; }
 

@@ -117,31 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="addToShoppingCart" xml:space="preserve">
-    <value>Add to shopping cart</value>
-  </data>
-  <data name="availableStock" xml:space="preserve">
-    <value>AVAILABLE STOCK: </value>
+  <data name="computerName" xml:space="preserve">
+    <value>MODELO DE ORDENADOR: </value>
   </data>
   <data name="brand" xml:space="preserve">
-    <value>BRAND: </value>
-  </data>
-  <data name="computerName" xml:space="preserve">
-    <value>COMPUTER NAME:</value>
-  </data>
-  <data name="operatingSystem" xml:space="preserve">
-    <value>OPERATING SYSTEM: </value>
+    <value>MARCA: </value>
   </data>
   <data name="price" xml:space="preserve">
-    <value>PRICE: </value>
+    <value>PREZO: </value>
+  </data>
+  <data name="availableStock" xml:space="preserve">
+    <value>STOCK DISPOÑIBLE: </value>
   </data>
   <data name="processor" xml:space="preserve">
-    <value>PROCESSOR: </value>
-  </data>
-  <data name="quantity" xml:space="preserve">
-    <value>Quantity: </value>
+    <value>PROCESADOR: </value>
   </data>
   <data name="releaseDate" xml:space="preserve">
-    <value>RELEASE DATE: </value>
+    <value>DATA DE LANZAMENTO: </value>
+  </data>
+  <data name="operatingSystem" xml:space="preserve">
+    <value>SISTEMA OPERATIVO: </value>
+  </data>
+  <data name="quantity" xml:space="preserve">
+    <value>Cantidade: </value>
+  </data>
+  <data name="addToShoppingCart" xml:space="preserve">
+    <value>Engadir ao carrito</value>
+  </data>
+  <data name="submit" xml:space="preserve">
+    <value>confirmar</value>
   </data>
 </root>

@@ -1,9 +1,9 @@
-﻿using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
-using Es.Udc.DotNet.ModelUtil.Log;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Threading;
 using System.Web.UI;
+using Es.Udc.DotNet.ModelUtil.Log;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
 {
@@ -68,7 +68,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
 
             Thread.CurrentThread.CurrentCulture = cultureInfo;
             Thread.CurrentThread.CurrentUICulture = cultureInfo;
-            
+
         }
     }
 }
