@@ -1,10 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
+using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
+using System;
+using System.Collections.Generic;
+using System.Web;
+using System.Web.UI.WebControls;
+using System.Web.UI;
+using System.Data;
+using System.Windows.Forms;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 {
@@ -12,28 +19,33 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
     {
         int startIndex, index;
         int count = 4;
-
+      
         protected void Page_Load(object sender, EventArgs e)
         {
-            /* Get Start Index */
-            try
+            if (!IsPostBack)
             {
-                startIndex = Int32.Parse(Request.Params.Get("startIndex"));
-                index = Int32.Parse(Request.Params.Get("index"));
-            }
-            catch (ArgumentNullException)
-            {
-                startIndex = 0;
-                index = 0;
-            }
+
+                /* Get Start Index */
+                try
+                {
+                    startIndex = Int32.Parse(Request.Params.Get("startIndex"));
+                    index = Int32.Parse(Request.Params.Get("index"));
+                }
+                catch (ArgumentNullException)
+                {
+                    startIndex = 0;
+                    index = 0;
+                }
 
 
-            LoadPage();
+                LoadPage();
+            }
         }
 
         protected void LoadPage()
         {
             IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
+
             IProductService productService = iocManager.Resolve<IProductService>();
 
             LoadDropDownCategoryList(productService, index);
@@ -141,6 +153,32 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             startIndex = 0;
             index = DropDownCategoryList.SelectedIndex;
             LoadPage();
+        }
+
+        protected void GridViewCatalog_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "AddToCart")
+            {
+
+                try
+                {
+                    IShoppingService shoppingService = SessionManager.GetShoppingService();
+                    //Session["List<ShoppingCartDetails>"] = shoppingCart;
+
+                    int index = Convert.ToInt32(e.CommandArgument);    
+                    long productId = long.Parse(GridViewCatalog.DataKeys[index].Values[0].ToString());
+                        
+                    shoppingService.AddToShoppingCart(productId);
+
+                    Page.Response.Redirect(Page.Request.Url.ToString(), true);
+
+                }
+                catch (InstanceNotFoundException)
+                {
+                    Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Errors/InternalError.aspx"));
+                }
+
+            }
         }
 
     }

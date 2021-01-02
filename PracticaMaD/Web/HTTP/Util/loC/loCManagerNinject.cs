@@ -68,13 +68,13 @@ namespace Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC
             kernel.Bind<IUserService>().
                 To<UserService>();
 
-            /* ShoppingService */
-            kernel.Bind<IShoppingService>().
-                To<ShoppingService>();
-
             /* ProductService */
             kernel.Bind<IProductService>().
                 To<ProductService>();
+
+            /* ShoppingService */
+            kernel.Bind<IShoppingService>().
+                To<ShoppingService>();
 
             /* DbContext */
             string connectionString =

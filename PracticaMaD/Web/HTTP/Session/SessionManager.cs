@@ -3,6 +3,7 @@ using System.Web;
 using System.Web.Security;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.IoC;
+using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Util;
@@ -84,6 +85,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
                "userSession";
 
         private static IUserService userService;
+        private static IShoppingService shoppingService;
 
         public IUserService UserService
         {
@@ -96,6 +98,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
                 (IIoCManager)HttpContext.Current.Application["managerIoC"];
 
             userService = iocManager.Resolve<IUserService>();
+
+            shoppingService = iocManager.Resolve<IShoppingService>();
+        }
+
+        public static IShoppingService GetShoppingService()
+        {
+            return shoppingService;
         }
 
         /// <summary>

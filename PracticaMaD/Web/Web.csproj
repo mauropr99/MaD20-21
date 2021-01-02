@@ -75,6 +75,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -89,8 +90,10 @@
     <Content Include="Css\PracticaMaD.Styles.css" />
     <Content Include="Global.asax" />
     <Content Include="Img\PracticaMaD.ico" />
+    <Content Include="Img\shopping-cart.png" />
     <Content Include="Pages\CreditCardOperations\CreditCardAdd.aspx" />
     <Content Include="Pages\CreditCardOperations\CreditCardView.aspx" />
+    <Content Include="Pages\Errors\InternalError.aspx" />
     <Content Include="Pages\MainPage.aspx" />
     <Content Include="Pages\Product\ViewDetails\BooksDetailsView.aspx" />
     <Content Include="Pages\Product\Catalog.aspx" />
@@ -100,6 +103,8 @@
     <Content Include="Pages\Product\DetailsViewController.aspx" />
     <Content Include="Pages\Shopping\OrderHistory.aspx" />
     <Content Include="Pages\Shopping\OrderHistoryDetails.aspx" />
+    <Content Include="Pages\Shopping\Purchase.aspx" />
+    <Content Include="Pages\Shopping\ShoppingCart.aspx" />
     <Content Include="Pages\UserExists.aspx" />
     <Content Include="Pages\User\Authentication.aspx" />
     <Content Include="Pages\User\ChangePassword.aspx" />
@@ -138,17 +143,21 @@
     <Compile Include="HTTP\View\ApplicationObjects\Locale.cs" />
     <Compile Include="Pages\CreditCardOperations\CreditCardAdd.aspx.cs">
       <DependentUpon>CreditCardAdd.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\CreditCardOperations\CreditCardAdd.aspx.designer.cs">
       <DependentUpon>CreditCardAdd.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\CreditCardOperations\CreditCardView.aspx.cs">
       <DependentUpon>CreditCardView.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\CreditCardOperations\CreditCardView.aspx.designer.cs">
       <DependentUpon>CreditCardView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Errors\InternalError.aspx.cs">
+      <DependentUpon>InternalError.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Errors\InternalError.aspx.designer.cs">
+      <DependentUpon>InternalError.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainPage.aspx.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
@@ -212,6 +221,19 @@
     </Compile>
     <Compile Include="Pages\Shopping\OrderHistoryDetails.aspx.designer.cs">
       <DependentUpon>OrderHistoryDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Shopping\Purchase.aspx.cs">
+      <DependentUpon>Purchase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Shopping\Purchase.aspx.designer.cs">
+      <DependentUpon>Purchase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Shopping\ShoppingCart.aspx.cs">
+      <DependentUpon>ShoppingCart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Shopping\ShoppingCart.aspx.designer.cs">
+      <DependentUpon>ShoppingCart.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\UserExists.aspx.cs">
       <DependentUpon>UserExists.aspx</DependentUpon>
@@ -374,21 +396,34 @@
     <Content Include="Pages\Product\App_LocalResources\Catalog.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Pages\Errors\App_LocalResources\InternalError.aspx.es.resx" />
+    <Content Include="Pages\Errors\App_LocalResources\InternalError.aspx.gl.resx" />
+    <Content Include="Pages\Errors\App_LocalResources\InternalError.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Shopping\App_LocalResources\OrderHistory.aspx.es.resx" />
+    <Content Include="Pages\Shopping\App_LocalResources\OrderHistory.aspx.gl.resx" />
+    <Content Include="Pages\Shopping\App_LocalResources\OrderHistory.aspx.resx" />
+    <Content Include="Pages\Shopping\App_LocalResources\OrderHistoryDetails.aspx.es.resx" />
+    <Content Include="Pages\Shopping\App_LocalResources\OrderHistoryDetails.aspx.gl.resx" />
+    <Content Include="Pages\Shopping\App_LocalResources\OrderHistoryDetails.aspx.resx" />
+    <Content Include="Pages\Shopping\App_LocalResources\ShoppingCart.aspx.es.resx" />
+    <Content Include="Pages\Shopping\App_LocalResources\ShoppingCart.aspx.gl.resx" />
+    <Content Include="Pages\Shopping\App_LocalResources\ShoppingCart.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Pages\CreditCardOperations\App_LocalResources\CreditCardAdd.aspx.es.resx" />
     <Content Include="Pages\CreditCardOperations\App_LocalResources\CreditCardAdd.aspx.gl.resx" />
     <Content Include="Pages\CreditCardOperations\App_LocalResources\CreditCardAdd.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Pages\CreditCardOperations\App_LocalResources\CreditCardView.aspx.es.resx" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Pages\CreditCardOperations\App_LocalResources\CreditCardView.aspx.gl.resx" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Pages\CreditCardOperations\App_LocalResources\CreditCardView.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Pages\Errors\App_LocalResources\" />
+    <Content Include="Pages\Product\App_LocalResources\BookDetailsView.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\BookDetailsView.aspx.gl.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Product\ViewDetails\App_LocalResources\BooksDetailsView.aspx.es.resx" />
@@ -426,9 +461,16 @@
     <Content Include="Pages\Shopping\App_LocalResources\OrderHistoryDetails.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Shopping\App_LocalResources\OrderHistory.aspx.es.resx" />
-    <Content Include="Pages\Shopping\App_LocalResources\OrderHistory.aspx.gl.resx" />
-    <Content Include="Pages\Shopping\App_LocalResources\OrderHistory.aspx.resx" />
+    <Content Include="Pages\Product\App_LocalResources\ComputerDetailsView.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Shopping\App_LocalResources\Purchase.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Shopping\App_LocalResources\Purchase.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Shopping\App_LocalResources\Purchase.aspx.gl.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

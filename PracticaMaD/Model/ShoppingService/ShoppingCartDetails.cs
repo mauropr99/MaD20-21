@@ -16,6 +16,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         public decimal Price { get; set; }
 
+        public bool GiftWrap { get; set; }
+
         public ShoppingCartDetails()
         {
         }
@@ -26,6 +28,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             Product_Name = product_Name;
             Quantity = quantity;
             Price = price;
+            GiftWrap = false;
         }
 
         public override string ToString()

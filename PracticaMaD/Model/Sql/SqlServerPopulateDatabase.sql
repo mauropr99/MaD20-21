@@ -42,7 +42,7 @@ INSERT INTO User_Table (login, name, lastName, password, email, languageId, role
 INSERT INTO User_Table (login, name, lastName, password, email, languageId, role, favouriteCreditCard) VALUES ('user', 'user', 'user', 'BPiZbadjt6lpsQKO4wB1aerzpjVIbdqyEdUSyFud+Ps=', 'user@user.com', 1, 'user', NULL);
 
 /* CREDITCARD */
-INSERT INTO CreditCard (ownerName, creditType, creditCardNumber,cvv, expirationDate) VALUES(user,'debit','012345678912345',123,'20240618 00:00:00 AM')
+INSERT INTO CreditCard (ownerName, creditType, creditCardNumber,cvv, expirationDate) VALUES(user,'debit','0123456789123456',123,'20240618 00:00:00 AM')
 
 /* CREDITCARD_USER */
 INSERT INTO CreditCard_User(userId, creditCardId)  VALUES (2,1);
