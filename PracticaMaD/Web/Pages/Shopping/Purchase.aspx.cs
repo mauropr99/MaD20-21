@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Es.Udc.DotNet.ModelUtil.IoC;
+using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
@@ -8,39 +10,50 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
 {
     public partial class Purchase : SpecificCulturePage
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
+        protected void Page_Load(object sender, EventArgs e) { 
 
-        }
-
-        private void UpdateCreditCards(String selectedCreditCard)
-        {
             IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
             IUserService userService = iocManager.Resolve<IUserService>();
 
-            UserSession userSession =
-                (UserSession)Context.Session[SessionManager.USER_SESSION_ATTRIBUTE];
-            
-            this.creditCards.DataSource = userService.FindCreditCardsByUserId(userSession.UserId);
+            LoadDropDownCreditCardsList(userService);
+        }
+
+        protected void LoadDropDownCreditCardsList(IUserService userService)
+        {
+            int index = 0;
+
+            if (DropDownCreditCardsList.Items.Count == 0)
+            {
+                UserSession userSession =
+                    (UserSession)Context.Session[SessionManager.USER_SESSION_ATTRIBUTE];
+
+                List<CreditCardDetails> creditCards = userService.FindCreditCardsByUserId(userSession.UserId);
+
+                this.DropDownCreditCardsList.Items.Clear();
+
+                foreach (CreditCardDetails creditCard in creditCards)
+                {
+                    this.DropDownCreditCardsList.Items.Add(creditCard.AnonymizedCreditCardNumber);
+                    this.DropDownCreditCardsList.Items[index].Value = creditCard.CreditCardId.ToString();
+                    index++;
+                }
+            }
+
+            this.DropDownCreditCardsList.Visible = true;
         }
 
         protected void BtnPurchaseClick(object sender, EventArgs e)
         {
+            IShoppingService shoppingService = SessionManager.GetShoppingService();
+            List<ShoppingCartDetails> shoppingCart = shoppingService.ViewShoppingCart();
+            
+            UserSession userSession =
+               (UserSession)Context.Session[SessionManager.USER_SESSION_ATTRIBUTE];
 
-            if (Page.IsValid)
-            {
-               
-                //Crear dto para compra
+            shoppingService.BuyProducts(userSession.UserId, shoppingCart, txtPostalAddress.Text,
+                                        Int64.Parse(DropDownCreditCardsList.SelectedValue), txtDeliveryDescription.Text);
 
-            }
-        }
-
-        protected void CreditCardsSelectedIndexChanged(object sender, EventArgs e)
-        {
-            /* After a language change, the countries are printed in the
-             * correct language.
-             */
-            this.UpdateCreditCards(creditCards.SelectedValue);
+            Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Product/Catalog.aspx"));
         }
     }
 }

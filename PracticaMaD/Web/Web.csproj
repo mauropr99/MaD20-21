@@ -90,7 +90,7 @@
     <Content Include="Css\PracticaMaD.Styles.css" />
     <Content Include="Global.asax" />
     <Content Include="Img\PracticaMaD.ico" />
-    <Content Include="Img\shopping-cart.png" />
+    <Content Include="Img\vagoneta.png" />
     <Content Include="Pages\CreditCardOperations\CreditCardAdd.aspx" />
     <Content Include="Pages\CreditCardOperations\CreditCardView.aspx" />
     <Content Include="Pages\Errors\InternalError.aspx" />

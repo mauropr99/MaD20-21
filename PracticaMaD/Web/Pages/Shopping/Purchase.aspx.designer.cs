@@ -30,25 +30,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Localize lclCreditCards;
+        protected global::System.Web.UI.WebControls.Label lclCreditCards;
 
         /// <summary>
-        /// creditCards control.
+        /// DropDownCreditCardsList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList creditCards;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownCreditCardsList;
 
         /// <summary>
-        /// lclPostalAddress control.
+        /// lnkAddNewCreditCard control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Localize lclPostalAddress;
+        protected global::System.Web.UI.WebControls.HyperLink lnkAddNewCreditCard;
+
+        /// <summary>
+        /// lclPostalAddress1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lclPostalAddress1;
 
         /// <summary>
         /// txtPostalAddress control.
@@ -69,13 +78,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPostalAddress;
 
         /// <summary>
-        /// lclDeliveryDescription control.
+        /// lclDeliveryDescription1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Localize lclDeliveryDescription;
+        protected global::System.Web.UI.WebControls.Label lclDeliveryDescription1;
 
         /// <summary>
         /// txtDeliveryDescription control.

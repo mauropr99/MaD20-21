@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
@@ -22,19 +23,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         public IProductDao ProductDao { private get; set; }
 
         [Inject]
+        public ICreditCardDao CreditCardDao { private get; set; }
+
+        [Inject]
         public IOrderLineDao OrderLineDao { private get; set; }
 
         private List<ShoppingCartDetails> shoppingCart = new List<ShoppingCartDetails>();
         
         #region IShoppingService Members
 
-        public Order BuyProducts(UserDetails user, List<ShoppingCartDetails> shoppingCart,
-            string postalAddress, CreditCard creditCard, string description)
+        public Order BuyProducts(long userId, List<ShoppingCartDetails> shoppingCart,
+            string postalAddress, long creditCardId, string description)
         {
             List<OrderLine> orderLines = new List<OrderLine>();
             Product product = new Product();
             decimal totalPrice = 0;
 
+            User user = UserDao.Find(userId);
+            CreditCard creditCard = CreditCardDao.Find(creditCardId);
 
             //Check expiration date
             if (creditCard.expirationDate < DateTime.Now)
@@ -74,7 +80,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                 totalPrice = totalPrice,
                 CreditCard = creditCard,
                 OrderLines = orderLines,
-                User_Table = UserDao.FindByEmail(user.Email),
+                userId = userId,
                 description = description
             };
 
@@ -86,6 +92,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                 line.orderId = order.id;
                 OrderLineDao.Update(line);
             }
+
+            shoppingCart.Clear();
 
             return order;
         }

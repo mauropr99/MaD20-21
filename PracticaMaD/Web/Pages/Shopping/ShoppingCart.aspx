@@ -5,6 +5,12 @@
         <form id="form1" runat="server">
          <br />
             <br />
+            &nbsp;<asp:Image CssClass="img" ID="imgEmptyCart" runat="server"
+                               ImageUrl="~/Img/vagoneta.png" Height="258px" Width="278px" />
+             <br />
+             <br />
+            <asp:Label ID="txtEmptyCart" Text="<%$ Resources:, empty %>" runat="server" text-align="center" Font-Size="Large"/>
+
             <asp:GridView ID="GridViewCart"  runat="server" CellPadding="8" ForeColor="#333333" GridLines="None"
                 AutoGenerateColumns="False" OnRowCommand="GridViewCart_RowCommand" DataKeyNames="Product_Id" >
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
@@ -34,6 +40,10 @@
                 <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
             </asp:GridView>
             <br />
+            <br />
+            <br />
+            <br />
+            <asp:Button ID="btn_BuyProducts" runat="server" OnClick="Btn_BuyProducts" Text="<%$ Resources: , btn_BuyProducts %>" />
           </form>
     </div>
 </asp:Content>

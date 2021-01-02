@@ -163,8 +163,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 try
                 {
                     IShoppingService shoppingService = SessionManager.GetShoppingService();
-                    //Session["List<ShoppingCartDetails>"] = shoppingCart;
-
+                    
                     int index = Convert.ToInt32(e.CommandArgument);    
                     long productId = long.Parse(GridViewCatalog.DataKeys[index].Values[0].ToString());
                         

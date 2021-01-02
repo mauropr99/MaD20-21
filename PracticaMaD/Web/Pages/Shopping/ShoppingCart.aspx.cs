@@ -23,13 +23,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
             this.GridViewCart.DataSource = shoppingCart;
             this.GridViewCart.DataBind();
 
-
+            if (!SessionManager.IsUserAuthenticated(Context))
+            {
+                btn_BuyProducts.Visible = false;           
+            }
 
             for (int i = 0; i < GridViewCart.Rows.Count; i++)
             {
                 GridViewCart.Rows[i].Cells[priceCell].Text = shoppingCart[i].Price.ToString("C2");
-                CheckBox cb = (CheckBox)GridViewCart.Rows[i].FindControl("gift");
-                cb.Checked = shoppingCart[i].GiftWrap;
+                //CheckBox cb = (CheckBox)GridViewCart.Rows[i].FindControl("gift");
+                //cb.Checked = shoppingCart[i].GiftWrap;
+            }
+
+            if (shoppingCart.Count != 0)
+            {
+                this.imgEmptyCart.Visible = false;
+                this.txtEmptyCart.Visible = false;
             }
         }
 
@@ -64,6 +73,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
             }
             catch { }
 
+        }
+
+        protected void Btn_BuyProducts(object sender, EventArgs e)
+        {
+            Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Shopping/Purchase.aspx"));
         }
 
         //protected void chkview_CheckedChanged(object sender, EventArgs e)

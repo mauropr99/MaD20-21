@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="btnPurchase" xml:space="preserve">
-    <value>Comprar</value>
+    <value>Tramitar pedido</value>
   </data>
   <data name="lclCreditCards" xml:space="preserve">
     <value>Tarxetas de crédito</value>
@@ -128,5 +128,8 @@
   </data>
   <data name="lclPostalAddress" xml:space="preserve">
     <value>Dirección postal</value>
+  </data>
+  <data name="lnkAddCreditCard" xml:space="preserve">
+    <value>Engadir nova tarxeta</value>
   </data>
 </root>

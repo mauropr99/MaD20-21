@@ -148,7 +148,7 @@
     <value>My orders</value>
   </data>
   <data name="lnkUpdate.Text" xml:space="preserve">
-    <value>Update </value>
+    <value>Update profile</value>
   </data>
   <data name="lnkViewCreditCards.Text" xml:space="preserve">
     <value>Payment methods</value>
