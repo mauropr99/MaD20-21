@@ -19,6 +19,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
     {
         int startIndex, index;
         int count = 4;
+        int priceCell = 3, addCell = 4;
       
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -41,6 +42,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 LoadPage();
             }
         }
+
 
         protected void LoadPage()
         {
@@ -113,11 +115,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                         break;
                 }
             }
+            IShoppingService shoppingService = SessionManager.GetShoppingService();
 
             for (int i = 0; i < GridViewCatalog.Rows.Count; i++)
             {
-                GridViewCatalog.Rows[i].Cells[2].Text = productBlock.Products[i].ReleaseDate.ToString(dateFormat);
-                GridViewCatalog.Rows[i].Cells[3].Text = productBlock.Products[i].Price.ToString("C2");
+                GridViewCatalog.Rows[i].Cells[priceCell].Text = productBlock.Products[i].ReleaseDate.ToString(dateFormat);
+                GridViewCatalog.Rows[i].Cells[priceCell].Text = productBlock.Products[i].Price.ToString("C2");
+                if (productBlock.Products[i].Stock == 0) GridViewCatalog.Rows[i].Cells[addCell].Text = GetLocalResourceObject("outStock").ToString();
             }
 
 

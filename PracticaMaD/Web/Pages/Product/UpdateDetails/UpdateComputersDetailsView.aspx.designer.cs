@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Web.Pages.Product
-{
-
-
-    public partial class UpdateComputersDetailsView
-    {
-
+namespace Web.Pages.Product {
+    
+    
+    public partial class UpdateComputersDetailsView {
+        
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -22,7 +20,16 @@ namespace Web.Pages.Product
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-
+        
+        /// <summary>
+        /// lnkbutton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkbutton;
+        
         /// <summary>
         /// lblComputerName control.
         /// </summary>
@@ -31,7 +38,7 @@ namespace Web.Pages.Product
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblComputerName;
-
+        
         /// <summary>
         /// lblComputerNameContent control.
         /// </summary>
@@ -40,7 +47,7 @@ namespace Web.Pages.Product
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox lblComputerNameContent;
-
+        
         /// <summary>
         /// lblBrand control.
         /// </summary>
@@ -49,7 +56,7 @@ namespace Web.Pages.Product
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblBrand;
-
+        
         /// <summary>
         /// lblBrandContent control.
         /// </summary>
@@ -58,7 +65,7 @@ namespace Web.Pages.Product
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox lblBrandContent;
-
+        
         /// <summary>
         /// lblPrice control.
         /// </summary>
@@ -67,7 +74,7 @@ namespace Web.Pages.Product
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblPrice;
-
+        
         /// <summary>
         /// lblPriceContent control.
         /// </summary>
@@ -76,7 +83,7 @@ namespace Web.Pages.Product
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox lblPriceContent;
-
+        
         /// <summary>
         /// lblStock control.
         /// </summary>
@@ -85,7 +92,7 @@ namespace Web.Pages.Product
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblStock;
-
+        
         /// <summary>
         /// lblStockContent control.
         /// </summary>
@@ -94,7 +101,7 @@ namespace Web.Pages.Product
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox lblStockContent;
-
+        
         /// <summary>
         /// lblProcessor control.
         /// </summary>
@@ -103,7 +110,7 @@ namespace Web.Pages.Product
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblProcessor;
-
+        
         /// <summary>
         /// lblProcessorContent control.
         /// </summary>
@@ -112,7 +119,7 @@ namespace Web.Pages.Product
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox lblProcessorContent;
-
+        
         /// <summary>
         /// lblOperatingSystem control.
         /// </summary>
@@ -121,7 +128,7 @@ namespace Web.Pages.Product
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblOperatingSystem;
-
+        
         /// <summary>
         /// lblOperatingSystemContent control.
         /// </summary>
@@ -130,7 +137,7 @@ namespace Web.Pages.Product
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox lblOperatingSystemContent;
-
+        
         /// <summary>
         /// Submit control.
         /// </summary>

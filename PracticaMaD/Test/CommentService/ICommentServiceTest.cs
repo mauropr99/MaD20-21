@@ -124,8 +124,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 
                 long userId = userService.SingUpUser(login, password,
                        new UserDetails(name, lastName, email, language.name, language.country));
-                User user = TestUtil.userDao.Find(userId);
-                CreditCard creditCard = TestUtil.CreateCreditCard(user);
+                CreditCard creditCard = TestUtil.CreateCreditCard();
 
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
                 Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
@@ -137,7 +136,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 };
 
                 string text = "Muy buen ordenador y a buen precio. Funcionan todos los juegos a calidad máxima, muy fluidos y sin apenas calentarse el aparato.";
-                Comment comment = commentService.NewComment(user.id, product1.id, text, labels);
+                Comment comment = commentService.NewComment(userId, product1.id, text, labels);
 
                 var foundComment = TestUtil.commentDao.Find(comment.id);
 
@@ -163,7 +162,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 long userId = userService.SingUpUser(login, password,
                        new UserDetails(name, lastName, email, language.name, language.country));
                 User user = TestUtil.userDao.Find(userId);
-                CreditCard creditCard = TestUtil.CreateCreditCard(user);
+                CreditCard creditCard = TestUtil.CreateCreditCard();
 
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
                 Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
@@ -213,8 +212,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 Language language = TestUtil.CreateExistentLanguage();
                 long userId = userService.SingUpUser(login, password,
                        new UserDetails(name, lastName, email, language.name, language.country));
-                User user = TestUtil.userDao.Find(userId);
-                CreditCard creditCard = TestUtil.CreateCreditCard(user);
+                
+                CreditCard creditCard = TestUtil.CreateCreditCard();
 
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
                 Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
@@ -253,8 +252,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 
                 long userId = userService.SingUpUser(login, password,
                        new UserDetails(name, lastName, email, language.name, language.country));
-                User user = TestUtil.userDao.Find(userId);
-                CreditCard creditCard = TestUtil.CreateCreditCard(user);
+                CreditCard creditCard = TestUtil.CreateCreditCard();
 
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
                 Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
@@ -266,7 +264,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 };
 
                 string text = "Muy buen ordenador y a buen precio. Funcionan todos los juegos a calidad máxima, muy fluidos y sin apenas calentarse el aparato.";
-                Comment comment = commentService.NewComment(user.id, product1.id, text, labels);
+                Comment comment = commentService.NewComment(userId, product1.id, text, labels);
 
 
                 commentService.RemoveComment(userId, comment.id);
@@ -284,8 +282,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 
                 long userId = userService.SingUpUser(login, password,
                        new UserDetails(name, lastName, email, language.name, language.country));
-                User user = TestUtil.userDao.Find(userId);
-                CreditCard creditCard = TestUtil.CreateCreditCard(user);
+                CreditCard creditCard = TestUtil.CreateCreditCard();
 
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
                 Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
@@ -297,7 +294,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 };
 
                 string text = "Muy buen ordenador y a buen precio. Funcionan todos los juegos a calidad máxima, muy fluidos y sin apenas calentarse el aparato.";
-                var comment1 = commentService.NewComment(user.id, product1.id, text, labels);
+                var comment1 = commentService.NewComment(userId, product1.id, text, labels);
 
                 text = "Es una bestia de portatil gaming , los juegos se ven genial y se inician en un momento , no se calienta y encima no es tan pesado .";
 
@@ -307,7 +304,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                     "Chollazo",
                     "Ganga"
                 };
-                var comment2 = commentService.NewComment(user.id, product1.id, text, labels2);
+                var comment2 = commentService.NewComment(userId, product1.id, text, labels2);
 
                 CommentBlock comment = commentService.ViewComments(userId, product1.id, 0, 10);
 

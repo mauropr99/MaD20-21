@@ -106,7 +106,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao.Tests
                 long userId = userService.SingUpUser(login, password,
                        new UserDetails(name, lastName, email, language.name, language.country));
                 User user = TestUtil.userDao.Find(userId);
-                CreditCard creditCard = TestUtil.CreateCreditCard(user);
+                CreditCard creditCard = TestUtil.CreateCreditCard();
 
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
                 Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
@@ -149,8 +149,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao.Tests
 
                 long userId = userService.SingUpUser(login, password,
                        new UserDetails(name, lastName, email, language.name, language.country));
-                User user = TestUtil.userDao.Find(userId);
-                CreditCard creditCard = TestUtil.CreateCreditCard(user);
+                CreditCard creditCard = TestUtil.CreateCreditCard();
 
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
                 Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
@@ -167,7 +166,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao.Tests
                     "Chollazo",
                 };
                 string text = "Muy buen ordenador y a buen precio. Funcionan todos los juegos a calidad máxima, muy fluidos y sin apenas calentarse el aparato.";
-                var comment1 = commentService.NewComment(user.id, product1.id, text, labels);
+                var comment1 = commentService.NewComment(userId, product1.id, text, labels);
 
                 commentDao.AddLabel(label, comment1.id);
 

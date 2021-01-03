@@ -89,13 +89,19 @@ namespace Web.Pages.Product
             {
             }
 
-
-
-
-
-
+            if (!IsPostBack)
+            {
+                ViewState["RefUrl"] = Request.UrlReferrer.ToString();
+            }
         }
 
+        protected void BtnBackToPreviousPage_Click(object sender, EventArgs e)
+        {
+            object refUrl = ViewState["RefUrl"];
+            if (refUrl != null)
+                Response.Redirect((string)refUrl);
+        }
+    
         protected void btnAddToShoppingCart_Click(object sender, EventArgs e)
         {
             try
@@ -104,7 +110,7 @@ namespace Web.Pages.Product
 
                 long productId = long.Parse(Request.Params.Get("productId"));
 
-                shoppingService.AddToShoppingCart(productId);
+                shoppingService.AddToShoppingCart(productId, short.Parse(DropDownListQuantity.SelectedValue));
 
                 Response.Redirect("~/Pages/Shopping/ShoppingCart.aspx");
 
@@ -115,4 +121,5 @@ namespace Web.Pages.Product
             }
         }
     }
+
 }

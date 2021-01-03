@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
-{
-
-
-    public partial class ShoppingCart
-    {
-
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping {
+    
+    
+    public partial class ShoppingCart {
+        
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -22,7 +20,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-
+        
         /// <summary>
         /// imgEmptyCart control.
         /// </summary>
@@ -31,7 +29,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgEmptyCart;
-
+        
         /// <summary>
         /// txtEmptyCart control.
         /// </summary>
@@ -40,7 +38,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label txtEmptyCart;
-
+        
         /// <summary>
         /// GridViewCart control.
         /// </summary>
@@ -49,7 +47,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewCart;
-
+        
+        /// <summary>
+        /// Subtotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Subtotal;
+        
         /// <summary>
         /// btn_BuyProducts control.
         /// </summary>

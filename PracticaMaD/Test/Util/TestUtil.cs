@@ -144,7 +144,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
         }
 
 
-        public static CreditCard CreateCreditCard(User user)
+        public static CreditCard CreateCreditCard()
         {
             CreditCard creditCard = new CreditCard
             {
@@ -154,7 +154,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
                 cvv = 123,
                 expirationDate = DateTime.Now.AddYears(1)
             };
-            creditCard.User_Table.Add(user);
+       
             creditCardDao.Create(creditCard);
             return creditCard;
         }

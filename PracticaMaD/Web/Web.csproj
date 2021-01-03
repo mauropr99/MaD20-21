@@ -420,12 +420,6 @@
     <Content Include="Pages\CreditCardOperations\App_LocalResources\CreditCardView.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Product\App_LocalResources\BookDetailsView.aspx.es.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Pages\Product\App_LocalResources\BookDetailsView.aspx.gl.resx" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Pages\Product\ViewDetails\App_LocalResources\BooksDetailsView.aspx.es.resx" />
     <Content Include="Pages\Product\ViewDetails\App_LocalResources\BooksDetailsView.aspx.gl.resx" />
     <Content Include="Pages\Product\ViewDetails\App_LocalResources\BooksDetailsView.aspx.resx" />
@@ -456,12 +450,7 @@
     <Content Include="Pages\Product\UpdateDetails\App_LocalResources\UpdateBooksDetailsView.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Shopping\App_LocalResources\OrderHistoryDetails.aspx.es.resx" />
-    <Content Include="Pages\Shopping\App_LocalResources\OrderHistoryDetails.aspx.gl.resx" />
     <Content Include="Pages\Shopping\App_LocalResources\OrderHistoryDetails.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Pages\Product\App_LocalResources\ComputerDetailsView.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Shopping\App_LocalResources\Purchase.aspx.resx" />

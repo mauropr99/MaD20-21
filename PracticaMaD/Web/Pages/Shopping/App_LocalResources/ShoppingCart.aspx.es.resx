@@ -124,7 +124,7 @@
     <value>Tu carrito está vacío, triste y solo :(</value>
   </data>
   <data name="gift" xml:space="preserve">
-    <value>Regalo</value>
+    <value>Marcar como regalo</value>
   </data>
   <data name="price" xml:space="preserve">
     <value>Precio</value>

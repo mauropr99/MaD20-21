@@ -13,7 +13,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string format = "MM/dd/yyyy";
+            string format = "MM/yyyy";
             //1 Obtener contexto de inyección de dependencias
 
             IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
@@ -42,24 +42,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
             GridViewCreditCards.DataSource = creditCards;
 
             GridViewCreditCards.DataBind();
-
-
-            //Changing the date format...
-            Locale locale = SessionManager.GetLocale(Context);
-
-            switch (locale.Country)
-            {
-                case "ES":
-                    format = "dd/MM/yyyy";
-                    break;
-                case "US":
-                    format = "MM/dd/yyyy";
-                    break;
-
-                default:
-                    format = "MM/dd/yyyy";
-                    break;
-            }
 
             for (int i = 0; i < GridViewCreditCards.Rows.Count; i++)
             {

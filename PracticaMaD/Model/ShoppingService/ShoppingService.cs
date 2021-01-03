@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao;
@@ -23,6 +24,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         public IProductDao ProductDao { private get; set; }
 
         [Inject]
+        public ICategoryDao CategoryDao { private get; set; }
+
+        [Inject]
         public ICreditCardDao CreditCardDao { private get; set; }
 
         [Inject]
@@ -31,6 +35,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         private List<ShoppingCartDetails> shoppingCart = new List<ShoppingCartDetails>();
         
         #region IShoppingService Members
+
 
         public Order BuyProducts(long userId, List<ShoppingCartDetails> shoppingCart,
             string postalAddress, long creditCardId, string description)
@@ -93,7 +98,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                 OrderLineDao.Update(line);
             }
 
-            shoppingCart.Clear();
+            ClearShoppingCart();
 
             return order;
         }
@@ -101,6 +106,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         public List<ShoppingCartDetails> ViewShoppingCart()
         { 
             return shoppingCart;
+        }
+
+        public void ClearShoppingCart()
+        {
+            shoppingCart.Clear();
         }
 
         public void AddToShoppingCart(long productId)
@@ -127,18 +137,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
                 }
             }
-
             //If it is a new product in the shopping cart
             if (!existsInCart)
             {
                 ShoppingCartDetails shoppingCartLine = new ShoppingCartDetails
-                {
-                    Quantity = quantity,
-                    Product_Name = product.product_name,
-                    Price = product.price,
-                    Product_Id = product.id,
-                    GiftWrap = false
-                };
+                (    
+                    product.id,
+                    product.product_name,
+                    (CategoryDao.Find(product.categoryId)).name,
+                    quantity,
+                    product.price,
+                    false
+                );
 
                 shoppingCart.Add(shoppingCartLine);
             }
@@ -176,13 +186,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             {
                 if (line.Product_Id == productId)
                 {
-                    line.Product_Name = "NO FUNCIONA";
-                    //line.GiftWrap = !line.GiftWrap;
+                    line.GiftWrap = !line.GiftWrap;
                     break;
                 }
             }
         }
-       
+
+        public Decimal Subtotal()
+        {
+            Decimal subtotal = 0;
+            foreach (ShoppingCartDetails line in shoppingCart)
+            {
+                subtotal += line.Price*line.Quantity;
+            }
+            return subtotal;
+        }
+
         public OrderBlock FindOrdersByUserId(long userId, int startIndex, int count)
         {
             List<Order> orders;

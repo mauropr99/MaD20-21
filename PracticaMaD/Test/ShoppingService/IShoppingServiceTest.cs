@@ -122,35 +122,39 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                 long userId = userService.SingUpUser(login, password,
                        new UserDetails(name, lastName, email, language.name, language.country));
                 User user = TestUtil.userDao.Find(userId);
-                CreditCard creditCard = TestUtil.CreateCreditCard(user);
+                CreditCard creditCard = TestUtil.CreateCreditCard();
 
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
                 Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
                 Computer product2 = TestUtil.CreateComputer(category1, "ACER 3x2600", 2.5m, "Acer");
 
 
-                OrderLineDetails orderLineDetail1 = new OrderLineDetails(
+                ShoppingCartDetails orderLineDetail1 = new ShoppingCartDetails(
                     product1.id,
                     product1.product_name,
+                    category1.name,
                     15,
-                    product1.price
+                    product1.price,
+                    true
                 );
-                OrderLineDetails orderLineDetail2 = new OrderLineDetails(
+                ShoppingCartDetails orderLineDetail2 = new ShoppingCartDetails(
                    product2.id,
                    product2.product_name,
+                   category1.name,
                    100,
-                   product2.price
+                   product2.price,
+                   false
                );
 
-                List<OrderLineDetails> orderLineDetails = new List<OrderLineDetails>
+                List<ShoppingCartDetails> orderLineDetails = new List<ShoppingCartDetails>
                 {
                     orderLineDetail1,
                     orderLineDetail2
                 };
 
                 var order =
-                    shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country), orderLineDetails,
-                        address, creditCard, "Patatas asadas");
+                    shoppingService.BuyProducts(user.id, orderLineDetails,
+                        address, creditCard.id, "Patatas asadas");
 
                 var foundOrder = TestUtil.orderDao.Find(order.id);
 
@@ -172,8 +176,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
             {
                 Language language = TestUtil.CreateExistentLanguage();
 
-                userService.SingUpUser(login, password,
+                long userId = userService.SingUpUser(login, password,
                 new UserDetails(name, lastName, email, language.name, language.country));
+                
                 CreditCard creditCard = new CreditCard
                 {
                     ownerName = "Name Surname",
@@ -182,32 +187,38 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                     cvv = 123,
                     expirationDate = DateTime.Now.AddYears(-1)
                 };
+                TestUtil.creditCardDao.Create(creditCard);
 
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
                 Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
                 Computer product2 = TestUtil.CreateComputer(category1, "ACER 3x2600", 2.5m, "Acer");
 
-                OrderLineDetails orderLineDetail1 = new OrderLineDetails(
+                ShoppingCartDetails orderLineDetail1 = new ShoppingCartDetails(
                     product1.id,
                     product1.product_name,
+                    category1.name,
                     15,
-                    product1.price
+                    product1.price,
+                    true
                 );
-                OrderLineDetails orderLineDetail2 = new OrderLineDetails(
+                ShoppingCartDetails orderLineDetail2 = new ShoppingCartDetails(
                    product2.id,
                    product2.product_name,
+                   category1.name,
                    100,
-                   product2.price
+                   product2.price,
+                   false
                );
-                List<OrderLineDetails> orderLineDetails = new List<OrderLineDetails>
+
+                List<ShoppingCartDetails> orderLineDetails = new List<ShoppingCartDetails>
                 {
                     orderLineDetail1,
                     orderLineDetail2
                 };
 
                 var order =
-                    shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country), orderLineDetails,
-                        address, creditCard, "Patatas asadas");
+                    shoppingService.BuyProducts(userId, orderLineDetails,
+                        address, creditCard.id, "Patatas asadas");
             }
         }
 
@@ -222,30 +233,32 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
 
                 long userId = userService.SingUpUser(login, password,
                        new UserDetails(name, lastName, email, language.name, language.country));
-                User user = TestUtil.userDao.Find(userId);
-                CreditCard creditCard = TestUtil.CreateCreditCard(user);
+    
+                CreditCard creditCard = TestUtil.CreateCreditCard();
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
                 Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
                 Computer product2 = TestUtil.CreateComputer(category1, "ACER 3x2600", 2.5m, "Acer");
 
-                OrderLineDetails orderLineDetail1 = new OrderLineDetails(
+                ShoppingCartDetails orderLineDetail1 = new ShoppingCartDetails(
                    product2.id,
                    product2.product_name,
+                   category1.name,
                    90,
-                   product2.price
+                   product2.price,
+                   false
                );
 
-                List<OrderLineDetails> orderLineDetails = new List<OrderLineDetails>
+                List<ShoppingCartDetails> orderLineDetails = new List<ShoppingCartDetails>
                 {
                     orderLineDetail1
                 };
 
                 var order =
-                    shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country), orderLineDetails,
-                        address, creditCard, "Patatas asadas");
+                    shoppingService.BuyProducts(userId, orderLineDetails,
+                        address, creditCard.id, "Patatas asadas");
                 order =
-                    shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country), orderLineDetails,
-                        address, creditCard, "Patatas asadas");
+                    shoppingService.BuyProducts(userId, orderLineDetails,
+                        address, creditCard.id, "Patatas asadas");
             }
         }
 
@@ -260,10 +273,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                 //Creating User...
                 long userId = userService.SingUpUser(login, password,
                        new UserDetails(name, lastName, email, language.name, language.country));
-                User user = TestUtil.userDao.Find(userId);
 
                 //Creating CreditCard...
-                CreditCard creditCard = TestUtil.CreateCreditCard(user);
+                CreditCard creditCard = TestUtil.CreateCreditCard();
 
                 //Creating Category...
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
@@ -275,38 +287,47 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                 Computer product4 = TestUtil.CreateComputer(category1, "Computer 4", 3, "Acer");
 
                 //Creating OrderLineDetails
-                OrderLineDetails orderLineDetail1 = new OrderLineDetails(
+                ShoppingCartDetails orderLineDetail1 = new ShoppingCartDetails(
                     product1.id,
                     product1.product_name,
+                    category1.name,
                     10,
-                    product1.price
+                    product1.price,
+                    false
                 );
-                OrderLineDetails orderLineDetail2 = new OrderLineDetails(
+
+                ShoppingCartDetails orderLineDetail2 = new ShoppingCartDetails(
                    product2.id,
                    product2.product_name,
+                   category1.name,
                    11,
-                   product2.price
+                   product2.price,
+                   false
                 );
-                OrderLineDetails orderLineDetail3 = new OrderLineDetails(
+                ShoppingCartDetails orderLineDetail3 = new ShoppingCartDetails(
                    product3.id,
                    product3.product_name,
+                   category1.name,
                    12,
-                   product3.price
+                   product3.price,
+                   false
                );
-                OrderLineDetails orderLineDetail4 = new OrderLineDetails(
+                ShoppingCartDetails orderLineDetail4 = new ShoppingCartDetails(
                    product4.id,
                    product4.product_name,
+                   category1.name, 
                    13,
-                   product4.price
+                   product4.price,
+                   false
                );
 
-                List<OrderLineDetails> orderLineDetails = new List<OrderLineDetails>
+                List<ShoppingCartDetails> orderLineDetails = new List<ShoppingCartDetails>
                 {
                     orderLineDetail1,
                     orderLineDetail2
                 };
 
-                List<OrderLineDetails> orderLineDetails2 = new List<OrderLineDetails>
+                List<ShoppingCartDetails> orderLineDetails2 = new List<ShoppingCartDetails>
                 {
                     orderLineDetail3,
                     orderLineDetail4
@@ -317,12 +338,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                 string firstDescription = "First order";
                 string secondDescription = "Second order";
                 var order =
-                    shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country), orderLineDetails,
-                        address, creditCard, firstDescription);
+                    shoppingService.BuyProducts(userId, orderLineDetails,
+                        address, creditCard.id, firstDescription);
 
                 var order2 =
-                    shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country), orderLineDetails,
-                        address, creditCard, secondDescription);
+                    shoppingService.BuyProducts(userId, orderLineDetails,
+                        address, creditCard.id, secondDescription);
 
 
                 List<OrderDetails> foundOrders = shoppingService.FindOrdersByUserId(userId, 0, 10).Orders;
@@ -353,7 +374,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                 User user = TestUtil.userDao.Find(userId);
 
                 //Creating CreditCard...
-                CreditCard creditCard = TestUtil.CreateCreditCard(user);
+                CreditCard creditCard = TestUtil.CreateCreditCard();
 
                 //Creating Category...
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
@@ -364,46 +385,54 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                 Computer product3 = TestUtil.CreateComputer(category1, "Computer 3", 3, "Msi");
                 Computer product4 = TestUtil.CreateComputer(category1, "Computer 4", 3, "Acer");
 
-                //Creating OrderLineDetails
-                OrderLineDetails orderLineDetail1 = new OrderLineDetails(
+                ShoppingCartDetails orderLineDetail1 = new ShoppingCartDetails(
                     product1.id,
                     product1.product_name,
+                    category1.name,
                     10,
-                    product1.price
+                    product1.price,
+                    false
                 );
-                OrderLineDetails orderLineDetail2 = new OrderLineDetails(
+
+                ShoppingCartDetails orderLineDetail2 = new ShoppingCartDetails(
                    product2.id,
                    product2.product_name,
+                   category1.name,
                    11,
-                   product2.price
+                   product2.price,
+                   false
                 );
-                OrderLineDetails orderLineDetail3 = new OrderLineDetails(
+                ShoppingCartDetails orderLineDetail3 = new ShoppingCartDetails(
                    product3.id,
                    product3.product_name,
+                   category1.name,
                    12,
-                   product3.price
+                   product3.price,
+                   false
                );
-                OrderLineDetails orderLineDetail4 = new OrderLineDetails(
+                ShoppingCartDetails orderLineDetail4 = new ShoppingCartDetails(
                    product4.id,
                    product4.product_name,
+                   category1.name,
                    13,
-                   product4.price
+                   product4.price,
+                   false
                );
 
-                List<OrderLineDetails> orderLineDetails = new List<OrderLineDetails>
+                List<ShoppingCartDetails> orderLineDetails = new List<ShoppingCartDetails>
                 {
                     orderLineDetail1,
                     orderLineDetail2,
                     orderLineDetail3,
                     orderLineDetail4
                 };
-
+                
 
                 //Creating Orders...
                 string firstDescription = "First order";
                 var order =
-                    shoppingService.BuyProducts(new UserDetails(name, lastName, email, language.name, language.country), orderLineDetails,
-                        address, creditCard, firstDescription);
+                    shoppingService.BuyProducts(userId, orderLineDetails,
+                        address, creditCard.id, firstDescription);
 
                 var orderLines = TestUtil.orderLineDao.FindByOrderId(order.id);
 

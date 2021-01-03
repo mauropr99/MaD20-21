@@ -124,7 +124,7 @@
     <value>Your cart is empty, sad and lonely :(</value>
   </data>
   <data name="gift" xml:space="preserve">
-    <value>Gift</value>
+    <value>Mark as gift</value>
   </data>
   <data name="price" xml:space="preserve">
     <value>Price</value>

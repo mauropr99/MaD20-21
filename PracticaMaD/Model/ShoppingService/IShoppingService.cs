@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Es.Udc.DotNet.ModelUtil.Transactions;
+using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
@@ -15,14 +16,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         IProductDao ProductDao { set; }
         IUserDao UserDao { set; }
         ICreditCardDao CreditCardDao { set; }
+        ICategoryDao CategoryDao { set; }
 
-
+        [Transactional]
         Order BuyProducts(long userId, List<ShoppingCartDetails> shoppingCart,
             string postalAddress, long creditCardId, string description);
+
+        [Transactional]
+        Decimal Subtotal();
 
         List<ShoppingCartDetails> ViewShoppingCart();
 
         void AddToShoppingCart(long productId);
+
+        void ClearShoppingCart();
 
         void AddToShoppingCart(long productId, short quantity);
 

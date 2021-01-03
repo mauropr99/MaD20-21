@@ -11,7 +11,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                ViewState["RefUrl"] = Request.UrlReferrer.ToString();
+            }
         }
 
         protected void BtnAddCreditCard_Click(object sender, EventArgs e)
@@ -42,7 +45,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
 
             productService.AddCreditCard(userSession.UserId, creditCardOwner, creditCardType, creditCardNumber, short.Parse(creditCardCvv), expirationDate);
 
-            Response.Redirect("~/Pages/CreditCardOperations/CreditCardView.aspx");
+            object refUrl = ViewState["RefUrl"];
+            if (refUrl != null)
+                Response.Redirect((string)refUrl);
         }
 
     }

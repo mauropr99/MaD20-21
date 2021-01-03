@@ -135,4 +135,7 @@
   <data name="addItem" xml:space="preserve">
     <value>Add Item</value>
   </data>
+  <data name="outStock" xml:space="preserve">
+    <value>Out of stock</value>
+  </data>
 </root>

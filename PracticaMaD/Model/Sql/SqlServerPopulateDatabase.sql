@@ -17,16 +17,16 @@
  
 USE practicamad
 
-DELETE FROM OrderLine		DBCC CHECKIDENT ('[OrderLine]', RESEED, 1);
-DELETE FROM Order_Table		DBCC CHECKIDENT ('[Order_Table]', RESEED, 1);
+DELETE FROM OrderLine		DBCC CHECKIDENT ('[OrderLine]', RESEED, 0);
+DELETE FROM Order_Table		DBCC CHECKIDENT ('[Order_Table]', RESEED, 0);
 DELETE FROM Book;
 DELETE FROM Computers; 
-DELETE FROM Product			DBCC CHECKIDENT ('[Product]', RESEED, 1);
+DELETE FROM Product			DBCC CHECKIDENT ('[Product]', RESEED, 0);
 DELETE FROM CreditCard_User;
-DELETE FROM CreditCard		DBCC CHECKIDENT ('[CreditCard]', RESEED, 1);
-DELETE FROM User_Table		DBCC CHECKIDENT ('[User_Table]', RESEED, 1);
-DELETE FROM Category		DBCC CHECKIDENT ('[Category]', RESEED, 1);
-DELETE FROM Language		DBCC CHECKIDENT ('[Language]', RESEED, 1);
+DELETE FROM CreditCard		DBCC CHECKIDENT ('[CreditCard]', RESEED, 0);
+DELETE FROM User_Table		DBCC CHECKIDENT ('[User_Table]', RESEED, 0);
+DELETE FROM Category		DBCC CHECKIDENT ('[Category]', RESEED, 0);
+DELETE FROM Language		DBCC CHECKIDENT ('[Language]', RESEED, 0);
 
 
 

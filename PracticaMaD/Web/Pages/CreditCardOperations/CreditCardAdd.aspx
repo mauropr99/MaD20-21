@@ -16,6 +16,7 @@
         <asp:TextBox ID="txtCreditCardNumber" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtCreditCardNumber"
             runat="server" Display="Dynamic" />
+
         <br />
         <br />
         <asp:Label ID="lblCreditCardCvv" runat="server" Text="<%$ Resources: , creditCardCvv %>"></asp:Label>

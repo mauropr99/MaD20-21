@@ -50,10 +50,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
             UserSession userSession =
                (UserSession)Context.Session[SessionManager.USER_SESSION_ATTRIBUTE];
 
-            shoppingService.BuyProducts(userSession.UserId, shoppingCart, txtPostalAddress.Text,
-                                        Int64.Parse(DropDownCreditCardsList.SelectedValue), txtDeliveryDescription.Text);
+            try
+            {
+                shoppingService.BuyProducts(userSession.UserId, shoppingCart, txtPostalAddress.Text,
+                                            Int64.Parse(DropDownCreditCardsList.SelectedValue), txtDeliveryDescription.Text);
 
-            Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Product/Catalog.aspx"));
-        }
+                Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Product/Catalog.aspx"));
+            }
+            catch
+            {
+                Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Errors/InternalError.aspx"));
+            }
+        }   
     }
 }

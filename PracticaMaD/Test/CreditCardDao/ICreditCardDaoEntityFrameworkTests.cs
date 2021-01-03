@@ -80,7 +80,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao.Tests
             using (var scope = new TransactionScope())
             {
                 Language language = TestUtil.CreateExistentLanguage();
-                User user = TestUtil.CreateExistentUser(language); CreditCard creditCard = TestUtil.CreateCreditCard(user);
+                User user = TestUtil.CreateExistentUser(language);
+                CreditCard creditCard = TestUtil.CreateCreditCard();
+                TestUtil.creditCardDao.AddUser(user,creditCard.id);
 
                 List<CreditCard> foundCreditCards = TestUtil.creditCardDao.FindCreditCardsByUserId(user.id);
 

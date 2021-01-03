@@ -30,6 +30,18 @@ namespace Web.Pages.Shopping
                 GridOrderHistoryDetails.Rows[i].Cells[2].Text = orderLineDetails[i].Price.ToString("C2");
             }
 
+
+            if (!IsPostBack)
+            {
+                ViewState["RefUrl"] = Request.UrlReferrer.ToString();
+            }
+        }
+
+        protected void BtnBackToPreviousPage_Click(object sender, EventArgs e)
+        {
+            object refUrl = ViewState["RefUrl"];
+            if (refUrl != null)
+                Response.Redirect((string)refUrl);
         }
 
     }

@@ -27,9 +27,6 @@ namespace Web.Pages.Product
                 productId = long.Parse(Request.Params.Get("productId"));
                 Book book = productService.FindBook(productId);
 
-
-
-
                 if (book.stock == 0 || !SessionManager.IsUserAuthenticated(Context))
                 {
                     lblQuantity.Visible = false;
@@ -86,10 +83,11 @@ namespace Web.Pages.Product
             {
             }
 
-
-
-
-
+        
+            if (!IsPostBack)
+            {
+                ViewState["RefUrl"] = Request.UrlReferrer.ToString();
+            }
 
         }
 
@@ -110,6 +108,13 @@ namespace Web.Pages.Product
             {
                 Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Errors/InternalError.aspx"));
             }
+        }
+
+        protected void BtnBackToPreviousPage_Click(object sender, EventArgs e)
+        {
+            object refUrl = ViewState["RefUrl"];
+            if (refUrl != null)
+                Response.Redirect((string)refUrl);
         }
     }
 }

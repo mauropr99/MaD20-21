@@ -230,7 +230,7 @@ GO
 CREATE TABLE Product (
 	id BIGINT IDENTITY(1,1) NOT NULL, 
 	product_name VARCHAR(64) NOT NULL,
-	price DECIMAL(9,5) NOT NULL,
+	price DECIMAL(15,5) NOT NULL,
 	releaseDate DATE NOT NULL,
 	stock INT NOT NULL,
 	categoryId BIGINT NOT NULL,
@@ -370,7 +370,7 @@ CREATE TABLE Order_Table (
 	id bigint IDENTITY(1,1) NOT NULL, 
 	postalAddress VARCHAR (200) NOT NULL,
 	orderDate date NOT NULL,
-	totalPrice DECIMAL(9,5) NOT NULL,
+	totalPrice DECIMAL(15,5) NOT NULL,
 	userId bigint NOT NULL,
 	creditCardId bigint NOT NULL,
 	description VARCHAR(200) NOT NULL,

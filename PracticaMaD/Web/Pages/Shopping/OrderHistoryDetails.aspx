@@ -27,6 +27,7 @@
         </asp:GridView>
         <br />
         <br />
+          <asp:LinkButton ID="lnkbutton" runat="server" OnClick="BtnBackToPreviousPage_Click" Text="<%$ Resources:Common, back %>" />
         <br />
     </form>
 

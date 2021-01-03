@@ -4,6 +4,8 @@
 
     <form id="form1" runat="server">
         <br />
+        <asp:LinkButton ID="lnkbutton" runat="server" OnClick="BtnBackToPreviousPage_Click" Text="<%$ Resources:Common, back %>" />
+        <br />
         <br />
         <asp:Label ID="lblTitle" runat="server" Text="<%$ Resources: , title %>"></asp:Label>
         <asp:TextBox ID="lblTitleContent" runat="server"></asp:TextBox>

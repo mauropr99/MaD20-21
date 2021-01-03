@@ -135,4 +135,7 @@
   <data name="searchButton" xml:space="preserve">
     <value>Buscar</value>
   </data>
+  <data name="back" xml:space="preserve">
+    <value>Volver</value>
+  </data>
 </root>
