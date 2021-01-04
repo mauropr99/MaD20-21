@@ -124,7 +124,7 @@
     <value>Credit cards</value>
   </data>
   <data name="lclDeliveryDescription" xml:space="preserve">
-    <value>Delivery description</value>
+    <value>Purchase description</value>
   </data>
   <data name="lclPostalAddress" xml:space="preserve">
     <value>Postal address</value>

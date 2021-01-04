@@ -43,7 +43,8 @@
             </asp:GridView>
             <br />
             <br />
-            Subtotal = <asp:Label ID="Subtotal" runat="server" text-align="center" />
+             
+            <asp:Label ID="LblSubtotal" runat="server" text-align="center" Text =" Subtotal =" /> <asp:Label ID="Subtotal" runat="server" text-align="center" />
             <br />
             <br />
             <asp:Button ID="btn_BuyProducts" runat="server" OnClick="Btn_BuyProducts" Text="<%$ Resources: , btn_BuyProducts %>" />

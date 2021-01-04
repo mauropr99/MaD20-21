@@ -61,7 +61,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                 product = ProductDao.Find(line.Product_Id);
                 if (product.stock < line.Quantity)
                 {
-                    throw new NotEnoughStock(product.product_name, product.stock);
+                    throw new NotEnoughStock(product.product_name, product.stock, line.Quantity);
                 }
                 product.stock -= line.Quantity;
                 ProductDao.Update(product);
@@ -200,6 +200,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                 subtotal += line.Price*line.Quantity;
             }
             return subtotal;
+        }
+
+        public int TotalProducts()
+        {
+            int total = 0;
+            foreach (ShoppingCartDetails line in shoppingCart)
+            {
+                total += line.Quantity;
+            }
+            return total;
         }
 
         public OrderBlock FindOrdersByUserId(long userId, int startIndex, int count)

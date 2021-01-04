@@ -99,7 +99,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
 
             userService = iocManager.Resolve<IUserService>();
 
-            shoppingService = iocManager.Resolve<IShoppingService>();
         }
 
         public static IShoppingService GetShoppingService()
@@ -339,6 +338,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
         /// <param name="context">Http Context includes request, response, etc.</param>
         public static void TouchSession(HttpContext context)
         {
+            IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
             /* Check if "UserSession" object is in the session. */
             UserSession userSession = null;
 
@@ -350,10 +350,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
                 // If userSession object is in the session, nothing should be doing.
                 if (userSession != null)
                 {
+                    if(shoppingService == null)
+                        shoppingService = iocManager.Resolve<IShoppingService>();
                     return;
                 }
             }
-
+            shoppingService = iocManager.Resolve<IShoppingService>();
             /*
              * The user had not been authenticated or his/her session has
              * expired. We need to check if the user has selected "remember my
@@ -361,6 +363,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
              * as cookies). If so, we reconstruct user's session objects.
              */
             UpdateSessionFromCookies(context);
+            
+                
+
         }
 
         /// <summary>

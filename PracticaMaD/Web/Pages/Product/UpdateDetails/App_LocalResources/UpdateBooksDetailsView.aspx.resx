@@ -147,4 +147,7 @@
   <data name="submit" xml:space="preserve">
     <value>submit</value>
   </data>
+  <data name="ControlStock" xml:space="preserve">
+    <value>Must be a positive number</value>
+  </data>
 </root>

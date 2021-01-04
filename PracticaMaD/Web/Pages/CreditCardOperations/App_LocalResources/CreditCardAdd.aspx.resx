@@ -139,7 +139,13 @@
     <value>Debit</value>
   </data>
   <data name="expirationDate" xml:space="preserve">
-    <value>Expiration date (dd/yyyy)</value>
+    <value>Expiration date (MM/yyyy)</value>
+  </data>
+  <data name="invalidDateFormat" xml:space="preserve">
+    <value>Invalid Date Format</value>
+  </data>
+  <data name="invalidLength" xml:space="preserve">
+    <value>Must have 16 digits</value>
   </data>
   <data name="validationDateExpression" xml:space="preserve">
     <value>^[0-1m]{1}[0-9m]{1}/[0-9y]{4}$</value>

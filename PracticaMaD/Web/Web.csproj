@@ -93,6 +93,8 @@
     <Content Include="Img\vagoneta.png" />
     <Content Include="Pages\CreditCardOperations\CreditCardAdd.aspx" />
     <Content Include="Pages\CreditCardOperations\CreditCardView.aspx" />
+    <Content Include="Pages\Errors\CreditCardAlreadyExpired.aspx" />
+    <Content Include="Pages\Errors\OutOfStock.aspx" />
     <Content Include="Pages\Errors\InternalError.aspx" />
     <Content Include="Pages\MainPage.aspx" />
     <Content Include="Pages\Product\ViewDetails\BooksDetailsView.aspx" />
@@ -152,6 +154,20 @@
     </Compile>
     <Compile Include="Pages\CreditCardOperations\CreditCardView.aspx.designer.cs">
       <DependentUpon>CreditCardView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Errors\CreditCardAlreadyExpired.aspx.cs">
+      <DependentUpon>CreditCardAlreadyExpired.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Errors\CreditCardAlreadyExpired.aspx.designer.cs">
+      <DependentUpon>CreditCardAlreadyExpired.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Errors\OutOfStock.aspx.cs">
+      <DependentUpon>OutOfStock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Errors\OutOfStock.aspx.designer.cs">
+      <DependentUpon>OutOfStock.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Errors\InternalError.aspx.cs">
       <DependentUpon>InternalError.aspx</DependentUpon>
@@ -404,8 +420,6 @@
     <Content Include="Pages\Shopping\App_LocalResources\OrderHistory.aspx.es.resx" />
     <Content Include="Pages\Shopping\App_LocalResources\OrderHistory.aspx.gl.resx" />
     <Content Include="Pages\Shopping\App_LocalResources\OrderHistory.aspx.resx" />
-    <Content Include="Pages\Shopping\App_LocalResources\OrderHistoryDetails.aspx.es.resx" />
-    <Content Include="Pages\Shopping\App_LocalResources\OrderHistoryDetails.aspx.gl.resx" />
     <Content Include="Pages\Shopping\App_LocalResources\OrderHistoryDetails.aspx.resx" />
     <Content Include="Pages\Shopping\App_LocalResources\ShoppingCart.aspx.es.resx" />
     <Content Include="Pages\Shopping\App_LocalResources\ShoppingCart.aspx.gl.resx" />
@@ -460,6 +474,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Shopping\App_LocalResources\Purchase.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Errors\App_LocalResources\OutOfStock.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Errors\App_LocalResources\OutOfStock.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Errors\App_LocalResources\OutOfStock.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Errors\App_LocalResources\CreditCardAlreadyExpired.apsx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Errors\App_LocalResources\CreditCardAlreadyExpired.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Errors\App_LocalResources\CreditCardAlreadyExpired.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

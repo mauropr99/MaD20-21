@@ -117,37 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="addCreditCard" xml:space="preserve">
-    <value>Engadir</value>
+  <data name="OutOfStock" xml:space="preserve">
+    <value>No tenemos stock suficiente de este producto: </value>
   </data>
-  <data name="credit" xml:space="preserve">
-    <value>Crédito</value>
+  <data name="lblRetryLater.Text" xml:space="preserve">
+    <value>Por favor, compruebe si la operación ha sido realizada y reinténtelo si es necesario</value>
   </data>
-  <data name="creditCardCvv" xml:space="preserve">
-    <value>CVV</value>
-  </data>
-  <data name="creditCardNumber" xml:space="preserve">
-    <value>Número</value>
-  </data>
-  <data name="creditCardOwner" xml:space="preserve">
-    <value>Titular</value>
-  </data>
-  <data name="creditCardType" xml:space="preserve">
-    <value>Tipo</value>
-  </data>
-  <data name="debit" xml:space="preserve">
-    <value>Débito</value>
-  </data>
-  <data name="expirationDate" xml:space="preserve">
-    <value>Data de expiración (MM/yyyy)</value>
-  </data>
-  <data name="invalidDateFormat" xml:space="preserve">
-    <value>Formato da data incorrecto</value>
-  </data>
-  <data name="invalidLength" xml:space="preserve">
-    <value>Ten que ter 16 dixitos</value>
-  </data>
-  <data name="validationDateExpression" xml:space="preserve">
-    <value>^[0-1m]{1}[0-9m]{1}/[0-9y]{4}$</value>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - Error Interno</value>
   </data>
 </root>

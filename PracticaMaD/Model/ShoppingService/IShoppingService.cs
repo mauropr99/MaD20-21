@@ -42,6 +42,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         [Transactional]
         List<OrderLineDetails> ViewOrderLineDetails(long orderId);
+        int TotalProducts();
 
     }
 }

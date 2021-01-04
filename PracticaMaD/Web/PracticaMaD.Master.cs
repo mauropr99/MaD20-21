@@ -34,7 +34,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
             }
 
             IShoppingService shoppingService = SessionManager.GetShoppingService();
-            ShoppingCartSize.Text = "(" + shoppingService.ViewShoppingCart().Count.ToString() + ")";
+            ShoppingCartSize.Text = "(" + shoppingService.TotalProducts().ToString() + ")";
 
         }
     }

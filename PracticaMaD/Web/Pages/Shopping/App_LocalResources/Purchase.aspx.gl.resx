@@ -124,7 +124,7 @@
     <value>Tarxetas de crédito</value>
   </data>
   <data name="lclDeliveryDescription" xml:space="preserve">
-    <value>Descrición de entrega</value>
+    <value>Descrición de compra</value>
   </data>
   <data name="lclPostalAddress" xml:space="preserve">
     <value>Dirección postal</value>

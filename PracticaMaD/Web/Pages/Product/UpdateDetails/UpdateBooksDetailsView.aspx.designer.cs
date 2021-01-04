@@ -40,13 +40,13 @@ namespace Web.Pages.Product {
         protected global::System.Web.UI.WebControls.Label lblTitle;
         
         /// <summary>
-        /// lblTitleContent control.
+        /// txtTitleContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lblTitleContent;
+        protected global::System.Web.UI.WebControls.TextBox txtTitleContent;
         
         /// <summary>
         /// lblAuthor control.
@@ -58,13 +58,13 @@ namespace Web.Pages.Product {
         protected global::System.Web.UI.WebControls.Label lblAuthor;
         
         /// <summary>
-        /// lblAuthorContent control.
+        /// txtAuthorContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lblAuthorContent;
+        protected global::System.Web.UI.WebControls.TextBox txtAuthorContent;
         
         /// <summary>
         /// lblPrice control.
@@ -76,13 +76,13 @@ namespace Web.Pages.Product {
         protected global::System.Web.UI.WebControls.Label lblPrice;
         
         /// <summary>
-        /// lblPriceContent control.
+        /// txtPriceContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lblPriceContent;
+        protected global::System.Web.UI.WebControls.TextBox txtPriceContent;
         
         /// <summary>
         /// lblStock control.
@@ -94,13 +94,13 @@ namespace Web.Pages.Product {
         protected global::System.Web.UI.WebControls.Label lblStock;
         
         /// <summary>
-        /// lblStockContent control.
+        /// txtStockContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lblStockContent;
+        protected global::System.Web.UI.WebControls.TextBox txtStockContent;
         
         /// <summary>
         /// lblGenre control.
@@ -112,13 +112,13 @@ namespace Web.Pages.Product {
         protected global::System.Web.UI.WebControls.Label lblGenre;
         
         /// <summary>
-        /// lblGenreContent control.
+        /// txtGenreContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lblGenreContent;
+        protected global::System.Web.UI.WebControls.TextBox txtGenreContent;
         
         /// <summary>
         /// Submit control.

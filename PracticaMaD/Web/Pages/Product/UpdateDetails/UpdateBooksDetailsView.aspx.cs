@@ -24,11 +24,11 @@ namespace Web.Pages.Product
                     Book book = productService.FindBook(productId);
 
                     //Fill place holders
-                    lblTitleContent.Text = book.product_name;
-                    lblAuthorContent.Text = book.author;
-                    lblPriceContent.Text = book.price.ToString("C2");
-                    lblStockContent.Text = book.stock.ToString();
-                    lblGenreContent.Text = book.genre;
+                    txtTitleContent.Text = book.product_name;
+                    txtAuthorContent.Text = book.author;
+                    txtPriceContent.Text = book.price.ToString("C2");
+                    txtStockContent.Text = book.stock.ToString();
+                    txtGenreContent.Text = book.genre;
 
                 }
                 catch (ArgumentNullException)
@@ -58,11 +58,11 @@ namespace Web.Pages.Product
                 {
                     long productId = long.Parse(Request.Params.Get("productId"));
                     Book book = productService.FindBook(productId);
-                    book.product_name = lblTitleContent.Text;
-                    book.author = lblAuthorContent.Text;
-                    book.price = decimal.Parse(Regex.Match(lblPriceContent.Text, @"-?\d{1,3}(,\d{3})*(\.\d+)?").Value);
-                    book.stock = Int32.Parse(lblStockContent.Text);
-                    book.genre = lblGenreContent.Text;
+                    book.product_name = txtTitleContent.Text;
+                    book.author = txtAuthorContent.Text;
+                    book.price = decimal.Parse(Regex.Match(txtPriceContent.Text, @"-?\d{1,3}(,\d{3})*(\.\d+)?").Value);
+                    book.stock = Int32.Parse(txtStockContent.Text);
+                    book.genre = txtGenreContent.Text;
                     productService.UpdateBook(book);
                     Response.Redirect("~/Pages/Product/Catalog.aspx");
                 }

@@ -129,6 +129,9 @@
   <data name="computerName" xml:space="preserve">
     <value>COMPUTER NAME:</value>
   </data>
+  <data name="ControlStock" xml:space="preserve">
+    <value>Must be a positive number</value>
+  </data>
   <data name="operatingSystem" xml:space="preserve">
     <value>OPERATING SYSTEM: </value>
   </data>

@@ -144,4 +144,10 @@
   <data name="debit" xml:space="preserve">
     <value>Débito</value>
   </data>
+  <data name="invalidDateFormat" xml:space="preserve">
+    <value>Formato de la fecha incorrecto</value>
+  </data>
+  <data name="invalidLength" xml:space="preserve">
+    <value>Tiene que tener 16 digitos</value>
+  </data>
 </root>

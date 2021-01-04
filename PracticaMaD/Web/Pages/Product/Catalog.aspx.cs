@@ -19,7 +19,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
     {
         int startIndex, index;
         int count = 4;
-        int priceCell = 3, addCell = 4;
+        int dateCell=2, priceCell = 3, addCell = 4;
       
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -119,7 +119,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 
             for (int i = 0; i < GridViewCatalog.Rows.Count; i++)
             {
-                GridViewCatalog.Rows[i].Cells[priceCell].Text = productBlock.Products[i].ReleaseDate.ToString(dateFormat);
+                GridViewCatalog.Rows[i].Cells[dateCell].Text = productBlock.Products[i].ReleaseDate.ToString(dateFormat);
                 GridViewCatalog.Rows[i].Cells[priceCell].Text = productBlock.Products[i].Price.ToString("C2");
                 if (productBlock.Products[i].Stock == 0) GridViewCatalog.Rows[i].Cells[addCell].Text = GetLocalResourceObject("outStock").ToString();
             }

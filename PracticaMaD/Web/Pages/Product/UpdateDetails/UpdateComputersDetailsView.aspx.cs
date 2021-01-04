@@ -24,12 +24,12 @@ namespace Web.Pages.Product
                     Computer computer = productService.FindComputer(productId);
 
                     //Fill place holders
-                    lblComputerNameContent.Text = computer.product_name;
-                    lblBrandContent.Text = computer.brand;
-                    lblPriceContent.Text = computer.price.ToString("C2");
-                    lblStockContent.Text = computer.stock.ToString();
-                    lblProcessorContent.Text = computer.processor;
-                    lblOperatingSystemContent.Text = computer.os;
+                    txtComputerNameContent.Text = computer.product_name;
+                    txtBrandContent.Text = computer.brand;
+                    txtPriceContent.Text = computer.price.ToString("C2");
+                    txtStockContent.Text = computer.stock.ToString();
+                    txtProcessorContent.Text = computer.processor;
+                    txtOperatingSystemContent.Text = computer.os;
 
                 }
                 catch (ArgumentNullException)
@@ -58,12 +58,12 @@ namespace Web.Pages.Product
                 {
                     long productId = long.Parse(Request.Params.Get("productId"));
                     Computer computer = productService.FindComputer(productId);
-                    computer.product_name = lblComputerNameContent.Text;
-                    computer.brand = lblBrandContent.Text;
-                    computer.price = decimal.Parse(Regex.Match(lblPriceContent.Text, @"-?\d{1,3}(,\d{3})*(\.\d+)?").Value);
-                    computer.stock = Int32.Parse(lblStockContent.Text);
-                    computer.processor = lblProcessorContent.Text;
-                    computer.os = lblOperatingSystemContent.Text;
+                    computer.product_name = txtComputerNameContent.Text;
+                    computer.brand = txtBrandContent.Text;
+                    computer.price = decimal.Parse(Regex.Match(txtPriceContent.Text, @"-?\d{1,3}(,\d{3})*(\.\d+)?").Value);
+                    computer.stock = Int32.Parse(txtStockContent.Text);
+                    computer.processor = txtProcessorContent.Text;
+                    computer.os = txtOperatingSystemContent.Text;
                     productService.UpdateComputer(computer);
                     Response.Redirect("~/Pages/Product/Catalog.aspx");
                 }

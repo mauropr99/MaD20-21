@@ -16,6 +16,9 @@
         <asp:TextBox ID="txtCreditCardNumber" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ErrorMessage="Required" ForeColor="Red" ControlToValidate="txtCreditCardNumber"
             runat="server" Display="Dynamic" />
+        <asp:RegularExpressionValidator runat="server" ForeColor="Red" ControlToValidate="txtCreditCardNumber"
+            ValidationExpression="^[0-9]{16}$"
+            ErrorMessage="<%$ Resources: , invalidLength %>" />
 
         <br />
         <br />
@@ -38,7 +41,7 @@
             runat="server" Display="Dynamic" />
         <asp:RegularExpressionValidator runat="server" ForeColor="Red" ControlToValidate="txtExpirationDate"
             ValidationExpression="<%$ Resources: , validationDateExpression %>"
-            ErrorMessage="Invalid date format." />
+            ErrorMessage="<%$ Resources: , invalidDateFormat %>" />
         <br />
         <br />
         <asp:Button ID="btnAddCreditCard" runat="server" Text="<%$ Resources: , addCreditCard %>" OnClick="BtnAddCreditCard_Click" />

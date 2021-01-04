@@ -31,7 +31,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderDao
             List<Order> result =
                 (from o in orders
                  where o.userId == userId
-                 orderby o.orderDate
+                 orderby o.orderDate descending
                  select o).Skip(startIndex).Take(count).ToList();
 
 

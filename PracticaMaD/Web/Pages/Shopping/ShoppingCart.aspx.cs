@@ -39,7 +39,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
             }
             else
             {
-                btn_BuyProducts.Visible = false;
+                this.btn_BuyProducts.Visible = false;
+                this.Subtotal.Visible        = false;
+                this.LblSubtotal.Visible     = false;
             }
 
             Subtotal.Text = shoppingService.Subtotal().ToString("C2");
