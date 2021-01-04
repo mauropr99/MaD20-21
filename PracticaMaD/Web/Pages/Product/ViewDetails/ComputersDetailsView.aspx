@@ -49,6 +49,8 @@
         </asp:DropDownList>
         <br />
         <br />
+        <asp:HyperLink ID="HyperLink1" DataNavigateUrlFields= "Id" DataNavigateFormatString="CommentList.aspx?productId={0}" NavigateUrl="~/Pages/Comment/CommentList.aspx" runat="server"  Text="<%$ Resources: , comments %>"></asp:HyperLink>
+        <br />
         <br />
         <asp:Button ID="btnAddToShoppingCart" runat="server" Text="<%$ Resources: , addToShoppingCart %>" CommandName="AddToCart" OnClick="btnAddToShoppingCart_Click"/>
         <br />

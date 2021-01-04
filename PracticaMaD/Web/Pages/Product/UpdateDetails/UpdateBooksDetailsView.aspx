@@ -30,6 +30,9 @@
         <asp:TextBox ID="txtGenreContent" runat="server"></asp:TextBox>
         <br />
         <br />
+        <asp:LinkButton ID="LinkButton1" runat="server" OnClick="Comment_Click" Text="<%$ Resources: , comments %>" />
+        <br />
+        <br />
 
 
         <asp:Button ID="Submit" runat="server" Text="<%$ Resources: , submit %>" OnClick="Submit_Click" />

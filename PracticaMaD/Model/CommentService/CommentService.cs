@@ -151,7 +151,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             CommentDao.Remove(commentId);
         }
 
-        public CommentBlock ViewComments(long userId, long productId, int startIndex, int count)
+        public CommentBlock ViewComments(long productId, int startIndex, int count)
         {
             List<Comment> comments;
 
@@ -160,7 +160,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             * the specified range.
             */
             comments = CommentDao.FindCommentsByProductId(productId, startIndex, count + 1);
-            User user = UserDao.Find(userId);
+            
 
             bool existMoreComments = (comments.Count == count + 1);
 
@@ -174,10 +174,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
             foreach (Comment comment in comments)
             {
+                User user = UserDao.Find(comment.userId);
                 List<string> labelNames = new List<string>();
                 foreach (Label label in comment.Labels)
                 {
-
                     labelNames.Add(label.lab);
                 }
 

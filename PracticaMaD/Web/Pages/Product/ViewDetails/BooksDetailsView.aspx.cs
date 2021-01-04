@@ -116,5 +116,10 @@ namespace Web.Pages.Product
             if (refUrl != null)
                 Response.Redirect((string)refUrl);
         }
+
+        protected void Comment_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

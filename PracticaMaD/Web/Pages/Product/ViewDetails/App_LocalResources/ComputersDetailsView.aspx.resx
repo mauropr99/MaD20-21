@@ -126,6 +126,9 @@
   <data name="brand" xml:space="preserve">
     <value>BRAND: </value>
   </data>
+  <data name="comments" xml:space="preserve">
+    <value>View Comments</value>
+  </data>
   <data name="computerName" xml:space="preserve">
     <value>COMPUTER NAME:</value>
   </data>

@@ -150,4 +150,7 @@
   <data name="submit" xml:space="preserve">
     <value>submit</value>
   </data>
+  <data name="comments" xml:space="preserve">
+    <value>View Comments</value>
+  </data>
 </root>

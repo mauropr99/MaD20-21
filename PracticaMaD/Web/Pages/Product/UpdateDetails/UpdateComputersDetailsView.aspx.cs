@@ -73,6 +73,11 @@ namespace Web.Pages.Product
             }
 
         }
+
+        protected void Comment_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

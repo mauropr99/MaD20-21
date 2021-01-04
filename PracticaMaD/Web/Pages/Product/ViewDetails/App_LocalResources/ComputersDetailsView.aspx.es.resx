@@ -147,4 +147,7 @@
   <data name="submit" xml:space="preserve">
     <value>confirmar</value>
   </data>
+  <data name="comments" xml:space="preserve">
+    <value>Ver comentarios</value>
+  </data>
 </root>

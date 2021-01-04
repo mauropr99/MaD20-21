@@ -150,4 +150,7 @@
   <data name="ControlStock" xml:space="preserve">
     <value>Must be a positive number</value>
   </data>
+  <data name="comments" xml:space="preserve">
+    <value>View Comments</value>
+  </data>
 </root>

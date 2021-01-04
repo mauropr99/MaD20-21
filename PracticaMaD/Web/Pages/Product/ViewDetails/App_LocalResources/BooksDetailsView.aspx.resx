@@ -144,4 +144,7 @@
   <data name="addToShoppingCart" xml:space="preserve">
     <value>Add to shopping cart</value>
   </data>
+  <data name="comments" xml:space="preserve">
+    <value>View Comments</value>
+  </data>
 </root>
