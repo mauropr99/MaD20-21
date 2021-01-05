@@ -25,6 +25,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         CommentBlock ViewComments(long productId, int startIndex, int count);
 
         [Transactional]
+        CommentDetails FindComment(long commentId);
+
+        [Transactional]
         List<LabelDetails> ViewMostUsedLabels(int quantity);
 
 

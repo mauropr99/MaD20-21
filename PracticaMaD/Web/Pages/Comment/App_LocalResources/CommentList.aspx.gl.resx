@@ -121,7 +121,7 @@
     <value>Comentario</value>
   </data>
   <data name="date" xml:space="preserve">
-    <value>data</value>
+    <value>Data de creación</value>
   </data>
   <data name="emptyComment" xml:space="preserve">
     <value>Este producto aínda non ten ningún comentario</value>

@@ -16,7 +16,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
         protected void Page_Load(object sender, EventArgs e)
         {
             long productId = 0;
-            int startIndex = 0, count = 5, dateCell = 2, deleteCell = 3;
+            int startIndex = 0, count = 5, dateCell = 2, deleteCell = 3, updateCell = 4;
             string dateFormat = GetFormat();
 
             IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
@@ -61,10 +61,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                 for (int i = 0; i < GridViewComments.Rows.Count; i++)
                 {
                     GridViewComments.Rows[i].Cells[dateCell].Text = commentBlock.Comments[i].Date.ToString(dateFormat);
-                    if (userSession.UserId != long.Parse(GridViewComments.DataKeys[i].Values[1].ToString()))
+
+                    GridViewComments.Rows[i].Cells[deleteCell].Visible = false;
+                    GridViewComments.Rows[i].Cells[updateCell].Visible = false;
+
+                    if (SessionManager.IsUserAuthenticated(Context))
                     {
-                        GridViewComments.Rows[i].Cells[deleteCell].Visible = false;
+                        if (userSession.UserId == long.Parse(GridViewComments.DataKeys[i].Values[1].ToString()))
+                        {
+                            GridViewComments.Rows[i].Cells[deleteCell].Visible = true;
+                            GridViewComments.Rows[i].Cells[updateCell].Visible = true;
+                        }
                     }
+                    
 
                 }
 
@@ -150,7 +159,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                         commentService.RemoveComment(userSession.UserId, commentId);
                         break;
 
-                    
+                    case "EditComment":
+                        Response.Redirect("~/Pages/Comment/UpdateComment.aspx?commentId=" + commentId + "&productId=" + Request.Params.Get("productId") + "&categoryName=" + Request.Params.Get("categoryName"));
+                        break;
                 }
 
                 Page_Load(sender, e);

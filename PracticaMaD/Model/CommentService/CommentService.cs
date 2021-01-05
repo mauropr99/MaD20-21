@@ -187,6 +187,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             return new CommentBlock(detailComments, existMoreComments);
         }
 
+        public CommentDetails FindComment(long commentId)
+        {
+            Comment comment = CommentDao.Find(commentId);
+
+            User user = UserDao.Find(comment.userId);
+            List<string> labelNames = new List<string>();
+            foreach (Label label in comment.Labels)
+            {
+                labelNames.Add(label.lab);
+            }
+
+            CommentDetails commentDetails = new CommentDetails(commentId, user.login, user.id, comment.commentDate, comment.text, labelNames);
+
+            return commentDetails;
+        }
+
         public List<LabelDetails> ViewMostUsedLabels(int quantity)
         {
             List<LabelDetails> mostUsedLabels = new List<LabelDetails>();

@@ -169,6 +169,7 @@
     <Content Include="Img\vagoneta.png" />
     <Content Include="Pages\Comment\CommentAdd.aspx" />
     <Content Include="Pages\Comment\CommentList.aspx" />
+    <Content Include="Pages\Comment\UpdateComment.aspx" />
     <Content Include="Pages\CreditCardOperations\CreditCardAdd.aspx" />
     <Content Include="Pages\CreditCardOperations\CreditCardView.aspx" />
     <Content Include="Pages\Errors\CreditCardAlreadyExpired.aspx" />
@@ -234,6 +235,13 @@
     </Compile>
     <Compile Include="Pages\Comment\CommentList.aspx.designer.cs">
       <DependentUpon>CommentList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Comment\UpdateComment.aspx.cs">
+      <DependentUpon>UpdateComment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Comment\UpdateComment.aspx.designer.cs">
+      <DependentUpon>UpdateComment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\CreditCardOperations\CreditCardAdd.aspx.cs">
       <DependentUpon>CreditCardAdd.aspx</DependentUpon>
@@ -598,6 +606,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Comment\App_LocalResources\CommentList.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Comment\App_LocalResources\UpdateComment.aspx.es.resx" />
+    <Content Include="Pages\Comment\App_LocalResources\UpdateComment.aspx.gl.resx" />
+    <Content Include="Pages\Comment\App_LocalResources\UpdateComment.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
