@@ -28,22 +28,29 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
                 UserSession userSession =
                     (UserSession)Context.Session[SessionManager.USER_SESSION_ATTRIBUTE];
 
+                if (userSession == null) Response.Redirect(Response.ApplyAppPathModifier("~/Pages/User/Authentication.aspx"));
                 List<CreditCardDetails> creditCards = userService.FindCreditCardsByUserId(userSession.UserId);
                 UserDetails user = userService.FindUserDetails(userSession.UserId);
                 
                 this.DropDownCreditCardsList.Items.Clear();
 
-                foreach (CreditCardDetails creditCard in creditCards)
+                if (creditCards.Count == 0)
                 {
-                    if (user.DefaultCreditCardId == creditCard.CreditCardId) defaultCreditCardIndex = index;
-                    this.DropDownCreditCardsList.Items.Add(creditCard.AnonymizedCreditCardNumber);
-                    this.DropDownCreditCardsList.Items[index].Value = creditCard.CreditCardId.ToString();
-                    index++;
+                    this.DropDownCreditCardsList.Items.Add("--Select--");
                 }
-                this.DropDownCreditCardsList.SelectedIndex = defaultCreditCardIndex;
-            }
-
-            this.DropDownCreditCardsList.Visible = true;
+                else
+                {
+                    foreach (CreditCardDetails creditCard in creditCards)
+                    {
+                        if (user.DefaultCreditCardId == creditCard.CreditCardId) defaultCreditCardIndex = index;
+                        this.DropDownCreditCardsList.Items.Add(creditCard.AnonymizedCreditCardNumber);
+                        this.DropDownCreditCardsList.Items[index].Value = creditCard.CreditCardId.ToString();
+                        index++;
+                    }
+                    this.DropDownCreditCardsList.SelectedIndex = defaultCreditCardIndex;
+                    
+                }
+            }    
         }
 
         protected void BtnPurchaseClick(object sender, EventArgs e)

@@ -22,13 +22,31 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// DataListComments control.
+        /// lnkbutton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList DataListComments;
+        protected global::System.Web.UI.WebControls.LinkButton lnkbutton;
+        
+        /// <summary>
+        /// txtEmptyComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txtEmptyComment;
+        
+        /// <summary>
+        /// GridViewComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewComments;
         
         /// <summary>
         /// lnkPrevious control.

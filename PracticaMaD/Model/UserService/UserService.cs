@@ -184,9 +184,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
             List<CreditCard> creditCards = CreditCardDao.FindCreditCardsByUserId(userId);
 
-
-
-
             foreach (CreditCard creditCard in creditCards)
             {
                 if (creditCard.creditCardNumber == creditCardNumber)

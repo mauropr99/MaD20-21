@@ -577,8 +577,15 @@
   <ItemGroup>
     <Content Include="Pages\Errors\App_LocalResources\CreditCardAlreadyExpired.aspx.resx" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Pages\Comment\App_LocalResources\" />
+    <Content Include="Pages\Comment\App_LocalResources\CommentList.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Comment\App_LocalResources\CommentList.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Comment\App_LocalResources\CommentList.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -11,7 +11,7 @@
              <br />
             <asp:Label ID="txtEmptyCart" Text="<%$ Resources:, empty %>" runat="server" text-align="center" Font-Size="Large"/>
 
-            <asp:GridView ID="GridViewCart"  runat="server" CellPadding="8" ForeColor="#333333" GridLines="None"
+            <asp:GridView ID="GridViewCart" CssClass="estandar" runat="server" CellPadding="8" ForeColor="#333333" GridLines="None"
                 AutoGenerateColumns="False" OnRowCommand="GridViewCart_RowCommand" DataKeyNames="Product_Id" >
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
@@ -44,10 +44,10 @@
             <br />
             <br />
              
-            <asp:Label ID="LblSubtotal" runat="server" text-align="center" Text =" Subtotal =" /> <asp:Label ID="Subtotal" runat="server" text-align="center" />
+            <asp:Label ID="LblSubtotal" runat="server" CssClass="label"  Text =" Subtotal =" Font-Bold="True" /> <asp:Label ID="Subtotal" runat="server" text-align="center" />
             <br />
             <br />
-            <asp:Button ID="btn_BuyProducts" runat="server" OnClick="Btn_BuyProducts" Text="<%$ Resources: , btn_BuyProducts %>" />
+            <asp:Button ID="btn_BuyProducts" runat="server" CssClass="labelResult" OnClick="Btn_BuyProducts" Text="<%$ Resources: , btn_BuyProducts %>" />
           </form>
     </div>
 </asp:Content>

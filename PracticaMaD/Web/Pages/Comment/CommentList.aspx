@@ -1,23 +1,33 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true" CodeBehind="CommentList.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment.CommentList" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
     <form id="form1" runat="server">
+        <br />
+        <asp:LinkButton ID="lnkbutton" runat="server" OnClick="BtnBackToPreviousPage_Click" Text="<%$ Resources:Common, back %>" />
+        <br />
 
-        <asp:DataList ID="DataListComments" runat="server" CellPadding="4" ForeColor="#333333">
-            <AlternatingItemStyle BackColor="White" />
-            <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
-            <FooterTemplate>
-                <asp:Label ID="lblLogin" runat="server"></asp:Label>
-                <asp:Label ID="lblDate" runat="server"></asp:Label>
-                <asp:Label ID="lblText" runat="server"></asp:Label>
-            </FooterTemplate>
-            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
-            <HeaderTemplate>
-                <asp:Label ID="lblLabel" runat="server"></asp:Label>
-            </HeaderTemplate>
-            <ItemStyle BackColor="#FFFBD6" ForeColor="#333333" />
+        <asp:label id="txtEmptyComment" text="<%$ resources:, emptycomment %>" runat="server" text-align="center" font-size="large"/>
 
-            <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
-        </asp:DataList>
+        <asp:GridView ID="GridViewComments" CssClass="estandar" runat="server" GridLines="None"
+            AutoGenerateColumns="False" cellpadding="4" ForeColor="#333333">
+            <AlternatingRowStyle BackColor="White" />
+            <Columns>
+                <asp:BoundField DataField="Login" HeaderText="<%$ Resources: , login %>" />
+                <asp:BoundField DataField="Text" HeaderText="<%$ Resources: , comment %>" >
+                <ItemStyle Width="600px" />
+                </asp:BoundField>
+                <asp:BoundField DataField="Date" HeaderText="<%$ Resources: , date %>" />
+            </Columns>
+            <EditRowStyle BackColor="#2461BF" />
+            <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+            <RowStyle BackColor="#EFF3FB" />
+            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+            <SortedAscendingCellStyle BackColor="#F5F7FB" />
+            <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+            <SortedDescendingCellStyle BackColor="#E9EBEF" />
+            <SortedDescendingHeaderStyle BackColor="#4870BE" />
+        </asp:GridView>
         <br />
         <br />
                 <div class="previousNextLinks">

@@ -44,8 +44,8 @@ namespace Web.Pages.Product
         protected void BtnBackToPreviousPage_Click(object sender, EventArgs e)
         {
             object refUrl = ViewState["RefUrl"];
-            if (refUrl != null)
-                Response.Redirect((string)refUrl);
+            if (refUrl != null || refUrl.ToString().Contains("Comment")) Response.Redirect("~/Pages/Product/Catalog.aspx");
+            if (refUrl != null) Response.Redirect((string)refUrl);
         }
 
         protected void Submit_Click(object sender, EventArgs e)
@@ -73,9 +73,9 @@ namespace Web.Pages.Product
 
         }
 
-        protected void Comment_Click(object sender, EventArgs e)
+        protected void Book_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Comment/CommentList.aspx?productId=" + Request.Params.Get("productId") + "&categoryName=" + Request.Params.Get("categoryName")));
         }
     }
 
