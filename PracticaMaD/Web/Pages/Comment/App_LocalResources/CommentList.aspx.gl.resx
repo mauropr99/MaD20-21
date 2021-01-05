@@ -124,9 +124,12 @@
     <value>data</value>
   </data>
   <data name="emptyComment" xml:space="preserve">
-    <value>Este producto aíndanon ten ningún comentario</value>
+    <value>Este producto aínda non ten ningún comentario</value>
   </data>
   <data name="login" xml:space="preserve">
     <value>Usuario</value>
+  </data>
+  <data name="newComment" xml:space="preserve">
+    <value>Novo comentario</value>
   </data>
 </root>

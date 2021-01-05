@@ -37,7 +37,7 @@
                 <asp:Label ID="lblCreditCardType" CssClass="label" runat="server" Text="<%$ Resources: , creditCardType %>"></asp:Label>
                 <span class="entry">
                     <asp:DropDownList ID="DropDownCreditCardTypeList" runat="server">
-                        <asp:ListItem Selected="True" Value="debit" Text="<%$ Resources: , debit %>"></asp:ListItem>
+                        <asp:ListItem Value="debit" Text="<%$ Resources: , debit %>"></asp:ListItem>
                         <asp:ListItem Value="credit" Text="<%$ Resources: , credit %>"></asp:ListItem>
                     </asp:DropDownList>
                 </span>

@@ -10,7 +10,7 @@
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment {
     
     
-    public partial class CommentList {
+    public partial class CommentAdd {
         
         /// <summary>
         /// form1 control.
@@ -22,57 +22,30 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// lnkbutton control.
+        /// lblCommentAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbutton;
+        protected global::System.Web.UI.WebControls.Label lblCommentAdd;
         
         /// <summary>
-        /// txtEmptyComment control.
+        /// txtCommentAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtEmptyComment;
+        protected global::System.Web.UI.WebControls.TextBox txtCommentAdd;
         
         /// <summary>
-        /// GridViewComments control.
+        /// btnAddComment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewComments;
-        
-        /// <summary>
-        /// btnNewComment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNewComment;
-        
-        /// <summary>
-        /// lnkPrevious control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkPrevious;
-        
-        /// <summary>
-        /// lnkNext control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkNext;
+        protected global::System.Web.UI.WebControls.Button btnAddComment;
     }
 }

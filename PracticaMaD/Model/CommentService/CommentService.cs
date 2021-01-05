@@ -181,7 +181,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
                     labelNames.Add(label.lab);
                 }
 
-                detailComments.Add(new CommentDetails(comment.id, user.login, comment.commentDate, comment.text, labelNames));
+                detailComments.Add(new CommentDetails(comment.id, user.login, user.id, comment.commentDate, comment.text, labelNames));
             }
 
             return new CommentBlock(detailComments, existMoreComments);

@@ -167,6 +167,7 @@
     <Content Include="Global.asax" />
     <Content Include="Img\PracticaMaD.ico" />
     <Content Include="Img\vagoneta.png" />
+    <Content Include="Pages\Comment\CommentAdd.aspx" />
     <Content Include="Pages\Comment\CommentList.aspx" />
     <Content Include="Pages\CreditCardOperations\CreditCardAdd.aspx" />
     <Content Include="Pages\CreditCardOperations\CreditCardView.aspx" />
@@ -220,6 +221,13 @@
     <Compile Include="HTTP\Util\loC\loCManagerNinject.cs" />
     <Compile Include="HTTP\View\ApplicationObjects\Languages.cs" />
     <Compile Include="HTTP\View\ApplicationObjects\Locale.cs" />
+    <Compile Include="Pages\Comment\CommentAdd.aspx.cs">
+      <DependentUpon>CommentAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Comment\CommentAdd.aspx.designer.cs">
+      <DependentUpon>CommentAdd.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Comment\CommentList.aspx.cs">
       <DependentUpon>CommentList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -577,7 +585,11 @@
   <ItemGroup>
     <Content Include="Pages\Errors\App_LocalResources\CreditCardAlreadyExpired.aspx.resx" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Pages\Comment\App_LocalResources\CommentAdd.aspx.es.resx" />
+    <Content Include="Pages\Comment\App_LocalResources\CommentAdd.aspx.gl.resx" />
+    <Content Include="Pages\Comment\App_LocalResources\CommentAdd.aspx.resx" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Comment\App_LocalResources\CommentList.aspx.es.resx" />
   </ItemGroup>
