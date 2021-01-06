@@ -24,6 +24,7 @@ namespace Web.Pages.Product
             {
                 productId = long.Parse(Request.Params.Get("productId"));
                 Book book = productService.FindBook(productId);
+                linkViewComment.Visible = productService.HasComments(productId);
 
                 if (book.stock == 0 || !SessionManager.IsUserAuthenticated(Context))
                 {

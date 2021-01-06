@@ -11,8 +11,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 {
     public class CommentService : ICommentService
     {
-
-
         [Inject]
         public ICommentDao CommentDao { private get; set; }
         [Inject]
@@ -222,6 +220,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             }
 
             return mostUsedLabels;
+        }
+
+        public bool UserAlreadyCommented(long productId, long userId)
+        {
+            return CommentDao.FindCommentsByUserId(productId, userId) != null;
         }
 
         #endregion ICommentSercice Members

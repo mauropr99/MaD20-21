@@ -27,7 +27,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
             UserSession userSession =
                (UserSession)Context.Session[SessionManager.USER_SESSION_ATTRIBUTE];
 
-
+            btnNewComment.Visible = !(commentService.UserAlreadyCommented(productId, userSession.UserId));
+            Response.Redirect("~/Page?aaaa=" + (commentService.UserAlreadyCommented(productId, userSession.UserId)));
             if (!IsPostBack)
             {
 

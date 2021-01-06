@@ -22,6 +22,7 @@ namespace Web.Pages.Product
                 {
                     long productId = long.Parse(Request.Params.Get("productId"));
                     Computer computer = productService.FindComputer(productId);
+                    linkViewComment.Visible = productService.HasComments(productId);
 
                     //Fill place holders
                     txtComputerNameContent.Text = computer.product_name;

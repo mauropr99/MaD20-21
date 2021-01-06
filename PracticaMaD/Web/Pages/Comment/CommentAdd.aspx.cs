@@ -12,12 +12,27 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
 {
     public partial class CommentAdd : SpecificCulturePage
     {
+        int labelCell = 1;
+        static DataTable dt = new DataTable();
+        static List<string> labels = new List<string>();
+
+        private  DataTable Dt { get => dt; set => dt = value; }
+        private  List<string> Labels { get => labels; set => labels = value; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
                 ViewState["RefUrl"] = Request.UrlReferrer.ToString();
+                string column = GetLocalResourceObject("label").ToString();
+                labels = new List<string>();
+                dt = new DataTable();
+                dt.Clear();
+                dt.Columns.Add(column);
+
             }
+
         }
 
         protected void BtnAddComment_Click(object sender, EventArgs e)
@@ -43,16 +58,32 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
 
             long productId = long.Parse(Request.Params.Get("productId"));
 
-            List<String> labels = new List<String>();
-
-            foreach (GridViewRow row in this.GridViewLabels.Rows)
-            {
-                labels.Add(row.Cells[0].Text);
-            }
-
-            commentService.NewComment(userSession.UserId, productId, comment, labels);
+            commentService.NewComment(userSession.UserId, productId, comment, Labels);
 
             Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Comment/CommentList.aspx?productId=" + Request.Params.Get("productId") + "&categoryName=" + Request.Params.Get("categoryName")));
+
+        }
+
+        protected void GridViewComments_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
+            int index = Convert.ToInt32(e.CommandArgument);
+
+            try
+            {
+
+                switch (e.CommandName)
+                {
+                    case "Deletelabel":
+                        dt.Rows.RemoveAt(index);
+                        labels.Remove(HttpUtility.HtmlDecode(GridViewLabels.Rows[index].Cells[labelCell].Text.Trim()));
+                        GridViewLabels.DataSource = dt;
+                        GridViewLabels.DataBind();
+                        break;
+                }
+
+            }
+            catch { }
 
         }
 
@@ -60,29 +91,25 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
         {
             string column = GetLocalResourceObject("label").ToString();
             string label = HttpUtility.HtmlDecode(this.txtLabelContent.Text.Trim());
-            DataTable dt = new DataTable();
-            dt.Clear();
-            dt.Columns.Add(column);
+            
             DataRow dr;
             bool exists = false;
             foreach (GridViewRow row in this.GridViewLabels.Rows)
             {
-                if(!exists) exists = HttpUtility.HtmlDecode(row.Cells[0].Text.Trim()) == label;
-                dr = dt.NewRow();
-                dr[column] = HttpUtility.HtmlDecode(row.Cells[0].Text.Trim());
-                dt.Rows.Add(dr);
+                if(!exists) exists = HttpUtility.HtmlDecode(row.Cells[labelCell].Text.Trim()) == label;
             }
 
-            if (!exists)
+            if (!exists && label != "")
             {
-                dr = dt.NewRow();
+                dr = Dt.NewRow();
                 dr[column] = label;
-                dt.Rows.Add(dr);
+                Labels.Add(label);
+                Dt.Rows.Add(dr);
+
+                this.GridViewLabels.DataSource = Dt;
+                this.GridViewLabels.DataBind();
             }
 
-            this.GridViewLabels.DataSource = dt;
-            this.GridViewLabels.DataBind();
- 
             this.txtLabelContent.Text = "";
         }
 

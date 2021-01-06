@@ -22,6 +22,7 @@ namespace Web.Pages.Product
                 {
                     long productId = long.Parse(Request.Params.Get("productId"));
                     Book book = productService.FindBook(productId);
+                    linkViewComment.Visible = productService.HasComments(productId);
 
                     //Fill place holders
                     txtTitleContent.Text = book.product_name;

@@ -22,8 +22,9 @@
                     <asp:Button ID="ButtonAddLabel" runat="server" Text="<%$ Resources: , lblLabelAdd %>" OnClick="BtnAddLabel_Click" />
                     <br/>
                     <br/>
-                    <asp:GridView ID="GridViewLabels" runat="server" AutoGenerateColumns="true">
+                    <asp:GridView ID="GridViewLabels" runat="server" AutoGenerateColumns="true" OnRowCommand="GridViewComments_RowCommand">
                         <Columns>
+                            <asp:ButtonField Text="Eliminar" CommandName="Deletelabel"/>
                         </Columns>
                     </asp:GridView>
                 </span>

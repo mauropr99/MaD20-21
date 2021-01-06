@@ -123,4 +123,10 @@
   <data name="lblCommentContent" xml:space="preserve">
     <value>Comment</value>
   </data>
+  <data name="label" xml:space="preserve">
+    <value>labels</value>
+  </data>
+  <data name="lblLabelAdd" xml:space="preserve">
+    <value>Add label</value>
+  </data>
 </root>

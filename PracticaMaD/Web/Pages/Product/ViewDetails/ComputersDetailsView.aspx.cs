@@ -24,6 +24,8 @@ namespace Web.Pages.Product
             {
                 productId = long.Parse(Request.Params.Get("productId"));
                 Computer computer = productService.FindComputer(productId);
+                linkViewComment.Visible = productService.HasComments(productId);
+
 
 
                 if (computer.stock == 0 || !SessionManager.IsUserAuthenticated(Context))

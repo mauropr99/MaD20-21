@@ -30,6 +30,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         [Transactional]
         List<LabelDetails> ViewMostUsedLabels(int quantity);
 
-
+        [Transactional]
+        bool UserAlreadyCommented(long productId, long userId);
     }
 }
