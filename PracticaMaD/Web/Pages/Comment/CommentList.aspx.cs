@@ -16,7 +16,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
         protected void Page_Load(object sender, EventArgs e)
         {
             long productId = 0;
-            int startIndex = 0, count = 5, dateCell = 2, deleteCell = 3, updateCell = 4;
+            int startIndex = 0, count = 5;
+            int commentCell = 1, dateCell = 2, deleteCell = 3, updateCell = 4;
             string dateFormat = GetFormat();
 
             IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
@@ -41,8 +42,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                     startIndex = 0;
                 }
 
-
-
                 commentBlock = commentService.ViewComments(productId, startIndex, count);
 
                 if (commentBlock.Comments.Count == 0)
@@ -64,6 +63,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
 
                     GridViewComments.Rows[i].Cells[deleteCell].Visible = false;
                     GridViewComments.Rows[i].Cells[updateCell].Visible = false;
+
+                    if (commentBlock.Comments[i].Labels.Count > 0)
+                    {
+                        GridViewComments.Rows[i].Cells[commentCell].Text = "<b><br />" + string.Join(",", commentBlock.Comments[i].Labels) + "</b > <br /><br />" + GridViewComments.Rows[i].Cells[commentCell].Text;
+                    }
 
                     if (SessionManager.IsUserAuthenticated(Context))
                     {

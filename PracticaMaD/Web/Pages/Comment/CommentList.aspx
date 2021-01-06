@@ -9,7 +9,7 @@
         <asp:label id="txtEmptyComment" text="<%$ resources:, emptycomment %>" runat="server" text-align="center" font-size="large"/>
 
         <asp:GridView ID="GridViewComments" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None"
-                AutoGenerateColumns="False" OnRowCommand="GridViewComments_RowCommand" DataKeyNames="Id,UserId" CssClass="estandar" >
+                AutoGenerateColumns="False" OnRowCommand="GridViewComments_RowCommand" DataKeyNames="Id,UserId,labels" CssClass="estandar" >
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
                     <asp:BoundField DataField="Login" HeaderText="<%$ Resources: , login %>" />
@@ -21,7 +21,7 @@
                     <asp:ButtonField Text="Editar" CommandName="EditComment"/>
                     <asp:BoundField DataField="Id" Visible="false"/>
                     <asp:BoundField DataField="UserId" Visible="false"/>
-                    
+                    <asp:BoundField DataField="labels" Visible="false"/>
                 </Columns>
             <EditRowStyle BackColor="#2461BF" />
             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

@@ -102,13 +102,14 @@ INSERT INTO Book (id, author, genre, editorial, isbnCode) VALUES (15, 'J.R.R.Tol
 /* ORDERS */
 INSERT INTO Order_Table (postalAddress, orderDate, totalPrice, userId, creditCardId, description) VALUES ('Calle inventada Nº1', '20201229 00:00:00 AM', 2533.1, 2, 1, 'Pedido variado de 5 elementos');
 
-/* ORDER_LINE */
+/* ORDER_LINES */
 INSERT INTO OrderLine (quantity, price, productId, orderId) VALUES (1, 999.3, 1, 1)
 INSERT INTO OrderLine (quantity, price, productId, orderId) VALUES (2, 700.4, 4, 1)
 INSERT INTO OrderLine (quantity, price, productId, orderId) VALUES (1, 30.6, 8, 1)
 INSERT INTO OrderLine (quantity, price, productId, orderId) VALUES (3, 23.6, 9, 1)
 INSERT INTO OrderLine (quantity, price, productId, orderId) VALUES (2, 15.3, 10, 1)
 
+/* COMMENTS */
 INSERT INTO Comment (userId, productId, text, commentDate ) VALUES (1, 15,'Este último libro cierra magistralmente la saga de El Señor de los Anillos y el mundo Tolkien. Es asombroso todo lo que JRR Tolkien podía tener en su mente para imaginar un universo tan vasto, lo que significa crear un lenguaje imaginarse muchos otros, crear varios mundos a lo largo de más de 4000 años, mapas, geografías enteras, historia, árboles genealógicos, culturas, en fin. ¡Increíble!','20200314 00:00:00 AM')
 INSERT INTO Comment (userId, productId, text, commentDate ) VALUES (2, 15,'Interesting to get these books in different languages!','20190314 00:00:00 AM')
 INSERT INTO Comment (userId, productId, text, commentDate ) VALUES (2, 15,'18 páginas faltantes, una página ilegible, por error de impresión, lástima tendré que buscar por otro lado las 18 páginas perdidas.','20180314 00:00:00 AM')
@@ -131,3 +132,33 @@ INSERT INTO Comment (userId, productId, text, commentDate ) VALUES (2, 10,'Una v
 INSERT INTO Comment (userId, productId, text, commentDate ) VALUES (3, 10,'Me gusta mucho para iniciar al peque en los libros. Es algo a medio camino entre los cuentos y los libros, porque el formato es de libro pero el contenido aún se asemeja a lo interactivo de un cuento y un juego: hay olores, acertijos, grafías divertidas, y capítulos cortos que animan a avanzar. Estoy contenta con ellos, veo que se divierte leyendo a pesar de que no es su afición preferida...','20201214 00:00:00 AM')
 INSERT INTO Comment (userId, productId, text, commentDate ) VALUES (3, 10,'Por sacarle alguna pega: los olores a veces son tan “plastificados” que cuesta diferenciar los unos de los otros. Aún así la idea me encanta, pero en mi opinión este aspecto es a mejorar','20180314 00:00:00 AM')
 
+/* LABEL */
+
+INSERT INTO Label (lab, timesUsed) VALUES ('Ganga',3) /*1*/
+INSERT INTO Label (lab, timesUsed) VALUES ('Pésimo',1); /*2*/
+INSERT INTO Label (lab, timesUsed) VALUES ('Nefasto',1); /*3*/
+INSERT INTO Label (lab, timesUsed) VALUES ('Chollazo',2); /*4*/
+INSERT INTO Label (lab, timesUsed) VALUES ('Oferta',2); /*5*/
+INSERT INTO Label (lab, timesUsed) VALUES ('Irrepetible',2); /*6*/
+INSERT INTO Label (lab, timesUsed) VALUES ('Duradero',2); /*7*/
+
+/* LABEL_COMMENT */
+
+INSERT INTO Label_Comment (commentId, labId) Values (10,1)
+INSERT INTO Label_Comment (commentId, labId) Values (10,4)
+INSERT INTO Label_Comment (commentId, labId) Values (10,5)
+INSERT INTO Label_Comment (commentId, labId) Values (10,6)
+INSERT INTO Label_Comment (commentId, labId) Values (10,7)
+
+INSERT INTO Label_Comment (commentId, labId) Values (11,1)
+INSERT INTO Label_Comment (commentId, labId) Values (11,7)
+
+INSERT INTO Label_Comment (commentId, labId) Values (12,2)
+INSERT INTO Label_Comment (commentId, labId) Values (12,3)
+
+INSERT INTO Label_Comment (commentId, labId) Values (7,1)
+INSERT INTO Label_Comment (commentId, labId) Values (7,4)
+INSERT INTO Label_Comment (commentId, labId) Values (7,5)
+
+INSERT INTO Label_Comment (commentId, labId) Values (8,6)
+INSERT INTO Label_Comment (commentId, labId) Values (8,7)

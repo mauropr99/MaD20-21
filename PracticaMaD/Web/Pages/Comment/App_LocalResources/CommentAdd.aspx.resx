@@ -120,7 +120,13 @@
   <data name="addCommentButton" xml:space="preserve">
     <value>Add comment</value>
   </data>
+  <data name="label" xml:space="preserve">
+    <value>Labels</value>
+  </data>
   <data name="lblCommentAdd" xml:space="preserve">
-    <value>Comment</value>
+    <value>Comment*</value>
+  </data>
+  <data name="lblLabelAdd" xml:space="preserve">
+    <value>Add Label</value>
   </data>
 </root>
