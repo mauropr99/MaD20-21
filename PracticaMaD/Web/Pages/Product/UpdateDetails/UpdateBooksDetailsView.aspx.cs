@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 
@@ -21,6 +22,10 @@ namespace Web.Pages.Product
                 try
                 {
                     long productId = long.Parse(Request.Params.Get("productId"));
+                    ICommentService commentService = iocManager.Resolve<ICommentService>();
+                    UserSession userSession =
+                        (UserSession)Context.Session[SessionManager.USER_SESSION_ATTRIBUTE];
+                    if (userSession != null) btnNewComment.Visible = !(commentService.UserAlreadyCommented(productId, userSession.UserId));
                     Book book = productService.FindBook(productId);
                     linkViewComment.Visible = productService.HasComments(productId);
 
@@ -72,6 +77,11 @@ namespace Web.Pages.Product
             {
             }
 
+        }
+
+        protected void BtnNewComment_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Pages/Comment/CommentAdd.aspx?productId=" + Request.Params.Get("productId") + "&categoryName=" + Request.Params.Get("categoryName"));
         }
 
         protected void Book_Click(object sender, EventArgs e)

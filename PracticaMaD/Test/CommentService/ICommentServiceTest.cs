@@ -177,10 +177,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 };
 
                 string text = "Muy buen ordenador y a buen precio. Funcionan todos los juegos a calidad máxima, muy fluidos y sin apenas calentarse el aparato.";
+                Comment comment = commentService.NewComment(userId, product1.id, text, labels);
                 bool comento = commentService.UserAlreadyCommented(product1.id, userId);
                 Assert.IsTrue(comento);
 
-                Comment comment = commentService.NewComment(userId, product1.id, text, labels);
+               
                 Comment duplicatedComment = commentService.NewComment(userId, product1.id, text, labels);
 
             }

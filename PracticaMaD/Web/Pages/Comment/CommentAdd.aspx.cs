@@ -38,10 +38,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
         protected void BtnAddComment_Click(object sender, EventArgs e)
         {
             UserSession userSession =
-                    (UserSession)Context.Session[SessionManager.USER_SESSION_ATTRIBUTE];
-
-            if (userSession == null) Response.Redirect(Response.ApplyAppPathModifier("~/Pages/User/Authentication.aspx"));
-
+              (UserSession)Context.Session[SessionManager.USER_SESSION_ATTRIBUTE];
 
             //1 Obtener contexto de inyección de dependencias
 
@@ -115,9 +112,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
 
         protected void BtnBackToPreviousPage_Click(object sender, EventArgs e)
         {
-            object refUrl = ViewState["RefUrl"];
-            if (refUrl != null)
-                Response.Redirect((string)refUrl);
+            object refUrl = "~/Pages/Product/DetailsViewController.aspx?productId=" + Request.Params.Get("productId") + "&categoryName=" + Request.Params.Get("categoryName");
+            Response.Redirect((string)refUrl);
         }
     }
 }

@@ -84,7 +84,8 @@
             </div>
             <br />
             <br />
-            <asp:LinkButton ID="linkViewComment" runat="server" OnClick="Book_Click" Text="<%$ Resources: , comments %>" />
+            <asp:LinkButton ID="linkViewComment" runat="server" OnClick="Book_Click" Text="<%$ Resources: , comments %>" />&nbsp &nbsp &nbsp
+            <asp:LinkButton ID="btnNewComment" runat="server" Text="<%$ Resources:, newComment%>" OnClick="BtnNewComment_Click" />
             <br />
             <br />
             <asp:Button ID="btnAddToShoppingCart" runat="server" Text="<%$ Resources: , addToShoppingCart %>" OnClick="btnAddToShoppingCart_Click" />

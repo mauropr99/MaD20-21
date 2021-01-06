@@ -132,6 +132,9 @@
   <data name="computerName" xml:space="preserve">
     <value>COMPUTER NAME:</value>
   </data>
+  <data name="newComment" xml:space="preserve">
+    <value>New comment</value>
+  </data>
   <data name="operatingSystem" xml:space="preserve">
     <value>OPERATING SYSTEM: </value>
   </data>

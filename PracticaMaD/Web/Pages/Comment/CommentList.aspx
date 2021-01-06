@@ -36,9 +36,6 @@
         </asp:GridView>
         <br />
         <br />
-        <asp:Button ID="btnNewComment" runat="server" Text="<%$ Resources:, newComment%>" OnClick="BtnNewComment_Click" />
-        <br />
-        <br />
         <br />
                 <div class="previousNextLinks">
             <span class="previousLink">

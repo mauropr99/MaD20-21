@@ -153,4 +153,7 @@
   <data name="comments" xml:space="preserve">
     <value>View Comments</value>
   </data>
+  <data name="newComment" xml:space="preserve">
+    <value>New comment</value>
+  </data>
 </root>

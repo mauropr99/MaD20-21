@@ -27,8 +27,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
             UserSession userSession =
                (UserSession)Context.Session[SessionManager.USER_SESSION_ATTRIBUTE];
 
-            btnNewComment.Visible = !(commentService.UserAlreadyCommented(productId, userSession.UserId));
-            Response.Redirect("~/Page?aaaa=" + (commentService.UserAlreadyCommented(productId, userSession.UserId)));
             if (!IsPostBack)
             {
 
@@ -174,11 +172,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
             }
             catch { }
 
-        }
-
-        protected void BtnNewComment_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Pages/Comment/CommentAdd.aspx?productId=" + Request.Params.Get("productId") + "&categoryName=" + Request.Params.Get("categoryName"));
         }
 
     }
