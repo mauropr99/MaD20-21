@@ -11,8 +11,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 {
     public class CommentService : ICommentService
     {
-
-
         [Inject]
         public ICommentDao CommentDao { private get; set; }
         [Inject]
@@ -25,6 +23,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
         public Comment NewComment(long userId, long productId, string text, List<string> labels)
         {
+            User user = UserDao.Find(userId);
+            foreach (Comment foundComment in user.Comments)
+            {
+                if (foundComment.productId == productId)
+                    throw new ProductAlreadyCommentedException(productId);
+            }
+
             Comment comment = new Comment
             {
                 userId = userId,
@@ -151,7 +156,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             CommentDao.Remove(commentId);
         }
 
-        public CommentBlock ViewComments(long userId, long productId, int startIndex, int count)
+        public CommentBlock ViewComments(long productId, int startIndex, int count)
         {
             List<Comment> comments;
 
@@ -160,7 +165,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             * the specified range.
             */
             comments = CommentDao.FindCommentsByProductId(productId, startIndex, count + 1);
-            User user = UserDao.Find(userId);
+            
 
             bool existMoreComments = (comments.Count == count + 1);
 
@@ -174,17 +179,33 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
             foreach (Comment comment in comments)
             {
+                User user = UserDao.Find(comment.userId);
                 List<string> labelNames = new List<string>();
                 foreach (Label label in comment.Labels)
                 {
-
                     labelNames.Add(label.lab);
                 }
 
-                detailComments.Add(new CommentDetails(comment.id, user.login, comment.commentDate, comment.text, labelNames));
+                detailComments.Add(new CommentDetails(comment.id, user.login, user.id, comment.commentDate, comment.text, labelNames));
             }
 
             return new CommentBlock(detailComments, existMoreComments);
+        }
+
+        public CommentDetails FindComment(long commentId)
+        {
+            Comment comment = CommentDao.Find(commentId);
+
+            User user = UserDao.Find(comment.userId);
+            List<string> labelNames = new List<string>();
+            foreach (Label label in comment.Labels)
+            {
+                labelNames.Add(label.lab);
+            }
+
+            CommentDetails commentDetails = new CommentDetails(commentId, user.login, user.id, comment.commentDate, comment.text, labelNames);
+
+            return commentDetails;
         }
 
         public List<LabelDetails> ViewMostUsedLabels(int quantity)
@@ -199,6 +220,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             }
 
             return mostUsedLabels;
+        }
+
+        public bool UserAlreadyCommented(long productId, long userId)
+        {
+            return CommentDao.FindCommentsByUserId(productId, userId) != null;
         }
 
         #endregion ICommentSercice Members

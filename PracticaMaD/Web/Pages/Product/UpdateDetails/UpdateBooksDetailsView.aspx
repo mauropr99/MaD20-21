@@ -2,36 +2,59 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
 
-    <form id="form1" runat="server">
-        <br />
-        <asp:LinkButton ID="lnkbutton" runat="server" OnClick="BtnBackToPreviousPage_Click" Text="<%$ Resources:Common, back %>" />
-        <br />
-        <br />
-        <asp:Label ID="lblTitle" runat="server" Text="<%$ Resources: , title %>"></asp:Label>
-        <asp:TextBox ID="txtTitleContent" runat="server"></asp:TextBox>
-        <br />
-        <br />
-        <asp:Label ID="lblAuthor" runat="server" Text="<%$ Resources: , author %>"></asp:Label>
-        <asp:TextBox ID="txtAuthorContent" runat="server"></asp:TextBox>
-        <br />
-        <br />
-        <asp:Label ID="lblPrice" runat="server" Text="<%$ Resources: , price %>"></asp:Label>
-        <asp:TextBox ID="txtPriceContent" runat="server"></asp:TextBox>
-        <br />
-        <br />
-        <asp:Label ID="lblStock" runat="server" Text="<%$ Resources: , availableStock %>"></asp:Label>
-        <asp:TextBox ID="txtStockContent" runat="server"></asp:TextBox>
-        <asp:RegularExpressionValidator runat="server" ForeColor="Red" ControlToValidate="txtStockContent"
-            ValidationExpression="^(?!-1+$)[0-9]+$"
-            ErrorMessage="<%$ Resources: , ControlStock %>" />
-        <br />
-        <br />
-        <asp:Label ID="lblGenre" runat="server" Text="<%$ Resources: , genre %>"></asp:Label>
-        <asp:TextBox ID="txtGenreContent" runat="server"></asp:TextBox>
-        <br />
-        <br />
 
-
+    <form id="form2" runat="server">
+        <br />
+        <asp:LinkButton ID="LinkButton2" runat="server" OnClick="BtnBackToPreviousPage_Click" Text="<%$ Resources:Common, back %>" />
+        <br />
+        <br />
+        <div class="field">
+            <asp:Label ID="Label1" CssClass="label" runat="server" Text="<%$ Resources:, title %>" Font-Bold="True"></asp:Label>
+            <span class="entry">
+                <asp:TextBox ID="txtTitleContent" runat="server"></asp:TextBox>
+            </span>
+        </div>
+        <br />
+        <br />
+        <div class="field">
+            <asp:Label ID="Label2" CssClass="label"  Font-Bold="True" runat="server" Text="<%$ Resources: , author %>"></asp:Label>
+            <span class="entry">
+                <asp:TextBox ID="txtAuthorContent" runat="server"></asp:TextBox>
+            </span>
+        </div>
+        <br />
+        <br />
+        <div class="field">
+            <asp:Label ID="Label3" CssClass="label"  Font-Bold="True" runat="server" Text="<%$ Resources: , price %>"></asp:Label>
+            <span class="entry">
+                <asp:TextBox ID="txtPriceContent" runat="server"></asp:TextBox>
+            </span>
+        </div>
+        <br />
+        <br />
+        <div class="field">
+            <asp:Label ID="Label4" CssClass="label"  Font-Bold="True" runat="server" Text="<%$ Resources: , availableStock %>"></asp:Label>
+            <span class="entry">
+                <asp:TextBox ID="txtStockContent" runat="server"></asp:TextBox>
+                <asp:RegularExpressionValidator runat="server" ForeColor="Red" ControlToValidate="txtStockContent"
+                    ValidationExpression="^(?!-1+$)[0-9]+$"
+                    ErrorMessage="<%$ Resources: , ControlStock %>" />
+            </span>
+        </div>
+        <br />
+        <br />
+        <div class="field">
+            <asp:Label ID="Label5" CssClass="label" Font-Bold="True" runat="server" Text="<%$ Resources: , genre %>"></asp:Label>
+            <span class="entry">
+                <asp:TextBox ID="txtGenreContent" runat="server"></asp:TextBox>
+            </span>
+        </div>
+        <br />
+        <br />
+        <asp:LinkButton ID="linkViewComment" runat="server" OnClick="Book_Click" Text="<%$ Resources: , comments %>" /> &nbsp &nbsp &nbsp
+        <asp:LinkButton ID="btnNewComment" runat="server" Text="<%$ Resources:, newComment%>" OnClick="BtnNewComment_Click" />
+        <br />
+        <br />
         <asp:Button ID="Submit" runat="server" Text="<%$ Resources: , submit %>" OnClick="Submit_Click" />
 
     </form>

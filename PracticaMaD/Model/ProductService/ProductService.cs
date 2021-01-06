@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Ninject;
@@ -16,7 +17,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
         [Inject]
         public IProductDao ProductDao { private get; set; }
-
+  
         [Inject]
         public ICategoryDao CategoryDao { private get; set; }
 
@@ -25,6 +26,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
         [Inject]
         public IComputerDao ComputerDao { private get; set; }
+
+        [Inject]
+        public ICommentDao CommentDao { private get; set; }
 
         #region IProductService Members
 
@@ -86,6 +90,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         public List<Category> ViewAllCategories()
         {
             return CategoryDao.GetAllElements().ToList();
+        }
+        public bool HasComments(long productId)
+        {
+            return (CommentDao.FindCommentsByProductId(productId,0,1).Count != 0);
         }
 
         public Book FindBook(long productId)

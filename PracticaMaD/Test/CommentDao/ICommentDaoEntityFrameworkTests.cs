@@ -20,10 +20,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao.Tests
         private static IUserService userService;
 
         private const string login = "user";
+        private const string login2 = "user2";
         private const string name = "name";
         private const string lastName = "lastName";
         private const string password = "passwd";
         private const string email = "user@udc.es";
+        private const string email2 = "user2@udc.es";
         private const string address = "A Coruña";
         private const string role = "user";
 
@@ -105,7 +107,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao.Tests
 
                 long userId = userService.SingUpUser(login, password,
                        new UserDetails(name, lastName, email, language.name, language.country));
+                long user2Id = userService.SingUpUser(login2, password,
+                       new UserDetails(name, lastName, email2, language.name, language.country));
                 User user = TestUtil.userDao.Find(userId);
+                User user2 = TestUtil.userDao.Find(user2Id);
                 CreditCard creditCard = TestUtil.CreateCreditCard();
 
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
@@ -129,7 +134,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao.Tests
                     "Chollazo",
                     "Ganga"
                 };
-                var comment2 = commentService.NewComment(user.id, product1.id, text, labels2);
+                var comment2 = commentService.NewComment(user2.id, product1.id, text, labels2);
 
                 List<Comment> comments = commentDao.FindCommentsByProductId(product1.id, startIndex, count);
 

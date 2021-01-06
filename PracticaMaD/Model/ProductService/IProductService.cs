@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using Es.Udc.DotNet.ModelUtil.Transactions;
+using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
@@ -10,7 +13,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         IProductDao ProductDao { set; }
 
         ICategoryDao CategoryDao { set; }
-
+        
+        IBookDao BookDao { set; }
+        
+        IComputerDao ComputerDao { set; }
+        
+        ICommentDao CommentDao { set; }
 
         [Transactional]
         ProductBlock ViewCatalog(string productName, int startIndex, int count);
@@ -23,6 +31,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
         [Transactional]
         void UpdateComputer(Computer product);
+        [Transactional]
+
+        bool HasComments(long productId);
 
         [Transactional]
         void UpdateBook(Book product);

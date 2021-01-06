@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
-{
-
-
-    public partial class UserExists
-    {
-
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages {
+    
+    
+    public partial class UserExists {
+        
         /// <summary>
         /// formUserExists control.
         /// </summary>
@@ -22,7 +20,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm formUserExists;
-
+        
+        /// <summary>
+        /// lnkbutton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkbutton;
+        
         /// <summary>
         /// lblUserName control.
         /// </summary>
@@ -31,7 +38,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblUserName;
-
+        
         /// <summary>
         /// txtUserName control.
         /// </summary>
@@ -40,7 +47,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtUserName;
-
+        
         /// <summary>
         /// lblUserExists control.
         /// </summary>
@@ -49,7 +56,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblUserExists;
-
+        
         /// <summary>
         /// lblUserNotExists control.
         /// </summary>
@@ -58,7 +65,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblUserNotExists;
-
+        
         /// <summary>
         /// btnUserExists control.
         /// </summary>

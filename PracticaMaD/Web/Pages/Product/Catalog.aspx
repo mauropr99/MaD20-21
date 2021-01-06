@@ -17,14 +17,14 @@
             <br />
             <br />
             <asp:GridView ID="GridViewCatalog"  runat="server" CellPadding="4" ForeColor="#333333" GridLines="None"
-                AutoGenerateColumns="False" OnRowCommand="GridViewCatalog_RowCommand" DataKeyNames="Id" >
+                AutoGenerateColumns="False" OnRowCommand="GridViewCatalog_RowCommand" DataKeyNames="Id" CssClass="estandar" >
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
-                    <asp:HyperLinkField DataTextField="ProductName" HeaderText="<%$ Resources: , productName %>" 
+                    <asp:HyperLinkField DataTextField="ProductName"  HeaderText="<%$ Resources: , productName %>" 
                         DataNavigateUrlFields="Id,CategoryName" NavigateUrl="~/Pages/Product/DetailsViewController.aspx" 
                         DataNavigateUrlFormatString="DetailsViewController.aspx?productId={0}&categoryName={1}"/>
-                    <asp:BoundField DataField="CategoryName" HeaderText="<%$ Resources: , category %>" />
-                    <asp:BoundField DataField="ReleaseDate" HeaderText="<%$ Resources: , releaseDate %>" />
+                    <asp:BoundField DataField="CategoryName"   HeaderText="<%$ Resources: , category %>" />
+                    <asp:BoundField DataField="ReleaseDate"  HeaderText="<%$ Resources: , releaseDate %>" />
                     <asp:BoundField DataField="Price" HeaderText="<%$ Resources: , price %>" />
                     <asp:ButtonField Text="<%$ Resources: , addItem %>" CommandName="AddToCart"/>
                     <asp:BoundField DataField="Id" Visible="false"/>

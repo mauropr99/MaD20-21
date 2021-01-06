@@ -16,5 +16,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
         List<Comment> FindCommentsByProductId(long productId, int startIndex, int count);
 
         void AddLabel(Label label, long commentId);
+
+        Comment FindCommentsByUserId(long productId, long userId);
     }
 }

@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 
@@ -21,7 +22,12 @@ namespace Web.Pages.Product
                 try
                 {
                     long productId = long.Parse(Request.Params.Get("productId"));
+                    ICommentService commentService = iocManager.Resolve<ICommentService>();
+                    UserSession userSession =
+                        (UserSession)Context.Session[SessionManager.USER_SESSION_ATTRIBUTE];
+                    if (userSession != null) btnNewComment.Visible = !(commentService.UserAlreadyCommented(productId, userSession.UserId));
                     Book book = productService.FindBook(productId);
+                    linkViewComment.Visible = productService.HasComments(productId);
 
                     //Fill place holders
                     txtTitleContent.Text = book.product_name;
@@ -44,8 +50,8 @@ namespace Web.Pages.Product
         protected void BtnBackToPreviousPage_Click(object sender, EventArgs e)
         {
             object refUrl = ViewState["RefUrl"];
-            if (refUrl != null)
-                Response.Redirect((string)refUrl);
+            if (refUrl != null || refUrl.ToString().Contains("Comment")) Response.Redirect("~/Pages/Product/Catalog.aspx");
+            if (refUrl != null) Response.Redirect((string)refUrl);
         }
 
         protected void Submit_Click(object sender, EventArgs e)
@@ -71,6 +77,16 @@ namespace Web.Pages.Product
             {
             }
 
+        }
+
+        protected void BtnNewComment_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Pages/Comment/CommentAdd.aspx?productId=" + Request.Params.Get("productId") + "&categoryName=" + Request.Params.Get("categoryName"));
+        }
+
+        protected void Book_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Comment/CommentList.aspx?productId=" + Request.Params.Get("productId") + "&categoryName=" + Request.Params.Get("categoryName")));
         }
     }
 

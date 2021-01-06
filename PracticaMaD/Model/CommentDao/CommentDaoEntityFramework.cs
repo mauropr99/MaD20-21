@@ -26,6 +26,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
             #endregion Using Linq.
         }
 
+        public Comment FindCommentsByUserId(long productId,long userId)
+        {
+            #region Using Linq.
+
+            DbSet<Comment> comments = Context.Set<Comment>();
+
+            Comment result =
+                (from c in comments
+                 where c.productId == productId && c.userId == userId 
+                 select c).FirstOrDefault();
+
+            return result;
+
+            #endregion Using Linq.
+        }
+
 
         public void AddLabel(Label label, long commentId)
         {

@@ -11,6 +11,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
         public string Login { get; private set; }
 
+        public long UserId { get; private set; }
+
         public DateTime Date { get; private set; }
 
         public string Text { get; private set; }
@@ -19,10 +21,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
         #endregion Properties Region
 
-        public CommentDetails(long id, string login, DateTime date, string text, List<string> labels)
+        public CommentDetails(long id, string login, long userId, DateTime date, string text, List<string> labels)
         {
             Id = id;
             Login = login;
+            UserId = userId;
             Date = date;
             Text = text;
             Labels = labels;
@@ -33,6 +36,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             return obj is CommentDetails details &&
                    Id == details.Id &&
                    Login == details.Login &&
+                   UserId == details.UserId &&
                    Date == details.Date &&
                    Text == details.Text &&
                    EqualityComparer<List<string>>.Default.Equals(Labels, details.Labels);
@@ -42,6 +46,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         {
             int hashCode = 1930600707;
             hashCode = hashCode * -1521134295 + Id.GetHashCode();
+            hashCode = hashCode * -1521134295 + UserId.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Login);
             hashCode = hashCode * -1521134295 + Date.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Text);

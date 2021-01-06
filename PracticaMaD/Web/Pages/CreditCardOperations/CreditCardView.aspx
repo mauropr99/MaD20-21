@@ -7,7 +7,7 @@
         <br />
         <br />
         <br />
-        <asp:GridView ID="GridViewCreditCards" runat="server" AutoGenerateColumns="False" DataKeyNames="CreditCardId, IsDefaultCreditCard" CellPadding="8" ForeColor="#333333" GridLines="None" OnRowCommand="GridViewCreditCards_RowCommand">
+        <asp:GridView ID="GridViewCreditCards" CssClass="estandar" runat="server" AutoGenerateColumns="False" DataKeyNames="CreditCardId, IsDefaultCreditCard" CellPadding="8" ForeColor="#333333" GridLines="None" OnRowCommand="GridViewCreditCards_RowCommand">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:BoundField DataField="OwnerName" HeaderText="<%$ Resources: , creditCardOwner %>" />

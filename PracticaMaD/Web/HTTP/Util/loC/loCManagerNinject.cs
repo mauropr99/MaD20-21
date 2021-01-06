@@ -3,8 +3,11 @@ using System.Data.Entity;
 using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
+using Es.Udc.DotNet.PracticaMaD.Model.LabelDao;
 using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao;
@@ -64,6 +67,14 @@ namespace Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC
             kernel.Bind<IProductDao>().
                 To<ProductDaoEntityFramework>();
 
+            /* LabelDao */
+            kernel.Bind<ILabelDao>().
+                To<LabelDaoEntityFramework>();
+
+            /* LabelDao */
+            kernel.Bind<ICommentDao>().
+                To<CommentDaoEntityFramework>();
+
             /* UserService */
             kernel.Bind<IUserService>().
                 To<UserService>();
@@ -75,6 +86,10 @@ namespace Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC
             /* ShoppingService */
             kernel.Bind<IShoppingService>().
                 To<ShoppingService>();
+
+            /* CommentService */
+            kernel.Bind<ICommentService>().
+                To<CommentService>();
 
             /* DbContext */
             string connectionString =

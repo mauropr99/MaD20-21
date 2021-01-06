@@ -6,6 +6,7 @@ using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.LabelDao;
@@ -30,10 +31,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
         private static IUserService userService;
 
         private const string login = "user";
+        private const string login2 = "user2";
         private const string name = "name";
         private const string lastName = "lastName";
         private const string password = "passwd";
         private const string email = "user@udc.es";
+        private const string email2 = "user2@udc.es";
         private const string address = "A Coruña";
         private const string role = "user";
 
@@ -148,6 +151,38 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 Assert.AreEqual(labels[1], foundComment.Labels.ToList()[1].lab);
                 Assert.AreEqual(labels[2], foundComment.Labels.ToList()[2].lab);
 
+
+            }
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ProductAlreadyCommentedException))]
+        public void DuplicatedCommentTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                Language language = TestUtil.CreateExistentLanguage();
+
+                long userId = userService.SingUpUser(login, password,
+                       new UserDetails(name, lastName, email, language.name, language.country));
+                CreditCard creditCard = TestUtil.CreateCreditCard();
+
+                Category category1 = TestUtil.CreateCategory("Ordenadores");
+                Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
+                List<string> labels = new List<string>
+                {
+                    "Ganga",
+                    "Oferta",
+                    "Chollazo"
+                };
+
+                string text = "Muy buen ordenador y a buen precio. Funcionan todos los juegos a calidad máxima, muy fluidos y sin apenas calentarse el aparato.";
+                Comment comment = commentService.NewComment(userId, product1.id, text, labels);
+                bool comento = commentService.UserAlreadyCommented(product1.id, userId);
+                Assert.IsTrue(comento);
+
+               
+                Comment duplicatedComment = commentService.NewComment(userId, product1.id, text, labels);
 
             }
         }
@@ -282,6 +317,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 
                 long userId = userService.SingUpUser(login, password,
                        new UserDetails(name, lastName, email, language.name, language.country));
+                long user2Id = userService.SingUpUser(login2, password,
+                       new UserDetails(name, lastName, email2, language.name, language.country));
                 CreditCard creditCard = TestUtil.CreateCreditCard();
 
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
@@ -304,9 +341,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                     "Chollazo",
                     "Ganga"
                 };
-                var comment2 = commentService.NewComment(userId, product1.id, text, labels2);
+                var comment2 = commentService.NewComment(user2Id, product1.id, text, labels2);
 
-                CommentBlock comment = commentService.ViewComments(userId, product1.id, 0, 10);
+                CommentBlock comment = commentService.ViewComments(product1.id, 0, 10);
 
                 Assert.AreEqual(comment1.id, comment.Comments[0].Id);
                 Assert.AreEqual(comment2.id, comment.Comments[1].Id);

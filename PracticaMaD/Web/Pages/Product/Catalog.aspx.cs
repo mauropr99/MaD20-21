@@ -77,7 +77,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 
         protected void LoadCatalog(IProductService productService)
         {
-            string dateFormat = "MM/dd/yyyy";
+            string dateFormat = GetFormat();
             ProductBlock productBlock;
 
             String productName = txtProductName.Text;
@@ -95,26 +95,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 
             this.GridViewCatalog.DataBind();
 
-            //We can access the locale information only if the user is authenticated
-            if (SessionManager.IsUserAuthenticated(Context))
-            {
-                //Changing the date format...
-                Locale locale = SessionManager.GetLocale(Context);
 
-                switch (locale.Country)
-                {
-                    case "ES":
-                        dateFormat = "dd/MM/yyyy";
-                        break;
-                    case "US":
-                        dateFormat = "MM/dd/yyyy";
-                        break;
-
-                    default:
-                        dateFormat = "MM/dd/yyyy";
-                        break;
-                }
-            }
             IShoppingService shoppingService = SessionManager.GetShoppingService();
 
             for (int i = 0; i < GridViewCatalog.Rows.Count; i++)
@@ -150,6 +131,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 this.lnkPrevious.Visible = true;
             }
 
+        }
+
+        private string GetFormat()
+        {
+            string dateFormat = "MM/dd/yyyy";
+
+            //We can access the locale information only if the user is authenticated
+            if (SessionManager.IsUserAuthenticated(Context))
+            {
+                //Changing the date format...
+                Locale locale = SessionManager.GetLocale(Context);
+
+                switch (locale.Country)
+                {
+                    case "ES":
+                        dateFormat = "dd/MM/yyyy";
+                        break;
+                    case "US":
+                        dateFormat = "MM/dd/yyyy";
+                        break;
+
+                    default:
+                        dateFormat = "MM/dd/yyyy";
+                        break;
+                }
+            }
+
+            return dateFormat;
         }
 
         protected void BtnViewCatalog_Click(object sender, EventArgs e)

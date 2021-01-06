@@ -150,4 +150,10 @@
   <data name="ControlStock" xml:space="preserve">
     <value>Ten que ser un número positivo</value>
   </data>
+  <data name="comments" xml:space="preserve">
+    <value>Ver comentarios</value>
+  </data>
+  <data name="newComment" xml:space="preserve">
+    <value>Novo comentario</value>
+  </data>
 </root>

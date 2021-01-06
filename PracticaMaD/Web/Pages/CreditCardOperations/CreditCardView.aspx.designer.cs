@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
-{
-
-
-    public partial class CreditCardView
-    {
-
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations {
+    
+    
+    public partial class CreditCardView {
+        
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -22,7 +20,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-
+        
         /// <summary>
         /// GridViewCreditCards control.
         /// </summary>
@@ -31,7 +29,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewCreditCards;
-
+        
         /// <summary>
         /// btnAddNewCreditCard control.
         /// </summary>

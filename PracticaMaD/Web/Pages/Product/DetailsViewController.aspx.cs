@@ -38,11 +38,11 @@ namespace Web.Pages.Product
 
                 if (userRole == "admin")
                 {
-                    Response.Redirect("~/Pages/Product/UpdateDetails/Update" + categoryName + "DetailsView.aspx?productId=" + productId);
+                    Response.Redirect("~/Pages/Product/UpdateDetails/Update" + categoryName + "DetailsView.aspx?productId=" + productId + "&categoryName=" + categoryName);
                 }
                 else
                 {
-                    Response.Redirect("~/Pages/Product/ViewDetails/" + categoryName + "DetailsView.aspx?productId=" + productId);
+                    Response.Redirect("~/Pages/Product/ViewDetails/" + categoryName + "DetailsView.aspx?productId=" + productId + "&categoryName="+categoryName);
                 }
             }
             catch (ArgumentNullException)

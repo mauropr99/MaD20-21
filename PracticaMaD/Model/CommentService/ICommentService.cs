@@ -22,11 +22,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         void RemoveComment(long userId, long commentId);
 
         [Transactional]
-        CommentBlock ViewComments(long userId, long productId, int startIndex, int count);
+        CommentBlock ViewComments(long productId, int startIndex, int count);
+
+        [Transactional]
+        CommentDetails FindComment(long commentId);
 
         [Transactional]
         List<LabelDetails> ViewMostUsedLabels(int quantity);
 
-
+        [Transactional]
+        bool UserAlreadyCommented(long productId, long userId);
     }
 }

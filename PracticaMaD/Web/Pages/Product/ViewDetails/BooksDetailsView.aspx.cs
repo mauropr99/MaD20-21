@@ -6,8 +6,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
-
-
+using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 
 namespace Web.Pages.Product
 {
@@ -20,14 +19,18 @@ namespace Web.Pages.Product
             IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
             IProductService productService = iocManager.Resolve<IProductService>();
 
-
-            /* Get Start Index */
             try
             {
                 productId = long.Parse(Request.Params.Get("productId"));
-                Book book = productService.FindBook(productId);
+                ICommentService commentService = iocManager.Resolve<ICommentService>();
+                UserSession userSession =
+                    (UserSession)Context.Session[SessionManager.USER_SESSION_ATTRIBUTE];
+                if (userSession != null) btnNewComment.Visible = !(commentService.UserAlreadyCommented(productId, userSession.UserId));
 
-                if (book.stock == 0 || !SessionManager.IsUserAuthenticated(Context))
+                Book book = productService.FindBook(productId);
+                linkViewComment.Visible = productService.HasComments(productId);
+
+                if (book.stock == 0 )
                 {
                     lblQuantity.Visible = false;
                     DropDownListQuantity.Visible = false;
@@ -50,21 +53,24 @@ namespace Web.Pages.Product
                     DropDownListQuantity.Visible = true;
                     btnAddToShoppingCart.Visible = true;
 
-                    //Changing the date format...
-                    Locale locale = SessionManager.GetLocale(Context);
-
-                    switch (locale.Country)
+                    if (SessionManager.IsUserAuthenticated(Context))
                     {
-                        case "ES":
-                            format = "dd/MM/yyyy";
-                            break;
-                        case "US":
-                            format = "MM/dd/yyyy";
-                            break;
+                        //Changing the date format...
+                        Locale locale = SessionManager.GetLocale(Context);
 
-                        default:
-                            format = "MM/dd/yyyy";
-                            break;
+                        switch (locale.Country)
+                        {
+                            case "ES":
+                                format = "dd/MM/yyyy";
+                                break;
+                            case "US":
+                                format = "MM/dd/yyyy";
+                                break;
+
+                            default:
+                                format = "MM/dd/yyyy";
+                                break;
+                        }
                     }
 
                 }
@@ -113,8 +119,22 @@ namespace Web.Pages.Product
         protected void BtnBackToPreviousPage_Click(object sender, EventArgs e)
         {
             object refUrl = ViewState["RefUrl"];
-            if (refUrl != null)
-                Response.Redirect((string)refUrl);
+            if (refUrl != null || refUrl.ToString().Contains("Comment")) Response.Redirect("~/Pages/Product/Catalog.aspx");
+            if (refUrl != null) Response.Redirect((string)refUrl);
+        }
+
+        protected void BtnNewComment_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Pages/Comment/CommentAdd.aspx?productId=" + Request.Params.Get("productId") + "&categoryName=" + Request.Params.Get("categoryName"));
+        }
+
+        protected void Book_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Comment/CommentList.aspx?productId=" + Request.Params.Get("productId") + "&categoryName=" + Request.Params.Get("categoryName")));
+            }
+            catch { }
         }
     }
 }

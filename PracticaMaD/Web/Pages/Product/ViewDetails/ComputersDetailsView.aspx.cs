@@ -6,6 +6,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 
 namespace Web.Pages.Product
 {
@@ -23,10 +24,17 @@ namespace Web.Pages.Product
             try
             {
                 productId = long.Parse(Request.Params.Get("productId"));
+                ICommentService commentService = iocManager.Resolve<ICommentService>();
+                UserSession userSession =
+                    (UserSession)Context.Session[SessionManager.USER_SESSION_ATTRIBUTE];
+                if (userSession != null) btnNewComment.Visible = !(commentService.UserAlreadyCommented(productId, userSession.UserId));
+
                 Computer computer = productService.FindComputer(productId);
+                linkViewComment.Visible = productService.HasComments(productId);
 
 
-                if (computer.stock == 0 || !SessionManager.IsUserAuthenticated(Context))
+
+                if (computer.stock == 0)
                 {
                     lblQuantity.Visible = false;
                     DropDownListQuantity.Visible = false;
@@ -98,8 +106,8 @@ namespace Web.Pages.Product
         protected void BtnBackToPreviousPage_Click(object sender, EventArgs e)
         {
             object refUrl = ViewState["RefUrl"];
-            if (refUrl != null)
-                Response.Redirect((string)refUrl);
+            if (refUrl != null || refUrl.ToString().Contains("Comment")) Response.Redirect("~/Pages/Product/Catalog.aspx");
+            if (refUrl != null) Response.Redirect((string)refUrl);
         }
     
         protected void btnAddToShoppingCart_Click(object sender, EventArgs e)
@@ -119,6 +127,16 @@ namespace Web.Pages.Product
             {
                 Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Errors/InternalError.aspx"));
             }
+        }
+
+        protected void BtnNewComment_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Pages/Comment/CommentAdd.aspx?productId=" + Request.Params.Get("productId") + "&categoryName=" + Request.Params.Get("categoryName"));
+        }
+
+        protected void Computer_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Comment/CommentList.aspx?productId=" + Request.Params.Get("productId")+"&categoryName="+ Request.Params.Get("categoryName")));
         }
     }
 
