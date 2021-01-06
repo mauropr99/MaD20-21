@@ -176,6 +176,7 @@
     <Content Include="Pages\Errors\OutOfStock.aspx" />
     <Content Include="Pages\Errors\InternalError.aspx" />
     <Content Include="Pages\MainPage.aspx" />
+    <Content Include="Pages\Product\ProductsByLabelView.aspx" />
     <Content Include="Pages\Product\ViewDetails\BooksDetailsView.aspx" />
     <Content Include="Pages\Product\Catalog.aspx" />
     <Content Include="Pages\Product\ViewDetails\ComputersDetailsView.aspx" />
@@ -281,6 +282,13 @@
     </Compile>
     <Compile Include="Pages\MainPage.aspx.designer.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Product\ProductsByLabelView.aspx.cs">
+      <DependentUpon>ProductsByLabelView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Product\ProductsByLabelView.aspx.designer.cs">
+      <DependentUpon>ProductsByLabelView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Product\ViewDetails\BooksDetailsView.aspx.cs">
       <DependentUpon>BooksDetailsView.aspx</DependentUpon>
@@ -611,6 +619,15 @@
     <Content Include="Pages\Comment\App_LocalResources\UpdateComment.aspx.es.resx" />
     <Content Include="Pages\Comment\App_LocalResources\UpdateComment.aspx.gl.resx" />
     <Content Include="Pages\Comment\App_LocalResources\UpdateComment.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\ProductsByLabelView.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\ProductsByLabelView.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Product\App_LocalResources\ProductsByLabelView.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
