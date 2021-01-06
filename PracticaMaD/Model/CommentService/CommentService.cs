@@ -25,6 +25,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
         public Comment NewComment(long userId, long productId, string text, List<string> labels)
         {
+            User user = UserDao.Find(userId);
+            foreach (Comment foundComment in user.Comments)
+            {
+                if (foundComment.productId == productId)
+                    throw new ProductAlreadyCommentedException(productId);
+            }
+
             Comment comment = new Comment
             {
                 userId = userId,

@@ -92,6 +92,7 @@
     <Compile Include="CommentService\CommentBlock.cs" />
     <Compile Include="CommentService\CommentDetails.cs" />
     <Compile Include="CommentService\CommentService.cs" />
+    <Compile Include="CommentService\Exceptions\ProductAlreadyCommentedException.cs" />
     <Compile Include="CommentService\Exceptions\DifferentsUsers.cs" />
     <Compile Include="CommentService\ICommentService.cs" />
     <Compile Include="CommentService\LabelDetails.cs" />
