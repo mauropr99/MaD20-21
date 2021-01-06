@@ -27,6 +27,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         ProductBlock ViewCatalog(string productName, string categoryName, int startIndex, int count);
 
         [Transactional]
+        ProductBlock ViewProductsByLabels(string label, int startIndex, int count);
+
+        [Transactional]
         void UpdateProduct(Product product);
 
         [Transactional]

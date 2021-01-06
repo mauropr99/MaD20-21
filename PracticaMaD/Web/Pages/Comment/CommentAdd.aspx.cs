@@ -112,8 +112,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
 
         protected void BtnBackToPreviousPage_Click(object sender, EventArgs e)
         {
-            object refUrl = "~/Pages/Product/DetailsViewController.aspx?productId=" + Request.Params.Get("productId") + "&categoryName=" + Request.Params.Get("categoryName");
-            Response.Redirect((string)refUrl);
+            Response.Redirect("~/Pages/Product/DetailsViewController.aspx?productId=" + Request.Params.Get("productId") + "&categoryName=" + Request.Params.Get("categoryName"));
         }
     }
 }

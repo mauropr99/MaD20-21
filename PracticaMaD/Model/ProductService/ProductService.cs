@@ -82,6 +82,31 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
         }
 
+        public ProductBlock ViewProductsByLabels(string label, int startIndex, int count)
+        {
+            List<Product> products;
+
+            products = ProductDao.FindByLabel(label, startIndex, count + 1);
+
+            List<ProductDetails> productsDetails = new List<ProductDetails>();
+
+            foreach (Product product in products)
+            {
+                productsDetails.Add(new ProductDetails(product.id, product.product_name, product.price,
+                        product.releaseDate, product.stock, ProductDao.GetCategoryName(product.id)));
+            }
+
+            bool existMoreProducts = (products.Count == count + 1);
+
+            if (existMoreProducts)
+            {
+                products.RemoveAt(count);
+            }
+
+            return new ProductBlock(productsDetails, existMoreProducts);
+
+        }
+
         public void UpdateProduct(Product product)
         {
             ProductDao.Update(product);
@@ -91,6 +116,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         {
             return CategoryDao.GetAllElements().ToList();
         }
+
         public bool HasComments(long productId)
         {
             return (CommentDao.FindCommentsByProductId(productId,0,1).Count != 0);

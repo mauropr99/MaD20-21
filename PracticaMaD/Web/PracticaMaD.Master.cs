@@ -1,4 +1,6 @@
 ﻿using System;
+using Es.Udc.DotNet.ModelUtil.IoC;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 
@@ -35,6 +37,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
 
             IShoppingService shoppingService = SessionManager.GetShoppingService();
             ShoppingCartSize.Text = "(" + shoppingService.TotalProducts().ToString() + ")";
+
+        }
+
+        protected void Label_Click(object sender, EventArgs e)
+        {
 
         }
     }

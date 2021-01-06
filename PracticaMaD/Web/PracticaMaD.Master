@@ -65,6 +65,14 @@
 
             <!-- Body content. -->
             <div id="content">
+                <form runat ="server">
+                    <asp:LinkButton ID="Label1" runat="server">LinkButton</asp:LinkButton>&nbsp&nbsp&nbsp
+                    <asp:LinkButton ID="Label2" runat="server">LinkButton</asp:LinkButton>&nbsp&nbsp&nbsp
+                    <asp:LinkButton ID="Label3" runat="server">LinkButton</asp:LinkButton>&nbsp&nbsp&nbsp
+                    <asp:LinkButton ID="Label4" runat="server">LinkButton</asp:LinkButton>&nbsp&nbsp&nbsp
+                    <asp:LinkButton ID="Label5" runat="server">LinkButton</asp:LinkButton>&nbsp&nbsp&nbsp
+                    <br />
+                </form>
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder_BodyContent" runat="server" />
             </div>
         </div>

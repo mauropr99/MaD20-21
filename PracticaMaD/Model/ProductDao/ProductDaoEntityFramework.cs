@@ -86,6 +86,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
             return categoryName;
         }
 
+        public List<Product> FindByLabel(string label, int startIndex, int count)
+        {
+            #region Using Linq.
+
+            DbSet<Label> labels = Context.Set<Label>();
+
+            List<Product> products =
+                (from l in labels
+                 where l.lab == label
+                 select  from p in l.Comments select p.Product ).FirstOrDefault().Skip(startIndex).Take(count).Distinct().ToList();
+
+            return products;
+
+            #endregion Using Linq.
+        }
+
         #endregion Members
     }
 }
