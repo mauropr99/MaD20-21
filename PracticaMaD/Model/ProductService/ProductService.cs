@@ -46,11 +46,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
                         product.releaseDate, product.stock, ProductDao.GetCategoryName(product.id)));
             }
 
-            bool existMoreProducts = (products.Count == count + 1);
+            bool existMoreProducts = (productsDetails.Count == count + 1);
 
             if (existMoreProducts)
             {
-                products.RemoveAt(count);
+                productsDetails.RemoveAt(count);
             }
 
             return new ProductBlock(productsDetails, existMoreProducts);
@@ -71,11 +71,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
                         product.releaseDate, product.stock, ProductDao.GetCategoryName(product.id)));
             }
 
-            bool existMoreProducts = (products.Count == count + 1);
+            bool existMoreProducts = (productsDetails.Count == count + 1);
 
             if (existMoreProducts)
             {
-                products.RemoveAt(count);
+                productsDetails.RemoveAt(count);
             }
 
             return new ProductBlock(productsDetails, existMoreProducts);
@@ -100,7 +100,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
             if (existMoreProducts)
             {
-                products.RemoveAt(count);
+                productsDetails.RemoveAt(count);
             }
 
             return new ProductBlock(productsDetails, existMoreProducts);

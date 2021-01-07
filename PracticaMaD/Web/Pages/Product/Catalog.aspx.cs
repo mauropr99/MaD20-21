@@ -91,6 +91,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 productBlock = productService.ViewCatalog(productName, DropDownCategoryList.SelectedValue, startIndex, count);
             }
 
+
             this.GridViewCatalog.DataSource = productBlock.Products;
 
             this.GridViewCatalog.DataBind();

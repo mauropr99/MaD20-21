@@ -89,12 +89,6 @@ namespace Web.Pages.Product
             {
             }
 
-        
-            if (!IsPostBack)
-            {
-                ViewState["RefUrl"] = Request.UrlReferrer.ToString();
-            }
-
         }
 
         protected void btnAddToShoppingCart_Click(object sender, EventArgs e)
@@ -118,9 +112,7 @@ namespace Web.Pages.Product
 
         protected void BtnBackToPreviousPage_Click(object sender, EventArgs e)
         {
-            object refUrl = ViewState["RefUrl"];
-            if (refUrl != null || refUrl.ToString().Contains("Comment")) Response.Redirect("~/Pages/Product/Catalog.aspx");
-            if (refUrl != null) Response.Redirect((string)refUrl);
+           Response.Redirect("~/Pages/Product/Catalog.aspx"); 
         }
 
         protected void BtnNewComment_Click(object sender, EventArgs e)

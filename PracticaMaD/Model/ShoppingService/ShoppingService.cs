@@ -224,16 +224,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
             bool existMoreOrders = (orders.Count == count + 1);
 
-            if (existMoreOrders)
-            {
-                orders.RemoveAt(count);
-            }
 
             List<OrderDetails> detailOrders = new List<OrderDetails>();
 
             foreach (Order order in orders)
             {
                 detailOrders.Add(new OrderDetails(order.id, order.orderDate, order.description, order.totalPrice));
+            }
+
+            if (existMoreOrders)
+            {
+                detailOrders.RemoveAt(count);
             }
 
             return new OrderBlock(detailOrders, existMoreOrders);

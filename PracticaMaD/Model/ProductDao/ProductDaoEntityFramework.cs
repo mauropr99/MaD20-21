@@ -95,7 +95,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
             List<Product> products =
                 (from l in labels
                  where l.lab == label
-                 select  from p in l.Comments select p.Product ).FirstOrDefault().Skip(startIndex).Take(count).Distinct().ToList();
+                 select  from p in l.Comments select p.Product ).FirstOrDefault().Distinct().Skip(startIndex).Take(count).ToList();
 
             return products;
 

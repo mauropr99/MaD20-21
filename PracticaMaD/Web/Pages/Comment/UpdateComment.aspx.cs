@@ -89,7 +89,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
         protected void BtnAddLabel_Click(object sender, EventArgs e)
         {
             string column = GetLocalResourceObject("label").ToString();
-            string label = HttpUtility.HtmlDecode(this.txtLabelContent.Text.Trim());
+            string label = HttpUtility.HtmlDecode(this.txtLabelContent.Text.Trim().ToLower());
 
             DataRow dr;
             bool exists = false;

@@ -14,10 +14,10 @@ using System.Web.UI.WebControls;
 
 namespace Web.Pages.Product
 {
-    public partial class ProductsByLabelView : System.Web.UI.Page
+    public partial class ProductsByLabelView : SpecificCulturePage
     {
         int startIndex, index;
-        int count = 1;
+        int count = 4;
         int dateCell = 2, priceCell = 3, addCell = 4;
 
         protected void Page_Load(object sender, EventArgs e)
