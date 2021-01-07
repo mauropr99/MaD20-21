@@ -67,11 +67,11 @@
             <div id="content">
                 <form runat="server">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder_HeaderContent" runat="server" >
-                    <asp:LinkButton ID="Label1" runat="server">LinkButton</asp:LinkButton>&nbsp&nbsp&nbsp
-                    <asp:LinkButton ID="Label2" runat="server">LinkButton</asp:LinkButton>&nbsp&nbsp&nbsp
-                    <asp:LinkButton ID="Label3" runat="server">LinkButton</asp:LinkButton>&nbsp&nbsp&nbsp
-                    <asp:LinkButton ID="Label4" runat="server">LinkButton</asp:LinkButton>&nbsp&nbsp&nbsp
-                    <asp:LinkButton ID="Label5" runat="server">LinkButton</asp:LinkButton>&nbsp&nbsp&nbsp
+                    <asp:LinkButton ID="Label1" OnClick="Label_Click" runat="server">LinkButton</asp:LinkButton>&nbsp&nbsp&nbsp
+                    <asp:LinkButton ID="Label2" OnClick="Label_Click" runat="server">LinkButton</asp:LinkButton>&nbsp&nbsp&nbsp
+                    <asp:LinkButton ID="Label3" OnClick="Label_Click" runat="server">LinkButton</asp:LinkButton>&nbsp&nbsp&nbsp
+                    <asp:LinkButton ID="Label4" OnClick="Label_Click" runat="server">LinkButton</asp:LinkButton>&nbsp&nbsp&nbsp
+                    <asp:LinkButton ID="Label5" OnClick="Label_Click" runat="server">LinkButton</asp:LinkButton>&nbsp&nbsp&nbsp
                     <br />
                     <br />
                     <br />

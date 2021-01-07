@@ -96,7 +96,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
                         product.releaseDate, product.stock, ProductDao.GetCategoryName(product.id)));
             }
 
-            bool existMoreProducts = (products.Count == count + 1);
+            bool existMoreProducts = (productsDetails.Count == count + 1);
 
             if (existMoreProducts)
             {

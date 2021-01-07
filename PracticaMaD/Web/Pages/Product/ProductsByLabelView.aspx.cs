@@ -17,7 +17,7 @@ namespace Web.Pages.Product
     public partial class ProductsByLabelView : System.Web.UI.Page
     {
         int startIndex, index;
-        int count = 4;
+        int count = 1;
         int dateCell = 2, priceCell = 3, addCell = 4;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -85,7 +85,6 @@ namespace Web.Pages.Product
 
             //Recuperamos la información del servicio
             productBlock = productService.ViewProductsByLabels(labelName, startIndex, count);
-            
 
             this.GridViewCatalog.DataSource = productBlock.Products;
 
@@ -127,6 +126,31 @@ namespace Web.Pages.Product
                 this.lnkPrevious.Visible = true;
             }
 
+        }
+
+        protected void GridViewCatalog_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "AddToCart")
+            {
+
+                try
+                {
+                    IShoppingService shoppingService = SessionManager.GetShoppingService();
+
+                    int index = Convert.ToInt32(e.CommandArgument);
+                    long productId = long.Parse(GridViewCatalog.DataKeys[index].Values[0].ToString());
+
+                    shoppingService.AddToShoppingCart(productId);
+
+                    Page.Response.Redirect(Page.Request.Url.ToString(), true);
+
+                }
+                catch (InstanceNotFoundException)
+                {
+                    Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Errors/InternalError.aspx"));
+                }
+
+            }
         }
     }
 }
