@@ -17,7 +17,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            int mostUsedLabels = 3;
+            
+            int mostUsedLabels = 5;
 
             if (!SessionManager.IsUserAuthenticated(Context))
             {
@@ -59,31 +60,52 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
             {
                 Label1.Visible = true;
                 Label1.Text = labels[0].LabelName;
+                Label1Count.Text = " (" + labels[0].TimesUsed + ")";
+
+                Label1.Font.Size = LabelSize(labels[0].TimesUsed);
+                Label1Count.Font.Size = LabelSize(labels[0].TimesUsed); 
             }
 
             if (labels.Count > 1)
             {
                 Label2.Visible = true;
                 Label2.Text = labels[1].LabelName;
+                Label2Count.Text = " (" + labels[1].TimesUsed + ")";
+
+                Label2.Font.Size = LabelSize(labels[1].TimesUsed);
+                Label2Count.Font.Size = LabelSize(labels[1].TimesUsed);
             }
 
             if (labels.Count > 2)
             {
                 Label3.Visible = true;
                 Label3.Text = labels[2].LabelName;
+                Label3Count.Text = " (" + labels[2].TimesUsed + ")";
+
+                Label3.Font.Size = LabelSize(labels[2].TimesUsed);
+                Label3Count.Font.Size = LabelSize(labels[2].TimesUsed);
             }
 
             if (labels.Count > 3)
             {
                 Label4.Visible = true;
                 Label4.Text = labels[3].LabelName;
+                Label4Count.Text = " (" + labels[3].TimesUsed + ")";
+
+                Label4.Font.Size = LabelSize(labels[3].TimesUsed);
+                Label4Count.Font.Size = LabelSize(labels[3].TimesUsed);
             }
 
             if (labels.Count > 4)
             {
                 Label5.Visible = true;
                 Label5.Text = labels[4].LabelName;
+                Label5Count.Text = " (" + labels[4].TimesUsed + ")";
+
+                Label5.Font.Size = LabelSize(labels[4].TimesUsed);
+                Label5Count.Font.Size = LabelSize(labels[4].TimesUsed);
             }
+            
             
         }
 
@@ -92,6 +114,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
             LinkButton linkbutton = (LinkButton)sender;
 
             Response.Redirect("~/Pages/Product/ProductsByLabelView.aspx?labelName="+linkbutton.Text);
+        }
+
+        private int LabelSize(int timesUsed)
+        {
+            return (int)Math.Log(timesUsed) + 10;
         }
     }
 }

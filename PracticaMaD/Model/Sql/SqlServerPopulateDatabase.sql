@@ -118,31 +118,33 @@ INSERT INTO Comment (userId, productId, text, commentDate ) VALUES (3, 10,'Me gu
 
 /* LABEL */
 
-INSERT INTO Label (lab, timesUsed) VALUES ('ganga',3) /*1*/
-INSERT INTO Label (lab, timesUsed) VALUES ('pésimo',1); /*2*/
+INSERT INTO Label (lab, timesUsed) VALUES ('ganga', 3) /*1*/
+INSERT INTO Label (lab, timesUsed) VALUES ('pésimo', 1); /*2*/
 INSERT INTO Label (lab, timesUsed) VALUES ('nefasto',1); /*3*/
 INSERT INTO Label (lab, timesUsed) VALUES ('chollazo',2); /*4*/
 INSERT INTO Label (lab, timesUsed) VALUES ('oferta',2); /*5*/
 INSERT INTO Label (lab, timesUsed) VALUES ('irrepetible',2); /*6*/
-INSERT INTO Label (lab, timesUsed) VALUES ('duradero',2); /*7*/
+INSERT INTO Label (lab, timesUsed) VALUES ('duradero', 3); /*7*/
 
 /* LABEL_COMMENT */
 
 INSERT INTO Label_Comment (commentId, labId) Values (10,1)
-INSERT INTO Label_Comment (commentId, labId) Values (10,4)
-INSERT INTO Label_Comment (commentId, labId) Values (10,5)
-INSERT INTO Label_Comment (commentId, labId) Values (10,6)
-INSERT INTO Label_Comment (commentId, labId) Values (10,7)
-
 INSERT INTO Label_Comment (commentId, labId) Values (11,1)
-INSERT INTO Label_Comment (commentId, labId) Values (11,7)
+INSERT INTO Label_Comment (commentId, labId) Values (7,1)
 
 INSERT INTO Label_Comment (commentId, labId) Values (9,2)
+
 INSERT INTO Label_Comment (commentId, labId) Values (9,3)
 
-INSERT INTO Label_Comment (commentId, labId) Values (7,1)
+INSERT INTO Label_Comment (commentId, labId) Values (10,4)
 INSERT INTO Label_Comment (commentId, labId) Values (7,4)
+
+INSERT INTO Label_Comment (commentId, labId) Values (10,5)
 INSERT INTO Label_Comment (commentId, labId) Values (7,5)
 
+INSERT INTO Label_Comment (commentId, labId) Values (10,6)
 INSERT INTO Label_Comment (commentId, labId) Values (8,6)
+
+INSERT INTO Label_Comment (commentId, labId) Values (11,7)
+INSERT INTO Label_Comment (commentId, labId) Values (10,7)
 INSERT INTO Label_Comment (commentId, labId) Values (8,7)

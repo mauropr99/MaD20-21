@@ -10,6 +10,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 {
     public interface IProductService
     {
+        event EventHandler uses;
+
         IProductDao ProductDao { set; }
 
         ICategoryDao CategoryDao { set; }

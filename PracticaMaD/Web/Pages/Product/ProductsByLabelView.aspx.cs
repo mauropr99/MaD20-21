@@ -90,6 +90,7 @@ namespace Web.Pages.Product
 
             this.GridViewCatalog.DataBind();
 
+            this.lblLabelContent.Text = labelName;
 
             IShoppingService shoppingService = SessionManager.GetShoppingService();
 
