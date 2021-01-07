@@ -7,22 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
-{
-
-
-    public partial class ChangePassword
-    {
-
-        /// <summary>
-        /// ChangePasswordForm control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm ChangePasswordForm;
-
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
+    
+    
+    public partial class ChangePassword {
+        
         /// <summary>
         /// lclOldPassword control.
         /// </summary>
@@ -31,7 +20,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Localize lclOldPassword;
-
+        
         /// <summary>
         /// txtOldPassword control.
         /// </summary>
@@ -40,7 +29,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtOldPassword;
-
+        
         /// <summary>
         /// rfvOldPassword control.
         /// </summary>
@@ -49,7 +38,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvOldPassword;
-
+        
         /// <summary>
         /// lblOldPasswordError control.
         /// </summary>
@@ -58,7 +47,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblOldPasswordError;
-
+        
         /// <summary>
         /// lclNewPassword control.
         /// </summary>
@@ -67,7 +56,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Localize lclNewPassword;
-
+        
         /// <summary>
         /// txtNewPassword control.
         /// </summary>
@@ -76,7 +65,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNewPassword;
-
+        
         /// <summary>
         /// rfvNewPassword control.
         /// </summary>
@@ -85,7 +74,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNewPassword;
-
+        
         /// <summary>
         /// cvCreateNewPassword control.
         /// </summary>
@@ -94,7 +83,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CompareValidator cvCreateNewPassword;
-
+        
         /// <summary>
         /// lclRetypePassword control.
         /// </summary>
@@ -103,7 +92,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Localize lclRetypePassword;
-
+        
         /// <summary>
         /// txtRetypePassword control.
         /// </summary>
@@ -112,7 +101,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtRetypePassword;
-
+        
         /// <summary>
         /// rfvRetypePassword control.
         /// </summary>
@@ -121,7 +110,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvRetypePassword;
-
+        
         /// <summary>
         /// cvPasswordCheck control.
         /// </summary>
@@ -130,7 +119,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CompareValidator cvPasswordCheck;
-
+        
         /// <summary>
         /// btnChangePassword control.
         /// </summary>

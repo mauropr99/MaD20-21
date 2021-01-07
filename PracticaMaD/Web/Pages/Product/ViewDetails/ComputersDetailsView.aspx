@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true" CodeBehind="ComputersDetailsView.aspx.cs" Inherits="Web.Pages.Product.ComputersDetailsView" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
-
-    <form id="form1" runat="server">
         <br />
         <asp:LinkButton ID="lnkbutton" runat="server" OnClick="BtnBackToPreviousPage_Click" Text="<%$ Resources:Common, back %>" />
         <br />
@@ -89,11 +87,6 @@
         <asp:Button ID="btnAddToShoppingCart" runat="server" Text="<%$ Resources: , addToShoppingCart %>" CommandName="AddToCart" OnClick="btnAddToShoppingCart_Click"/>
         <br />
         <br />
-
-    </form>
-
-
-
 
 </asp:Content>
 

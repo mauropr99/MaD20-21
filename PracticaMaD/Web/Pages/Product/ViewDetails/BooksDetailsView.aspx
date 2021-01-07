@@ -2,7 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
 
-    <form id="form1" runat="server">
         <div>
             <br />
             <asp:LinkButton ID="lnkbutton" runat="server" OnClick="BtnBackToPreviousPage_Click" Text="<%$ Resources:Common, back %>" />
@@ -92,9 +91,5 @@
             <br />
             <br />
         </div>
-    </form>
-
-
-
 
 </asp:Content>

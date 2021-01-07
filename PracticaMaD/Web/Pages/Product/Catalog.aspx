@@ -3,7 +3,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
     <div id="form">
-        <form id="form1" runat="server">
             <br />
             <br />
             <asp:TextBox ID="txtProductName" runat="server"></asp:TextBox>
@@ -52,6 +51,5 @@
             </div>
             <br />
             <br />
-        </form>
     </div>
 </asp:Content>

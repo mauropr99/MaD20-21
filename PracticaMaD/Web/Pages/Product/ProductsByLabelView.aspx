@@ -2,7 +2,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
 
     <div id="form">
-        <form id="form1" runat="server">
             <br />
             <asp:Label ID="lblLabelInfo" runat="server" Text="<%$ Resources: , labelInfo %>"></asp:Label>&nbsp
             <asp:Label ID="lblLabelContent" runat="server"></asp:Label>
@@ -44,7 +43,6 @@
             </div>
             <br />
             <br />
-        </form>
     </div>
 
 </asp:Content>
