@@ -24,6 +24,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
 
             if (!IsPostBack)
             {
+                IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
+                ICommentService commentService = iocManager.Resolve<ICommentService>();
+                UserSession userSession =
+                    (UserSession)Context.Session[SessionManager.USER_SESSION_ATTRIBUTE];
+                if(userSession != null)
+                    if (commentService.UserAlreadyCommented(Int64.Parse(Request.Params.Get("productId")),userSession.UserId))
+                        Response.Redirect("~/Pages/Comment/CommentList.aspx?productId=" + Request.Params.Get("productId") + "&categoryName=" + Request.Params.Get("categoryName"));
                 ViewState["RefUrl"] = Request.UrlReferrer.ToString();
                 string column = GetLocalResourceObject("label").ToString();
                 labels = new List<string>();
@@ -87,7 +94,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
         protected void BtnAddLabel_Click(object sender, EventArgs e)
         {
             string column = GetLocalResourceObject("label").ToString();
-            string label = HttpUtility.HtmlDecode(this.txtLabelContent.Text.Trim());
+            string label = HttpUtility.HtmlDecode(this.txtLabelContent.Text.Trim().ToLower());
             
             DataRow dr;
             bool exists = false;
@@ -112,8 +119,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
 
         protected void BtnBackToPreviousPage_Click(object sender, EventArgs e)
         {
-            object refUrl = "~/Pages/Product/DetailsViewController.aspx?productId=" + Request.Params.Get("productId") + "&categoryName=" + Request.Params.Get("categoryName");
-            Response.Redirect((string)refUrl);
+            Response.Redirect("~/Pages/Product/DetailsViewController.aspx?productId=" + Request.Params.Get("productId") + "&categoryName=" + Request.Params.Get("categoryName"));
         }
     }
 }

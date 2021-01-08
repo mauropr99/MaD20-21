@@ -7,37 +7,37 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment {
+namespace Web.Pages.Product {
     
     
-    public partial class CommentList {
+    public partial class ProductsByLabelView {
         
         /// <summary>
-        /// lnkbutton control.
+        /// lblLabelInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbutton;
+        protected global::System.Web.UI.WebControls.Label lblLabelInfo;
         
         /// <summary>
-        /// txtEmptyComment control.
+        /// lblLabelContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtEmptyComment;
+        protected global::System.Web.UI.WebControls.Label lblLabelContent;
         
         /// <summary>
-        /// GridViewComments control.
+        /// GridViewCatalog control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewComments;
+        protected global::System.Web.UI.WebControls.GridView GridViewCatalog;
         
         /// <summary>
         /// lnkPrevious control.

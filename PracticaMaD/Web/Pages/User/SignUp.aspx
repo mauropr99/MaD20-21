@@ -6,7 +6,6 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder_BodyContent"
     runat="server">
     <div id="form">
-        <form id="SignUpForm" method="post" runat="server">
 
             <div class="field">
                 <asp:HyperLink ID="lnkUserExists" runat="server" meta:resourcekey="lnkUserExists" NavigateUrl="~/Pages/UserExists.aspx"></asp:HyperLink>
@@ -92,6 +91,5 @@
             <div class="button">
                 <asp:Button ID="btnSignUp" runat="server" OnClick="BtnSignUpClick" meta:resourcekey="btnSignUp" />
             </div>
-        </form>
     </div>
 </asp:Content>

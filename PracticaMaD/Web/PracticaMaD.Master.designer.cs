@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Es.Udc.DotNet.PracticaMaD.Web {
-    
-    
-    public partial class PracticaMaD {
-        
+namespace Es.Udc.DotNet.PracticaMaD.Web
+{
+
+
+    public partial class PracticaMaD
+    {
+
         /// <summary>
         /// Head1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
-        
+
         /// <summary>
         /// lclHeader control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Localize lclHeader;
-        
+
         /// <summary>
         /// HyperLinkAuth control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink HyperLinkAuth;
-        
+
         /// <summary>
         /// HyperLinkCatalog control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink HyperLinkCatalog;
-        
+
         /// <summary>
         /// HyperLinkShoppingCart control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink HyperLinkShoppingCart;
-        
+
         /// <summary>
         /// ShoppingCartSize control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label ShoppingCartSize;
-        
+
         /// <summary>
         /// HyperLinkUpdate control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink HyperLinkUpdate;
-        
+
         /// <summary>
         /// HyperLinkViewCreditCards control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink HyperLinkViewCreditCards;
-        
+
         /// <summary>
         /// HyperLinkOrderHistory control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink HyperLinkOrderHistory;
-        
+
         /// <summary>
         /// HyperLinkLogout control.
         /// </summary>
@@ -101,7 +103,106 @@ namespace Es.Udc.DotNet.PracticaMaD.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink HyperLinkLogout;
-        
+
+        /// <summary>
+        /// ContentPlaceHolder_HeaderContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder_HeaderContent;
+
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Label1;
+
+        /// <summary>
+        /// Label1Count control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1Count;
+
+        /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Label2;
+
+        /// <summary>
+        /// Label2Count control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2Count;
+
+        /// <summary>
+        /// Label3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Label3;
+
+        /// <summary>
+        /// Label3Count control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label3Count;
+
+        /// <summary>
+        /// Label4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Label4;
+
+        /// <summary>
+        /// Label4Count control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label4Count;
+
+        /// <summary>
+        /// Label5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Label5;
+
+        /// <summary>
+        /// Label5Count control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label5Count;
+
         /// <summary>
         /// ContentPlaceHolder_BodyContent control.
         /// </summary>
@@ -110,7 +211,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder_BodyContent;
-        
+
         /// <summary>
         /// lclFooter control.
         /// </summary>

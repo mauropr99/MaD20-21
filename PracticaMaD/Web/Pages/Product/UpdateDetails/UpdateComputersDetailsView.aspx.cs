@@ -42,16 +42,12 @@ namespace Web.Pages.Product
                 {
                 }
 
-                ViewState["RefUrl"] = Request.UrlReferrer.ToString();
-
             }
         }
 
         protected void BtnBackToPreviousPage_Click(object sender, EventArgs e)
         {
-            object refUrl = ViewState["RefUrl"];
-            if (refUrl != null || refUrl.ToString().Contains("Comment")) Response.Redirect("~/Pages/Product/Catalog.aspx");
-            if (refUrl != null) Response.Redirect((string)refUrl);
+            Response.Redirect("~/Pages/Product/Catalog.aspx");
         }
 
         protected void Submit_Click(object sender, EventArgs e)

@@ -1,9 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true"
+﻿<%@ Page meta:resourcekey="Page" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true"
     CodeBehind="Catalog.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Product.Catalog" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
     <div id="form">
-        <form id="form1" runat="server">
             <br />
             <br />
             <asp:TextBox ID="txtProductName" runat="server"></asp:TextBox>
@@ -52,6 +51,5 @@
             </div>
             <br />
             <br />
-        </form>
     </div>
 </asp:Content>

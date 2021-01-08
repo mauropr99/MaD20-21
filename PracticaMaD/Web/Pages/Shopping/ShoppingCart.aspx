@@ -2,7 +2,6 @@
     CodeBehind="ShoppingCart.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping.ShoppingCart" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
     <div id="form">
-        <form id="form1" runat="server">
          <br />
             <br />
             &nbsp;<asp:Image CssClass="img" ID="imgEmptyCart" runat="server"
@@ -48,6 +47,5 @@
             <br />
             <br />
             <asp:Button ID="btn_BuyProducts" runat="server" CssClass="labelResult" OnClick="Btn_BuyProducts" Text="<%$ Resources: , btn_BuyProducts %>" />
-          </form>
     </div>
 </asp:Content>

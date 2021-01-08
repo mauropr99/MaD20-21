@@ -6,7 +6,6 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder_BodyContent"
     runat="server">
     <div id="form">
-        <form id="PurchaseForm" method="POST" runat="server">
              
             <div class="field">
                 <asp:Label ID="lclCreditCards" CssClass="label" runat="server" Text="<%$ Resources: , lclCreditCards %>"></asp:Label>
@@ -41,6 +40,5 @@
             <div class="button">
                 <asp:Button ID="btnPurchase" CssClass="button" runat="server" OnClick="BtnPurchaseClick" Text="<%$ Resources: , btnPurchase %>"/>
             </div>
-        </form>
     </div>
 </asp:Content>

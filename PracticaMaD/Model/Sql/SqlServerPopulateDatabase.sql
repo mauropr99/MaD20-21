@@ -17,17 +17,6 @@
  
 USE practicamad
 
-DELETE FROM Comment			DBCC CHECKIDENT ('[Comment]', RESEED, 0);
-DELETE FROM OrderLine		DBCC CHECKIDENT ('[OrderLine]', RESEED, 0);
-DELETE FROM Order_Table		DBCC CHECKIDENT ('[Order_Table]', RESEED, 0);
-DELETE FROM Book;
-DELETE FROM Computers; 
-DELETE FROM Product			DBCC CHECKIDENT ('[Product]', RESEED, 0);
-DELETE FROM CreditCard_User;
-DELETE FROM CreditCard		DBCC CHECKIDENT ('[CreditCard]', RESEED, 0);
-DELETE FROM User_Table		DBCC CHECKIDENT ('[User_Table]', RESEED, 0);
-DELETE FROM Category		DBCC CHECKIDENT ('[Category]', RESEED, 0);
-DELETE FROM Language		DBCC CHECKIDENT ('[Language]', RESEED, 0);
 
 /* LANGUAGE */
 INSERT INTO Language (name, country) VALUES ('es', 'ES');
@@ -129,31 +118,33 @@ INSERT INTO Comment (userId, productId, text, commentDate ) VALUES (3, 10,'Me gu
 
 /* LABEL */
 
-INSERT INTO Label (lab, timesUsed) VALUES ('Ganga',3) /*1*/
-INSERT INTO Label (lab, timesUsed) VALUES ('Pésimo',1); /*2*/
-INSERT INTO Label (lab, timesUsed) VALUES ('Nefasto',1); /*3*/
-INSERT INTO Label (lab, timesUsed) VALUES ('Chollazo',2); /*4*/
-INSERT INTO Label (lab, timesUsed) VALUES ('Oferta',2); /*5*/
-INSERT INTO Label (lab, timesUsed) VALUES ('Irrepetible',2); /*6*/
-INSERT INTO Label (lab, timesUsed) VALUES ('Duradero',2); /*7*/
+INSERT INTO Label (lab, timesUsed) VALUES ('ganga', 3) /*1*/
+INSERT INTO Label (lab, timesUsed) VALUES ('pésimo', 1); /*2*/
+INSERT INTO Label (lab, timesUsed) VALUES ('nefasto',1); /*3*/
+INSERT INTO Label (lab, timesUsed) VALUES ('chollazo',2); /*4*/
+INSERT INTO Label (lab, timesUsed) VALUES ('oferta',2); /*5*/
+INSERT INTO Label (lab, timesUsed) VALUES ('irrepetible',2); /*6*/
+INSERT INTO Label (lab, timesUsed) VALUES ('duradero', 3); /*7*/
 
 /* LABEL_COMMENT */
 
 INSERT INTO Label_Comment (commentId, labId) Values (10,1)
-INSERT INTO Label_Comment (commentId, labId) Values (10,4)
-INSERT INTO Label_Comment (commentId, labId) Values (10,5)
-INSERT INTO Label_Comment (commentId, labId) Values (10,6)
-INSERT INTO Label_Comment (commentId, labId) Values (10,7)
-
 INSERT INTO Label_Comment (commentId, labId) Values (11,1)
-INSERT INTO Label_Comment (commentId, labId) Values (11,7)
+INSERT INTO Label_Comment (commentId, labId) Values (7,1)
 
 INSERT INTO Label_Comment (commentId, labId) Values (9,2)
+
 INSERT INTO Label_Comment (commentId, labId) Values (9,3)
 
-INSERT INTO Label_Comment (commentId, labId) Values (7,1)
+INSERT INTO Label_Comment (commentId, labId) Values (10,4)
 INSERT INTO Label_Comment (commentId, labId) Values (7,4)
+
+INSERT INTO Label_Comment (commentId, labId) Values (10,5)
 INSERT INTO Label_Comment (commentId, labId) Values (7,5)
 
+INSERT INTO Label_Comment (commentId, labId) Values (10,6)
 INSERT INTO Label_Comment (commentId, labId) Values (8,6)
+
+INSERT INTO Label_Comment (commentId, labId) Values (11,7)
+INSERT INTO Label_Comment (commentId, labId) Values (10,7)
 INSERT INTO Label_Comment (commentId, labId) Values (8,7)

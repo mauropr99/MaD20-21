@@ -3,7 +3,6 @@
     meta:resourcekey="Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
-    <form id="form1" runat="server">
         <br />
         <br />
         <br />
@@ -33,10 +32,5 @@
         <asp:Button ID="btnAddNewCreditCard" runat="server" Text="<%$ Resources: , btnAddCreditCard %>" OnClick="BtnAddNewCreditCard_Click" />
         <br />
         <br />
-    </form>
-
-
-
-
 
 </asp:Content>

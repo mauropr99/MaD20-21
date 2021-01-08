@@ -2,7 +2,9 @@
 using System.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Test;
 using Es.Udc.DotNet.PracticaMaD.Test.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -16,6 +18,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
         private static IKernel kernel;
 
         private TransactionScope transactionScope;
+        private static ICommentService commentService;
+        private static IUserService userService;
+
+        private const string login = "user";
+        private const string login2 = "user2";
+        private const string name = "name";
+        private const string lastName = "lastName";
+        private const string password = "passwd";
+        private const string email = "user@udc.es";
+        private const string email2 = "user2@udc.es";
+        private const string address = "A Coruña";
+        private const string role = "user";
 
         private TestContext testContextInstance;
 
@@ -46,6 +60,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
             TestUtil.categoryDao = kernel.Get<ICategoryDao>();
             TestUtil.computerDao = kernel.Get<IComputerDao>();
             TestUtil.bookDao = kernel.Get<IBookDao>();
+
+
+            commentService = kernel.Get<ICommentService>();
+            userService = kernel.Get<IUserService>();
 
         }
 
@@ -159,5 +177,51 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
             }
         }
 
+        [TestMethod()]
+        public void FindByLabelTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                Language language = TestUtil.CreateExistentLanguage();
+
+                long userId = userService.SingUpUser(login, password,
+                       new UserDetails(name, lastName, email, language.name, language.country));
+                long user2Id = userService.SingUpUser(login2, password,
+                       new UserDetails(name, lastName, email2, language.name, language.country));
+                CreditCard creditCard = TestUtil.CreateCreditCard();
+
+                Category category1 = TestUtil.CreateCategory("Ordenadores");
+                Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
+                Computer product2 = TestUtil.CreateComputer(category1, "ACER GL 62 6QD", 3, "ACER");
+                List<string> labels = new List<string>
+                {
+                    "Ganga",
+                    "Oferta",
+                    "Chollazo"
+                };
+
+                string text = "Muy buen ordenador y a buen precio. Funcionan todos los juegos a calidad máxima, muy fluidos y sin apenas calentarse el aparato.";
+                var comment1 = commentService.NewComment(userId, product1.id, text, labels);
+
+                text = "Es una bestia de portatil gaming , los juegos se ven genial y se inician en un momento , no se calienta y encima no es tan pesado .";
+
+                List<string> labels2 = new List<string>
+                {
+                    "Irresistible",
+                    "Chollazo",
+                };
+                var comment2 = commentService.NewComment(user2Id, product2.id, text, labels2);
+                List<Product> products = new List<Product>();
+                products.Add(product1);
+                products.Add(product2);
+                List<Product> productsFound = new List<Product>();
+                productsFound = TestUtil.productDao.FindByLabel("Chollazo", 0, 5);
+                Assert.AreEqual(products.Count, productsFound.Count);
+                products.Clear();
+                products.Add(product2);
+                productsFound = TestUtil.productDao.FindByLabel("Irresistible", 0, 5);
+                Assert.AreEqual(products[0].id, productsFound[0].id);
+            }
+        }
     }
 }

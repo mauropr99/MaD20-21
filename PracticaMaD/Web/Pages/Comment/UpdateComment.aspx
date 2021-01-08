@@ -2,7 +2,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
 
     <div id="form">
-        <form id="form1" runat="server">
             <br />
             <asp:LinkButton ID="lnkbutton" runat="server" OnClick="BtnBackToPreviousPage_Click" CausesValidation="false" Text="<%$ Resources:Common, back %>" />
             <br />
@@ -39,7 +38,6 @@
             <asp:Button ID="btnUpdateComment" runat="server" Text="<%$ Resources: , updateCommentButton %>" OnClick="btnUpdateComment_Click" />
             <br />
             
-        </form>
     </div>
 
 </asp:Content>

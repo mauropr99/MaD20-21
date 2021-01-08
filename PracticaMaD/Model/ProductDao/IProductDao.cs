@@ -29,5 +29,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         Product FindByProductName(String product_name);
 
         string GetCategoryName(long productId);
+        List<Product> FindByLabel(string label, int startIndex, int count);
     }
 }

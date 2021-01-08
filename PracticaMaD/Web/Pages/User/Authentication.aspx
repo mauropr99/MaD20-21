@@ -6,7 +6,6 @@
     runat="server">
     <asp:HyperLink ID="lnkSignUp" runat="server" NavigateUrl="~/Pages/User/SignUp.aspx" meta:resourcekey="lnkSignUp" />
     <div id="form">
-        <form id="AuthenticationForm" method="POST" runat="server">
             <div class="field">
                 <span class="label">
                     <asp:Localize ID="lclLogin" runat="server" meta:resourcekey="lclLogin" /></span><span
@@ -37,6 +36,5 @@
             <div class="button">
                 <asp:Button ID="btnLogin" runat="server" OnClick="BtnLoginClick" meta:resourcekey="btnLogin" />
             </div>
-        </form>
     </div>
 </asp:Content>

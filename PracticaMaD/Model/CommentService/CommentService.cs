@@ -112,7 +112,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
                 }
 
                 Label foundLabel = LabelDao.FindByLabelName(label);
-                foundLabel.timesUsed++;
+                if (!oldLabels.Contains(foundLabel)) foundLabel.timesUsed++;
                 LabelDao.Update(foundLabel);
 
                 //Adding new labels
@@ -169,10 +169,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
             bool existMoreComments = (comments.Count == count + 1);
 
-            if (existMoreComments)
-            {
-                comments.RemoveAt(count);
-            }
+  
 
             List<CommentDetails> detailComments = new List<CommentDetails>();
 
@@ -189,6 +186,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
                 detailComments.Add(new CommentDetails(comment.id, user.login, user.id, comment.commentDate, comment.text, labelNames));
             }
 
+            if (existMoreComments)
+            {
+                detailComments.RemoveAt(count);
+            }
             return new CommentBlock(detailComments, existMoreComments);
         }
 
@@ -216,7 +217,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
             foreach (Label label in labels)
             {
-                mostUsedLabels.Add(new LabelDetails(label.id, label.lab));
+                int aux = 0;
+                if (label.timesUsed != null) aux = (int)label.timesUsed;
+
+                mostUsedLabels.Add(new LabelDetails(label.id, label.lab, aux));
             }
 
             return mostUsedLabels;

@@ -5,7 +5,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
 
     <div id="form">
-        <form id="form1" runat="server">
             <div class="field">
                 <asp:Label ID="lblCreditCardOwner" CssClass="label" runat="server" Text="<%$ Resources: , creditCardOwner %>"></asp:Label>
                 <span class="entry">
@@ -62,6 +61,5 @@
             <br />
             <br />
             <br />
-        </form>
     </div>
 </asp:Content>

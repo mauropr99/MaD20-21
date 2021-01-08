@@ -2,7 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
 
-<form id="form1" runat="server">
         <br />
         <asp:LinkButton ID="LinkButton2" runat="server" OnClick="BtnBackToPreviousPage_Click" Text="<%$ Resources:Common, back %>" />
         <br />
@@ -63,8 +62,6 @@
         <br />
 
         <asp:Button ID="Submit" runat="server" Text="<%$ Resources: , submit %>" OnClick="Submit_Click" />
-
-    </form>
 
 
 </asp:Content>
