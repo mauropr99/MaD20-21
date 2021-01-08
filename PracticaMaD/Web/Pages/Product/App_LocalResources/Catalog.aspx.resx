@@ -138,4 +138,7 @@
   <data name="outStock" xml:space="preserve">
     <value>Out of stock</value>
   </data>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - Catalog</value>
+  </data>
 </root>
