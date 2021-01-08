@@ -51,32 +51,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao
             return language;
         }
 
-        public List<Language> FindLanguagesByCountry(string country)
-        {
-
-            List<Language> language = null;
-
-            #region Option 1: Using Linq.
-
-            DbSet<Language> languages = Context.Set<Language>();
-
-            var result =
-                (from u in languages
-                 where u.country == country
-                 select u).Skip(0).ToList();
-
-
-            language = result.ToList();
-
-            #endregion Option 1: Using Linq.
-
-            if (language == null)
-                throw new InstanceNotFoundException(country,
-                    typeof(Language).FullName);
-
-            return result;
-        }
-
         public Language FindByUserId(long userId)
         {
             #region Using Linq.

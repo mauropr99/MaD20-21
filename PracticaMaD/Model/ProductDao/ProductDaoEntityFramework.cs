@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Runtime.Caching;
 using Es.Udc.DotNet.ModelUtil.Dao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
-
+using Es.Udc.DotNet.PracticaMaD.Model.Util;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 {
@@ -17,15 +18,27 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         {
             #region Using Linq.
 
-            DbSet<Product> products = Context.Set<Product>();
+            string cacheObjectName = "FindByProductName" + product_name + startIndex + count;
+            var cachedObject = CacheUtil.GetFromCache<List<Product>>(cacheObjectName);
 
-            List<Product> result =
-                (from p in products
-                 where p.product_name.Contains(product_name)
-                 orderby p.product_name
-                 select p).Skip(startIndex).Take(count).ToList();
+            if (cachedObject == null)
+            {
 
-            return result;
+                DbSet<Product> products = Context.Set<Product>();
+
+                List<Product> result =
+                    (from p in products
+                     where p.product_name.Contains(product_name)
+                     orderby p.product_name
+                     select p).Skip(startIndex).Take(count).ToList();
+
+                CacheUtil.AddToCache<List<Product>>(cacheObjectName, result);
+
+                return result;
+            }
+
+            return cachedObject;
+
 
             #endregion Using Linq.
         }
@@ -59,23 +72,32 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         {
             #region Using Linq.
 
-            DbSet<Product> products = Context.Set<Product>();
+            string cacheObjectName = "FindByProductNameAndCategoryName" + product_name + category_name + startIndex + count;
+            var cachedObject = CacheUtil.GetFromCache<List<Product>>(cacheObjectName);
 
+            if (cachedObject == null)
+            {
+                DbSet<Product> products = Context.Set<Product>();
 
-            List<Product> result =
-                (from p in products
-                 where p.product_name.Contains(product_name) && p.Category.name == category_name
-                 orderby p.product_name
-                 select p).Skip(startIndex).Take(count).ToList();
+                List<Product> result =
+                    (from p in products
+                     where p.product_name.Contains(product_name) && p.Category.name == category_name
+                     orderby p.product_name
+                     select p).Skip(startIndex).Take(count).ToList();
 
+                CacheUtil.AddToCache<List<Product>>(cacheObjectName, result);
 
-            return result;
+                return result;
+            }
+
+            return cachedObject;
 
             #endregion Using Linq.
         }
 
         public string GetCategoryName(long productId)
         {
+
             DbSet<Product> products = Context.Set<Product>();
 
             string categoryName =
@@ -90,14 +112,25 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         {
             #region Using Linq.
 
-            DbSet<Label> labels = Context.Set<Label>();
+            string cacheObjectName = "FindByLabel" + label + startIndex + count;
+            var cachedObject = CacheUtil.GetFromCache<List<Product>>(cacheObjectName);
 
-            List<Product> products =
-                (from l in labels
-                 where l.lab == label
-                 select  from p in l.Comments select p.Product ).FirstOrDefault().Distinct().Skip(startIndex).Take(count).ToList();
+            if (cachedObject == null)
+            {
+                DbSet<Label> labels = Context.Set<Label>();
 
-            return products;
+                List<Product> result =
+                    (from l in labels
+                     where l.lab == label
+                     select  from p in l.Comments select p.Product).FirstOrDefault().Distinct().Skip(startIndex).Take(count).ToList();
+
+                CacheUtil.AddToCache<List<Product>>(cacheObjectName, result);
+
+                return result;
+            }
+
+            return cachedObject;
+
 
             #endregion Using Linq.
         }

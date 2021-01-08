@@ -66,6 +66,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -176,6 +177,7 @@
     <Compile Include="UserService\UserDetails.cs" />
     <Compile Include="UserService\UserService.cs" />
     <Compile Include="UserService\Util\PasswordEncrypter.cs" />
+    <Compile Include="Util\CacheUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Model1.Context.tt">
