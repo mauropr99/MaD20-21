@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Es.Udc.DotNet.ModelUtil.Dao;
-
-
+using Es.Udc.DotNet.PracticaMaD.Model.Util;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ComputerDao
 {
@@ -13,19 +12,29 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ComputerDao
     {
         #region IProductDao Members
 
-        public List<Computer> FindByProductName(String product_name, int startIndex, int count)
+        public List<Computer> FindByProductName(String productName, int startIndex, int count)
         {
             #region Using Linq.
+            string cacheObjectName = "FindByProductName" + productName + startIndex + count;
+            var cachedObject = CacheUtil.GetFromCache<List<Computer>>(cacheObjectName);
 
-            DbSet<Computer> products = Context.Set<Computer>();
+            if (cachedObject == null)
+            {
+                DbSet<Computer> products = Context.Set<Computer>();
 
-            List<Computer> result =
-                (from p in products
-                 where p.product_name.Contains(product_name)
-                 orderby p.product_name
-                 select p).Skip(startIndex).Take(count).ToList();
+                List<Computer> result =
+                    (from p in products
+                     where p.product_name.Contains(productName)
+                     orderby p.product_name
+                     select p).Skip(startIndex).Take(count).ToList();
 
-            return result;
+                CacheUtil.AddToCache<List<Computer>>(cacheObjectName, result);
+
+                return result;
+            }
+
+            return cachedObject;
+
 
             #endregion Using Linq.
         }

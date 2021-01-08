@@ -14,11 +14,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
     {
         #region IProductDao Members
 
-        public List<Product> FindByProductName(String product_name, int startIndex, int count)
+        public List<Product> FindByProductName(String productName, int startIndex, int count)
         {
             #region Using Linq.
 
-            string cacheObjectName = "FindByProductName" + product_name + startIndex + count;
+            string cacheObjectName = "FindByProductName" + productName + startIndex + count;
             var cachedObject = CacheUtil.GetFromCache<List<Product>>(cacheObjectName);
 
             if (cachedObject == null)
@@ -28,7 +28,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 
                 List<Product> result =
                     (from p in products
-                     where p.product_name.Contains(product_name)
+                     where p.product_name.Contains(productName)
                      orderby p.product_name
                      select p).Skip(startIndex).Take(count).ToList();
 
@@ -43,7 +43,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
             #endregion Using Linq.
         }
 
-        public Product FindByProductName(String product_name)
+        public Product FindByProductName(String productName)
         {
             #region Using Linq.
             Product product = new Product();
@@ -52,13 +52,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 
             var result =
                 (from p in products
-                 where p.product_name == product_name
+                 where p.product_name == productName
                  select p);
 
             product = result.FirstOrDefault();
 
             if (product == null)
-                throw new InstanceNotFoundException(product_name,
+                throw new InstanceNotFoundException(productName,
                     typeof(User).FullName);
 
 
@@ -67,12 +67,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
             #endregion Using Linq.
         }
 
-        public List<Product> FindByProductNameAndCategoryName(String product_name, string category_name,
+        public List<Product> FindByProductNameAndCategoryName(String productName, string categoryName,
             int startIndex, int count)
         {
             #region Using Linq.
 
-            string cacheObjectName = "FindByProductNameAndCategoryName" + product_name + category_name + startIndex + count;
+            string cacheObjectName = "FindByProductNameAndCategoryName" + productName + categoryName + startIndex + count;
             var cachedObject = CacheUtil.GetFromCache<List<Product>>(cacheObjectName);
 
             if (cachedObject == null)
@@ -81,7 +81,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
 
                 List<Product> result =
                     (from p in products
-                     where p.product_name.Contains(product_name) && p.Category.name == category_name
+                     where p.product_name.Contains(productName) && p.Category.name == categoryName
                      orderby p.product_name
                      select p).Skip(startIndex).Take(count).ToList();
 
@@ -112,26 +112,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         {
             #region Using Linq.
 
-            string cacheObjectName = "FindByLabel" + label + startIndex + count;
-            var cachedObject = CacheUtil.GetFromCache<List<Product>>(cacheObjectName);
+            
+            DbSet<Label> labels = Context.Set<Label>();
 
-            if (cachedObject == null)
-            {
-                DbSet<Label> labels = Context.Set<Label>();
+            List<Product> result =
+                (from l in labels
+                    where l.lab == label
+                    select  from p in l.Comments select p.Product).FirstOrDefault().Distinct().Skip(startIndex).Take(count).ToList();
 
-                List<Product> result =
-                    (from l in labels
-                     where l.lab == label
-                     select  from p in l.Comments select p.Product).FirstOrDefault().Distinct().Skip(startIndex).Take(count).ToList();
-
-                CacheUtil.AddToCache<List<Product>>(cacheObjectName, result);
-
-                return result;
-            }
-
-            return cachedObject;
-
-
+            return result;
+            
             #endregion Using Linq.
         }
 

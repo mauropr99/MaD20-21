@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using Es.Udc.DotNet.ModelUtil.Dao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.Util;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.LabelDao
 {
@@ -31,22 +32,32 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LabelDao
         public Label FindByLabelName(string labelName)
         {
             #region Option 1: Using Linq.
+            string cacheObjectName = "FindByLabelName" + labelName;
+            var cachedObject = CacheUtil.GetFromCache<Label>(cacheObjectName);
 
-            DbSet<Label> labels = Context.Set<Label>();
+            if (cachedObject == null)
+            {
+                DbSet<Label> labels = Context.Set<Label>();
 
-            Label result =
-                (from u in labels
-                 where u.lab == labelName
-                 select u).FirstOrDefault();
+                Label result =
+                    (from u in labels
+                     where u.lab == labelName
+                     select u).FirstOrDefault();
 
 
-            #endregion Option 1: Using Linq.
+                #endregion Option 1: Using Linq.
 
-            if (result == null)
-                throw new InstanceNotFoundException(labelName,
-                    typeof(Label).FullName);
+                if (result == null)
+                    throw new InstanceNotFoundException(labelName,
+                        typeof(Label).FullName);
 
-            return result;
+                CacheUtil.AddToCache<Label>(cacheObjectName, result);
+
+                return result;
+            }
+
+            return cachedObject;
+
         }
 
         public List<Label> FindLabelsByCommentId(long commentId)
