@@ -11,13 +11,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao
     {
         #region Public Constructors
 
-        /// <summary>
-        /// Public Constructor
-        /// </summary>
-        public OrderLineDaoEntityFramework()
-        {
-        }
-
         public List<OrderLine> FindByOrderId(long orderId)
         {
             DbSet<OrderLine> orderLine = Context.Set<OrderLine>();

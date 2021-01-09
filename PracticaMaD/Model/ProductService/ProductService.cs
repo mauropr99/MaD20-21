@@ -112,6 +112,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             ProductDao.Update(product);
         }
 
+        public void UpdateComputer(Computer product)
+        {
+            ComputerDao.Update(product);
+        }
+
+        public void UpdateBook(Book product)
+        {
+            BookDao.Update(product);
+        }
+
         public List<Category> ViewAllCategories()
         {
             return CategoryDao.GetAllElements().ToList();
@@ -122,6 +132,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             return (CommentDao.FindCommentsByProductId(productId,0,1).Count != 0);
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
         public Book FindBook(long productId)
         {
             Book book = BookDao.Find(productId);
@@ -129,6 +140,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             return book;
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
         public Computer FindComputer(long productId)
         {
             Computer computer = ComputerDao.Find(productId);
@@ -136,15 +148,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
             return computer;
         }
 
-        public void UpdateComputer(Computer product)
-        {
-            ComputerDao.Update(product);
-        }
-
-        public void UpdateBook(Book product)
-        {
-            BookDao.Update(product);
-        }
 
         #endregion IProductService Members
 

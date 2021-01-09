@@ -14,6 +14,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao
         /// <exception cref="InstanceNotFoundException"/>
         User FindByLogin(String login);
 
+        /// <exception cref="InstanceNotFoundException"></exception>
         User FindByEmail(String email);
     }
 }

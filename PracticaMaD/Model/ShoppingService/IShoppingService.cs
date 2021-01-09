@@ -18,6 +18,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         ICreditCardDao CreditCardDao { set; }
         ICategoryDao CategoryDao { set; }
 
+
+        /// <exception cref="InstanceNotFoundException"/>
+        /// <exception cref="CreditCardAlreadyExpired"/>
+        /// <exception cref="NotEnoughStock"/>
+        /// <exception cref="DifferentPrice"/>
         [Transactional]
         Order BuyProducts(long userId, List<ShoppingCartDetails> shoppingCart,
             string postalAddress, long creditCardId, string description);
@@ -27,10 +32,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         List<ShoppingCartDetails> ViewShoppingCart();
 
+        /// <exception cref="InstanceNotFoundException"/>
         void AddToShoppingCart(long productId);
 
         void ClearShoppingCart();
 
+        /// <exception cref="InstanceNotFoundException"/>
         void AddToShoppingCart(long productId, short quantity);
 
         void RemoveFromShoppingCart(long productId);

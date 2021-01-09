@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Management.Instrumentation;
 using Es.Udc.DotNet.ModelUtil.Dao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao
@@ -41,6 +42,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao
             #endregion Option 1: Using Linq
         }
 
+        /// <exception cref="InstanceNotFoundException"></exception>
         public void AddUser(User user, long creditCardId)
         {
             DbSet<CreditCard> creditCards = Context.Set<CreditCard>();

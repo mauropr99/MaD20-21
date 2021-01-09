@@ -20,7 +20,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         public IUserDao UserDao { private get; set; }
 
         #region ICommentSercice Members
-
+        /// <exception cref="InstanceNotFoundException"/>
+        /// <exception cref="ProductAlreadyCommentedException"/>
         public Comment NewComment(long userId, long productId, string text, List<string> labels)
         {
             User user = UserDao.Find(userId);
@@ -68,6 +69,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
         }
 
+
+        /// <exception cref="InstanceNotFoundException"/>
         public Comment UpdateComment(long userId, long commentId, string text, List<string> labels)
         {
             Comment comment = CommentDao.Find(commentId);
@@ -128,6 +131,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             return comment;
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
         public void RemoveComment(long userId, long commentId)
         {
             //Check if comment exists
@@ -192,6 +196,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             return new CommentBlock(detailComments, existMoreComments);
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
         public CommentDetails FindComment(long commentId)
         {
             Comment comment = CommentDao.Find(commentId);
@@ -208,6 +213,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             return commentDetails;
         }
 
+        /// <exception cref="InstanceNotFoundException"></exception>
         public List<LabelDetails> ViewMostUsedLabels(int quantity)
         {
             List<LabelDetails> mostUsedLabels = new List<LabelDetails>();
@@ -225,6 +231,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             return mostUsedLabels;
         }
 
+        /// <exception cref="InstanceNotFoundException"></exception>
         public bool UserAlreadyCommented(long productId, long userId)
         {
             return CommentDao.FindCommentsByUserId(productId, userId) != null;

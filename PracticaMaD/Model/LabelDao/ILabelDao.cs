@@ -8,6 +8,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LabelDao
     {
         Boolean ExistByName(string labelName);
 
+        /// <exception cref="InstanceNotFoundException"></exception>
         Label FindByLabelName(string labelName);
 
         List<Label> FindLabelsByCommentId(long commentId);

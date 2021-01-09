@@ -14,19 +14,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao
     public class LanguageDaoEntityFramework :
         GenericDaoEntityFramework<Language, Int64>, ILanguageDao
     {
-        #region Public Constructors
-
-        /// <summary>
-        /// Public Constructor
-        /// </summary>
-        public LanguageDaoEntityFramework()
-        {
-        }
-
-        #endregion Public Constructors
-
         #region ILanguageDao Members. Specific Operations
-
+        /// <exception cref="InstanceNotFoundException"></exception>
         public Language FindByNameAndCountry(string languageName, string languageCountry)
         {
             Language language = null;
@@ -63,6 +52,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao
             return cachedObject;
         }
 
+        /// <exception cref="InstanceNotFoundException"></exception>
         public Language FindByUserId(long userId)
         {
             #region Using Linq.
@@ -74,6 +64,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao
                  where u.id == userId
                  select u.Language).FirstOrDefault();
 
+            if (result == null)
+                throw new InstanceNotFoundException("",
+                    typeof(Language).FullName);
 
             return result;
 

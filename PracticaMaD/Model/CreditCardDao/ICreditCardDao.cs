@@ -8,6 +8,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao
     {
         List<CreditCard> FindCreditCardsByUserId(long userId);
 
+        /// <exception cref="InstanceNotFoundException"></exception>
         void AddUser(User user, long creditCardId);
     }
 }

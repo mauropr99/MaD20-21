@@ -33,10 +33,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         public IOrderLineDao OrderLineDao { private get; set; }
 
         private List<ShoppingCartDetails> shoppingCart = new List<ShoppingCartDetails>();
-        
+
         #region IShoppingService Members
 
-
+        /// <exception cref="InstanceNotFoundException"/>
+        /// <exception cref="CreditCardAlreadyExpired"/>
+        /// <exception cref="NotEnoughStock"/>
+        /// <exception cref="DifferentPrice"/>
         public Order BuyProducts(long userId, List<ShoppingCartDetails> shoppingCart,
             string postalAddress, long creditCardId, string description)
         {
@@ -113,13 +116,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             shoppingCart.Clear();
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
         public void AddToShoppingCart(long productId)
         {
             AddToShoppingCart(productId, 1);
-
         }
 
-
+        /// <exception cref="InstanceNotFoundException"/>
         public void AddToShoppingCart(long productId, short quantity)
         {
             Product product = ProductDao.Find(productId);

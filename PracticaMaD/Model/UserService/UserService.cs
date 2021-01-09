@@ -28,6 +28,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
         #region IUserService Members
 
+        /// <exception cref="IncorrectPasswordException"/>
+        /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
         public void ChangePassword(long id, string oldClearPassword,
             string newClearPassword)
@@ -107,6 +109,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         }
 
         /// <exception cref="DuplicateInstanceException"/>
+        /// <exception cref="InstanceNotFoundException"></exception>
         [Transactional]
         public long SingUpUser(string login, string clearPassword, UserDetails userDetails)
         {
@@ -163,6 +166,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             }
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
         public void UpdateUserDetails(long id, UserDetails userDetails)
         {
@@ -174,7 +178,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             user.languageId = LanguageDao.FindByNameAndCountry(userDetails.LanguageName, userDetails.LanguageCountry).id;
         }
 
-        /// <exception cref="DuplicateCreditCardException"/>
+        /// <exception cref="DuplicateCreditCardException"></exception>
+        /// <exception cref="InstanceNotFoundException"></exception>
         [Transactional]
         public CreditCard AddCreditCard(long userId, string ownerName, string creditType,
             string creditCardNumber, short cvv, DateTime expirationDate)
@@ -214,6 +219,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             return newCreditCard;
         }
 
+        /// <exception cref="InstanceNotFoundException"></exception>
         public void SetCreditCardAsDefault(long userId, long creditCardId)
         {
 
@@ -225,6 +231,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
         }
 
+        /// <exception cref="InstanceNotFoundException"></exception>
         public bool UserExists(string login)
         {
             try
@@ -239,6 +246,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             return true;
         }
 
+        /// <exception cref="InstanceNotFoundException"></exception>
         public List<CreditCardDetails> FindCreditCardsByUserId(long userId)
         {
             User user = UserDao.Find(userId);
@@ -247,6 +255,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             return CreditCardDetails.fromCreditCardToCreditCardDetails(creditCards);
         }
 
+        /// <exception cref="InstanceNotFoundException"></exception>
         public String GetRolByUserId(long userId)
         {
             return UserDao.Find(userId).role;

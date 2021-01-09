@@ -29,6 +29,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LabelDao
             #endregion Using Linq.
         }
 
+        /// <exception cref="InstanceNotFoundException"></exception>
         public Label FindByLabelName(string labelName)
         {
             #region Option 1: Using Linq.
@@ -39,9 +40,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LabelDao
                 (from u in labels
                     where u.lab == labelName
                     select u).FirstOrDefault();
-
-
-                
 
             if (result == null)
                 throw new InstanceNotFoundException(labelName,

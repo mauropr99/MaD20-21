@@ -15,10 +15,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
         /// <returns>the list of comments</returns>
         List<Comment> FindCommentsByProductId(long productId, int startIndex, int count);
 
+        /// <exception cref="InstanceNotFoundException"></exception>
         void AddLabel(Label label, long commentId);
 
+        /// <exception cref="InstanceNotFoundException"></exception>
         void RemoveLabel(Label label, long commentId);
 
+        /// <exception cref="InstanceNotFoundException"></exception>
         Comment FindCommentsByUserId(long productId, long userId);
 
 

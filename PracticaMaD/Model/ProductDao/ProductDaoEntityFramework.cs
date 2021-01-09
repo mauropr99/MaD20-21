@@ -43,6 +43,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
             #endregion Using Linq.
         }
 
+        /// <exception cref="InstanceNotFoundException"></exception>
+        public Product FindByProductName(String productName)
+        {
+            #region Using Linq.
+            Product product = new Product();
 
         public List<Product> FindByProductNameAndCategoryName(String productName, string categoryName,
             int startIndex, int count)
@@ -72,6 +77,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
             #endregion Using Linq.
         }
 
+        /// <exception cref="InstanceNotFoundException"></exception>
         public string GetCategoryName(long productId)
         {
 
@@ -81,6 +87,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
                 (from p in products
                  where p.id == productId
                  select p.Category.name).FirstOrDefault();
+
+            if (categoryName == null)
+                throw new InstanceNotFoundException("",
+                    typeof(Category).FullName);
 
             return categoryName;
         }

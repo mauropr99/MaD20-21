@@ -45,9 +45,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         [Transactional]
         List<Category> ViewAllCategories();
 
+        /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
         Book FindBook(long productId);
 
+        /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
         Computer FindComputer(long productId);
     }
