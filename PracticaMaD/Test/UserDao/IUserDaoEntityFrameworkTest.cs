@@ -13,8 +13,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao.Test
     {
 
         private static IKernel kernel;
-
+  
         private const string NON_EXISTENT_USER = "no_user";
+        private static Language language;
+        private static User user;
 
         private TransactionScope transactionScope;
 
@@ -45,6 +47,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao.Test
             kernel = TestManager.ConfigureNInjectKernel();
             TestUtil.userDao = kernel.Get<IUserDao>();
             TestUtil.languageDao = kernel.Get<ILanguageDao>();
+
+
+            language = TestUtil.CreateExistentLanguage();
+            user = TestUtil.CreateExistentUser(language);
         }
 
         //Use ClassCleanup to run code after all tests in a class have run
@@ -52,6 +58,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao.Test
         public static void MyClassCleanup()
         {
             TestManager.ClearNInjectKernel(kernel);
+
         }
 
         //Use TestInitialize to run code before running each test
@@ -76,7 +83,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao.Test
             using (var scope = new TransactionScope())
             {
                 Language language = TestUtil.CreateExistentLanguage();
-                User user = TestUtil.CreateExistentUser(language); User foundUser = foundUser = TestUtil.userDao.FindByLogin("user");
+                User user = TestUtil.CreateExistentUser(language);
+
+                User foundUser = foundUser = TestUtil.userDao.FindByLogin("user");
 
                 Assert.AreEqual(user.id, foundUser.id);
                 Assert.AreEqual(user.login, foundUser.login);

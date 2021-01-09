@@ -71,6 +71,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
         [ClassCleanup()]
         public static void MyClassCleanup()
         {
+            TestUtil.userDao.Remove(user.id);
+            TestUtil.languageDao.Remove(language.id);
             TestManager.ClearNInjectKernel(kernel);
         }
 

@@ -29,6 +29,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
         private static IKernel kernel;
         private static IShoppingService shoppingService;
         private static IUserService userService;
+        private static Language language;
+        private static User user;
 
         private const string login = "user";
         private const string name = "name";
@@ -87,12 +89,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
             shoppingService = kernel.Get<IShoppingService>();
             userService = kernel.Get<IUserService>();
 
+
+            language = TestUtil.CreateExistentLanguage();
+            user = TestUtil.CreateExistentUser(language);
+
         }
 
         //Use ClassCleanup to run code after all tests in a class have run
         [ClassCleanup()]
         public static void MyClassCleanup()
         {
+            TestUtil.userDao.Remove(user.id);
+            TestUtil.languageDao.Remove(language.id);
             TestManager.ClearNInjectKernel(kernel);
         }
 
@@ -117,11 +125,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
         {
             using (var scope = new TransactionScope())
             {
-                Language language = TestUtil.CreateExistentLanguage();
-
-                long userId = userService.SingUpUser(login, password,
-                       new UserDetails(name, lastName, email, language.name, language.country));
-                User user = TestUtil.userDao.Find(userId);
                 CreditCard creditCard = TestUtil.CreateCreditCard();
 
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
@@ -173,12 +176,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
         public void CreditCardAlreadyExpiredTest()
         {
             using (var scope = new TransactionScope())
-            {
-                Language language = TestUtil.CreateExistentLanguage();
-
-                long userId = userService.SingUpUser(login, password,
-                new UserDetails(name, lastName, email, language.name, language.country));
-                
+            {   
                 CreditCard creditCard = new CreditCard
                 {
                     ownerName = "Name Surname",
@@ -217,7 +215,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                 };
 
                 var order =
-                    shoppingService.BuyProducts(userId, orderLineDetails,
+                    shoppingService.BuyProducts(user.id, orderLineDetails,
                         address, creditCard.id, "Patatas asadas");
             }
         }
@@ -229,11 +227,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
         {
             using (var scope = new TransactionScope())
             {
-                Language language = TestUtil.CreateExistentLanguage();
-
-                long userId = userService.SingUpUser(login, password,
-                       new UserDetails(name, lastName, email, language.name, language.country));
-    
                 CreditCard creditCard = TestUtil.CreateCreditCard();
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
                 Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
@@ -254,10 +247,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                 };
 
                 var order =
-                    shoppingService.BuyProducts(userId, orderLineDetails,
+                    shoppingService.BuyProducts(user.id, orderLineDetails,
                         address, creditCard.id, "Patatas asadas");
                 order =
-                    shoppingService.BuyProducts(userId, orderLineDetails,
+                    shoppingService.BuyProducts(user.id, orderLineDetails,
                         address, creditCard.id, "Patatas asadas");
             }
         }
@@ -267,13 +260,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
         {
             using (var scope = new TransactionScope())
             {
-                //Creating Language...
-                Language language = TestUtil.CreateExistentLanguage();
-
-                //Creating User...
-                long userId = userService.SingUpUser(login, password,
-                       new UserDetails(name, lastName, email, language.name, language.country));
-
                 //Creating CreditCard...
                 CreditCard creditCard = TestUtil.CreateCreditCard();
 
@@ -338,15 +324,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                 string firstDescription = "First order";
                 string secondDescription = "Second order";
                 var order =
-                    shoppingService.BuyProducts(userId, orderLineDetails,
+                    shoppingService.BuyProducts(user.id, orderLineDetails,
                         address, creditCard.id, firstDescription);
 
                 var order2 =
-                    shoppingService.BuyProducts(userId, orderLineDetails,
+                    shoppingService.BuyProducts(user.id, orderLineDetails,
                         address, creditCard.id, secondDescription);
 
 
-                List<OrderDetails> foundOrders = shoppingService.FindOrdersByUserId(userId, 0, 10).Orders;
+                List<OrderDetails> foundOrders = shoppingService.FindOrdersByUserId(user.id, 0, 10).Orders;
 
                 Order firstOrder = TestUtil.orderDao.Find(foundOrders[0].Id);
                 Order secondOrder = TestUtil.orderDao.Find(foundOrders[1].Id);
@@ -365,14 +351,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
         {
             using (var scope = new TransactionScope())
             {
-                //Creating Language...
-                Language language = TestUtil.CreateExistentLanguage();
-
-                //Creating User...
-                long userId = userService.SingUpUser(login, password,
-                       new UserDetails(name, lastName, email, language.name, language.country));
-                User user = TestUtil.userDao.Find(userId);
-
                 //Creating CreditCard...
                 CreditCard creditCard = TestUtil.CreateCreditCard();
 
@@ -431,7 +409,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                 //Creating Orders...
                 string firstDescription = "First order";
                 var order =
-                    shoppingService.BuyProducts(userId, orderLineDetails,
+                    shoppingService.BuyProducts(user.id, orderLineDetails,
                         address, creditCard.id, firstDescription);
 
                 var orderLines = TestUtil.orderLineDao.FindByOrderId(order.id);

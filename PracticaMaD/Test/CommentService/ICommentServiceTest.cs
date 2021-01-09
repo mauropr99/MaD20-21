@@ -29,6 +29,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
         private static IKernel kernel;
         private static ICommentService commentService;
         private static IUserService userService;
+        private static Language language;
+        private static User user;
+
 
         private const string login = "user";
         private const string login2 = "user2";
@@ -39,9 +42,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
         private const string email2 = "user2@udc.es";
         private const string address = "A Coruña";
         private const string role = "user";
-
-        // Variables used in several tests are initialized here
-        private const long userId = 123456;
 
         private const long NON_EXISTENT_ACCOUNT_ID = -1;
         private const long NON_EXISTENT_USER_ID = -1;
@@ -93,12 +93,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
             commentService = kernel.Get<ICommentService>();
             userService = kernel.Get<IUserService>();
 
+            language = TestUtil.CreateExistentLanguage();
+            user = TestUtil.CreateExistentUser(language);
         }
 
         //Use ClassCleanup to run code after all tests in a class have run
         [ClassCleanup()]
         public static void MyClassCleanup()
         {
+            TestUtil.userDao.Remove(user.id);
+            TestUtil.languageDao.Remove(language.id);
             TestManager.ClearNInjectKernel(kernel);
         }
 
@@ -123,10 +127,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
         {
             using (var scope = new TransactionScope())
             {
-                Language language = TestUtil.CreateExistentLanguage();
-
-                long userId = userService.SingUpUser(login, password,
-                       new UserDetails(name, lastName, email, language.name, language.country));
                 CreditCard creditCard = TestUtil.CreateCreditCard();
 
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
@@ -139,13 +139,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 };
 
                 string text = "Muy buen ordenador y a buen precio. Funcionan todos los juegos a calidad máxima, muy fluidos y sin apenas calentarse el aparato.";
-                Comment comment = commentService.NewComment(userId, product1.id, text, labels);
+                Comment comment = commentService.NewComment(user.id, product1.id, text, labels);
 
                 var foundComment = TestUtil.commentDao.Find(comment.id);
 
                 Assert.AreEqual(comment.id, foundComment.id);
                 Assert.AreEqual(text, foundComment.text);
-                Assert.AreEqual(userId, foundComment.userId);
+                Assert.AreEqual(user.id, foundComment.userId);
                 Assert.AreEqual(3, foundComment.Labels.Count);
                 Assert.AreEqual(labels[0], foundComment.Labels.ToList()[0].lab);
                 Assert.AreEqual(labels[1], foundComment.Labels.ToList()[1].lab);
@@ -161,10 +161,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
         {
             using (var scope = new TransactionScope())
             {
-                Language language = TestUtil.CreateExistentLanguage();
-
-                long userId = userService.SingUpUser(login, password,
-                       new UserDetails(name, lastName, email, language.name, language.country));
                 CreditCard creditCard = TestUtil.CreateCreditCard();
 
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
@@ -177,10 +173,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 };
 
                 string text = "Muy buen ordenador y a buen precio. Funcionan todos los juegos a calidad máxima, muy fluidos y sin apenas calentarse el aparato.";
-                Comment comment = commentService.NewComment(userId, product1.id, text, labels);
+                Comment comment = commentService.NewComment(user.id, product1.id, text, labels);
 
                
-                Comment duplicatedComment = commentService.NewComment(userId, product1.id, text, labels);
+                Comment duplicatedComment = commentService.NewComment(user.id, product1.id, text, labels);
 
             }
         }
@@ -190,11 +186,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
         {
             using (var scope = new TransactionScope())
             {
-                Language language = TestUtil.CreateExistentLanguage();
-
-                long userId = userService.SingUpUser(login, password,
-                       new UserDetails(name, lastName, email, language.name, language.country));
-                User user = TestUtil.userDao.Find(userId);
                 CreditCard creditCard = TestUtil.CreateCreditCard();
 
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
@@ -217,7 +208,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                     "Chollazo",
                     "Ganga"
                 };
-                comment = commentService.UpdateComment(userId, comment.id, text, labels2);
+                comment = commentService.UpdateComment(user.id, comment.id, text, labels2);
 
                 Assert.AreNotEqual(labels2, comment.Labels);
 
@@ -226,7 +217,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 
                 Assert.AreEqual(comment.id, foundComment.id);
                 Assert.AreEqual(text, foundComment.text);
-                Assert.AreEqual(userId, foundComment.userId);
+                Assert.AreEqual(user.id, foundComment.userId);
                 Assert.AreEqual(3, foundLabels.Count);
                 Assert.AreEqual(labels2[0], foundLabels[2].lab); //Irresistible
                 Assert.AreEqual(labels2[1], foundLabels[1].lab); //Ganga
@@ -241,11 +232,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
         public void InstanceNotFoundExceptionTest()
         {
             using (var scope = new TransactionScope())
-            {
-                Language language = TestUtil.CreateExistentLanguage();
-                long userId = userService.SingUpUser(login, password,
-                       new UserDetails(name, lastName, email, language.name, language.country));
-                
+            {   
                 CreditCard creditCard = TestUtil.CreateCreditCard();
 
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
@@ -258,7 +245,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 };
 
                 string text = "Muy buen ordenado y a buen precio. Funcionan todos los juegos a calidad máxima, muy fluidos y sin apenas calentarse el aparato.";
-                Comment comment = commentService.NewComment(userId, product1.id, text, labels);
+                Comment comment = commentService.NewComment(user.id, product1.id, text, labels);
 
                 text = "Es una bestia de portatil gaming , los juegos se ven genial y se inician en un momento , no se calienta y encima no es tan pesado .";
 
@@ -268,7 +255,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                     "Chollazo",
                     "Ganga"
                 };
-                comment = commentService.UpdateComment(userId, -1L, text, labels2);
+                comment = commentService.UpdateComment(user.id, -1L, text, labels2);
 
                 TestUtil.labelDao.FindByLabelName("Oferta");
 
@@ -281,10 +268,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
         {
             using (var scope = new TransactionScope())
             {
-                Language language = TestUtil.CreateExistentLanguage();
-
-                long userId = userService.SingUpUser(login, password,
-                       new UserDetails(name, lastName, email, language.name, language.country));
                 CreditCard creditCard = TestUtil.CreateCreditCard();
 
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
@@ -297,10 +280,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 };
 
                 string text = "Muy buen ordenador y a buen precio. Funcionan todos los juegos a calidad máxima, muy fluidos y sin apenas calentarse el aparato.";
-                Comment comment = commentService.NewComment(userId, product1.id, text, labels);
+                Comment comment = commentService.NewComment(user.id, product1.id, text, labels);
 
 
-                commentService.RemoveComment(userId, comment.id);
+                commentService.RemoveComment(user.id, comment.id);
                 TestUtil.commentDao.Find(comment.id);
 
             }
@@ -311,10 +294,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
         {
             using (var scope = new TransactionScope())
             {
-                Language language = TestUtil.CreateExistentLanguage();
-
-                long userId = userService.SingUpUser(login, password,
-                       new UserDetails(name, lastName, email, language.name, language.country));
                 long user2Id = userService.SingUpUser(login2, password,
                        new UserDetails(name, lastName, email2, language.name, language.country));
                 CreditCard creditCard = TestUtil.CreateCreditCard();
@@ -329,7 +308,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 };
 
                 string text = "Muy buen ordenador y a buen precio. Funcionan todos los juegos a calidad máxima, muy fluidos y sin apenas calentarse el aparato.";
-                var comment1 = commentService.NewComment(userId, product1.id, text, labels);
+                var comment1 = commentService.NewComment(user.id, product1.id, text, labels);
 
                 text = "Es una bestia de portatil gaming , los juegos se ven genial y se inician en un momento , no se calienta y encima no es tan pesado .";
 

@@ -31,32 +31,37 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
 
         public static Language CreateExistentLanguage()
         {
-            Language language = new Language
-            {
-                name = "es",
-                country = "ES"
-            };
-
-            languageDao.Create(language);
-
+            Language language = languageDao.FindByNameAndCountry("es", "Es");
+            if (language == null)
+            { 
+                language = new Language
+                {
+                    name = "es",
+                    country = "ES"
+                };
+                languageDao.Create(language);
+            }
             return language;
         }
 
         public static User CreateExistentUser(Language language)
         {
-            User user = new User
+            User user = userDao.FindByLogin("user");
+            if (user == null)
             {
-                login = "user",
-                name = "usuario",
-                lastName = "dePrueba",
-                password = "passwd",
-                email = "user@user",
-                role = "user",
-                languageId = language.id,
-                favouriteCreditCard = null
-            };
-            userDao.Create(user);
-
+                user = new User
+                {
+                    login = "user",
+                    name = "usuario",
+                    lastName = "dePrueba",
+                    password = "passwd",
+                    email = "user@user",
+                    role = "user",
+                    languageId = language.id,
+                    favouriteCreditCard = null
+                };
+                userDao.Create(user);
+            }
             return user;
         }
 

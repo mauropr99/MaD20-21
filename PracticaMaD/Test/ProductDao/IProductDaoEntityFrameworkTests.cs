@@ -22,6 +22,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
         private TransactionScope transactionScope;
         private static ICommentService commentService;
         private static IUserService userService;
+        private static Language language;
+        private static User user;
 
         private const string login = "user";
         private const string login2 = "user2";
@@ -69,12 +71,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
             commentService = kernel.Get<ICommentService>();
             userService = kernel.Get<IUserService>();
 
+            language = TestUtil.CreateExistentLanguage();
+            user = TestUtil.CreateExistentUser(language);
+
         }
 
         //Use ClassCleanup to run code after all tests in a class have run
         [ClassCleanup()]
         public static void MyClassCleanup()
         {
+            TestUtil.userDao.Remove(user.id);
+            TestUtil.languageDao.Remove(language.id);
             TestManager.ClearNInjectKernel(kernel);
         }
 
@@ -89,13 +96,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
         [TestCleanup()]
         public void MyTestCleanup()
         {
-            try
-            {
-                TestUtil.languageDao.Remove(1);
-            }
-            catch (System.Exception)
-            {
-            }
             transactionScope.Dispose();
         }
 
@@ -193,10 +193,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
         {
             using (var scope = new TransactionScope())
             {
-                Language language = TestUtil.CreateExistentLanguage();
-
-                long userId = userService.SingUpUser(login, password,
-                       new UserDetails(name, lastName, email, language.name, language.country));
                 long user2Id = userService.SingUpUser(login2, password,
                        new UserDetails(name, lastName, email2, language.name, language.country));
                 CreditCard creditCard = TestUtil.CreateCreditCard();
@@ -212,7 +208,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
                 };
 
                 string text = "Muy buen ordenador y a buen precio. Funcionan todos los juegos a calidad máxima, muy fluidos y sin apenas calentarse el aparato.";
-                var comment1 = commentService.NewComment(userId, product1.id, text, labels);
+                var comment1 = commentService.NewComment(user.id, product1.id, text, labels);
 
                 text = "Es una bestia de portatil gaming , los juegos se ven genial y se inician en un momento , no se calienta y encima no es tan pesado .";
 
