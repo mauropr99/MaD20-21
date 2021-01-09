@@ -26,8 +26,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         List<Product> FindByProductNameAndCategoryName(string product_name, string categoryName, int startIndex, int count);
 
         /// <exception cref="InstanceNotFoundException"></exception>
-        Product FindByProductName(string product_name);
-        /// <exception cref="InstanceNotFoundException"></exception>
         string GetCategoryName(long productId);
 
         List<Product> FindByLabel(string label, int startIndex, int count);
