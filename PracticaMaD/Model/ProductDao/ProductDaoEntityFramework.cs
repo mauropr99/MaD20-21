@@ -18,7 +18,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         {
             #region Using Linq.
 
-            string cacheObjectName = "FindByProductName" + productName + startIndex + count;
+            string cacheObjectName = "FindByProductName?productName=" + productName + "&startIndex=" + startIndex + "&count=" + count;
             var cachedObject = CacheUtil.GetFromCache<List<Product>>(cacheObjectName);
 
             if (cachedObject == null)
@@ -43,36 +43,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
             #endregion Using Linq.
         }
 
-        public Product FindByProductName(String productName)
-        {
-            #region Using Linq.
-            Product product = new Product();
-
-            DbSet<Product> products = Context.Set<Product>();
-
-            var result =
-                (from p in products
-                 where p.product_name == productName
-                 select p);
-
-            product = result.FirstOrDefault();
-
-            if (product == null)
-                throw new InstanceNotFoundException(productName,
-                    typeof(User).FullName);
-
-
-            return product;
-
-            #endregion Using Linq.
-        }
 
         public List<Product> FindByProductNameAndCategoryName(String productName, string categoryName,
             int startIndex, int count)
         {
             #region Using Linq.
 
-            string cacheObjectName = "FindByProductNameAndCategoryName" + productName + categoryName + startIndex + count;
+            string cacheObjectName = "FindByProductNameAndCategoryName?productName=" + productName + "&startIndex=" + startIndex + "&count=" + count;
             var cachedObject = CacheUtil.GetFromCache<List<Product>>(cacheObjectName);
 
             if (cachedObject == null)

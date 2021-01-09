@@ -33,7 +33,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao
 
             #region Option 1: Using Linq.
 
-            string cacheObjectName = "FindByNameAndCountry" + languageName + languageCountry;
+            string cacheObjectName = "FindByNameAndCountry?languageName=" + languageName + "&languageCountry=" + languageCountry;
             var cachedObject = CacheUtil.GetFromCache<Language>(cacheObjectName);
 
             if (cachedObject == null)

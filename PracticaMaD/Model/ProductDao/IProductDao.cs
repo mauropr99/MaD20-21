@@ -26,8 +26,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         /// <returns>the list of products</returns>
         List<Product> FindByProductNameAndCategoryName(String product_name, string categoryName, int startIndex, int count);
 
-        Product FindByProductName(String product_name);
-
         string GetCategoryName(long productId);
         List<Product> FindByLabel(string label, int startIndex, int count);
     }
