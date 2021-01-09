@@ -25,6 +25,9 @@
             <asp:Label ID="Label3" CssClass="label"  runat="server" Text="<%$ Resources: , price %>"></asp:Label>
             <span class="entry">
                 <asp:TextBox ID="txtPriceContent" runat="server"></asp:TextBox>
+                <asp:RegularExpressionValidator runat="server" ForeColor="Red" ControlToValidate="txtPriceContent"
+                    ValidationExpression="-?\d{1,3}(,\d{3})*(\.\d+)?"
+                    ErrorMessage="<%$ Resources: , ControlStock %>" />
             </span>
         </div>
         <br />

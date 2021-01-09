@@ -10,6 +10,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
         IUserDao UserDao { set; }
 
+        [Transactional]
         void ChangePassword(long id, String oldClearPassword,
             String newClearPassword);
 
@@ -41,6 +42,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         [Transactional]
         String GetRolByUserId(long userId);
 
+        [Transactional]
         bool UserExists(string login);
     }
 }

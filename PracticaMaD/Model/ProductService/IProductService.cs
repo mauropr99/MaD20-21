@@ -36,6 +36,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         void UpdateComputer(Computer product);
         [Transactional]
 
+        [Transactional]
         bool HasComments(long productId);
 
         [Transactional]
