@@ -14,12 +14,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Exceptions
         /// <see cref="CreditCardAlreadyExpired"/> class.
         /// </summary>
         /// <param name="creditCardNumber"><c>number of credit card</c> that causes the error.</param>
-        public CreditCardAlreadyExpired(String creditCardNumber)
+        public CreditCardAlreadyExpired(string creditCardNumber)
             : base("CreditCard Already Expired => CreditCardNumber = " + creditCardNumber)
         {
-            this.CreditCardNumber = "**** **** **** " + creditCardNumber.Substring(12); ;
+            CreditCardNumber = "**** **** **** " + creditCardNumber.Substring(12); ;
         }
 
-        public String CreditCardNumber { get; private set; }
+        public string CreditCardNumber { get; private set; }
     }
 }

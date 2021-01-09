@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Transactions;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Test;
@@ -91,7 +90,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CategoryDao.Tests
                     createdCategories.Add(category);
                 }
 
-                String expectedCategoryName = "category 7";
+                string expectedCategoryName = "category 7";
                 Category foundCategory = categoryDao.FindByName(expectedCategoryName);
 
                 Assert.AreEqual(foundCategory.name, expectedCategoryName);

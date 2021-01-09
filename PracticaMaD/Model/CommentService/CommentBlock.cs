@@ -10,8 +10,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
         public CommentBlock(List<CommentDetails> comments, bool existMoreComments)
         {
-            this.Comments = comments;
-            this.ExistMoreComments = existMoreComments;
+            Comments = comments;
+            ExistMoreComments = existMoreComments;
         }
     }
 }

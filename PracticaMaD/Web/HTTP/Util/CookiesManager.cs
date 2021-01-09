@@ -13,8 +13,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Util
         private const int REMEMBER_MY_PASSWORD_AGE = 30 * 24 * 3600;
         private const int COOKIES_TIME_TO_LIVE_REMOVE = 0;
 
-        public static void LeaveCookies(HttpContext context, String loginName,
-                String encryptedPassword)
+        public static void LeaveCookies(HttpContext context, string loginName,
+                string encryptedPassword)
         {
             int timeToLive = REMEMBER_MY_PASSWORD_AGE;
 
@@ -62,7 +62,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Util
 
         }
 
-        public static String GetLoginName(HttpContext context)
+        public static string GetLoginName(HttpContext context)
         {
             HttpCookie loginNameCookie =
                 context.Request.Cookies.Get(LOGIN_NAME_COOKIE);
@@ -74,7 +74,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Util
 
         }
 
-        public static String GetEncryptedPassword(HttpContext context)
+        public static string GetEncryptedPassword(HttpContext context)
         {
             HttpCookie encryptedPasswordCookie =
                 context.Request.Cookies.Get(ENCRYPTED_PASSWORD_COOKIE);

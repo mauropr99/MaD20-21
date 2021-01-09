@@ -10,14 +10,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             string lastName, string encryptedPassword, string language, string country,
             string email)
         {
-            this.Id = id;
-            this.Login = login;
-            this.Name = name;
-            this.LastName = lastName;
-            this.EncryptedPassword = encryptedPassword;
-            this.Language = language;
-            this.Country = country;
-            this.Email = email;
+            Id = id;
+            Login = login;
+            Name = name;
+            LastName = lastName;
+            EncryptedPassword = encryptedPassword;
+            Language = language;
+            Country = country;
+            Email = email;
         }
 
         #region Properties Region
@@ -46,19 +46,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         {
             LoginResult target = (LoginResult)obj;
 
-            return (this.Id == target.Id)
-                   && (this.Name == target.Name)
-                   && (this.LastName == target.LastName)
-                   && (this.Login == target.Login)
-                   && (this.EncryptedPassword == target.EncryptedPassword)
-                   && (this.Language == target.Language)
-                   && (this.Email == target.Email);
+            return (Id == target.Id)
+                   && (Name == target.Name)
+                   && (LastName == target.LastName)
+                   && (Login == target.Login)
+                   && (EncryptedPassword == target.EncryptedPassword)
+                   && (Language == target.Language)
+                   && (Email == target.Email);
         }
 
 
         public override int GetHashCode()
         {
-            return this.Id.GetHashCode();
+            return Id.GetHashCode();
         }
 
         public override string ToString()

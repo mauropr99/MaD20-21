@@ -1,12 +1,11 @@
 ﻿using System;
-using Es.Udc.DotNet.ModelUtil.IoC;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
-using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 using System.Collections.Generic;
 using System.Data;
 using System.Web;
+using System.Web.UI.WebControls;
+using Es.Udc.DotNet.ModelUtil.IoC;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
 {
@@ -16,8 +15,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
         static DataTable dt = new DataTable();
         static List<string> labels = new List<string>();
 
-        private  DataTable Dt { get => dt; set => dt = value; }
-        private  List<string> Labels { get => labels; set => labels = value; }
+        private DataTable Dt { get => dt; set => dt = value; }
+        private List<string> Labels { get => labels; set => labels = value; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,8 +27,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                 ICommentService commentService = iocManager.Resolve<ICommentService>();
                 UserSession userSession =
                     (UserSession)Context.Session[SessionManager.USER_SESSION_ATTRIBUTE];
-                if(userSession != null)
-                    if (commentService.UserAlreadyCommented(Int64.Parse(Request.Params.Get("productId")),userSession.UserId))
+                if (userSession != null)
+                    if (commentService.UserAlreadyCommented(long.Parse(Request.Params.Get("productId")), userSession.UserId))
                         Response.Redirect("~/Pages/Comment/CommentList.aspx?productId=" + Request.Params.Get("productId") + "&categoryName=" + Request.Params.Get("categoryName"));
                 ViewState["RefUrl"] = Request.UrlReferrer.ToString();
                 string column = GetLocalResourceObject("label").ToString();
@@ -58,7 +57,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
 
             //3 Llamar al caso de uso (lectura de parámetros y actualización de la vista)
 
-            String comment = txtCommentAdd.Text;
+            string comment = txtCommentAdd.Text;
 
             long productId = long.Parse(Request.Params.Get("productId"));
 
@@ -94,13 +93,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
         protected void BtnAddLabel_Click(object sender, EventArgs e)
         {
             string column = GetLocalResourceObject("label").ToString();
-            string label = HttpUtility.HtmlDecode(this.txtLabelContent.Text.Trim().ToLower());
-            
+            string label = HttpUtility.HtmlDecode(txtLabelContent.Text.Trim().ToLower());
+
             DataRow dr;
             bool exists = false;
-            foreach (GridViewRow row in this.GridViewLabels.Rows)
+            foreach (GridViewRow row in GridViewLabels.Rows)
             {
-                if(!exists) exists = HttpUtility.HtmlDecode(row.Cells[labelCell].Text.Trim()) == label;
+                if (!exists) exists = HttpUtility.HtmlDecode(row.Cells[labelCell].Text.Trim()) == label;
             }
 
             if (!exists && label != "")
@@ -110,11 +109,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                 Labels.Add(label);
                 Dt.Rows.Add(dr);
 
-                this.GridViewLabels.DataSource = Dt;
-                this.GridViewLabels.DataBind();
+                GridViewLabels.DataSource = Dt;
+                GridViewLabels.DataBind();
             }
 
-            this.txtLabelContent.Text = "";
+            txtLabelContent.Text = "";
         }
 
         protected void BtnBackToPreviousPage_Click(object sender, EventArgs e)

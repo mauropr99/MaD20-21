@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Management.Instrumentation;
@@ -11,7 +10,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao
     /// Specific Operations for CreditCard
     /// </summary>
     public class CreditCardDaoEntityFramework :
-        GenericDaoEntityFramework<CreditCard, Int64>, ICreditCardDao
+        GenericDaoEntityFramework<CreditCard, long>, ICreditCardDao
     {
         #region Public Constructors
 
@@ -47,11 +46,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao
         {
             DbSet<CreditCard> creditCards = Context.Set<CreditCard>();
 
-            var query = this.Find(creditCardId);
+            var query = Find(creditCardId);
 
             query.User_Table.Add(user);
 
-            this.Update(query);
+            Update(query);
         }
 
 

@@ -82,7 +82,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao.Tests
                 Language language = TestUtil.CreateExistentLanguage();
                 User user = TestUtil.CreateExistentUser(language);
                 CreditCard creditCard = TestUtil.CreateCreditCard();
-                TestUtil.creditCardDao.AddUser(user,creditCard.id);
+                TestUtil.creditCardDao.AddUser(user, creditCard.id);
 
                 List<CreditCard> foundCreditCards = TestUtil.creditCardDao.FindCreditCardsByUserId(user.id);
 

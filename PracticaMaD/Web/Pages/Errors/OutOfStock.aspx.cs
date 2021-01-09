@@ -7,12 +7,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Errors
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            String productName = Request.Params.Get("productName");
-            String stock = Request.Params.Get("stock");
-            String orderedStock = Request.Params.Get("OrderedStock");
-            lblErrorTitle.Text = GetLocalResourceObject("OutOfStock").ToString() + " " + productName + " " 
-                                + GetLocalResourceObject("productStock").ToString() + " " + stock + " " 
-                                + GetLocalResourceObject("orderedStock").ToString() + " " + orderedStock ;
+            string productName = Request.Params.Get("productName");
+            string stock = Request.Params.Get("stock");
+            string orderedStock = Request.Params.Get("OrderedStock");
+            lblErrorTitle.Text = GetLocalResourceObject("OutOfStock").ToString() + " " + productName + " "
+                                + GetLocalResourceObject("productStock").ToString() + " " + stock + " "
+                                + GetLocalResourceObject("orderedStock").ToString() + " " + orderedStock;
         }
     }
 }

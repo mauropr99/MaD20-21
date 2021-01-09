@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Es.Udc.DotNet.ModelUtil.Dao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.OrderDao
 {
-    public interface IOrderDao : IGenericDao<Order, Int64>
+    public interface IOrderDao : IGenericDao<Order, long>
     {
 
         /// <summary>

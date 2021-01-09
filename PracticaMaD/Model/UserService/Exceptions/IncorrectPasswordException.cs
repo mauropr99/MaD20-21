@@ -11,17 +11,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions
         /// <see cref="IncorrectPasswordException"/> class.
         /// </summary>
         /// <param name="loginName"><c>loginName</c> that causes the error.</param>
-        public IncorrectPasswordException(String login)
+        public IncorrectPasswordException(string login)
             : base("Incorrect password exception => loginName = " + login)
         {
-            this.Login = login;
+            Login = login;
         }
 
         /// <summary>
         /// Stores the User login name of the exception
         /// </summary>
         /// <value>The name of the login.</value>
-        public String Login { get; private set; }
+        public string Login { get; private set; }
 
     }
 }

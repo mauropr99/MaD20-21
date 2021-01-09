@@ -40,10 +40,10 @@ namespace Web.Pages.Product
                 catch (ArgumentNullException)
                 {
                 }
-           
+
             }
         }
-    
+
 
         protected void BtnBackToPreviousPage_Click(object sender, EventArgs e)
         {
@@ -63,7 +63,7 @@ namespace Web.Pages.Product
                     book.product_name = txtTitleContent.Text;
                     book.author = txtAuthorContent.Text;
                     book.price = decimal.Parse(Regex.Match(txtPriceContent.Text, @"-?\d{1,3}(,\d{3})*(\.\d+)?").Value);
-                    book.stock = Int32.Parse(txtStockContent.Text);
+                    book.stock = int.Parse(txtStockContent.Text);
                     book.genre = txtGenreContent.Text;
                     productService.UpdateBook(book);
                     Response.Redirect("~/Pages/Product/Catalog.aspx");

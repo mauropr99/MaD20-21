@@ -17,7 +17,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
         [Inject]
         public IProductDao ProductDao { private get; set; }
-  
+
         [Inject]
         public ICategoryDao CategoryDao { private get; set; }
 
@@ -129,7 +129,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
         public bool HasComments(long productId)
         {
-            return (CommentDao.FindCommentsByProductId(productId,0,1).Count != 0);
+            return (CommentDao.FindCommentsByProductId(productId, 0, 1).Count != 0);
         }
 
         /// <exception cref="InstanceNotFoundException"/>

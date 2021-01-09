@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true"
-    Codebehind="InternalError.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Errors.InternalError"
+    CodeBehind="InternalError.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Errors.InternalError"
     meta:resourcekey="Page" %>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder_BodyContent"
@@ -12,5 +12,5 @@
     <br />
     <asp:Label ID="lblRetryLater" runat="server" meta:resourcekey="lblRetryLater"></asp:Label>
     <br />
-    <br />    
+    <br />
 </asp:Content>

@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
-    
-    
-    public partial class SignUp {
-        
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
+{
+
+
+    public partial class SignUp
+    {
+
         /// <summary>
         /// lnkUserExists control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink lnkUserExists;
-        
+
         /// <summary>
         /// lclUserName control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Localize lclUserName;
-        
+
         /// <summary>
         /// txtLogin control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtLogin;
-        
+
         /// <summary>
         /// rfvUserName control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvUserName;
-        
+
         /// <summary>
         /// lblLoginError control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblLoginError;
-        
+
         /// <summary>
         /// lclPassword control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Localize lclPassword;
-        
+
         /// <summary>
         /// txtPassword control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPassword;
-        
+
         /// <summary>
         /// rfvPassword control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPassword;
-        
+
         /// <summary>
         /// lclRetypePassword control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Localize lclRetypePassword;
-        
+
         /// <summary>
         /// txtRetypePassword control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtRetypePassword;
-        
+
         /// <summary>
         /// rfvRetypePassword control.
         /// </summary>
@@ -110,7 +112,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvRetypePassword;
-        
+
         /// <summary>
         /// cvPasswordCheck control.
         /// </summary>
@@ -119,7 +121,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CompareValidator cvPasswordCheck;
-        
+
         /// <summary>
         /// lclFirstName control.
         /// </summary>
@@ -128,7 +130,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Localize lclFirstName;
-        
+
         /// <summary>
         /// txtFirstName control.
         /// </summary>
@@ -137,7 +139,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFirstName;
-        
+
         /// <summary>
         /// rfvFirstName control.
         /// </summary>
@@ -146,7 +148,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFirstName;
-        
+
         /// <summary>
         /// lclSurname control.
         /// </summary>
@@ -155,7 +157,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Localize lclSurname;
-        
+
         /// <summary>
         /// txtSurname control.
         /// </summary>
@@ -164,7 +166,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSurname;
-        
+
         /// <summary>
         /// rfvSurname control.
         /// </summary>
@@ -173,7 +175,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvSurname;
-        
+
         /// <summary>
         /// lclEmail control.
         /// </summary>
@@ -182,7 +184,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Localize lclEmail;
-        
+
         /// <summary>
         /// txtEmail control.
         /// </summary>
@@ -191,7 +193,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
-        
+
         /// <summary>
         /// rfvEmail control.
         /// </summary>
@@ -200,7 +202,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEmail;
-        
+
         /// <summary>
         /// revEmail control.
         /// </summary>
@@ -209,7 +211,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator revEmail;
-        
+
         /// <summary>
         /// lclLanguage control.
         /// </summary>
@@ -218,7 +220,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Localize lclLanguage;
-        
+
         /// <summary>
         /// comboLanguage control.
         /// </summary>
@@ -227,7 +229,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList comboLanguage;
-        
+
         /// <summary>
         /// btnSignUp control.
         /// </summary>

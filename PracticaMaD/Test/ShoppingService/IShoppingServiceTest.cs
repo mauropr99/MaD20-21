@@ -176,7 +176,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
         public void CreditCardAlreadyExpiredTest()
         {
             using (var scope = new TransactionScope())
-            {   
+            {
                 CreditCard creditCard = new CreditCard
                 {
                     ownerName = "Name Surname",
@@ -301,7 +301,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                 ShoppingCartDetails orderLineDetail4 = new ShoppingCartDetails(
                    product4.id,
                    product4.product_name,
-                   category1.name, 
+                   category1.name,
                    13,
                    product4.price,
                    false
@@ -404,7 +404,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Tests
                     orderLineDetail3,
                     orderLineDetail4
                 };
-                
+
 
                 //Creating Orders...
                 string firstDescription = "First order";

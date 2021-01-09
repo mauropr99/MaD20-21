@@ -33,13 +33,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         /// Also, the selectedLanguage will appear selected in the 
         /// ComboBox
         /// </summary>
-        private void UpdateComboLanguage(String selectedLanguage)
+        private void UpdateComboLanguage(string selectedLanguage)
         {
-            this.comboLanguage.DataSource = Languages.GetLanguages(selectedLanguage);
-            this.comboLanguage.DataTextField = "text";
-            this.comboLanguage.DataValueField = "value";
-            this.comboLanguage.DataBind();
-            this.comboLanguage.SelectedValue = selectedLanguage;
+            comboLanguage.DataSource = Languages.GetLanguages(selectedLanguage);
+            comboLanguage.DataTextField = "text";
+            comboLanguage.DataValueField = "value";
+            comboLanguage.DataBind();
+            comboLanguage.SelectedValue = selectedLanguage;
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             /* After a language change, the countries are printed in the
              * correct language.
              */
-            this.UpdateComboLanguage(comboLanguage.SelectedValue);
+            UpdateComboLanguage(comboLanguage.SelectedValue);
         }
     }
 }

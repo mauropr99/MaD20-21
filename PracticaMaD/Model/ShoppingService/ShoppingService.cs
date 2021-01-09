@@ -7,7 +7,6 @@ using Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Ninject;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
@@ -57,7 +56,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             }
 
             //Calculate total price
-           
+
             foreach (ShoppingCartDetails line in shoppingCart)
             {
                 OrderLine orderLine = new OrderLine();
@@ -107,7 +106,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         }
 
         public List<ShoppingCartDetails> ViewShoppingCart()
-        { 
+        {
             return shoppingCart;
         }
 
@@ -144,7 +143,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             if (!existsInCart)
             {
                 ShoppingCartDetails shoppingCartLine = new ShoppingCartDetails
-                (    
+                (
                     product.id,
                     product.product_name,
                     (CategoryDao.Find(product.categoryId)).name,
@@ -161,7 +160,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         public void RemoveFromShoppingCart(long productId)
         {
-            
+
             //Check if the product is inside the shopping cart 
             foreach (ShoppingCartDetails line in shoppingCart)
             {
@@ -178,7 +177,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                         line.Quantity -= 1;
                     }
 
-                    break;   
+                    break;
                 }
             }
         }
@@ -195,12 +194,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             }
         }
 
-        public Decimal Subtotal()
+        public decimal Subtotal()
         {
-            Decimal subtotal = 0;
+            decimal subtotal = 0;
             foreach (ShoppingCartDetails line in shoppingCart)
             {
-                subtotal += line.Price*line.Quantity;
+                subtotal += line.Price * line.Quantity;
             }
             return subtotal;
         }

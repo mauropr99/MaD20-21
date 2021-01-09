@@ -13,7 +13,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao.Test
     {
 
         private static IKernel kernel;
-  
+
         private const string NON_EXISTENT_USER = "no_user";
         private static Language language;
         private static User user;

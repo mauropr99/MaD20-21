@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Web.Pages.Product {
-    
-    
-    public partial class BooksDetailsView {
-        
+namespace Web.Pages.Product
+{
+
+
+    public partial class BooksDetailsView
+    {
+
         /// <summary>
         /// lnkbutton control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Web.Pages.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkbutton;
-        
+
         /// <summary>
         /// lblTitle control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Web.Pages.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTitle;
-        
+
         /// <summary>
         /// lblTitleContent control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Web.Pages.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTitleContent;
-        
+
         /// <summary>
         /// lblAuthor control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace Web.Pages.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblAuthor;
-        
+
         /// <summary>
         /// lblAuthorContent control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace Web.Pages.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblAuthorContent;
-        
+
         /// <summary>
         /// lblPrice control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace Web.Pages.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblPrice;
-        
+
         /// <summary>
         /// lblPriceContent control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace Web.Pages.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblPriceContent;
-        
+
         /// <summary>
         /// lblStock control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace Web.Pages.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblStock;
-        
+
         /// <summary>
         /// lblStockContent control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace Web.Pages.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblStockContent;
-        
+
         /// <summary>
         /// lblGenre control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace Web.Pages.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblGenre;
-        
+
         /// <summary>
         /// lblGenreContent control.
         /// </summary>
@@ -110,7 +112,7 @@ namespace Web.Pages.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblGenreContent;
-        
+
         /// <summary>
         /// lblReleaseDate control.
         /// </summary>
@@ -119,7 +121,7 @@ namespace Web.Pages.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblReleaseDate;
-        
+
         /// <summary>
         /// lblReleaseDateContent control.
         /// </summary>
@@ -128,7 +130,7 @@ namespace Web.Pages.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblReleaseDateContent;
-        
+
         /// <summary>
         /// lblIsbnCode control.
         /// </summary>
@@ -137,7 +139,7 @@ namespace Web.Pages.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblIsbnCode;
-        
+
         /// <summary>
         /// lblIsbnCodeContent control.
         /// </summary>
@@ -146,7 +148,7 @@ namespace Web.Pages.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblIsbnCodeContent;
-        
+
         /// <summary>
         /// lblQuantity control.
         /// </summary>
@@ -155,7 +157,7 @@ namespace Web.Pages.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblQuantity;
-        
+
         /// <summary>
         /// DropDownListQuantity control.
         /// </summary>
@@ -164,7 +166,7 @@ namespace Web.Pages.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DropDownListQuantity;
-        
+
         /// <summary>
         /// linkViewComment control.
         /// </summary>
@@ -173,7 +175,7 @@ namespace Web.Pages.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkViewComment;
-        
+
         /// <summary>
         /// btnNewComment control.
         /// </summary>
@@ -182,7 +184,7 @@ namespace Web.Pages.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnNewComment;
-        
+
         /// <summary>
         /// btnAddToShoppingCart control.
         /// </summary>

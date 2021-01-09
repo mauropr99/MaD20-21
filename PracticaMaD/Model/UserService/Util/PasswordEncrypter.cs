@@ -17,7 +17,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Util
         /// <param name="password">String to encrypt</param>
         /// <returns>Returns a String with the <paramref name="password"/> encrypted
         /// </returns>                       
-        public static String Crypt(String password)
+        public static string Crypt(string password)
         {
             HashAlgorithm hashAlg = new SHA256Managed();
 
@@ -25,14 +25,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Util
 
             byte[] encryptedPasswordBytes = hashAlg.ComputeHash(passwordBytes);
 
-            System.String encryptedPassword = Convert.ToBase64String(encryptedPasswordBytes);
+            string encryptedPassword = Convert.ToBase64String(encryptedPasswordBytes);
 
             return encryptedPassword;
         }
 
 
-        public static Boolean IsClearPasswordCorrect(String clearPassword,
-            String encryptedPassword)
+        public static bool IsClearPasswordCorrect(string clearPassword,
+            string encryptedPassword)
         {
             string encryptedClearPassword = Crypt(clearPassword);
 

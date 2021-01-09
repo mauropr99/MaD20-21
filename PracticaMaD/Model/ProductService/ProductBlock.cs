@@ -11,8 +11,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 
         public ProductBlock(List<ProductDetails> products, bool existMoreProducts)
         {
-            this.Products = products;
-            this.ExistMoreProducts = existMoreProducts;
+            Products = products;
+            ExistMoreProducts = existMoreProducts;
         }
     }
 }

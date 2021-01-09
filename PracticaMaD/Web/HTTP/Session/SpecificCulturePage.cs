@@ -27,7 +27,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
              * not do anything and the framework will behave based on
              * configuration on Web.config or page level
              */
-            String culture;
+            string culture;
             if (SessionManager.IsUserAuthenticated(Context))
             {
                 Locale locale = SessionManager.GetLocale(Context);

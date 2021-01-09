@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations {
-    
-    
-    public partial class CreditCardAdd {
-        
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
+{
+
+
+    public partial class CreditCardAdd
+    {
+
         /// <summary>
         /// lblCreditCardOwner control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCreditCardOwner;
-        
+
         /// <summary>
         /// txtCreditCardOwner control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCreditCardOwner;
-        
+
         /// <summary>
         /// lblCreditCardNumber control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCreditCardNumber;
-        
+
         /// <summary>
         /// txtCreditCardNumber control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCreditCardNumber;
-        
+
         /// <summary>
         /// lblCreditCardCvv control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCreditCardCvv;
-        
+
         /// <summary>
         /// txtCreditCardCvv control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCreditCardCvv;
-        
+
         /// <summary>
         /// lblCreditCardType control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCreditCardType;
-        
+
         /// <summary>
         /// DropDownCreditCardTypeList control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DropDownCreditCardTypeList;
-        
+
         /// <summary>
         /// lblExpirationDate control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblExpirationDate;
-        
+
         /// <summary>
         /// txtExpirationDate control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtExpirationDate;
-        
+
         /// <summary>
         /// btnAddCreditCard control.
         /// </summary>

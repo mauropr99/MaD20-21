@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Errors {
-    
-    
-    public partial class InternalError {
-        
-  
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Errors
+{
+
+
+    public partial class InternalError
+    {
+
+
     }
 }

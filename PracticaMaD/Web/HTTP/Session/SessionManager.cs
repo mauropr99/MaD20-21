@@ -79,9 +79,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
     /// </summary>
     public class SessionManager
     {
-        public static readonly String LOCALE_SESSION_ATTRIBUTE = "locale";
+        public static readonly string LOCALE_SESSION_ATTRIBUTE = "locale";
 
-        public static readonly String USER_SESSION_ATTRIBUTE =
+        public static readonly string USER_SESSION_ATTRIBUTE =
                "userSession";
 
         private static IUserService userService;
@@ -115,7 +115,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
         /// <param name="UserDetails">The user  details.</param>
         /// <exception cref="DuplicateInstanceException"/>
         public static void SignUpUser(HttpContext context,
-            String loginName, String clearPassword,
+            string loginName, string clearPassword,
             UserDetails UserDetails)
         {
             /* SignUp user. */
@@ -146,8 +146,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
         /// <param name="rememberMyPassword">Remember password to the next logins</param>
         /// <exception cref="IncorrectPasswordException"/>
         /// <exception cref="InstanceNotFoundException"/>
-        public static void Login(HttpContext context, String loginName,
-           String clearPassword, Boolean rememberMyPassword)
+        public static void Login(HttpContext context, string loginName,
+           string clearPassword, bool rememberMyPassword)
         {
             /* Try to login, and if successful, update session with the necessary
              * objects for an authenticated user. */
@@ -177,8 +177,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
         /// <exception cref="IncorrectPasswordException"/>
         /// <exception cref="InstanceNotFoundException"/>
         private static LoginResult DoLogin(HttpContext context,
-             String loginName, String password, Boolean passwordIsEncrypted,
-             Boolean rememberMyPassword)
+             string loginName, string password, bool passwordIsEncrypted,
+             bool rememberMyPassword)
         {
             LoginResult loginResult =
                 userService.Login(loginName, password,
@@ -222,7 +222,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
         /// 	<c>true</c> if is user authenticated
         ///     <c>false</c> otherwise
         /// </returns>
-        public static Boolean IsUserAuthenticated(HttpContext context)
+        public static bool IsUserAuthenticated(HttpContext context)
         {
             if (context.Session == null)
                 return false;
@@ -301,7 +301,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
         /// <param name="newClearPassword">The new password in clear text</param>
         /// <exception cref="IncorrectPasswordException"/>
         public static void ChangePassword(HttpContext context,
-               String oldClearPassword, String newClearPassword)
+               string oldClearPassword, string newClearPassword)
         {
             UserSession userSession =
                 (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
@@ -350,7 +350,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
                 // If userSession object is in the session, nothing should be doing.
                 if (userSession != null)
                 {
-                    if(shoppingService == null)
+                    if (shoppingService == null)
                         shoppingService = iocManager.Resolve<IShoppingService>();
                     return;
                 }
@@ -363,8 +363,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
              * as cookies). If so, we reconstruct user's session objects.
              */
             UpdateSessionFromCookies(context);
-            
-                
+
+
 
         }
 
@@ -385,8 +385,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
              * Check if the login name and the encrypted password come as
              * cookies.
              */
-            String loginName = CookiesManager.GetLoginName(context);
-            String encryptedPassword = CookiesManager.GetEncryptedPassword(context);
+            string loginName = CookiesManager.GetLoginName(context);
+            string encryptedPassword = CookiesManager.GetEncryptedPassword(context);
 
             if ((loginName == null) || (encryptedPassword == null))
             {

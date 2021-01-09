@@ -7,9 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
-    
-    
-    public partial class Logout {
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
+{
+
+
+    public partial class Logout
+    {
     }
 }

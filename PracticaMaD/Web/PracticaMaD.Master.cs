@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Web.UI.WebControls;
 using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
-using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 
@@ -13,11 +12,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
 {
     public partial class PracticaMaD : System.Web.UI.MasterPage
     {
-        public static readonly String USER_SESSION_ATTRIBUTE = "userSession";
+        public static readonly string USER_SESSION_ATTRIBUTE = "userSession";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             int mostUsedLabels = 5;
 
             if (!SessionManager.IsUserAuthenticated(Context))
@@ -63,7 +62,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
                 Label1Count.Text = " (" + labels[0].TimesUsed + ")";
 
                 Label1.Font.Size = LabelSize(labels[0].TimesUsed);
-                Label1Count.Font.Size = LabelSize(labels[0].TimesUsed); 
+                Label1Count.Font.Size = LabelSize(labels[0].TimesUsed);
             }
 
             if (labels.Count > 1)
@@ -105,15 +104,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
                 Label5.Font.Size = LabelSize(labels[4].TimesUsed);
                 Label5Count.Font.Size = LabelSize(labels[4].TimesUsed);
             }
-            
-            
+
+
         }
 
         protected void Label_Click(object sender, EventArgs e)
         {
             LinkButton linkbutton = (LinkButton)sender;
 
-            Response.Redirect("~/Pages/Product/ProductsByLabelView.aspx?labelName="+linkbutton.Text);
+            Response.Redirect("~/Pages/Product/ProductsByLabelView.aspx?labelName=" + linkbutton.Text);
         }
 
         private int LabelSize(int timesUsed)

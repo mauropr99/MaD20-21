@@ -63,7 +63,7 @@ namespace Web.Pages.Product
                     computer.product_name = txtComputerNameContent.Text;
                     computer.brand = txtBrandContent.Text;
                     computer.price = decimal.Parse(Regex.Match(txtPriceContent.Text, @"-?\d{1,3}(,\d{3})*(\.\d+)?").Value);
-                    computer.stock = Int32.Parse(txtStockContent.Text);
+                    computer.stock = int.Parse(txtStockContent.Text);
                     computer.processor = txtProcessorContent.Text;
                     computer.os = txtOperatingSystemContent.Text;
                     productService.UpdateComputer(computer);

@@ -35,9 +35,10 @@
                     </li>
                     <li>
                         <asp:HyperLink ID="HyperLinkShoppingCart" runat="server"
-                        NavigateUrl="~/Pages/Shopping/ShoppingCart.aspx"
-                        meta:resourcekey="lnkShoppingCart" /> <asp:Label ID="ShoppingCartSize" runat="server" style="color:wheat"/>
-                        
+                            NavigateUrl="~/Pages/Shopping/ShoppingCart.aspx"
+                            meta:resourcekey="lnkShoppingCart" />
+                        <asp:Label ID="ShoppingCartSize" runat="server" Style="color: wheat" />
+
                     </li>
                     <li>
                         <asp:HyperLink ID="HyperLinkUpdate" runat="server"
@@ -66,27 +67,32 @@
             <!-- Body content. -->
             <div id="content">
                 <form runat="server">
-                <asp:ContentPlaceHolder ID="ContentPlaceHolder_HeaderContent" runat="server" >
-                    <asp:LinkButton ID="Label1" OnClick="Label_Click" runat="server" CausesValidation="false">LinkButton</asp:LinkButton>
-                    <asp:Label ID="Label1Count" runat="server" Font-Bold="True" ForeColor="Blue"></asp:Label> &nbsp&nbsp&nbsp
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder_HeaderContent" runat="server">
+                        <asp:LinkButton ID="Label1" OnClick="Label_Click" runat="server" CausesValidation="false">LinkButton</asp:LinkButton>
+                        <asp:Label ID="Label1Count" runat="server" Font-Bold="True" ForeColor="Blue"></asp:Label>
+                        &nbsp&nbsp&nbsp
 
                     <asp:LinkButton ID="Label2" OnClick="Label_Click" runat="server" CausesValidation="false">LinkButton</asp:LinkButton>
-                    <asp:Label ID="Label2Count" runat="server" Font-Bold="True" ForeColor="Blue"></asp:Label> &nbsp&nbsp&nbsp
+                        <asp:Label ID="Label2Count" runat="server" Font-Bold="True" ForeColor="Blue"></asp:Label>
+                        &nbsp&nbsp&nbsp
 
                     <asp:LinkButton ID="Label3" OnClick="Label_Click" runat="server" CausesValidation="false">LinkButton</asp:LinkButton>
-                    <asp:Label ID="Label3Count" runat="server" Font-Bold="True" ForeColor="Blue"></asp:Label> &nbsp&nbsp&nbsp
+                        <asp:Label ID="Label3Count" runat="server" Font-Bold="True" ForeColor="Blue"></asp:Label>
+                        &nbsp&nbsp&nbsp
 
-                    <asp:LinkButton ID="Label4" OnClick="Label_Click" runat="server" CausesValidation="false" >LinkButton</asp:LinkButton>
-                    <asp:Label ID="Label4Count" runat="server" Font-Bold="True" ForeColor="Blue"></asp:Label> &nbsp&nbsp&nbsp
+                    <asp:LinkButton ID="Label4" OnClick="Label_Click" runat="server" CausesValidation="false">LinkButton</asp:LinkButton>
+                        <asp:Label ID="Label4Count" runat="server" Font-Bold="True" ForeColor="Blue"></asp:Label>
+                        &nbsp&nbsp&nbsp
 
                     <asp:LinkButton ID="Label5" OnClick="Label_Click" runat="server" CausesValidation="false">LinkButton</asp:LinkButton>
-                    <asp:Label ID="Label5Count" runat="server" Font-Bold="True" ForeColor="Blue"></asp:Label> &nbsp&nbsp&nbsp
+                        <asp:Label ID="Label5Count" runat="server" Font-Bold="True" ForeColor="Blue"></asp:Label>
+                        &nbsp&nbsp&nbsp
                     <br />
-                    <br />
-                    <br />
-                </asp:ContentPlaceHolder>
-                <asp:ContentPlaceHolder ID="ContentPlaceHolder_BodyContent" runat="server" />
-                 </form>
+                        <br />
+                        <br />
+                    </asp:ContentPlaceHolder>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder_BodyContent" runat="server" />
+                </form>
             </div>
         </div>
 

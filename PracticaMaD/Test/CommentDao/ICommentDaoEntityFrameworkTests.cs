@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Transactions;
-using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.LabelDao;
@@ -137,7 +136,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao.Tests
 
                 text = "Es una bestia de portatil gaming , los juegos se ven genial y se inician en un momento , no se calienta y encima no es tan pesado .";
 
-                List<string> labels2 = new List<String>
+                List<string> labels2 = new List<string>
                 {
                     "Irresistible",
                     "Chollazo",
@@ -171,7 +170,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao.Tests
                     timesUsed = 0
                 };
 
-                List<string> labels = new List<String>
+                List<string> labels = new List<string>
                 {
                     "Irresistible",
                     "Chollazo",

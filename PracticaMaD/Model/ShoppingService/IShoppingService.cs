@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 {
@@ -28,7 +26,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             string postalAddress, long creditCardId, string description);
 
         [Transactional]
-        Decimal Subtotal();
+        decimal Subtotal();
 
         List<ShoppingCartDetails> ViewShoppingCart();
 
@@ -49,7 +47,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         [Transactional]
         List<OrderLineDetails> ViewOrderLineDetails(long orderId);
-        
+
         [Transactional]
         int TotalProducts();
 

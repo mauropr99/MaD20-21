@@ -7,7 +7,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Errors
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            String creditCard = Request.Params.Get("creditCard");
+            string creditCard = Request.Params.Get("creditCard");
             lblErrorTitle.Text = GetLocalResourceObject("AlreadyExpired").ToString() + creditCard;
         }
     }

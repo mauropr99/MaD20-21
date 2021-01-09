@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Es.Udc.DotNet.ModelUtil.IoC;
-using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 
@@ -21,9 +17,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
             IShoppingService shoppingService = SessionManager.GetShoppingService();
             List<ShoppingCartDetails> shoppingCart = shoppingService.ViewShoppingCart();
 
-            this.GridViewCart.DataSource = shoppingCart;
-            this.GridViewCart.DataBind();
-     
+            GridViewCart.DataSource = shoppingCart;
+            GridViewCart.DataBind();
+
             for (int i = 0; i < GridViewCart.Rows.Count; i++)
             {
                 GridViewCart.Rows[i].Cells[priceCell].Text = shoppingCart[i].Price.ToString("C2");
@@ -31,17 +27,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
                 CheckBox cb = (CheckBox)GridViewCart.Rows[i].FindControl("gift");
                 cb.Enabled = false;
             }
-          
+
             if (shoppingCart.Count != 0)
             {
-                this.imgEmptyCart.Visible = false;
-                this.txtEmptyCart.Visible = false;
+                imgEmptyCart.Visible = false;
+                txtEmptyCart.Visible = false;
             }
             else
             {
-                this.btn_BuyProducts.Visible = false;
-                this.Subtotal.Visible        = false;
-                this.LblSubtotal.Visible     = false;
+                btn_BuyProducts.Visible = false;
+                Subtotal.Visible = false;
+                LblSubtotal.Visible = false;
             }
 
             Subtotal.Text = shoppingService.Subtotal().ToString("C2");
@@ -90,7 +86,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
             if (shoppingCart.Count == 0)
             {
                 Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Product/Catalog.aspx"));
-            } else
+            }
+            else
             {
                 Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Shopping/Purchase.aspx"));
             }

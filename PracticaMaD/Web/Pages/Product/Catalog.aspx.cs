@@ -1,17 +1,14 @@
-﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
+﻿using System;
+using System.Collections.Generic;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
+using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
-using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
-using System;
-using System.Collections.Generic;
-using System.Web;
-using System.Web.UI.WebControls;
-using System.Web.UI;
-using System.Data;
-using System.Windows.Forms;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 {
@@ -19,8 +16,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
     {
         int startIndex, index;
         int count = 4;
-        int dateCell=2, priceCell = 3, addCell = 4;
-      
+        int dateCell = 2, priceCell = 3, addCell = 4;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -29,8 +26,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 /* Get Start Index */
                 try
                 {
-                    startIndex = Int32.Parse(Request.Params.Get("startIndex"));
-                    index = Int32.Parse(Request.Params.Get("index"));
+                    startIndex = int.Parse(Request.Params.Get("startIndex"));
+                    index = int.Parse(Request.Params.Get("index"));
                 }
                 catch (ArgumentNullException)
                 {
@@ -60,19 +57,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             {
                 List<Category> categoryList = productService.ViewAllCategories();
 
-                this.DropDownCategoryList.Items.Clear();
+                DropDownCategoryList.Items.Clear();
 
-                this.DropDownCategoryList.Items.Insert(0, "All categories");
+                DropDownCategoryList.Items.Insert(0, "All categories");
 
                 foreach (Category category in categoryList)
                 {
-                    this.DropDownCategoryList.Items.Add(category.name);
+                    DropDownCategoryList.Items.Add(category.name);
                 }
 
-                this.DropDownCategoryList.SelectedIndex = index;
+                DropDownCategoryList.SelectedIndex = index;
             }
 
-            this.DropDownCategoryList.Visible = true;
+            DropDownCategoryList.Visible = true;
         }
 
         protected void LoadCatalog(IProductService productService)
@@ -80,7 +77,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             string dateFormat = GetFormat();
             ProductBlock productBlock;
 
-            String productName = txtProductName.Text;
+            string productName = txtProductName.Text;
 
             if (DropDownCategoryList.SelectedValue == "All categories")
             {
@@ -92,9 +89,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
             }
 
 
-            this.GridViewCatalog.DataSource = productBlock.Products;
+            GridViewCatalog.DataSource = productBlock.Products;
 
-            this.GridViewCatalog.DataBind();
+            GridViewCatalog.DataBind();
 
 
             IShoppingService shoppingService = SessionManager.GetShoppingService();
@@ -112,24 +109,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
 
             if (productBlock.ExistMoreProducts)
             {
-                String url =
+                string url =
                     "/Pages/Product/Catalog.aspx" + "?startIndex=" + (startIndex + count) + "&count=" +
                     count + "&index=" + index;
 
-                this.lnkNext.NavigateUrl =
+                lnkNext.NavigateUrl =
                     Response.ApplyAppPathModifier(url);
-                this.lnkNext.Visible = true;
+                lnkNext.Visible = true;
             }
 
             if ((startIndex - count) >= 0)
             {
-                String url =
+                string url =
                     "/Pages/Product/Catalog.aspx" + "?startIndex=" + (startIndex - count) + "&count=" +
                     count + "&index=" + index;
 
-                this.lnkPrevious.NavigateUrl =
+                lnkPrevious.NavigateUrl =
                     Response.ApplyAppPathModifier(url);
-                this.lnkPrevious.Visible = true;
+                lnkPrevious.Visible = true;
             }
 
         }
@@ -177,10 +174,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
                 try
                 {
                     IShoppingService shoppingService = SessionManager.GetShoppingService();
-                    
-                    int index = Convert.ToInt32(e.CommandArgument);    
+
+                    int index = Convert.ToInt32(e.CommandArgument);
                     long productId = long.Parse(GridViewCatalog.DataKeys[index].Values[0].ToString());
-                        
+
                     shoppingService.AddToShoppingCart(productId);
 
                     Page.Response.Redirect(Page.Request.Url.ToString(), true);

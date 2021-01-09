@@ -38,20 +38,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
 
             // 3) Llamada al caso de uso (lectura de parámetros y actualización vista)
 
-            this.lblUserExists.Visible = false;
-            this.lblUserNotExists.Visible = false;
+            lblUserExists.Visible = false;
+            lblUserNotExists.Visible = false;
 
-            String loginName =
+            string loginName =
                 txtUserName.Text;
 
             bool userExists = userService.UserExists(loginName);
 
             if (userExists)
 
-                this.lblUserExists.Visible = true;
+                lblUserExists.Visible = true;
             else
 
-                this.lblUserNotExists.Visible = true;
+                lblUserNotExists.Visible = true;
         }
 
         protected void btnUserExists_Click(object sender, EventArgs e)
@@ -66,20 +66,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
 
             // 3) Llamada al caso de uso (lectura de parámetros y actualización vista)
 
-            this.lblUserExists.Visible = false;
-            this.lblUserNotExists.Visible = false;
+            lblUserExists.Visible = false;
+            lblUserNotExists.Visible = false;
 
-            String loginName =
+            string loginName =
                 txtUserName.Text;
 
             bool userExists = userService.UserExists(loginName);
 
             if (userExists)
 
-                this.lblUserExists.Visible = true;
+                lblUserExists.Visible = true;
             else
 
-                this.lblUserNotExists.Visible = true;
+                lblUserNotExists.Visible = true;
         }
     }
 }

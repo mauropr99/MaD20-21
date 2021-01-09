@@ -20,9 +20,9 @@ namespace Web.Pages.Shopping
 
             orderLineDetails = shoppingService.ViewOrderLineDetails(orderId);
 
-            this.GridOrderHistoryDetails.DataSource = orderLineDetails;
+            GridOrderHistoryDetails.DataSource = orderLineDetails;
 
-            this.GridOrderHistoryDetails.DataBind();
+            GridOrderHistoryDetails.DataBind();
 
 
             for (int i = 0; i < GridOrderHistoryDetails.Rows.Count; i++)

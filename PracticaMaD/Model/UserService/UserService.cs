@@ -35,7 +35,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             string newClearPassword)
         {
             User user = UserDao.Find(id);
-            String storedPassword = user.password;
+            string storedPassword = user.password;
 
             if (!PasswordEncrypter.IsClearPasswordCorrect(oldClearPassword,
                  storedPassword))
@@ -79,7 +79,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <exception cref="InstanceNotFoundException"/>
         /// <exception cref="IncorrectPasswordException"/>
         [Transactional]
-        public LoginResult Login(String login, string password, bool passwordIsEncrypted)
+        public LoginResult Login(string login, string password, bool passwordIsEncrypted)
         {
             User user =
                 UserDao.FindByLogin(login);
@@ -256,7 +256,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         }
 
         /// <exception cref="InstanceNotFoundException"></exception>
-        public String GetRolByUserId(long userId)
+        public string GetRolByUserId(long userId)
         {
             return UserDao.Find(userId).role;
         }
