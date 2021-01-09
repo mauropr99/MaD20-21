@@ -124,6 +124,6 @@
     <value>Please, check if the operation has been performed, and retry if it is necessary</value>
   </data>
   <data name="Page.Title" xml:space="preserve">
-    <value>PracticaMaD - Internal Error</value>
+    <value>PracticaMaD - Expired card</value>
   </data>
 </root>

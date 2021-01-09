@@ -138,6 +138,9 @@
   <data name="operatingSystem" xml:space="preserve">
     <value>OPERATING SYSTEM: </value>
   </data>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - Computer details</value>
+  </data>
   <data name="price" xml:space="preserve">
     <value>PRICE: </value>
   </data>

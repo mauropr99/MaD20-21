@@ -126,4 +126,7 @@
   <data name="description" xml:space="preserve">
     <value>Order description</value>
   </data>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - Shopping history</value>
+  </data>
 </root>

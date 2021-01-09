@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using Es.Udc.DotNet.ModelUtil.Dao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.Util;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.LabelDao
 {
@@ -36,17 +37,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LabelDao
 
             Label result =
                 (from u in labels
-                 where u.lab == labelName
-                 select u).FirstOrDefault();
+                    where u.lab == labelName
+                    select u).FirstOrDefault();
 
 
-            #endregion Option 1: Using Linq.
+                
 
             if (result == null)
                 throw new InstanceNotFoundException(labelName,
                     typeof(Label).FullName);
 
+
             return result;
+
+
+            #endregion Option 1: Using Linq.
+
         }
 
         public List<Label> FindLabelsByCommentId(long commentId)

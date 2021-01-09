@@ -129,4 +129,7 @@
   <data name="lblExplanation_txt" xml:space="preserve">
     <value>Procura de usuarios</value>
   </data>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - Existe usuario</value>
+  </data>
 </root>

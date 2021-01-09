@@ -124,6 +124,12 @@
     <value>Por favor, compruebe si la operación ha sido realizada y reinténtelo si es necesario</value>
   </data>
   <data name="Page.Title" xml:space="preserve">
-    <value>PracticaMaD - Error Interno</value>
+    <value>PracticaMaD - Fuera de stock</value>
+  </data>
+  <data name="orderedStock" xml:space="preserve">
+    <value>Cantidad solicitada:</value>
+  </data>
+  <data name="productStock" xml:space="preserve">
+    <value>Stock del producto: </value>
   </data>
 </root>

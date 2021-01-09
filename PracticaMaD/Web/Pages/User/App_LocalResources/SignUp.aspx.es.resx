@@ -154,7 +154,7 @@
     <value>Nombre de usuario</value>
   </data>
   <data name="Page.Title" xml:space="preserve">
-    <value>PracticaMaD - Registro de Usuario</value>
+    <value>PracticaMaD - Registro de usuario</value>
   </data>
   <data name="revEmail.ErrorMessage" xml:space="preserve">
     <value>Sintaxis de email incorrecta</value>

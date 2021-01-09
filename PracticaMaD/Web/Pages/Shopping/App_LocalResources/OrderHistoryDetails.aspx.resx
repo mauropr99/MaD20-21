@@ -117,13 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - Shopping hisotory (details)</value>
+  </data>
   <data name="price" xml:space="preserve">
     <value>Price</value>
   </data>
-  <data name="quantity" xml:space="preserve">
-    <value>Quantity</value>
-  </data>
   <data name="productName" xml:space="preserve">
     <value>Product name</value>
+  </data>
+  <data name="quantity" xml:space="preserve">
+    <value>Quantity</value>
   </data>
 </root>

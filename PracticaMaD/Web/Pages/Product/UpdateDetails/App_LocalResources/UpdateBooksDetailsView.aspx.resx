@@ -156,4 +156,7 @@
   <data name="newComment" xml:space="preserve">
     <value>New comment</value>
   </data>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - Updating book</value>
+  </data>
 </root>

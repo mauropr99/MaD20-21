@@ -129,4 +129,10 @@
   <data name="lblLabelAdd" xml:space="preserve">
     <value>Add label</value>
   </data>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - Update comment</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Remove</value>
+  </data>
 </root>

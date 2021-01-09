@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Es.Udc.DotNet.ModelUtil.Dao;
+using Es.Udc.DotNet.PracticaMaD.Model.Util;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 {
@@ -17,11 +18,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 
             List<Comment> result =
                 (from c in comments
-                 where c.productId == productId
-                 orderby c.commentDate descending
-                 select c).Skip(startIndex).Take(count).ToList();
+                    where c.productId == productId
+                    orderby c.commentDate descending
+                    select c).Skip(startIndex).Take(count).ToList();
 
             return result;
+
 
             #endregion Using Linq.
         }
@@ -45,10 +47,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 
         public void AddLabel(Label label, long commentId)
         {
-
             var query = this.Find(commentId);
 
             query.Labels.Add(label);
+
+            this.Update(query);
+        }
+
+        public void RemoveLabel(Label label, long commentId)
+        {
+            var query = this.Find(commentId);
+
+            query.Labels.Remove(label);
 
             this.Update(query);
         }

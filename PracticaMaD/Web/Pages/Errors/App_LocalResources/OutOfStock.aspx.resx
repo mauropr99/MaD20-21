@@ -126,4 +126,10 @@
   <data name="Page.Title" xml:space="preserve">
     <value>PracticaMaD - Internal Error</value>
   </data>
+  <data name="orderedStock" xml:space="preserve">
+    <value>Ordered stock: </value>
+  </data>
+  <data name="productStock" xml:space="preserve">
+    <value>Product stock: Out of stock</value>
+  </data>
 </root>

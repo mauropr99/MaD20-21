@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using Es.Udc.DotNet.ModelUtil.Dao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.Util;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao
 {
@@ -32,49 +33,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao
 
             #region Option 1: Using Linq.
 
-            DbSet<Language> languages = Context.Set<Language>();
+            string cacheObjectName = "FindByNameAndCountry" + languageName + languageCountry;
+            var cachedObject = CacheUtil.GetFromCache<Language>(cacheObjectName);
 
-            var result =
-                (from u in languages
-                 where u.name == languageName &&
-                    u.country == languageCountry
-                 select u);
+            if (cachedObject == null)
+            {
 
-            language = result.FirstOrDefault();
+                DbSet<Language> languages = Context.Set<Language>();
 
-            #endregion Option 1: Using Linq.
+                var result =
+                    (from u in languages
+                     where u.name == languageName &&
+                        u.country == languageCountry
+                     select u);
 
-            if (language == null)
-                throw new InstanceNotFoundException(languageName,
-                    typeof(Language).FullName);
+                language = result.FirstOrDefault();
 
-            return language;
-        }
+                #endregion Option 1: Using Linq.
 
-        public List<Language> FindLanguagesByCountry(string country)
-        {
+                if (language == null)
+                    throw new InstanceNotFoundException(languageName,
+                        typeof(Language).FullName);
 
-            List<Language> language = null;
+                    CacheUtil.AddToCache<Language>(cacheObjectName, language);
 
-            #region Option 1: Using Linq.
+                return language;
+            }
 
-            DbSet<Language> languages = Context.Set<Language>();
-
-            var result =
-                (from u in languages
-                 where u.country == country
-                 select u).Skip(0).ToList();
-
-
-            language = result.ToList();
-
-            #endregion Option 1: Using Linq.
-
-            if (language == null)
-                throw new InstanceNotFoundException(country,
-                    typeof(Language).FullName);
-
-            return result;
+            return cachedObject;
         }
 
         public Language FindByUserId(long userId)

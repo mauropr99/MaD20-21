@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true" CodeBehind="UpdateComputersDetailsView.aspx.cs" Inherits="Web.Pages.Product.UpdateComputersDetailsView" %>
+﻿<%@ Page  meta:resourcekey="Page" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true" CodeBehind="UpdateComputersDetailsView.aspx.cs" Inherits="Web.Pages.Product.UpdateComputersDetailsView" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
 

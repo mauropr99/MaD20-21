@@ -77,8 +77,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             //Recovering comment labels
             List<Label> oldLabels = LabelDao.FindLabelsByCommentId(commentId);
 
-
-
             //Removing unused labels
             foreach (Label oldLabel in oldLabels)
             {
@@ -92,6 +90,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
                     else
                     {
                         foundLabel.timesUsed--;
+                        CommentDao.RemoveLabel(foundLabel, commentId);
                         LabelDao.Update(foundLabel);
                     }
 
