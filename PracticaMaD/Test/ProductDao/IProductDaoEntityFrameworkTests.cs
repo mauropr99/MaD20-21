@@ -2,6 +2,8 @@
 using System.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
@@ -60,6 +62,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
             TestUtil.categoryDao = kernel.Get<ICategoryDao>();
             TestUtil.computerDao = kernel.Get<IComputerDao>();
             TestUtil.bookDao = kernel.Get<IBookDao>();
+            TestUtil.languageDao = kernel.Get<ILanguageDao>();
+            TestUtil.creditCardDao = kernel.Get<ICreditCardDao>();
 
 
             commentService = kernel.Get<ICommentService>();
@@ -85,6 +89,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
         [TestCleanup()]
         public void MyTestCleanup()
         {
+            try
+            {
+                TestUtil.languageDao.Remove(1);
+            }
+            catch (System.Exception)
+            {
+            }
             transactionScope.Dispose();
         }
 

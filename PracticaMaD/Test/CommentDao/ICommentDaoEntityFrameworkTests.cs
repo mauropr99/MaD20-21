@@ -2,7 +2,13 @@
 using System.Collections.Generic;
 using System.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
+using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.LabelDao;
+using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
+using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Test;
 using Es.Udc.DotNet.PracticaMaD.Test.Util;
@@ -15,7 +21,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao.Tests
     public class ICommentDaoEntityFrameworkTests
     {
         private static IKernel kernel;
-        private static ICommentDao commentDao;
         private static ICommentService commentService;
         private static IUserService userService;
 
@@ -65,8 +70,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao.Tests
         public static void MyClassInitialize(TestContext testContext)
         {
             kernel = TestManager.ConfigureNInjectKernel();
-            commentDao = kernel.Get<ICommentDao>();
+            TestUtil.categoryDao = kernel.Get<ICategoryDao>();
+            TestUtil.commentDao = kernel.Get<ICommentDao>();
+            TestUtil.computerDao = kernel.Get<IComputerDao>();
+            TestUtil.bookDao = kernel.Get<IBookDao>();
+            TestUtil.creditCardDao = kernel.Get<ICreditCardDao>();
             TestUtil.labelDao = kernel.Get<ILabelDao>();
+            TestUtil.userDao = kernel.Get<IUserDao>();
+            TestUtil.languageDao = kernel.Get<ILanguageDao>();
 
 
             commentService = kernel.Get<ICommentService>();
@@ -105,12 +116,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao.Tests
                 int startIndex = 0, count = 5;
                 Language language = TestUtil.CreateExistentLanguage();
 
-                long userId = userService.SingUpUser(login, password,
-                       new UserDetails(name, lastName, email, language.name, language.country));
-                long user2Id = userService.SingUpUser(login2, password,
-                       new UserDetails(name, lastName, email2, language.name, language.country));
-                User user = TestUtil.userDao.Find(userId);
-                User user2 = TestUtil.userDao.Find(user2Id);
+                User user = TestUtil.CreateExistentUser(language);
+                long userId = user.id;
+                User user2 = TestUtil.CreateExistentUser(language);
+                long user2Id = user2.id;
                 CreditCard creditCard = TestUtil.CreateCreditCard();
 
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
@@ -136,7 +145,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao.Tests
                 };
                 var comment2 = commentService.NewComment(user2.id, product1.id, text, labels2);
 
-                List<Comment> comments = commentDao.FindCommentsByProductId(product1.id, startIndex, count);
+                List<Comment> comments = TestUtil.commentDao.FindCommentsByProductId(product1.id, startIndex, count);
 
                 Assert.AreEqual(2, comments.Count);
                 Assert.AreEqual(comment1.id, comments[0].id);
@@ -152,8 +161,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao.Tests
             {
                 Language language = TestUtil.CreateExistentLanguage();
 
-                long userId = userService.SingUpUser(login, password,
-                       new UserDetails(name, lastName, email, language.name, language.country));
+                User user = TestUtil.CreateExistentUser(language);
+                long userId = user.id;
                 CreditCard creditCard = TestUtil.CreateCreditCard();
 
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
@@ -173,7 +182,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao.Tests
                 string text = "Muy buen ordenador y a buen precio. Funcionan todos los juegos a calidad máxima, muy fluidos y sin apenas calentarse el aparato.";
                 var comment1 = commentService.NewComment(userId, product1.id, text, labels);
 
-                commentDao.AddLabel(label, comment1.id);
+                TestUtil.commentDao.AddLabel(label, comment1.id);
 
                 Assert.AreEqual(label.lab, TestUtil.labelDao.FindByLabelName(label.lab).lab);
             }

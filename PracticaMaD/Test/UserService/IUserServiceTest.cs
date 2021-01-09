@@ -29,6 +29,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
 
         private static IKernel kernel;
         private static IUserService userService;
+        private static Language language;
+        private static User user;
+
 
 
         private TransactionScope transactionScope;
@@ -60,6 +63,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
 
             userService = kernel.Get<IUserService>();
 
+            language = TestUtil.CreateExistentLanguage();
+            user = TestUtil.CreateExistentUser(language);
+
         }
 
         [ClassCleanup()]
@@ -74,11 +80,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
             transactionScope = new TransactionScope();
         }
 
+        //Use TestCleanup to run code after each test has run
         [TestCleanup()]
-        public void MyTestCleanup()
-        {
+        public void MyTestCleanup() { 
             transactionScope.Dispose();
         }
+
 
         #endregion Additional test attributes
 
@@ -88,8 +95,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
 
             using (var scope = new TransactionScope())
             {
-                Language language = TestUtil.CreateExistentLanguage();
-
+                string login = "user2";
                 var id =
                     userService.SingUpUser(login, password,
                         new UserDetails(name, lastName, email, language.name, language.country));
@@ -112,10 +118,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
         {
             using (var scope = new TransactionScope())
             {
-                Language language = TestUtil.CreateExistentLanguage();
 
                 userService.SingUpUser(login, password,
-                         new UserDetails(name, lastName, email, language.name, language.country));
+                    new UserDetails(name, lastName, email, language.name, language.country));
 
                 userService.SingUpUser(login, password,
                         new UserDetails(name, lastName, email, language.name, language.country));
@@ -127,8 +132,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
         {
             using (var scope = new TransactionScope())
             {
-                Language language = TestUtil.CreateExistentLanguage();
-
+                string login = "user2";
                 var id = userService.SingUpUser(login, password,
                          new UserDetails(name, lastName, email, language.name, language.country));
 
@@ -148,8 +152,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
         {
             using (var scope = new TransactionScope())
             {
-                Language language = TestUtil.CreateExistentLanguage();
-                User user = TestUtil.CreateExistentUser(language);
                 string ownerName = "Name Surname";
                 string creditType = "debit";
                 string creditCardNumber = "1234567891234567";
@@ -171,8 +173,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
         {
             using (var scope = new TransactionScope())
             {
-                Language language = TestUtil.CreateExistentLanguage();
-                User user = TestUtil.CreateExistentUser(language);
+                
                 string ownerName = "Name Surname";
                 string creditType = "debit";
                 string creditCardNumber = "1234567891234567";
@@ -191,8 +192,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
         {
             using (var scope = new TransactionScope())
             {
-                Language language = TestUtil.CreateExistentLanguage();
-                User user = TestUtil.CreateExistentUser(language);
                 string ownerName = "Name Surname";
                 string creditType = "debit";
                 string creditCardNumber1 = "1234567891234567";
@@ -220,8 +219,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
         {
             using (var scope = new TransactionScope())
             {
-                Language language = TestUtil.CreateExistentLanguage();
-                User user = TestUtil.CreateExistentUser(language);
                 string ownerName = "Name Surname";
                 string creditType = "debit";
                 string creditCardNumber1 = "1234567891234567";
