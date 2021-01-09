@@ -33,19 +33,25 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
             string creditCardCvv = txtCreditCardCvv.Text;
             string creditCardType = DropDownCreditCardTypeList.SelectedValue;
             string expirationDateString = txtExpirationDate.Text;
+             
+            try
+            {
+                DateTime expirationDate = DateTime.ParseExact(expirationDateString, "MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                UserSession userSession =
+               (UserSession)Context.Session[SessionManager.USER_SESSION_ATTRIBUTE];
 
+                productService.AddCreditCard(userSession.UserId, creditCardOwner, creditCardType, creditCardNumber, short.Parse(creditCardCvv), expirationDate);
 
-            DateTime expirationDate = DateTime.ParseExact(expirationDateString, "MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                object refUrl = ViewState["RefUrl"];
+                if (refUrl != null)
+                    Response.Redirect((string)refUrl);
+            }
+            catch
+            {
+                Response.Redirect("~/Pages/Errors/InternalError.aspx");
+            }
 
-
-            UserSession userSession =
-                (UserSession)Context.Session[SessionManager.USER_SESSION_ATTRIBUTE];
-
-            productService.AddCreditCard(userSession.UserId, creditCardOwner, creditCardType, creditCardNumber, short.Parse(creditCardCvv), expirationDate);
-
-            object refUrl = ViewState["RefUrl"];
-            if (refUrl != null)
-                Response.Redirect((string)refUrl);
+           
         }
 
     }
