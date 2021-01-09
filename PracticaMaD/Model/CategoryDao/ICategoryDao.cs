@@ -1,11 +1,10 @@
-﻿using System;
-using Es.Udc.DotNet.ModelUtil.Dao;
+﻿using Es.Udc.DotNet.ModelUtil.Dao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CategoryDao
 {
-    public interface ICategoryDao : IGenericDao<Category, Int64>
+    public interface ICategoryDao : IGenericDao<Category, long>
     {
         /// <exception cref="InstanceNotFoundException"></exception>
-        Category FindByName(String name);
+        Category FindByName(string name);
     }
 }

@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Globalization;
 using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
-using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
 {
@@ -30,11 +28,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
 
             //3 Llamar al caso de uso (lectura de parámetros y actualización de la vista)
 
-            String creditCardOwner = txtCreditCardOwner.Text;
-            String creditCardNumber = txtCreditCardNumber.Text;
-            String creditCardCvv = txtCreditCardCvv.Text;
-            String creditCardType = DropDownCreditCardTypeList.SelectedValue;
-            String expirationDateString = txtExpirationDate.Text;
+            string creditCardOwner = txtCreditCardOwner.Text;
+            string creditCardNumber = txtCreditCardNumber.Text;
+            string creditCardCvv = txtCreditCardCvv.Text;
+            string creditCardType = DropDownCreditCardTypeList.SelectedValue;
+            string expirationDateString = txtExpirationDate.Text;
 
 
             DateTime expirationDate = DateTime.ParseExact(expirationDateString, "MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);

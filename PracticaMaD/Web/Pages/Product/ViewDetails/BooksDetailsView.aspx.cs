@@ -1,12 +1,12 @@
 ﻿using System;
-using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
-using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 
 namespace Web.Pages.Product
 {
@@ -30,7 +30,7 @@ namespace Web.Pages.Product
                 Book book = productService.FindBook(productId);
                 linkViewComment.Visible = productService.HasComments(productId);
 
-                if (book.stock == 0 )
+                if (book.stock == 0)
                 {
                     lblQuantity.Visible = false;
                     DropDownListQuantity.Visible = false;
@@ -112,7 +112,7 @@ namespace Web.Pages.Product
 
         protected void BtnBackToPreviousPage_Click(object sender, EventArgs e)
         {
-           Response.Redirect("~/Pages/Product/Catalog.aspx"); 
+            Response.Redirect("~/Pages/Product/Catalog.aspx");
         }
 
         protected void BtnNewComment_Click(object sender, EventArgs e)

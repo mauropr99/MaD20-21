@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Transactions;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Test;
@@ -92,8 +91,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao.Tests
                     createdLanguage.Add(language);
                 }
 
-                String expectedLanguageName = "language 8";
-                String expectedLanguageCountry = "ES";
+                string expectedLanguageName = "language 8";
+                string expectedLanguageCountry = "ES";
                 Language foundlanguage = languageDao.FindByNameAndCountry(expectedLanguageName, expectedLanguageCountry);
 
                 Assert.AreEqual(foundlanguage.name, expectedLanguageName);

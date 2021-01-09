@@ -168,11 +168,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             * the specified range.
             */
             comments = CommentDao.FindCommentsByProductId(productId, startIndex, count + 1);
-            
+
 
             bool existMoreComments = (comments.Count == count + 1);
 
-  
+
 
             List<CommentDetails> detailComments = new List<CommentDetails>();
 

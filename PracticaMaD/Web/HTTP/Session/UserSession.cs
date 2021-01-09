@@ -1,12 +1,10 @@
-﻿using System;
-
-namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
+﻿namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
 {
     public class UserSession
     {
 
         private long userId;
-        private String firstName;
+        private string firstName;
 
         public long UserId
         {
@@ -14,7 +12,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
             set { userId = value; }
         }
 
-        public String FirstName
+        public string FirstName
         {
             get { return firstName; }
             set { firstName = value; }

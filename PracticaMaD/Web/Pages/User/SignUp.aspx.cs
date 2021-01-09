@@ -19,9 +19,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             if (!IsPostBack)
             {
                 /* Get current language and country from browser */
-                String defaultLanguage =
+                string defaultLanguage =
                     GetLanguageFromBrowserPreferences();
-                String defaultCountry =
+                string defaultCountry =
                     GetCountryFromBrowserPreferences();
 
                 /* Combo box initialization */
@@ -29,9 +29,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             }
         }
 
-        private String GetLanguageFromBrowserPreferences()
+        private string GetLanguageFromBrowserPreferences()
         {
-            String language;
+            string language;
             CultureInfo cultureInfo =
                 CultureInfo.CreateSpecificCulture(Request.UserLanguages[0]);
             language = cultureInfo.TwoLetterISOLanguageName;
@@ -40,9 +40,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             return language;
         }
 
-        private String GetCountryFromBrowserPreferences()
+        private string GetCountryFromBrowserPreferences()
         {
-            String country;
+            string country;
             CultureInfo cultureInfo =
                 CultureInfo.CreateSpecificCulture(Request.UserLanguages[0]);
 
@@ -53,7 +53,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             else
             {
                 // cultureInfoName is something like en-US
-                String cultureInfoName = cultureInfo.Name;
+                string cultureInfoName = cultureInfo.Name;
                 // Gets the last two caracters of cultureInfoname
                 country = cultureInfoName.Substring(cultureInfoName.Length - 2);
 
@@ -69,13 +69,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         /// Also, the selectedLanguage will appear selected in the
         /// ComboBox
         /// </summary>
-        private void UpdateComboLanguage(String selectedLanguage)
+        private void UpdateComboLanguage(string selectedLanguage)
         {
-            this.comboLanguage.DataSource = Languages.GetLanguages(selectedLanguage);
-            this.comboLanguage.DataTextField = "text";
-            this.comboLanguage.DataValueField = "value";
-            this.comboLanguage.DataBind();
-            this.comboLanguage.SelectedValue = selectedLanguage;
+            comboLanguage.DataSource = Languages.GetLanguages(selectedLanguage);
+            comboLanguage.DataTextField = "text";
+            comboLanguage.DataValueField = "value";
+            comboLanguage.DataBind();
+            comboLanguage.SelectedValue = selectedLanguage;
         }
 
 
@@ -119,7 +119,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             /* After a language change, the countries are printed in the
              * correct language.
              */
-            this.UpdateComboLanguage(comboLanguage.SelectedValue);
+            UpdateComboLanguage(comboLanguage.SelectedValue);
         }
     }
 }

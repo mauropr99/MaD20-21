@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using Es.Udc.DotNet.ModelUtil.Dao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
@@ -12,7 +10,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao
     /// Specific Operations for Language
     /// </summary>
     public class LanguageDaoEntityFramework :
-        GenericDaoEntityFramework<Language, Int64>, ILanguageDao
+        GenericDaoEntityFramework<Language, long>, ILanguageDao
     {
         #region ILanguageDao Members. Specific Operations
         /// <exception cref="InstanceNotFoundException"></exception>
@@ -44,7 +42,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao
                     throw new InstanceNotFoundException(languageName,
                         typeof(Language).FullName);
 
-                    CacheUtil.AddToCache<Language>(cacheObjectName, language);
+                CacheUtil.AddToCache<Language>(cacheObjectName, language);
 
                 return language;
             }

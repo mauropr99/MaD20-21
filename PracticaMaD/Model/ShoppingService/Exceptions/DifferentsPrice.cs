@@ -15,15 +15,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Exceptions
         /// </summary>
         /// <param name="productPrice"><c>price</c> that causes the error.</param>
         ///  /// <param name="productName"><c>product</c> that causes the error.</param>
-        public DifferentPrice(decimal productPrice, String productName)
+        public DifferentPrice(decimal productPrice, string productName)
             : base("The price of = " + productName + " has been modified after you added this product in the shopping cart: Actual price = " + productPrice)
         {
-            this.ProductPrice = productPrice;
-            this.ProductName = productName;
+            ProductPrice = productPrice;
+            ProductName = productName;
         }
 
         public decimal ProductPrice { get; private set; }
-        public String ProductName { get; private set; }
+        public string ProductName { get; private set; }
 
     }
 }

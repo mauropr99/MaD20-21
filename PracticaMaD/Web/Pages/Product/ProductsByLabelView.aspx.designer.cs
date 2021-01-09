@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Web.Pages.Product {
-    
-    
-    public partial class ProductsByLabelView {
-        
+namespace Web.Pages.Product
+{
+
+
+    public partial class ProductsByLabelView
+    {
+
         /// <summary>
         /// lblLabelInfo control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Web.Pages.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblLabelInfo;
-        
+
         /// <summary>
         /// lblLabelContent control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Web.Pages.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblLabelContent;
-        
+
         /// <summary>
         /// GridViewCatalog control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Web.Pages.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewCatalog;
-        
+
         /// <summary>
         /// lnkPrevious control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace Web.Pages.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink lnkPrevious;
-        
+
         /// <summary>
         /// lnkNext control.
         /// </summary>

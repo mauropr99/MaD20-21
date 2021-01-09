@@ -171,7 +171,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
                 cvv = 123,
                 expirationDate = DateTime.Now.AddYears(1)
             };
-       
+
             creditCardDao.Create(creditCard);
             return creditCard;
         }

@@ -16,8 +16,8 @@ namespace Web.Pages.Shopping
             /* Get Start Index */
             try
             {
-                startIndex = Int32.Parse(Request.Params.Get("startIndex"));
-                index = Int32.Parse(Request.Params.Get("index"));
+                startIndex = int.Parse(Request.Params.Get("startIndex"));
+                index = int.Parse(Request.Params.Get("index"));
             }
             catch (ArgumentNullException)
             {
@@ -46,9 +46,9 @@ namespace Web.Pages.Shopping
 
             orderBlock = shoppingService.FindOrdersByUserId(userSession.UserId, startIndex, count);
 
-            this.GridOrderHistory.DataSource = orderBlock.Orders;
+            GridOrderHistory.DataSource = orderBlock.Orders;
 
-            this.GridOrderHistory.DataBind();
+            GridOrderHistory.DataBind();
 
             //We can access the locale information only if the user is authenticated
             if (SessionManager.IsUserAuthenticated(Context))
@@ -83,24 +83,24 @@ namespace Web.Pages.Shopping
 
             if (orderBlock.ExistMoreOrders)
             {
-                String url =
+                string url =
                     "/Pages/Shopping/OrderHistory.aspx" + "?startIndex=" + (startIndex + count) + "&count=" +
                     count + "&index=" + index;
 
-                this.lnkNext.NavigateUrl =
+                lnkNext.NavigateUrl =
                     Response.ApplyAppPathModifier(url);
-                this.lnkNext.Visible = true;
+                lnkNext.Visible = true;
             }
 
             if ((startIndex - count) >= 0)
             {
-                String url =
+                string url =
                     "/Pages/Shopping/OrderHistory.aspx" + "?startIndex=" + (startIndex - count) + "&count=" +
                     count + "&index=" + index;
 
-                this.lnkPrevious.NavigateUrl =
+                lnkPrevious.NavigateUrl =
                     Response.ApplyAppPathModifier(url);
-                this.lnkPrevious.Visible = true;
+                lnkPrevious.Visible = true;
             }
 
         }

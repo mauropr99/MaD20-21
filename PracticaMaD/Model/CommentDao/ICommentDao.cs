@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Es.Udc.DotNet.ModelUtil.Dao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 {
-    public interface ICommentDao : IGenericDao<Comment, Int64>
+    public interface ICommentDao : IGenericDao<Comment, long>
     {
         /// <summary>
         /// Returns a list of comments pertaining to a given product identifier.

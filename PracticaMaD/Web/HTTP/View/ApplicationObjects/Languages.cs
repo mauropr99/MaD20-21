@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects
@@ -52,7 +51,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects
             return languages.Keys;
         }
 
-        public static ArrayList GetLanguages(String languageCode)
+        public static ArrayList GetLanguages(string languageCode)
         {
             ArrayList lang = (ArrayList)languages[languageCode];
 

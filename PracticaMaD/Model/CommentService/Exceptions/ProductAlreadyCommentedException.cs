@@ -17,9 +17,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Exceptions
         public ProductAlreadyCommentedException(long productId)
             : base("Product already commented by the user")
         {
-            this.ProductId = productId;
+            ProductId = productId;
         }
 
-    public long ProductId { get; private set; }
-}
+        public long ProductId { get; private set; }
+    }
 }

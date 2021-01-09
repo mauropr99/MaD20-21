@@ -14,8 +14,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <exception cref="IncorrectPasswordException"/>
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        void ChangePassword(long id, String oldClearPassword,
-            String newClearPassword);
+        void ChangePassword(long id, string oldClearPassword,
+            string newClearPassword);
 
 
         /// <exception cref="InstanceNotFoundException"/>
@@ -25,12 +25,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <exception cref="InstanceNotFoundException"/>
         /// <exception cref="IncorrectPasswordException"/>
         [Transactional]
-        LoginResult Login(String login, String password,
-            Boolean passwordIsEncrypted);
+        LoginResult Login(string login, string password,
+            bool passwordIsEncrypted);
 
         /// <exception cref="DuplicateInstanceException"/>
         [Transactional]
-        long SingUpUser(String login, String clearPassword,
+        long SingUpUser(string login, string clearPassword,
             UserDetails userDetails);
 
         /// <exception cref="InstanceNotFoundException"/>
@@ -54,7 +54,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        String GetRolByUserId(long userId);
+        string GetRolByUserId(long userId);
 
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]

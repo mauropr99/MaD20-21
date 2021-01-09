@@ -13,11 +13,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         IProductDao ProductDao { set; }
 
         ICategoryDao CategoryDao { set; }
-        
+
         IBookDao BookDao { set; }
-        
+
         IComputerDao ComputerDao { set; }
-        
+
         ICommentDao CommentDao { set; }
 
         [Transactional]

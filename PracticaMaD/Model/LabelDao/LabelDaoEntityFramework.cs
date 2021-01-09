@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Es.Udc.DotNet.ModelUtil.Dao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
-using Es.Udc.DotNet.PracticaMaD.Model.Util;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.LabelDao
 {
     public class LabelDaoEntityFramework :
-        GenericDaoEntityFramework<Label, Int64>, ILabelDao
+        GenericDaoEntityFramework<Label, long>, ILabelDao
     {
         #region ILabelDao Members. Specific Operations
 
-        public Boolean ExistByName(string labelName)
+        public bool ExistByName(string labelName)
         {
             #region Using Linq.
 
@@ -38,8 +36,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LabelDao
 
             Label result =
                 (from u in labels
-                    where u.lab == labelName
-                    select u).FirstOrDefault();
+                 where u.lab == labelName
+                 select u).FirstOrDefault();
 
             if (result == null)
                 throw new InstanceNotFoundException(labelName,

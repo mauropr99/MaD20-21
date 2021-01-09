@@ -1,11 +1,10 @@
 ﻿using System;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
 {
@@ -33,8 +32,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                 /* Get Start Index */
                 try
                 {
-                    productId = Int64.Parse(Request.Params.Get("productId"));
-                    startIndex = Int32.Parse(Request.Params.Get("startIndex"));
+                    productId = long.Parse(Request.Params.Get("productId"));
+                    startIndex = int.Parse(Request.Params.Get("startIndex"));
                 }
                 catch (ArgumentNullException)
                 {
@@ -45,11 +44,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
 
                 if (commentBlock.Comments.Count == 0)
                 {
-                    this.txtEmptyComment.Visible = true;
+                    txtEmptyComment.Visible = true;
                 }
                 else
                 {
-                    this.txtEmptyComment.Visible = false;
+                    txtEmptyComment.Visible = false;
                 }
 
                 GridViewComments.DataSource = commentBlock.Comments;
@@ -76,7 +75,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                             GridViewComments.Rows[i].Cells[updateCell].Visible = true;
                         }
                     }
-                    
+
 
                 }
 
@@ -85,24 +84,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
 
                 if (commentBlock.ExistMoreComments)
                 {
-                    String url =
+                    string url =
                         "/Pages/Comment/CommentList.aspx" + "?startIndex=" + (startIndex + count) + "&count=" +
                         count + "&productId=" + productId.ToString() + "&categoryName=" + Request.Params.Get("categoryName");
 
-                    this.lnkNext.NavigateUrl =
+                    lnkNext.NavigateUrl =
                         Response.ApplyAppPathModifier(url);
-                    this.lnkNext.Visible = true;
+                    lnkNext.Visible = true;
                 }
 
                 if ((startIndex - count) >= 0)
                 {
-                    String url =
+                    string url =
                         "/Pages/Comment/CommentList.aspx" + "?startIndex=" + (startIndex - count) + "&count=" +
                         count + "&productId=" + productId.ToString() + "&categoryName=" + Request.Params.Get("categoryName");
 
-                    this.lnkPrevious.NavigateUrl =
+                    lnkPrevious.NavigateUrl =
                         Response.ApplyAppPathModifier(url);
-                    this.lnkPrevious.Visible = true;
+                    lnkPrevious.Visible = true;
                 }
 
             }
@@ -112,7 +111,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
         protected void BtnBackToPreviousPage_Click(object sender, EventArgs e)
         {
             object refUrl = "~/Pages/Product/DetailsViewController.aspx?productId=" + Request.Params.Get("productId") + "&categoryName=" + Request.Params.Get("categoryName");
-                Response.Redirect((string)refUrl);
+            Response.Redirect((string)refUrl);
         }
 
         private string GetFormat()

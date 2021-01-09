@@ -10,11 +10,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         public ShoppingCartResult(long id, string postalAddress, System.DateTime orderDate,
             decimal totalPrice, ICollection<OrderLine> orderLines)
         {
-            this.Id = id;
-            this.PostalAddress = postalAddress;
-            this.OrderDate = orderDate;
-            this.TotalPrice = totalPrice;
-            this.OrderLines = orderLines;
+            Id = id;
+            PostalAddress = postalAddress;
+            OrderDate = orderDate;
+            TotalPrice = totalPrice;
+            OrderLines = orderLines;
         }
 
         #region Properties Region
@@ -36,17 +36,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         {
             ShoppingCartResult target = (ShoppingCartResult)obj;
 
-            return (this.Id == target.Id)
-                   && (this.PostalAddress == target.PostalAddress)
-                   && (this.OrderDate == target.OrderDate)
-                   && (this.TotalPrice == target.TotalPrice)
-                   && (this.OrderLines.Equals(target.OrderLines));
+            return (Id == target.Id)
+                   && (PostalAddress == target.PostalAddress)
+                   && (OrderDate == target.OrderDate)
+                   && (TotalPrice == target.TotalPrice)
+                   && (OrderLines.Equals(target.OrderLines));
         }
 
 
         public override int GetHashCode()
         {
-            return this.Id.GetHashCode();
+            return Id.GetHashCode();
         }
 
         public override string ToString()

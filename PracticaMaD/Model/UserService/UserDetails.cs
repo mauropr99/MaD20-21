@@ -27,23 +27,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         public UserDetails(string name, string lastName,
             string email, string languageName, string languageCountry, long defaultCreditCardId)
         {
-            this.Name = name;
-            this.Lastname = lastName;
-            this.Email = email;
-            this.LanguageName = languageName;
-            this.LanguageCountry = languageCountry;
-            this.DefaultCreditCardId = defaultCreditCardId;
+            Name = name;
+            Lastname = lastName;
+            Email = email;
+            LanguageName = languageName;
+            LanguageCountry = languageCountry;
+            DefaultCreditCardId = defaultCreditCardId;
         }
 
         public UserDetails(string name, string lastName,
             string email, string languageName, string languageCountry)
         {
-            this.Name = name;
-            this.Lastname = lastName;
-            this.Email = email;
-            this.LanguageName = languageName;
-            this.LanguageCountry = languageCountry;
-            this.DefaultCreditCardId = null;
+            Name = name;
+            Lastname = lastName;
+            Email = email;
+            LanguageName = languageName;
+            LanguageCountry = languageCountry;
+            DefaultCreditCardId = null;
         }
 
         public override bool Equals(object obj)
@@ -51,16 +51,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
             UserDetails target = (UserDetails)obj;
 
-            return (this.Name == target.Name)
-                  && (this.Lastname == target.Lastname)
-                  && (this.Email == target.Email)
-                  && (this.LanguageName == target.LanguageName)
-                  && (this.LanguageCountry == target.LanguageCountry);
+            return (Name == target.Name)
+                  && (Lastname == target.Lastname)
+                  && (Email == target.Email)
+                  && (LanguageName == target.LanguageName)
+                  && (LanguageCountry == target.LanguageCountry);
         }
 
         public override int GetHashCode()
         {
-            return this.Name.GetHashCode();
+            return Name.GetHashCode();
         }
 
         public override string ToString()

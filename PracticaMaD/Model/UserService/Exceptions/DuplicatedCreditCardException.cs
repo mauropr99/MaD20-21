@@ -15,13 +15,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions
         /// <see cref="DuplicatedCreditCardException"/> class.
         /// </summary>
         /// <param name="creditCardNumber"><c>number of credit card</c> that causes the error.</param>
-        public DuplicatedCreditCardException(String creditCardNumber)
+        public DuplicatedCreditCardException(string creditCardNumber)
             : base("Duplicated credit card => credit card = " + "**** **** **** " + creditCardNumber.Substring(12))
         {
-            this.CreditCardNumber = creditCardNumber;
+            CreditCardNumber = creditCardNumber;
         }
 
-        public String CreditCardNumber { get; private set; }
+        public string CreditCardNumber { get; private set; }
 
     }
 }

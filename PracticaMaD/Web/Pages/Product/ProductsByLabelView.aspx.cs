@@ -1,16 +1,12 @@
 ﻿using System;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
-using Es.Udc.DotNet.ModelUtil.IoC;
-using Es.Udc.DotNet.PracticaMaD.Model;
-using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
-using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
-using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
-using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.ModelUtil.IoC;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
+using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
 
 namespace Web.Pages.Product
 {
@@ -29,8 +25,8 @@ namespace Web.Pages.Product
                 /* Get Start Index */
                 try
                 {
-                    startIndex = Int32.Parse(Request.Params.Get("startIndex"));
-                    index = Int32.Parse(Request.Params.Get("index"));
+                    startIndex = int.Parse(Request.Params.Get("startIndex"));
+                    index = int.Parse(Request.Params.Get("index"));
                 }
                 catch (ArgumentNullException)
                 {
@@ -81,16 +77,16 @@ namespace Web.Pages.Product
             string dateFormat = GetFormat();
             ProductBlock productBlock;
 
-            String labelName = Request.Params.Get("labelName");
+            string labelName = Request.Params.Get("labelName");
 
             //Recuperamos la información del servicio
             productBlock = productService.ViewProductsByLabels(labelName, startIndex, count);
 
-            this.GridViewCatalog.DataSource = productBlock.Products;
+            GridViewCatalog.DataSource = productBlock.Products;
 
-            this.GridViewCatalog.DataBind();
+            GridViewCatalog.DataBind();
 
-            this.lblLabelContent.Text = labelName;
+            lblLabelContent.Text = labelName;
 
             IShoppingService shoppingService = SessionManager.GetShoppingService();
 
@@ -107,24 +103,24 @@ namespace Web.Pages.Product
 
             if (productBlock.ExistMoreProducts)
             {
-                String url =
+                string url =
                     "/Pages/Product/ProductsByLabelView.aspx" + "?startIndex=" + (startIndex + count) + "&count=" +
                     count + "&index=" + index + "&labelName=" + Request.Params.Get("labelName");
 
-                this.lnkNext.NavigateUrl =
+                lnkNext.NavigateUrl =
                     Response.ApplyAppPathModifier(url);
-                this.lnkNext.Visible = true;
+                lnkNext.Visible = true;
             }
 
             if ((startIndex - count) >= 0)
             {
-                String url =
+                string url =
                     "/Pages/Product/ProductsByLabelView.aspx" + "?startIndex=" + (startIndex - count) + "&count=" +
                     count + "&index=" + index + "&labelName=" + Request.Params.Get("labelName");
 
-                this.lnkPrevious.NavigateUrl =
+                lnkPrevious.NavigateUrl =
                     Response.ApplyAppPathModifier(url);
-                this.lnkPrevious.Visible = true;
+                lnkPrevious.Visible = true;
             }
 
         }

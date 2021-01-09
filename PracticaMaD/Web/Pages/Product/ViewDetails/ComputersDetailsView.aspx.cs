@@ -1,12 +1,12 @@
 ﻿using System;
-using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
-using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 
 namespace Web.Pages.Product
 {
@@ -102,7 +102,7 @@ namespace Web.Pages.Product
         {
             Response.Redirect("~/Pages/Product/Catalog.aspx");
         }
-    
+
         protected void btnAddToShoppingCart_Click(object sender, EventArgs e)
         {
             try
@@ -129,7 +129,7 @@ namespace Web.Pages.Product
 
         protected void Computer_Click(object sender, EventArgs e)
         {
-            Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Comment/CommentList.aspx?productId=" + Request.Params.Get("productId")+"&categoryName="+ Request.Params.Get("categoryName")));
+            Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Comment/CommentList.aspx?productId=" + Request.Params.Get("productId") + "&categoryName=" + Request.Params.Get("categoryName")));
         }
     }
 

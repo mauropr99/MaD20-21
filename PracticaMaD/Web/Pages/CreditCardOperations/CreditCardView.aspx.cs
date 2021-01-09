@@ -4,7 +4,6 @@ using System.Web.UI.WebControls;
 using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
-using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
 
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations

@@ -42,7 +42,7 @@ namespace Web.Pages.Product
                 }
                 else
                 {
-                    Response.Redirect("~/Pages/Product/ViewDetails/" + categoryName + "DetailsView.aspx?productId=" + productId + "&categoryName="+categoryName);
+                    Response.Redirect("~/Pages/Product/ViewDetails/" + categoryName + "DetailsView.aspx?productId=" + productId + "&categoryName=" + categoryName);
                 }
             }
             catch (ArgumentNullException)

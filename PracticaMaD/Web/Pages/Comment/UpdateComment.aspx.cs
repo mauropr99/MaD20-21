@@ -1,13 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Web;
+using System.Web.UI.WebControls;
 using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
-using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Collections.Generic;
-using System.Web;
-using System.Data;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
 {
@@ -49,8 +47,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                     dt.Rows.Add(dr);
                 }
 
-               this.GridViewLabels.DataSource = dt;
-               this.GridViewLabels.DataBind();
+                GridViewLabels.DataSource = dt;
+                GridViewLabels.DataBind();
             }
 
 
@@ -89,11 +87,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
         protected void BtnAddLabel_Click(object sender, EventArgs e)
         {
             string column = GetLocalResourceObject("label").ToString();
-            string label = HttpUtility.HtmlDecode(this.txtLabelContent.Text.Trim().ToLower());
+            string label = HttpUtility.HtmlDecode(txtLabelContent.Text.Trim().ToLower());
 
             DataRow dr;
             bool exists = false;
-            foreach (GridViewRow row in this.GridViewLabels.Rows)
+            foreach (GridViewRow row in GridViewLabels.Rows)
             {
                 if (!exists) exists = HttpUtility.HtmlDecode(row.Cells[labelCell].Text.Trim()) == label;
             }
@@ -105,11 +103,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                 Labels.Add(label);
                 Dt.Rows.Add(dr);
 
-                this.GridViewLabels.DataSource = Dt;
-                this.GridViewLabels.DataBind();
+                GridViewLabels.DataSource = Dt;
+                GridViewLabels.DataBind();
             }
 
-            this.txtLabelContent.Text = "";
+            txtLabelContent.Text = "";
         }
 
         protected void BtnBackToPreviousPage_Click(object sender, EventArgs e)

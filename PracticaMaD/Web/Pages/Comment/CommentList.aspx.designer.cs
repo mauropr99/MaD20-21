@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment {
-    
-    
-    public partial class CommentList {
-        
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
+{
+
+
+    public partial class CommentList
+    {
+
         /// <summary>
         /// lnkbutton control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkbutton;
-        
+
         /// <summary>
         /// txtEmptyComment control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label txtEmptyComment;
-        
+
         /// <summary>
         /// GridViewComments control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewComments;
-        
+
         /// <summary>
         /// lnkPrevious control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink lnkPrevious;
-        
+
         /// <summary>
         /// lnkNext control.
         /// </summary>

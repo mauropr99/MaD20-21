@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Es.Udc.DotNet.ModelUtil.Dao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
-using Es.Udc.DotNet.PracticaMaD.Model.Util;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 {
     public class CommentDaoEntityFramework :
-        GenericDaoEntityFramework<Comment, Int64>, ICommentDao
+        GenericDaoEntityFramework<Comment, long>, ICommentDao
     {
         public List<Comment> FindCommentsByProductId(long productId, int startIndex, int count)
         {
@@ -19,9 +17,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 
             List<Comment> result =
                 (from c in comments
-                    where c.productId == productId
-                    orderby c.commentDate descending
-                    select c).Skip(startIndex).Take(count).ToList();
+                 where c.productId == productId
+                 orderby c.commentDate descending
+                 select c).Skip(startIndex).Take(count).ToList();
 
             return result;
 
@@ -30,7 +28,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
         }
 
         /// <exception cref="InstanceNotFoundException"></exception>
-        public Comment FindCommentsByUserId(long productId,long userId)
+        public Comment FindCommentsByUserId(long productId, long userId)
         {
             #region Using Linq.
 
@@ -38,7 +36,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 
             Comment result =
                 (from c in comments
-                 where c.productId == productId && c.userId == userId 
+                 where c.productId == productId && c.userId == userId
                  select c).FirstOrDefault();
 
             if (result == null)
@@ -53,21 +51,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
         /// <exception cref="InstanceNotFoundException"></exception>
         public void AddLabel(Label label, long commentId)
         {
-            var query = this.Find(commentId);
+            var query = Find(commentId);
 
             query.Labels.Add(label);
 
-            this.Update(query);
+            Update(query);
         }
 
         /// <exception cref="InstanceNotFoundException"></exception>
         public void RemoveLabel(Label label, long commentId)
         {
-            var query = this.Find(commentId);
+            var query = Find(commentId);
 
             query.Labels.Remove(label);
 
-            this.Update(query);
+            Update(query);
         }
 
     }

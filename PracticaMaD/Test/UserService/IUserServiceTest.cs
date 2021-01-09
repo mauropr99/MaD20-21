@@ -84,7 +84,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
 
         //Use TestCleanup to run code after each test has run
         [TestCleanup()]
-        public void MyTestCleanup() { 
+        public void MyTestCleanup()
+        {
             transactionScope.Dispose();
         }
 
@@ -175,7 +176,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
         {
             using (var scope = new TransactionScope())
             {
-                
+
                 string ownerName = "Name Surname";
                 string creditType = "debit";
                 string creditCardNumber = "1234567891234567";

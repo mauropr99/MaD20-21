@@ -2,16 +2,16 @@
 using System.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
-using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
-using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
+using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
+using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Test;
 using Es.Udc.DotNet.PracticaMaD.Test.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
-using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
 {
@@ -67,7 +67,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
             TestUtil.bookDao = kernel.Get<IBookDao>();
             TestUtil.languageDao = kernel.Get<ILanguageDao>();
             TestUtil.creditCardDao = kernel.Get<ICreditCardDao>();
-            TestUtil.userDao  = kernel.Get<IUserDao>();
+            TestUtil.userDao = kernel.Get<IUserDao>();
 
 
             commentService = kernel.Get<ICommentService>();

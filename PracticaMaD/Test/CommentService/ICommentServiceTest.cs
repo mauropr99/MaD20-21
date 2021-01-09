@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
@@ -175,7 +174,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 string text = "Muy buen ordenador y a buen precio. Funcionan todos los juegos a calidad máxima, muy fluidos y sin apenas calentarse el aparato.";
                 Comment comment = commentService.NewComment(user.id, product1.id, text, labels);
 
-               
+
                 Comment duplicatedComment = commentService.NewComment(user.id, product1.id, text, labels);
 
             }
@@ -202,7 +201,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 
                 text = "Es una bestia de portatil gaming , los juegos se ven genial y se inician en un momento , no se calienta y encima no es tan pesado .";
 
-                List<string> labels2 = new List<String>
+                List<string> labels2 = new List<string>
                 {
                     "Irresistible",
                     "Chollazo",
@@ -232,12 +231,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
         public void InstanceNotFoundExceptionTest()
         {
             using (var scope = new TransactionScope())
-            {   
+            {
                 CreditCard creditCard = TestUtil.CreateCreditCard();
 
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
                 Computer product1 = TestUtil.CreateComputer(category1, "Msi GL 62 6QD", 3, "Msi");
-                List<string> labels = new List<String>
+                List<string> labels = new List<string>
                 {
                     "Ganga",
                     "Oferta",
@@ -249,7 +248,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 
                 text = "Es una bestia de portatil gaming , los juegos se ven genial y se inician en un momento , no se calienta y encima no es tan pesado .";
 
-                List<string> labels2 = new List<String>
+                List<string> labels2 = new List<string>
                 {
                     "Irresistible",
                     "Chollazo",
@@ -312,7 +311,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 
                 text = "Es una bestia de portatil gaming , los juegos se ven genial y se inician en un momento , no se calienta y encima no es tan pesado .";
 
-                List<string> labels2 = new List<String>
+                List<string> labels2 = new List<string>
                 {
                     "Irresistible",
                     "Chollazo",
