@@ -186,7 +186,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
                 List<Product> foundProducts = new List<Product>();
                 foundProducts = TestUtil.productDao.FindByProductNameAndCategoryName("Acer", category2.name, 0, 10);
 
-                Assert.AreEqual(0, foundProducts.Count);
+                Assert.AreEqual(1, foundProducts.Count);
             }
         }
 
