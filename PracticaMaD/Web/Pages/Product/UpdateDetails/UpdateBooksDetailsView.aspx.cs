@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model;
@@ -62,11 +63,29 @@ namespace Web.Pages.Product
                     Book book = productService.FindBook(productId);
                     book.product_name = txtTitleContent.Text;
                     book.author = txtAuthorContent.Text;
-                    book.price = decimal.Parse(Regex.Match(txtPriceContent.Text, @"-?\d{1,3}(,\d{3})*(\.\d+)?").Value);
                     book.stock = int.Parse(txtStockContent.Text);
                     book.genre = txtGenreContent.Text;
                     productService.UpdateBook(book);
                     Response.Redirect("~/Pages/Product/Catalog.aspx");
+                    try
+                    {
+                        CultureInfo cultureInfo =
+                            CultureInfo.CreateSpecificCulture(Request.UserLanguages[0]);
+                        book.price = Decimal.Parse(txtPriceContent.Text, cultureInfo);
+                        if (book.price < 0)
+                        {
+                            errorPrice.Visible = true;
+                        }
+                        else
+                        {
+                            productService.UpdateBook(book);
+                            Response.Redirect("~/Pages/Product/Catalog.aspx");
+                        }
+                    }
+                    catch
+                    {
+                        errorPrice.Visible = true;
+                    }
                 }
             }
             catch (ArgumentNullException)

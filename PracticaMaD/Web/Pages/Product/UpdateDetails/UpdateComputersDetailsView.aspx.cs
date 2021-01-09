@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model;
@@ -36,7 +37,7 @@ namespace Web.Pages.Product
                     txtStockContent.Text = computer.stock.ToString();
                     txtProcessorContent.Text = computer.processor;
                     txtOperatingSystemContent.Text = computer.os;
-
+                    errorPrice.Visible = false;
                 }
                 catch (ArgumentNullException)
                 {
@@ -54,6 +55,8 @@ namespace Web.Pages.Product
         {
             IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
             IProductService productService = iocManager.Resolve<IProductService>();
+
+           
             try
             {
                 if (Page.IsValid)
@@ -62,12 +65,28 @@ namespace Web.Pages.Product
                     Computer computer = productService.FindComputer(productId);
                     computer.product_name = txtComputerNameContent.Text;
                     computer.brand = txtBrandContent.Text;
-                    computer.price = decimal.Parse(Regex.Match(txtPriceContent.Text, @"-?\d{1,3}(,\d{3})*(\.\d+)?").Value);
                     computer.stock = int.Parse(txtStockContent.Text);
                     computer.processor = txtProcessorContent.Text;
                     computer.os = txtOperatingSystemContent.Text;
-                    productService.UpdateComputer(computer);
-                    Response.Redirect("~/Pages/Product/Catalog.aspx");
+                    try
+                    {
+                        CultureInfo cultureInfo =
+                            CultureInfo.CreateSpecificCulture(Request.UserLanguages[0]);
+                        computer.price = Decimal.Parse(txtPriceContent.Text, cultureInfo);
+                        if (computer.price < 0)
+                        {
+                            errorPrice.Visible = true;
+                        }
+                        else
+                        {
+                            productService.UpdateComputer(computer);
+                            Response.Redirect("~/Pages/Product/Catalog.aspx");
+                        }
+                    }
+                    catch
+                    {
+                        errorPrice.Visible = true;
+                    }
                 }
             }
             catch (ArgumentNullException)

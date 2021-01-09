@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
 
     <br />
-    <asp:LinkButton ID="LinkButton2" runat="server" OnClick="BtnBackToPreviousPage_Click" Text="<%$ Resources:Common, back %>" />
+    <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="false" OnClick="BtnBackToPreviousPage_Click" Text="<%$ Resources:Common, back %>" />
     <br />
     <div class="field">
         <asp:Label ID="Label1" CssClass="label" runat="server" Text="<%$ Resources: , computerName %>"></asp:Label>
@@ -25,9 +25,7 @@
         <asp:Label ID="Label3" CssClass="label" runat="server" Text="<%$ Resources: , price %>"></asp:Label>
         <span class="entry">
             <asp:TextBox ID="txtPriceContent" runat="server"></asp:TextBox>
-            <asp:RegularExpressionValidator runat="server" ForeColor="Red" ControlToValidate="txtPriceContent"
-                ValidationExpression="-?\d{1,3}(,\d{3})*(\.\d+)?"
-                ErrorMessage="<%$ Resources: , ControlStock %>" />
+            <asp:Label ID="errorPrice" runat="server" Text="<%$ Resources:, ControlStock %>" ForeColor="Red"></asp:Label>
         </span>
     </div>
     <br />
