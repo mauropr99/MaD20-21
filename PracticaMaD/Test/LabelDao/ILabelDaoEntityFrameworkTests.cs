@@ -4,6 +4,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
+using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
 using Es.Udc.DotNet.PracticaMaD.Test;
 using Es.Udc.DotNet.PracticaMaD.Test.Util;
@@ -51,6 +52,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LabelDao.Tests
             TestUtil.labelDao = kernel.Get<ILabelDao>();
             TestUtil.commentDao = kernel.Get<ICommentDao>();
             TestUtil.userDao = kernel.Get<IUserDao>();
+            TestUtil.languageDao = kernel.Get<ILanguageDao>();
 
             commentService = kernel.Get<ICommentService>();
         }

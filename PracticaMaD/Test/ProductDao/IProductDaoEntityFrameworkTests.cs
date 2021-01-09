@@ -11,6 +11,7 @@ using Es.Udc.DotNet.PracticaMaD.Test;
 using Es.Udc.DotNet.PracticaMaD.Test.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
+using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
 {
@@ -66,6 +67,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
             TestUtil.bookDao = kernel.Get<IBookDao>();
             TestUtil.languageDao = kernel.Get<ILanguageDao>();
             TestUtil.creditCardDao = kernel.Get<ICreditCardDao>();
+            TestUtil.userDao  = kernel.Get<IUserDao>();
 
 
             commentService = kernel.Get<ICommentService>();

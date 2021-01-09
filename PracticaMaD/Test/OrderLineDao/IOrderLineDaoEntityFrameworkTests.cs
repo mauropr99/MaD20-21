@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Transactions;
+using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
@@ -55,6 +57,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao.Tests
             TestUtil.orderLineDao = kernel.Get<IOrderLineDao>();
             TestUtil.creditCardDao = kernel.Get<ICreditCardDao>();
             TestUtil.productDao = kernel.Get<IProductDao>();
+            TestUtil.computerDao = kernel.Get<IComputerDao>();
+            TestUtil.bookDao = kernel.Get<IBookDao>();
         }
 
         //Use ClassCleanup to run code after all tests in a class have run
