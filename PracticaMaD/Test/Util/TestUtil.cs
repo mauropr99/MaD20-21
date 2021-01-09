@@ -31,9 +31,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
 
         public static Language CreateExistentLanguage()
         {
-            Language language = languageDao.FindByNameAndCountry("es", "Es");
-            if (language == null)
-            { 
+            Language language;
+            try
+            {
+                language = languageDao.FindByNameAndCountry("es", "Es");
+
+            }
+            catch (Exception)
+            {
                 language = new Language
                 {
                     name = "es",
@@ -41,13 +46,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
                 };
                 languageDao.Create(language);
             }
+
             return language;
         }
 
         public static User CreateExistentUser(Language language)
         {
-            User user = userDao.FindByLogin("user");
-            if (user == null)
+            User user;
+            try
+            {
+                user = userDao.FindByLogin("user");
+
+            }
+            catch (Exception)
             {
                 user = new User
                 {
@@ -62,6 +73,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
                 };
                 userDao.Create(user);
             }
+
             return user;
         }
 

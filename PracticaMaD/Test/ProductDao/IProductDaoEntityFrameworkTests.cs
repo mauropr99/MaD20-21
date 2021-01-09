@@ -193,8 +193,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
         {
             using (var scope = new TransactionScope())
             {
-                long user2Id = userService.SingUpUser(login2, password,
-                       new UserDetails(name, lastName, email2, language.name, language.country));
                 CreditCard creditCard = TestUtil.CreateCreditCard();
 
                 Category category1 = TestUtil.CreateCategory("Ordenadores");
@@ -217,7 +215,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
                     "Irresistible",
                     "Chollazo",
                 };
-                var comment2 = commentService.NewComment(user2Id, product2.id, text, labels2);
+                var comment2 = commentService.NewComment(user.id, product2.id, text, labels2);
                 List<Product> products = new List<Product>();
                 products.Add(product1);
                 products.Add(product2);
