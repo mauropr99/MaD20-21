@@ -176,6 +176,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             user.lastName = userDetails.Lastname;
             user.email = userDetails.Email;
             user.languageId = LanguageDao.FindByNameAndCountry(userDetails.LanguageName, userDetails.LanguageCountry).id;
+            UserDao.Update(user);
         }
 
         /// <exception cref="DuplicateCreditCardException"></exception>
