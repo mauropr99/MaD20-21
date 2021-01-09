@@ -234,7 +234,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         /// <exception cref="InstanceNotFoundException"></exception>
         public bool UserAlreadyCommented(long productId, long userId)
         {
-            return CommentDao.FindCommentsByUserId(productId, userId) != null;
+      
+            try {
+                CommentDao.FindCommentsByUserId(productId, userId);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         #endregion ICommentSercice Members
