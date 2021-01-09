@@ -141,4 +141,7 @@
   <data name="labelInfo" xml:space="preserve">
     <value>Resultados para la etiqueta: </value>
   </data>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - Productos por etiqueta</value>
+  </data>
 </root>

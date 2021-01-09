@@ -14,27 +14,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
         {
             #region Using Linq.
 
-            string cacheObjectName = "FindCommentsByProductId" + productId + startIndex + count;
-            var cachedObject = CacheUtil.GetFromCache<List<Comment>> (cacheObjectName);
+            DbSet<Comment> comments = Context.Set<Comment>();
 
-            if (cachedObject == null)
-            {
+            List<Comment> result =
+                (from c in comments
+                    where c.productId == productId
+                    orderby c.commentDate descending
+                    select c).Skip(startIndex).Take(count).ToList();
 
-                DbSet<Comment> comments = Context.Set<Comment>();
+            return result;
 
-                List<Comment> result =
-                    (from c in comments
-                     where c.productId == productId
-                     orderby c.commentDate descending
-                     select c).Skip(startIndex).Take(count).ToList();
 
-                CacheUtil.AddToCache<List<Comment>> (cacheObjectName, result);
-
-                return result;
-
-            }
-
-            return cachedObject;
             #endregion Using Linq.
         }
 
@@ -57,10 +47,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 
         public void AddLabel(Label label, long commentId)
         {
-
             var query = this.Find(commentId);
 
             query.Labels.Add(label);
+
+            this.Update(query);
+        }
+
+        public void RemoveLabel(Label label, long commentId)
+        {
+            var query = this.Find(commentId);
+
+            query.Labels.Remove(label);
 
             this.Update(query);
         }

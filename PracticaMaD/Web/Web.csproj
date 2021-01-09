@@ -528,7 +528,6 @@
     <Content Include="Pages\Shopping\App_LocalResources\OrderHistory.aspx.es.resx" />
     <Content Include="Pages\Shopping\App_LocalResources\OrderHistory.aspx.gl.resx" />
     <Content Include="Pages\Shopping\App_LocalResources\OrderHistory.aspx.resx" />
-    <Content Include="Pages\Shopping\App_LocalResources\OrderHistoryDetails.aspx.resx" />
     <Content Include="Pages\Shopping\App_LocalResources\ShoppingCart.aspx.es.resx" />
     <Content Include="Pages\Shopping\App_LocalResources\ShoppingCart.aspx.gl.resx" />
     <Content Include="Pages\Shopping\App_LocalResources\ShoppingCart.aspx.resx" />
@@ -570,9 +569,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Product\UpdateDetails\App_LocalResources\UpdateBooksDetailsView.aspx.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Pages\Shopping\App_LocalResources\OrderHistoryDetails.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Shopping\App_LocalResources\Purchase.aspx.resx" />
@@ -628,6 +624,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Product\App_LocalResources\ProductsByLabelView.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Shopping\App_LocalResources\OrderHistoryDetails.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\Shopping\App_LocalResources\OrderHistoryDetails.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Shopping\App_LocalResources\OrderHistoryDetails.aspx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

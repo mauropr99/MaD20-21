@@ -135,6 +135,9 @@
   <data name="isDefaultCreditCard" xml:space="preserve">
     <value>Tarjeta por defecto</value>
   </data>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - Mis tarjetas</value>
+  </data>
   <data name="setAsDefault" xml:space="preserve">
     <value>Marcar como predeterminada</value>
   </data>

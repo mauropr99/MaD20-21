@@ -32,31 +32,26 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LabelDao
         public Label FindByLabelName(string labelName)
         {
             #region Option 1: Using Linq.
-            string cacheObjectName = "FindByLabelName" + labelName;
-            var cachedObject = CacheUtil.GetFromCache<Label>(cacheObjectName);
 
-            if (cachedObject == null)
-            {
-                DbSet<Label> labels = Context.Set<Label>();
+            DbSet<Label> labels = Context.Set<Label>();
 
-                Label result =
-                    (from u in labels
-                     where u.lab == labelName
-                     select u).FirstOrDefault();
+            Label result =
+                (from u in labels
+                    where u.lab == labelName
+                    select u).FirstOrDefault();
 
 
-                #endregion Option 1: Using Linq.
+                
 
-                if (result == null)
-                    throw new InstanceNotFoundException(labelName,
-                        typeof(Label).FullName);
+            if (result == null)
+                throw new InstanceNotFoundException(labelName,
+                    typeof(Label).FullName);
 
-                CacheUtil.AddToCache<Label>(cacheObjectName, result);
 
-                return result;
-            }
+            return result;
 
-            return cachedObject;
+
+            #endregion Option 1: Using Linq.
 
         }
 

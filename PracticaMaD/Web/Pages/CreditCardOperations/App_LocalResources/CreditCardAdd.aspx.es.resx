@@ -150,4 +150,7 @@
   <data name="invalidLength" xml:space="preserve">
     <value>Tiene que tener 16 digitos</value>
   </data>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - Añadir tarjeta</value>
+  </data>
 </root>

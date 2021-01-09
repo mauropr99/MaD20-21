@@ -117,43 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="computerName" xml:space="preserve">
-    <value>MODELO DE ORDENADOR: </value>
-  </data>
-  <data name="brand" xml:space="preserve">
-    <value>MARCA: </value>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - Histórico (detalles)</value>
   </data>
   <data name="price" xml:space="preserve">
-    <value>PREZO: </value>
+    <value>Prezo</value>
   </data>
-  <data name="availableStock" xml:space="preserve">
-    <value>STOCK DISPOÑIBLE: </value>
-  </data>
-  <data name="processor" xml:space="preserve">
-    <value>PROCESADOR: </value>
-  </data>
-  <data name="releaseDate" xml:space="preserve">
-    <value>DATA DE LANZAMENTO: </value>
-  </data>
-  <data name="operatingSystem" xml:space="preserve">
-    <value>SISTEMA OPERATIVO: </value>
+  <data name="productName" xml:space="preserve">
+    <value>Nome de producto</value>
   </data>
   <data name="quantity" xml:space="preserve">
-    <value>Cantidade: </value>
-  </data>
-  <data name="addToShoppingCart" xml:space="preserve">
-    <value>Engadir ao carrito</value>
-  </data>
-  <data name="submit" xml:space="preserve">
-    <value>confirmar</value>
-  </data>
-  <data name="comments" xml:space="preserve">
-    <value>Ver comentarios</value>
-  </data>
-  <data name="newComment" xml:space="preserve">
-    <value>Nuevo comentario</value>
-  </data>
-  <data name="Page.Title" xml:space="preserve">
-    <value>PracticaMaD - Detalles de ordenador</value>
+    <value>Cantidade</value>
   </data>
 </root>

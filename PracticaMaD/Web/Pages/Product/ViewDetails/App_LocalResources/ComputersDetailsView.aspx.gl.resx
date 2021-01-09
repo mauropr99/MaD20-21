@@ -153,4 +153,7 @@
   <data name="newComment" xml:space="preserve">
     <value>Novo comentario</value>
   </data>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - Detalles do ordenador</value>
+  </data>
 </root>

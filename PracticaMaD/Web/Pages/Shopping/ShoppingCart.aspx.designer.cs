@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping {
-    
-    
-    public partial class ShoppingCart {
-        
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping
+{
+
+
+    public partial class ShoppingCart
+    {
+
         /// <summary>
         /// imgEmptyCart control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgEmptyCart;
-        
+
         /// <summary>
         /// txtEmptyCart control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label txtEmptyCart;
-        
+
         /// <summary>
         /// GridViewCart control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewCart;
-        
+
         /// <summary>
         /// LblSubtotal control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LblSubtotal;
-        
+
         /// <summary>
         /// Subtotal control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Shopping {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Subtotal;
-        
+
         /// <summary>
         /// btn_BuyProducts control.
         /// </summary>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true" CodeBehind="CommentAdd.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment.CommentAdd" %>
+﻿<%@ Page meta:resourcekey="Page" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true" CodeBehind="CommentAdd.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment.CommentAdd" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
 
     <div id="form">
@@ -23,7 +23,7 @@
                     <br/>
                     <asp:GridView ID="GridViewLabels" runat="server" AutoGenerateColumns="true" OnRowCommand="GridViewComments_RowCommand">
                         <Columns>
-                            <asp:ButtonField Text="Eliminar" CommandName="Deletelabel"/>
+                            <asp:ButtonField Text="<%$ Resources: , delete %>" CommandName="Deletelabel"/>
                         </Columns>
                     </asp:GridView>
                 </span>

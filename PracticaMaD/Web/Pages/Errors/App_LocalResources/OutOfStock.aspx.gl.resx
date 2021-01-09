@@ -118,12 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="OutOfStock" xml:space="preserve">
-    <value>Non hai suficiente stock deste producto: </value>
+    <value>Non hai suficiente stock deste produto: </value>
   </data>
   <data name="lblRetryLater.Text" xml:space="preserve">
     <value>Por favor, comprobe si a operación foi realizada e inténteo de novo si é necesario</value>
   </data>
   <data name="Page.Title" xml:space="preserve">
-    <value>PracticaMaD - Erro Interno</value>
+    <value>PracticaMaD - Fora de stock</value>
+  </data>
+  <data name="orderedStock" xml:space="preserve">
+    <value>Cantidade solicitada: </value>
+  </data>
+  <data name="productStock" xml:space="preserve">
+    <value>Stock do produto: </value>
   </data>
 </root>

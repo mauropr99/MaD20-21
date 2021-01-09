@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true" CodeBehind="CommentList.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment.CommentList" %>
+﻿<%@ Page meta:resourcekey="Page" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true" CodeBehind="CommentList.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment.CommentList" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
         <br />
         <asp:LinkButton ID="lnkbutton" runat="server" OnClick="BtnBackToPreviousPage_Click" Text="<%$ Resources:Common, back %>" />
@@ -16,8 +16,8 @@
                         <ItemStyle Width="600px"></ItemStyle>
                     </asp:BoundField>
                     <asp:BoundField DataField="Date" HeaderText="<%$ Resources: , date %>" />
-                    <asp:ButtonField Text="Eliminar" CommandName="DeleteComment"/>
-                    <asp:ButtonField Text="Editar" CommandName="EditComment"/>
+                    <asp:ButtonField Text="<%$ Resources: , delete %>" CommandName="DeleteComment"/>
+                    <asp:ButtonField Text="<%$ Resources: , edit %>" CommandName="EditComment"/>
                     <asp:BoundField DataField="Id" Visible="false"/>
                     <asp:BoundField DataField="UserId" Visible="false"/>
                     <asp:BoundField DataField="labels" Visible="false"/>

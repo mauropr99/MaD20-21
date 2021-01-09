@@ -126,6 +126,9 @@
   <data name="gift" xml:space="preserve">
     <value>Marcar como agasallo</value>
   </data>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - Carrito</value>
+  </data>
   <data name="price" xml:space="preserve">
     <value>Prezo</value>
   </data>

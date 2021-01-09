@@ -120,6 +120,9 @@
   <data name="addCommentButton" xml:space="preserve">
     <value>Añadir comentario</value>
   </data>
+  <data name="delete" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
   <data name="label" xml:space="preserve">
     <value>Etiquetas</value>
   </data>
@@ -128,5 +131,8 @@
   </data>
   <data name="lblLabelAdd" xml:space="preserve">
     <value>Añadir Etiqueta</value>
+  </data>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - Añadir comentario</value>
   </data>
 </root>

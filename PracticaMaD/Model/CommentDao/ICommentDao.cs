@@ -17,6 +17,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 
         void AddLabel(Label label, long commentId);
 
+        void RemoveLabel(Label label, long commentId);
+
         Comment FindCommentsByUserId(long productId, long userId);
 
 

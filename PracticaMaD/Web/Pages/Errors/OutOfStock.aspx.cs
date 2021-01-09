@@ -10,7 +10,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Errors
             String productName = Request.Params.Get("productName");
             String stock = Request.Params.Get("stock");
             String orderedStock = Request.Params.Get("OrderedStock");
-            lblErrorTitle.Text = GetLocalResourceObject("OutOfStock").ToString() + productName + " Product Stock: " + stock + " Ordered Stock: "+ orderedStock ;
+            lblErrorTitle.Text = GetLocalResourceObject("OutOfStock").ToString() + " " + productName + " " 
+                                + GetLocalResourceObject("productStock").ToString() + " " + stock + " " 
+                                + GetLocalResourceObject("orderedStock").ToString() + " " + orderedStock ;
         }
     }
 }
