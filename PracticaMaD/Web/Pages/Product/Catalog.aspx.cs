@@ -53,22 +53,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Product
         }
         protected void LoadDropDownCategoryList(IProductService productService, int index)
         {
-            if (DropDownCategoryList.Items.Count == 0)
+
+            List<Category> categoryList = productService.ViewAllCategories();
+
+            DropDownCategoryList.Items.Clear();
+
+            DropDownCategoryList.Items.Insert(0, "All categories");
+
+            foreach (Category category in categoryList)
             {
-                List<Category> categoryList = productService.ViewAllCategories();
-
-                DropDownCategoryList.Items.Clear();
-
-                DropDownCategoryList.Items.Insert(0, "All categories");
-
-                foreach (Category category in categoryList)
-                {
-                    DropDownCategoryList.Items.Add(category.name);
-                }
-
-                DropDownCategoryList.SelectedIndex = index;
+                DropDownCategoryList.Items.Add(category.name);
             }
 
+            DropDownCategoryList.SelectedIndex = index;
+       
             DropDownCategoryList.Visible = true;
         }
 

@@ -45,7 +45,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao
         {
             #region Using Linq.
 
-            string cacheObjectName = "FindByProductNameAndCategoryName?productName=" + productName + "&startIndex=" + startIndex + "&count=" + count; var cachedObject = CacheUtil.GetFromCache<List<Product>>(cacheObjectName);
+            string cacheObjectName = "FindByProductNameAndCategoryName?productName=" + productName + "&category=" + categoryName + "&startIndex=" + startIndex + "&count=" + count; var cachedObject = CacheUtil.GetFromCache<List<Product>>(cacheObjectName);
 
                 if (cachedObject == null)
                 {
