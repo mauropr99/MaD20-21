@@ -6,6 +6,7 @@ using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
 
 namespace Web.Pages.Product
 {
@@ -36,6 +37,7 @@ namespace Web.Pages.Product
                     txtPriceContent.Text = book.price.ToString("C2");
                     txtStockContent.Text = book.stock.ToString();
                     txtGenreContent.Text = book.genre;
+                    errorPrice.Visible = false;
 
                 }
                 catch (ArgumentNullException)
@@ -69,8 +71,26 @@ namespace Web.Pages.Product
                     Response.Redirect("~/Pages/Product/Catalog.aspx");
                     try
                     {
-                        CultureInfo cultureInfo =
-                            CultureInfo.CreateSpecificCulture(Request.UserLanguages[0]);
+                        string culture;
+                        if (SessionManager.IsUserAuthenticated(Context))
+                        {
+                            Locale locale = SessionManager.GetLocale(Context);
+
+                            culture = locale.Language + "-" + locale.Country;
+                        }
+                        else
+                        {
+                            culture = "en-US";
+                        }
+                        CultureInfo cultureInfo;
+                        try
+                        {
+                            cultureInfo = new CultureInfo(culture);
+                        }
+                        catch (ArgumentException)
+                        {
+                            cultureInfo = CultureInfo.CreateSpecificCulture("en-US");
+                        }
                         book.price = Decimal.Parse(txtPriceContent.Text, cultureInfo);
                         if (book.price < 0)
                         {

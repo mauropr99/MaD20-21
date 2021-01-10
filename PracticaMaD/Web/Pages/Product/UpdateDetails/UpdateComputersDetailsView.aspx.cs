@@ -6,6 +6,7 @@ using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
 
 namespace Web.Pages.Product
 {
@@ -70,8 +71,26 @@ namespace Web.Pages.Product
                     computer.os = txtOperatingSystemContent.Text;
                     try
                     {
-                        CultureInfo cultureInfo =
-                            CultureInfo.CreateSpecificCulture(Request.UserLanguages[0]);
+                        string culture;
+                        if (SessionManager.IsUserAuthenticated(Context))
+                        {
+                            Locale locale = SessionManager.GetLocale(Context);
+
+                            culture = locale.Language + "-" + locale.Country;
+                        }
+                        else
+                        {
+                            culture = "en-US";
+                        }
+                        CultureInfo cultureInfo;
+                        try
+                        {
+                            cultureInfo = new CultureInfo(culture);
+                        }
+                        catch (ArgumentException)
+                        {
+                            cultureInfo = CultureInfo.CreateSpecificCulture("en-US");
+                        }
                         computer.price = Decimal.Parse(txtPriceContent.Text, cultureInfo);
                         if (computer.price < 0)
                         {
