@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Es.Udc.DotNet.ModelUtil.Dao;
@@ -8,11 +7,11 @@ using Es.Udc.DotNet.ModelUtil.Exceptions;
 namespace Es.Udc.DotNet.PracticaMaD.Model.LabelDao
 {
     public class LabelDaoEntityFramework :
-        GenericDaoEntityFramework<Label, Int64>, ILabelDao
+        GenericDaoEntityFramework<Label, long>, ILabelDao
     {
         #region ILabelDao Members. Specific Operations
 
-        public Boolean ExistByName(string labelName)
+        public bool ExistByName(string labelName)
         {
             #region Using Linq.
 
@@ -28,6 +27,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LabelDao
             #endregion Using Linq.
         }
 
+        /// <exception cref="InstanceNotFoundException"></exception>
         public Label FindByLabelName(string labelName)
         {
             #region Option 1: Using Linq.
@@ -39,17 +39,46 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LabelDao
                  where u.lab == labelName
                  select u).FirstOrDefault();
 
+            if (result == null)
+                throw new InstanceNotFoundException(labelName,
+                    typeof(Label).FullName);
 
-                #endregion Option 1: Using Linq.
 
-                if (result == null)
-                    throw new InstanceNotFoundException(labelName,
-                        typeof(Label).FullName);
+            return result;
 
-                return result;
+
+            #endregion Option 1: Using Linq.
+
         }
+
+        public List<Label> FindLabelsByCommentId(long commentId)
+        {
+
+            DbSet<Comment> comments = Context.Set<Comment>();
+
+            var result =
+                (from c in comments
+                 where c.id == commentId
+                 orderby c.id
+                 select c.Labels).FirstOrDefault().ToList();
+
+            return result;
+        }
+
+        public List<Label> FindMostUsedLabel(int quantity)
+        {
+            DbSet<Label> labels = Context.Set<Label>();
+
+            var result =
+                (from l in labels
+                 orderby l.timesUsed descending, l.lab ascending
+                 select l).Take(quantity).ToList();
+
+            return result;
+        }
+    }
 
     #endregion ILabelDao Members. Specific Operations
 
 }
-}
+

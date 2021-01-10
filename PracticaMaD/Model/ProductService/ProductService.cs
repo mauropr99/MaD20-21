@@ -1,12 +1,15 @@
 using System.Collections.Generic;
+using System.Linq;
+using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ComputerDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Ninject;
-using System.Linq;
-using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
 {
-    public class ProductService:  IProductService
+    public class ProductService : IProductService
     {
         public ProductService()
         {
@@ -18,51 +21,133 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductService
         [Inject]
         public ICategoryDao CategoryDao { private get; set; }
 
+        [Inject]
+        public IBookDao BookDao { private get; set; }
+
+        [Inject]
+        public IComputerDao ComputerDao { private get; set; }
+
+        [Inject]
+        public ICommentDao CommentDao { private get; set; }
+
         #region IProductService Members
 
-        public ProductBlock ViewCatatalog(string productName, string categoryName, int startIndex, int count)
+        public ProductBlock ViewCatalog(string productName, int startIndex, int count)
         {
             List<Product> products;
 
-            /*
-            * Find count+1 products to determine if there exist more products above
-            * the specified range.
-            */
-            if (categoryName == null)
+            products = ProductDao.FindByProductName(productName, startIndex, count + 1);
+
+            List<ProductDetails> productsDetails = new List<ProductDetails>();
+
+            foreach (Product product in products)
             {
-                products = ProductDao.FindByProductName(productName, startIndex, count + 1);
-            } 
-            else
-            {
-                products = ProductDao.FindByProductNameAndCategoryName(productName, categoryName, startIndex, count + 1);
+                productsDetails.Add(new ProductDetails(product.id, product.product_name, product.price,
+                        product.releaseDate, product.stock, ProductDao.GetCategoryName(product.id)));
             }
 
-            bool existMoreProducts = (products.Count == count + 1);
+            bool existMoreProducts = (productsDetails.Count == count + 1);
 
             if (existMoreProducts)
             {
-                products.RemoveAt(count);
+                productsDetails.RemoveAt(count);
             }
 
-            return new ProductBlock(products, existMoreProducts);
+            return new ProductBlock(productsDetails, existMoreProducts);
 
         }
 
-        public void UpdateProduct(long productId, string productName,  int stock, decimal price)
+        public ProductBlock ViewCatalog(string productName, string categoryName, int startIndex, int count)
         {
-      
-                Product prod = ProductDao.Find(productId);
-                prod.product_name = productName;
-                prod.stock = stock;
-                prod.price = price;
-                ProductDao.Update(prod);
-  
+            List<Product> products;
+
+            products = ProductDao.FindByProductNameAndCategoryName(productName, categoryName, startIndex, count + 1);
+
+            List<ProductDetails> productsDetails = new List<ProductDetails>();
+
+            foreach (Product product in products)
+            {
+                productsDetails.Add(new ProductDetails(product.id, product.product_name, product.price,
+                        product.releaseDate, product.stock, ProductDao.GetCategoryName(product.id)));
+            }
+
+            bool existMoreProducts = (productsDetails.Count == count + 1);
+
+            if (existMoreProducts)
+            {
+                productsDetails.RemoveAt(count);
+            }
+
+            return new ProductBlock(productsDetails, existMoreProducts);
+
         }
 
-        public List<Category> ViewAallCategories()
+        public ProductBlock ViewProductsByLabels(string label, int startIndex, int count)
         {
-           return  CategoryDao.GetAllElements().ToList();
+            List<Product> products;
+
+            products = ProductDao.FindByLabel(label, startIndex, count + 1);
+
+            List<ProductDetails> productsDetails = new List<ProductDetails>();
+
+            foreach (Product product in products)
+            {
+                productsDetails.Add(new ProductDetails(product.id, product.product_name, product.price,
+                        product.releaseDate, product.stock, ProductDao.GetCategoryName(product.id)));
+            }
+
+            bool existMoreProducts = (productsDetails.Count == count + 1);
+
+            if (existMoreProducts)
+            {
+                productsDetails.RemoveAt(count);
+            }
+
+            return new ProductBlock(productsDetails, existMoreProducts);
+
         }
+
+        public void UpdateProduct(Product product)
+        {
+            ProductDao.Update(product);
+        }
+
+        public void UpdateComputer(Computer product)
+        {
+            ComputerDao.Update(product);
+        }
+
+        public void UpdateBook(Book product)
+        {
+            BookDao.Update(product);
+        }
+
+        public List<Category> ViewAllCategories()
+        {
+            return CategoryDao.GetAllElements().ToList();
+        }
+
+        public bool HasComments(long productId)
+        {
+            return (CommentDao.FindCommentsByProductId(productId, 0, 1).Count != 0);
+        }
+
+        /// <exception cref="InstanceNotFoundException"/>
+        public Book FindBook(long productId)
+        {
+            Book book = BookDao.Find(productId);
+
+            return book;
+        }
+
+        /// <exception cref="InstanceNotFoundException"/>
+        public Computer FindComputer(long productId)
+        {
+            Computer computer = ComputerDao.Find(productId);
+
+            return computer;
+        }
+
 
         #endregion IProductService Members
 

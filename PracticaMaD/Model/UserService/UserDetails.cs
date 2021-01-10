@@ -20,17 +20,30 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
         public string Address { get; private set; }
 
+        public Nullable<long> DefaultCreditCardId { get; private set; }
+
         #endregion
 
         public UserDetails(string name, string lastName,
-            string email, string languageName, string languageCountry, string address)
+            string email, string languageName, string languageCountry, long defaultCreditCardId)
         {
-            this.Name = name;
-            this.Lastname = lastName;
-            this.Email = email;
-            this.LanguageName = languageName;
-            this.LanguageCountry = languageCountry;
-            this.Address = address;
+            Name = name;
+            Lastname = lastName;
+            Email = email;
+            LanguageName = languageName;
+            LanguageCountry = languageCountry;
+            DefaultCreditCardId = defaultCreditCardId;
+        }
+
+        public UserDetails(string name, string lastName,
+            string email, string languageName, string languageCountry)
+        {
+            Name = name;
+            Lastname = lastName;
+            Email = email;
+            LanguageName = languageName;
+            LanguageCountry = languageCountry;
+            DefaultCreditCardId = null;
         }
 
         public override bool Equals(object obj)
@@ -38,17 +51,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
             UserDetails target = (UserDetails)obj;
 
-            return (this.Name == target.Name)
-                  && (this.Lastname == target.Lastname)
-                  && (this.Email == target.Email)
-                  && (this.LanguageName == target.LanguageName)
-                  && (this.LanguageCountry == target.LanguageCountry)
-                  && (this.Address == target.Address);
+            return (Name == target.Name)
+                  && (Lastname == target.Lastname)
+                  && (Email == target.Email)
+                  && (LanguageName == target.LanguageName)
+                  && (LanguageCountry == target.LanguageCountry);
         }
-    
+
         public override int GetHashCode()
         {
-            return this.Name.GetHashCode();
+            return Name.GetHashCode();
         }
 
         public override string ToString()
@@ -60,8 +72,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                 "lastName = " + Lastname + " | " +
                 "email = " + Email + " | " +
                 "language = " + LanguageName + " | " +
-                "country = " + LanguageCountry + " | " +
-                "address = " + Address + " ]";
+                "country = " + LanguageCountry + " ]";
 
 
             return strUserDetails;

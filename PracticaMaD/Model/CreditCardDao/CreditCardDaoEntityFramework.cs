@@ -1,11 +1,8 @@
-﻿using Es.Udc.DotNet.ModelUtil.Dao;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
+using System.Management.Instrumentation;
+using Es.Udc.DotNet.ModelUtil.Dao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao
 {
@@ -13,7 +10,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao
     /// Specific Operations for CreditCard
     /// </summary>
     public class CreditCardDaoEntityFramework :
-        GenericDaoEntityFramework<CreditCard, Int64>, ICreditCardDao
+        GenericDaoEntityFramework<CreditCard, long>, ICreditCardDao
     {
         #region Public Constructors
 
@@ -28,21 +25,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao
 
         #region ICreditCardDao Members. Specific Operations
 
-        public List<CreditCard> FindCreditCardsByUserLogin(string login)
+        public List<CreditCard> FindCreditCardsByUserId(long userId)
         {
             #region Option 1: Using Linq.
 
             DbSet<User> users = Context.Set<User>();
 
-            User userResult =
+            List<CreditCard> result =
                 (from u in users
-                 where u.login == login
-                 select u).First();
+                 where u.id == userId
+                 select u.CreditCards).FirstOrDefault().ToList();
 
-            return userResult.CreditCards.ToList();
+            return result;
 
             #endregion Option 1: Using Linq
         }
+
+        /// <exception cref="InstanceNotFoundException"></exception>
+        public void AddUser(User user, long creditCardId)
+        {
+            DbSet<CreditCard> creditCards = Context.Set<CreditCard>();
+
+            var query = Find(creditCardId);
+
+            query.User_Table.Add(user);
+
+            Update(query);
+        }
+
 
         #endregion ICreditCardDao Members
     }

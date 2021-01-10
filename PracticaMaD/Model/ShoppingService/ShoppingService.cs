@@ -1,13 +1,13 @@
-﻿using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
+﻿using System;
+using System.Collections.Generic;
+using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderDao;
 using Es.Udc.DotNet.PracticaMaD.Model.OrderLineDao;
-using System;
-using System.Linq;
-using Ninject;
-using System.Collections.Generic;
+using Es.Udc.DotNet.PracticaMaD.Model.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ShoppingService.Exceptions;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
+using Ninject;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 {
@@ -23,20 +23,31 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         public IProductDao ProductDao { private get; set; }
 
         [Inject]
+        public ICategoryDao CategoryDao { private get; set; }
+
+        [Inject]
+        public ICreditCardDao CreditCardDao { private get; set; }
+
+        [Inject]
         public IOrderLineDao OrderLineDao { private get; set; }
 
-        private ShoppingCartDetails shoppingCart = new ShoppingCartDetails();
-
+        private List<ShoppingCartDetails> shoppingCart = new List<ShoppingCartDetails>();
 
         #region IShoppingService Members
 
-        public Order BuyProducts(UserDetails user, List<OrderLineDetails> orderLinesDetails,
-            string postalAddress, CreditCard creditCard, string description)
+        /// <exception cref="InstanceNotFoundException"/>
+        /// <exception cref="CreditCardAlreadyExpired"/>
+        /// <exception cref="NotEnoughStock"/>
+        /// <exception cref="DifferentPrice"/>
+        public Order BuyProducts(long userId, List<ShoppingCartDetails> shoppingCart,
+            string postalAddress, long creditCardId, string description)
         {
             List<OrderLine> orderLines = new List<OrderLine>();
             Product product = new Product();
             decimal totalPrice = 0;
-            OrderLine orderLine = new OrderLine();
+
+            User user = UserDao.Find(userId);
+            CreditCard creditCard = CreditCardDao.Find(creditCardId);
 
             //Check expiration date
             if (creditCard.expirationDate < DateTime.Now)
@@ -45,23 +56,28 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
             }
 
             //Calculate total price
-           
-            foreach (OrderLineDetails line in orderLinesDetails)
+
+            foreach (ShoppingCartDetails line in shoppingCart)
             {
+                OrderLine orderLine = new OrderLine();
                 product = ProductDao.Find(line.Product_Id);
                 if (product.stock < line.Quantity)
                 {
-                    throw new NotEnoughStock(product.product_name, product.stock);
+                    throw new NotEnoughStock(product.product_name, product.stock, line.Quantity);
                 }
                 product.stock -= line.Quantity;
                 ProductDao.Update(product);
-                orderLine.price = line.Price;
+                if (!product.price.Equals(line.Price))
+                {
+                    throw new DifferentPrice(product.price, product.product_name);
+                }
+                orderLine.price = product.price;
                 orderLine.productId = product.id;
                 orderLine.quantity = line.Quantity;
                 OrderLineDao.Create(orderLine);
 
                 totalPrice += line.Quantity * line.Price;
-                orderLines.Add(orderLine);  
+                orderLines.Add(orderLine);
             }
 
             Order order = new Order
@@ -71,7 +87,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                 totalPrice = totalPrice,
                 CreditCard = creditCard,
                 OrderLines = orderLines,
-                User_Table = UserDao.FindByEmail(user.Email),
+                userId = userId,
                 description = description
             };
 
@@ -84,78 +100,119 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
                 OrderLineDao.Update(line);
             }
 
+            ClearShoppingCart();
+
             return order;
         }
 
-        public ShoppingCartDetails AddToShoppingCart(long productId,
-            short quantity, Boolean giftWrap)
+        public List<ShoppingCartDetails> ViewShoppingCart()
+        {
+            return shoppingCart;
+        }
+
+        public void ClearShoppingCart()
+        {
+            shoppingCart.Clear();
+        }
+
+        /// <exception cref="InstanceNotFoundException"/>
+        public void AddToShoppingCart(long productId)
+        {
+            AddToShoppingCart(productId, 1);
+        }
+
+        /// <exception cref="InstanceNotFoundException"/>
+        public void AddToShoppingCart(long productId, short quantity)
         {
             Product product = ProductDao.Find(productId);
+            bool existsInCart = false;
 
             //Check if the product is inside the shopping cart already
-            foreach (OrderLine line in shoppingCart.OrderLines)
+            foreach (ShoppingCartDetails line in shoppingCart)
             {
-                if (line.productId == productId)
+                if (line.Product_Id == productId)
                 {
                     //Update product quantity
-                    line.quantity += quantity;
-                    //Update total price
-                    shoppingCart.TotalPrice += quantity + product.price;
-                    return shoppingCart;
+                    line.Quantity += quantity;
+                    existsInCart = true;
+                    break;
+
                 }
             }
-
             //If it is a new product in the shopping cart
-            OrderLine orderLine = new OrderLine
+            if (!existsInCart)
             {
-                quantity = quantity,
-                price = product.price,
-                productId = product.id
-            };
-            shoppingCart.OrderLines.Add(orderLine);
+                ShoppingCartDetails shoppingCartLine = new ShoppingCartDetails
+                (
+                    product.id,
+                    product.product_name,
+                    (CategoryDao.Find(product.categoryId)).name,
+                    quantity,
+                    product.price,
+                    false
+                );
 
-            foreach (OrderLine line in shoppingCart.OrderLines)
-            {
-                shoppingCart.TotalPrice += line.price * line.quantity;
+                shoppingCart.Add(shoppingCartLine);
             }
-            return shoppingCart;
+
         }
 
 
-        public ShoppingCartDetails RemoveFromShoppingCart(long productId)
+        public void RemoveFromShoppingCart(long productId)
         {
+
             //Check if the product is inside the shopping cart 
-            foreach (OrderLine line in shoppingCart.OrderLines)
+            foreach (ShoppingCartDetails line in shoppingCart)
             {
-                if (line.productId == productId)
+                if (line.Product_Id == productId)
                 {
-                    //Remove element from collection
-                    shoppingCart.OrderLines.Remove(line);
-                    //Update total price
-                    shoppingCart.TotalPrice -= line.quantity * line.price;
+                    if (line.Quantity == 1)
+                    {
+                        //Remove element from collection
+                        shoppingCart.Remove(line);
+                    }
+                    else
+                    {
+                        //Update product quantity
+                        line.Quantity -= 1;
+                    }
+
+                    break;
                 }
             }
-
-            return shoppingCart;
         }
 
-        public ShoppingCartDetails UpdateProductFromShoppingCart(long productId, short quantity, bool giftWrap)
+        public void MarkAsGift(long productId)
         {
-            foreach (OrderLine line in shoppingCart.OrderLines)
+            foreach (ShoppingCartDetails line in shoppingCart)
             {
-                if (line.productId == productId)
+                if (line.Product_Id == productId)
                 {
-                    //Update total price
-                    shoppingCart.TotalPrice += (quantity - line.quantity) * line.price;
-                    //Update quantity
-                    line.quantity = quantity;
-
+                    line.GiftWrap = !line.GiftWrap;
+                    break;
                 }
             }
-
-            return shoppingCart;
         }
 
+        public decimal Subtotal()
+        {
+            decimal subtotal = 0;
+            foreach (ShoppingCartDetails line in shoppingCart)
+            {
+                subtotal += line.Price * line.Quantity;
+            }
+            return subtotal;
+        }
+
+        public int TotalProducts()
+        {
+            int total = 0;
+            foreach (ShoppingCartDetails line in shoppingCart)
+            {
+                total += line.Quantity;
+            }
+            return total;
+        }
 
         public OrderBlock FindOrdersByUserId(long userId, int startIndex, int count)
         {
@@ -169,16 +226,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
             bool existMoreOrders = (orders.Count == count + 1);
 
-            if (existMoreOrders)
-            {
-                orders.RemoveAt(count);
-            }
 
             List<OrderDetails> detailOrders = new List<OrderDetails>();
 
-            foreach(Order order in orders)
+            foreach (Order order in orders)
             {
                 detailOrders.Add(new OrderDetails(order.id, order.orderDate, order.description, order.totalPrice));
+            }
+
+            if (existMoreOrders)
+            {
+                detailOrders.RemoveAt(count);
             }
 
             return new OrderBlock(detailOrders, existMoreOrders);
@@ -189,20 +247,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
         {
             List<OrderLine> orderLines = new List<OrderLine>();
 
-            Order order = OrderDao.Find(orderId);
-            orderLines = order.OrderLines.ToList();
+            orderLines = OrderLineDao.FindByOrderId(orderId);
 
             List<OrderLineDetails> detailLineOrders = new List<OrderLineDetails>();
 
             foreach (OrderLine orderLine in orderLines)
             {
-                detailLineOrders.Add(new OrderLineDetails(orderLine.productId,orderLine.Product.product_name, orderLine.quantity, orderLine.price));
+                detailLineOrders.Add(new OrderLineDetails(orderLine.productId, orderLine.Product.product_name, orderLine.quantity, orderLine.price));
             }
 
             return detailLineOrders;
         }
 
         #endregion IShoppingService Members
-
     }
 }

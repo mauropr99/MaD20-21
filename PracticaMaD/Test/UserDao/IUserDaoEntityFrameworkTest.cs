@@ -1,10 +1,10 @@
-﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
+﻿using System.Transactions;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
 using Es.Udc.DotNet.PracticaMaD.Test;
 using Es.Udc.DotNet.PracticaMaD.Test.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
-using System.Transactions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao.Test
 {
@@ -15,6 +15,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao.Test
         private static IKernel kernel;
 
         private const string NON_EXISTENT_USER = "no_user";
+        private static Language language;
+        private static User user;
 
         private TransactionScope transactionScope;
 
@@ -45,6 +47,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao.Test
             kernel = TestManager.ConfigureNInjectKernel();
             TestUtil.userDao = kernel.Get<IUserDao>();
             TestUtil.languageDao = kernel.Get<ILanguageDao>();
+
+
+            language = TestUtil.CreateExistentLanguage();
+            user = TestUtil.CreateExistentUser(language);
         }
 
         //Use ClassCleanup to run code after all tests in a class have run
@@ -52,6 +58,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao.Test
         public static void MyClassCleanup()
         {
             TestManager.ClearNInjectKernel(kernel);
+
         }
 
         //Use TestInitialize to run code before running each test
@@ -73,26 +80,32 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao.Test
         [TestMethod()]
         public void FindByLoginTest()
         {
-            Language language = TestUtil.CreateExistentLanguage();
-            User user = TestUtil.CreateExistentUser(language);
-            User foundUser = foundUser = TestUtil.userDao.FindByLogin("user");
+            using (var scope = new TransactionScope())
+            {
+                Language language = TestUtil.CreateExistentLanguage();
+                User user = TestUtil.CreateExistentUser(language);
 
-            Assert.AreEqual(user.id, foundUser.id);
-            Assert.AreEqual(user.login, foundUser.login);
-            Assert.AreEqual(user.name, foundUser.name);
-            Assert.AreEqual(user.lastName, foundUser.lastName);
-            Assert.AreEqual(user.password, foundUser.password);
-            Assert.AreEqual(user.address, foundUser.address);
-            Assert.AreEqual(user.email, foundUser.email);
-            Assert.AreEqual(user.languageId, foundUser.languageId);
-            Assert.AreEqual(user.role, foundUser.role);
+                User foundUser = foundUser = TestUtil.userDao.FindByLogin("user");
+
+                Assert.AreEqual(user.id, foundUser.id);
+                Assert.AreEqual(user.login, foundUser.login);
+                Assert.AreEqual(user.name, foundUser.name);
+                Assert.AreEqual(user.lastName, foundUser.lastName);
+                Assert.AreEqual(user.password, foundUser.password);
+                Assert.AreEqual(user.email, foundUser.email);
+                Assert.AreEqual(user.languageId, foundUser.languageId);
+                Assert.AreEqual(user.role, foundUser.role);
+            }
         }
 
         [TestMethod()]
         [ExpectedException(typeof(InstanceNotFoundException))]
         public void FindByNonExistentLoginTest()
         {
-            User foundUser = TestUtil.userDao.FindByLogin(NON_EXISTENT_USER);
+            using (var scope = new TransactionScope())
+            {
+                User foundUser = TestUtil.userDao.FindByLogin(NON_EXISTENT_USER);
+            }
         }
     }
 }

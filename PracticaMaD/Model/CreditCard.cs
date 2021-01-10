@@ -19,6 +19,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         {
             this.Order_Table = new HashSet<Order>();
             this.User_Table = new HashSet<User>();
+            this.User_Table2 = new HashSet<User>();
         }
     
         public long id { get; set; }
@@ -32,5 +33,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public virtual ICollection<Order> Order_Table { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> User_Table { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> User_Table2 { get; set; }
     }
 }

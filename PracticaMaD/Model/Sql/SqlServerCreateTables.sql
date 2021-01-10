@@ -53,18 +53,6 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Label]')
 AND type in ('U')) DROP TABLE [Label]
 GO
 
-/* Drop Table Laptop if already exists */
-
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Laptop]') 
-AND type in ('U')) DROP TABLE [Laptop]
-GO
-
-/* Drop Table Desktop if already exists */
-
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Desktop]') 
-AND type in ('U')) DROP TABLE [Desktop]
-GO
-
 /* Drop Table Computer if already exists */
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Computers]') 
@@ -166,19 +154,23 @@ PRINT N'Done'
 
 CREATE TABLE User_Table (
 	id bigint IDENTITY(1,1) NOT NULL,
-	login VARCHAR(64) NOT NULL,
+	login VARCHAR(64) NOT NULL UNIQUE,
 	name VARCHAR(64) NOT NULL,
 	lastName VARCHAR(64) NOT NULL,
 	password VARCHAR(64) NOT NULL,
-	address VARCHAR(64) NOT NULL,
 	email VARCHAR(64) NOT NULL,
 	languageId BIGINT NOT NULL,
 	role VARCHAR(30) NOT NULL CHECK(role IN ('admin','user')),
+	favouriteCreditCard bigint,
+
 
     CONSTRAINT [PK_User] PRIMARY KEY (id ASC),
 
 	CONSTRAINT [FK_LanguageId] FOREIGN KEY(languageId)
         REFERENCES Language (id) ON DELETE NO ACTION,
+
+	CONSTRAINT [FK_DefaultCreditCardId] FOREIGN KEY(favouriteCreditCard)
+        REFERENCES CreditCard (id) ON DELETE NO ACTION
 ) 
 
 CREATE NONCLUSTERED INDEX [IX_UserIndexById] 
@@ -229,7 +221,7 @@ CREATE TABLE Category (
 CREATE NONCLUSTERED INDEX IX_CategoryIndexById 
 ON Category (id);
 
-PRINT N'Table Desktop created.'
+PRINT N'Table Category created.'
 GO
 
 
@@ -238,7 +230,7 @@ GO
 CREATE TABLE Product (
 	id BIGINT IDENTITY(1,1) NOT NULL, 
 	product_name VARCHAR(64) NOT NULL,
-	price DECIMAL(9,5) NOT NULL,
+	price DECIMAL(15,5) NOT NULL,
 	releaseDate DATE NOT NULL,
 	stock INT NOT NULL,
 	categoryId BIGINT NOT NULL,
@@ -285,55 +277,9 @@ GO
 PRINT N'Done'
 
 
-/* Desktop 
-
-CREATE TABLE Desktop (
-	id bigint NOT NULL, 
-	allInOne BIT NOT NULL,
-
-
-    CONSTRAINT [PK_Desktop] PRIMARY KEY (id ASC),
-
-	CONSTRAINT [FK_DesktopComputer] FOREIGN KEY(id)
-        REFERENCES Computers (id) ON DELETE CASCADE
-
-)
-
-
-CREATE NONCLUSTERED INDEX IX_DesktopIndexById 
-ON Desktop (id);
-
-PRINT N'Table Desktop created.'
-GO
-*/
-
-/* Laptop 
-
-CREATE TABLE Laptop (
-	id bigint NOT NULL, 
-	screenResolution VARCHAR(64),
-	screenInches SMALLINT,
-
-    CONSTRAINT [PK_Laptop] PRIMARY KEY (id ASC),
-
-	CONSTRAINT [FK_LaptopComputer] FOREIGN KEY(id)
-        REFERENCES Computers (id) ON DELETE CASCADE
-
-)
-
-
-CREATE NONCLUSTERED INDEX IX_LaptopIndexById 
-ON Laptop (id);
-
-PRINT N'Table Laptop created.'
-GO
-
-*/
-/* Book */
-
 CREATE TABLE Book (
 	id bigint NOT NULL, 
-	title VARCHAR(64) NOT NULL,
+	author VARCHAR(64) NOT NULL,
 	genre VARCHAR(64) NOT NULL,
 	editorial VARCHAR(64) NOT NULL,
 	isbnCode VARCHAR(64) NOT NULL,
@@ -378,7 +324,7 @@ CREATE TABLE Comment (
 	userId BIGINT  NOT NULL,
 	productId BIGINT NOT NULL,
 	text VARCHAR(640) NOT NULL,
-	commentDate date NOT NULL,
+	commentDate datetime NOT NULL,
     
     CONSTRAINT [PK_Comment] PRIMARY KEY (id ASC),
 
@@ -424,7 +370,7 @@ CREATE TABLE Order_Table (
 	id bigint IDENTITY(1,1) NOT NULL, 
 	postalAddress VARCHAR (200) NOT NULL,
 	orderDate date NOT NULL,
-	totalPrice DECIMAL(9,5) NOT NULL,
+	totalPrice DECIMAL(15,5) NOT NULL,
 	userId bigint NOT NULL,
 	creditCardId bigint NOT NULL,
 	description VARCHAR(200) NOT NULL,

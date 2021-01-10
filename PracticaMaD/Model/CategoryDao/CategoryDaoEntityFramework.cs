@@ -1,12 +1,7 @@
-﻿using Es.Udc.DotNet.ModelUtil.Dao;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
-using System;
-using System.Collections.Generic;
+﻿using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity;
-using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.ModelUtil.Dao;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CategoryDao
 {
@@ -14,7 +9,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CategoryDao
     /// Specific Operations for Category
     /// </summary>
     public class CategoryDaoEntityFramework :
-        GenericDaoEntityFramework<Category, Int64>, ICategoryDao
+        GenericDaoEntityFramework<Category, long>, ICategoryDao
     {
         #region Public Constructors
 

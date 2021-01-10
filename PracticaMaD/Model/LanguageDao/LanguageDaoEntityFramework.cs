@@ -1,11 +1,8 @@
-﻿using Es.Udc.DotNet.ModelUtil.Dao;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
-using System;
-using System.Collections.Generic;
+﻿using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity;
+using Es.Udc.DotNet.ModelUtil.Dao;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.Util;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao
 {
@@ -13,75 +10,65 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.LanguageDao
     /// Specific Operations for Language
     /// </summary>
     public class LanguageDaoEntityFramework :
-        GenericDaoEntityFramework<Language, Int64>, ILanguageDao
+        GenericDaoEntityFramework<Language, long>, ILanguageDao
     {
-        #region Public Constructors
-
-        /// <summary>
-        /// Public Constructor
-        /// </summary>
-        public LanguageDaoEntityFramework()
-        {
-        }
-
-        #endregion Public Constructors
-
         #region ILanguageDao Members. Specific Operations
-
+        /// <exception cref="InstanceNotFoundException"></exception>
         public Language FindByNameAndCountry(string languageName, string languageCountry)
         {
             Language language = null;
 
             #region Option 1: Using Linq.
 
-            DbSet<Language> languages = Context.Set<Language>();
+            string cacheObjectName = "FindByNameAndCountry?languageName=" + languageName + "&languageCountry=" + languageCountry;
+            var cachedObject = CacheUtil.GetFromCache<Language>(cacheObjectName);
 
-            var result =
-                (from u in languages
-                 where u.name == languageName &&
-                    u.country == languageCountry
-                 select u);
+            if (cachedObject == null)
+            {
 
-            language = result.FirstOrDefault();
+                DbSet<Language> languages = Context.Set<Language>();
 
-            #endregion Option 1: Using Linq.
+                var result =
+                    (from u in languages
+                     where u.name == languageName &&
+                        u.country == languageCountry
+                     select u);
 
-            if (language == null)
-                throw new InstanceNotFoundException(languageName,
-                    typeof(Language).FullName);
+                language = result.FirstOrDefault();
 
-            return language;
+                #endregion Option 1: Using Linq.
+
+                if (language == null)
+                    throw new InstanceNotFoundException(languageName,
+                        typeof(Language).FullName);
+
+                CacheUtil.AddToCache<Language>(cacheObjectName, language);
+
+                return language;
+            }
+
+            return cachedObject;
         }
 
-        public List<Language> FindLanguagesByCountry(string country)
+        /// <exception cref="InstanceNotFoundException"></exception>
+        public Language FindByUserId(long userId)
         {
+            #region Using Linq.
 
-            List<Language> language = null;
+            DbSet<User> users = Context.Set<User>();
 
-            #region Option 1: Using Linq.
+            Language result =
+                (from u in users
+                 where u.id == userId
+                 select u.Language).FirstOrDefault();
 
-            DbSet<Language> languages = Context.Set<Language>();
-
-            var result =
-                (from u in languages
-                 where u.country == country
-                 select u).Skip(0).ToList();
-
-
-            language = result.ToList();
-
-            #endregion Option 1: Using Linq.
-
-            if (language == null)
-                throw new InstanceNotFoundException(country,
+            if (result == null)
+                throw new InstanceNotFoundException("",
                     typeof(Language).FullName);
 
             return result;
-        }
 
-        ICollection<Language> ILanguageDao.FindLanguagesByCountry(string country)
-        {
-            throw new NotImplementedException();
+            #endregion Using Linq.
         }
 
         #endregion ILanguageDao Members

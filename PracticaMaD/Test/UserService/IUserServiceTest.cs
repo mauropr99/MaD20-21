@@ -1,4 +1,7 @@
-﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
+﻿using System;
+using System.Collections.Generic;
+using System.Transactions;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
@@ -8,9 +11,6 @@ using Es.Udc.DotNet.PracticaMaD.Test;
 using Es.Udc.DotNet.PracticaMaD.Test.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
-using System;
-using System.Collections.Generic;
-using System.Transactions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
 {
@@ -29,6 +29,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
 
         private static IKernel kernel;
         private static IUserService userService;
+        private static Language language;
+        private static User user;
+
 
 
         private TransactionScope transactionScope;
@@ -60,11 +63,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
 
             userService = kernel.Get<IUserService>();
 
+            language = TestUtil.CreateExistentLanguage();
+            user = TestUtil.CreateExistentUser(language);
+
         }
 
         [ClassCleanup()]
         public static void MyClassCleanup()
         {
+            TestUtil.userDao.Remove(user.id);
+            TestUtil.languageDao.Remove(language.id);
             TestManager.ClearNInjectKernel(kernel);
         }
 
@@ -74,11 +82,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
             transactionScope = new TransactionScope();
         }
 
+        //Use TestCleanup to run code after each test has run
         [TestCleanup()]
         public void MyTestCleanup()
         {
             transactionScope.Dispose();
         }
+
 
         #endregion Additional test attributes
 
@@ -88,11 +98,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
 
             using (var scope = new TransactionScope())
             {
-                Language language = TestUtil.CreateExistentLanguage();
-
+                string login = "user2";
                 var id =
                     userService.SingUpUser(login, password,
-                        new UserDetails(name, lastName, email, language.name, language.country, address));
+                        new UserDetails(name, lastName, email, language.name, language.country));
 
                 var user = TestUtil.userDao.Find(id);
 
@@ -101,7 +110,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
                 Assert.AreEqual(name, user.name);
                 Assert.AreEqual(lastName, user.lastName);
                 Assert.AreEqual(email, user.email);
-                Assert.AreEqual(address, user.address);
                 Assert.AreEqual(language.name, user.Language.name);
                 Assert.AreEqual(role, user.role);
             }
@@ -113,13 +121,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
         {
             using (var scope = new TransactionScope())
             {
-                Language language = TestUtil.CreateExistentLanguage();
 
                 userService.SingUpUser(login, password,
-                         new UserDetails(name, lastName, email, language.name, language.country, address));
+                    new UserDetails(name, lastName, email, language.name, language.country));
 
                 userService.SingUpUser(login, password,
-                        new UserDetails(name, lastName, email, language.name, language.country, address));
+                        new UserDetails(name, lastName, email, language.name, language.country));
             }
         }
 
@@ -128,13 +135,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
         {
             using (var scope = new TransactionScope())
             {
-                Language language = TestUtil.CreateExistentLanguage();
-
+                string login = "user2";
                 var id = userService.SingUpUser(login, password,
-                         new UserDetails(name, lastName, email, language.name, language.country, address));
+                         new UserDetails(name, lastName, email, language.name, language.country));
 
                 var expected = new LoginResult(id, login, name, lastName,
-                   PasswordEncrypter.Crypt(password), language.name, email, address);
+                   PasswordEncrypter.Crypt(password), language.name, language.country, email);
 
                 var actual =
                     userService.Login(login,
@@ -149,9 +155,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
         {
             using (var scope = new TransactionScope())
             {
-                Language language = TestUtil.CreateExistentLanguage();
-                User user = TestUtil.CreateExistentUser(language);
-
                 string ownerName = "Name Surname";
                 string creditType = "debit";
                 string creditCardNumber = "1234567891234567";
@@ -160,7 +163,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
 
                 CreditCard createdCreditCard = userService.AddCreditCard(user.id, ownerName, creditType, creditCardNumber, cvv, expirationDate);
 
-                List<CreditCard> creditCards = TestUtil.creditCardDao.FindCreditCardsByUserLogin(user.login);
+                List<CreditCard> creditCards = TestUtil.creditCardDao.FindCreditCardsByUserId(user.id);
 
                 Assert.IsTrue(creditCards.Contains(createdCreditCard));
 
@@ -173,8 +176,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
         {
             using (var scope = new TransactionScope())
             {
-                Language language = TestUtil.CreateExistentLanguage();
-                User user = TestUtil.CreateExistentUser(language);
 
                 string ownerName = "Name Surname";
                 string creditType = "debit";
@@ -188,5 +189,66 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Test
 
             }
         }
+
+        [TestMethod()]
+        public void SetCreditCardAsDefaultTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                string ownerName = "Name Surname";
+                string creditType = "debit";
+                string creditCardNumber1 = "1234567891234567";
+                string creditCardNumber2 = "1114567891234567";
+                short cvv = 123;
+                DateTime expirationDate = DateTime.Now.AddYears(1);
+
+                CreditCard creditCard1 = userService.AddCreditCard(user.id, ownerName, creditType, creditCardNumber1, cvv, expirationDate);
+                User foundUser = TestUtil.userDao.Find(user.id);
+                Assert.AreEqual(creditCard1.id, foundUser.favouriteCreditCard);
+
+
+                CreditCard creditCard2 = userService.AddCreditCard(user.id, ownerName, creditType, creditCardNumber2, cvv, expirationDate);
+                userService.SetCreditCardAsDefault(user.id, creditCard2.id);
+                User foundUser2 = TestUtil.userDao.Find(user.id);
+                Assert.AreEqual(creditCard2.id, foundUser2.favouriteCreditCard);
+
+
+
+            }
+        }
+
+        [TestMethod()]
+        public void FindCreditCardsByUserId()
+        {
+            using (var scope = new TransactionScope())
+            {
+                string ownerName = "Name Surname";
+                string creditType = "debit";
+                string creditCardNumber1 = "1234567891234567";
+                string creditCardNumber2 = "2234567891234567";
+                string creditCardNumber3 = "3234567891234567";
+                string creditCardNumber4 = "4234567891234567";
+                short cvv = 123;
+                DateTime expirationDate = DateTime.Now.AddYears(1);
+
+                CreditCard creditCard1 = userService.AddCreditCard(user.id, ownerName, creditType, creditCardNumber1, cvv, expirationDate);
+                Assert.AreEqual(1, userService.FindCreditCardsByUserId(user.id).Count);
+                Assert.AreEqual(creditCard1.id, userService.FindCreditCardsByUserId(user.id)[0].CreditCardId);
+
+                CreditCard creditCard2 = userService.AddCreditCard(user.id, ownerName, creditType, creditCardNumber2, cvv, expirationDate);
+                Assert.AreEqual(2, userService.FindCreditCardsByUserId(user.id).Count);
+                Assert.AreEqual(creditCard2.id, userService.FindCreditCardsByUserId(user.id)[1].CreditCardId);
+
+                CreditCard creditCard3 = userService.AddCreditCard(user.id, ownerName, creditType, creditCardNumber3, cvv, expirationDate);
+                Assert.AreEqual(3, userService.FindCreditCardsByUserId(user.id).Count);
+                Assert.AreEqual(creditCard3.id, userService.FindCreditCardsByUserId(user.id)[2].CreditCardId);
+
+                CreditCard creditCard4 = userService.AddCreditCard(user.id, ownerName, creditType, creditCardNumber4, cvv, expirationDate);
+                Assert.AreEqual(4, userService.FindCreditCardsByUserId(user.id).Count);
+                Assert.AreEqual(creditCard4.id, userService.FindCreditCardsByUserId(user.id)[3].CreditCardId);
+
+            }
+        }
+
     }
 }

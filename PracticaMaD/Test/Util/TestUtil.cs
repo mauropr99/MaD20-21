@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.BookDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
@@ -34,31 +31,48 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
 
         public static Language CreateExistentLanguage()
         {
-            Language language = new Language
+            Language language;
+            try
             {
-                name = "es",
-                country = "ES"
-            };
+                language = languageDao.FindByNameAndCountry("es", "Es");
 
-            languageDao.Create(language);
+            }
+            catch (Exception)
+            {
+                language = new Language
+                {
+                    name = "es",
+                    country = "ES"
+                };
+                languageDao.Create(language);
+            }
 
             return language;
         }
 
-        public static User CreateExistentUser( Language language)
+        public static User CreateExistentUser(Language language)
         {
-            User user = new User
+            User user;
+            try
             {
-                login = "user",
-                name = "usuario",
-                lastName = "dePrueba",
-                password = "passwd",
-                address = "A Coruña",
-                email = "user@user",
-                role = "user",
-                languageId = language.id
-            };
-            userDao.Create(user);
+                user = userDao.FindByLogin("user");
+
+            }
+            catch (Exception)
+            {
+                user = new User
+                {
+                    login = "user",
+                    name = "usuario",
+                    lastName = "dePrueba",
+                    password = "passwd",
+                    email = "user@user",
+                    role = "user",
+                    languageId = language.id,
+                    favouriteCreditCard = null
+                };
+                userDao.Create(user);
+            }
 
             return user;
         }
@@ -98,7 +112,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
             return orderLine;
         }
 
-        public static Computer CreateComputer(Category category, string productName, decimal price,string brand)
+        public static Computer CreateComputer(Category category, string productName, decimal price, string brand)
         {
             Computer computer = new Computer
             {
@@ -116,7 +130,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
             return computer;
         }
 
-        public static Book CreateBook(Category category, string productName, decimal price, string title)
+        public static Book CreateBook(Category category, string productName, decimal price, string author)
         {
             Book book = new Book
             {
@@ -125,7 +139,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
                 releaseDate = DateTime.Now,
                 stock = 100,
                 categoryId = category.id,
-                title = title,
+                author = author,
                 genre = "Fantasy",
                 editorial = "Planeta",
                 isbnCode = "978-0-226-26421-9"
@@ -135,7 +149,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
             return book;
         }
 
-        public static Category CreateCategory( string categoryName)
+        public static Category CreateCategory(string categoryName)
         {
             Category category = new Category
             {
@@ -147,7 +161,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
         }
 
 
-        public static CreditCard CreateCreditCard(User user)
+        public static CreditCard CreateCreditCard()
         {
             CreditCard creditCard = new CreditCard
             {
@@ -155,11 +169,25 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.Util
                 creditType = "debit",
                 creditCardNumber = "1234567890123456",
                 cvv = 123,
-                expirationDate = DateTime.Now.AddYears(1),
+                expirationDate = DateTime.Now.AddYears(1)
             };
-            creditCard.User_Table.Add(user);
+
             creditCardDao.Create(creditCard);
             return creditCard;
+        }
+
+        public static Comment CreateComment(User user, Product product)
+        {
+            Comment comment = new Comment
+            {
+                userId = user.id,
+                productId = product.id,
+                text = "Soy un comentario",
+                commentDate = DateTime.Now
+            };
+            commentDao.Create(comment);
+
+            return comment;
         }
     }
 }

@@ -1,8 +1,7 @@
-﻿using Es.Udc.DotNet.ModelUtil.Dao;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
-using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
+using Es.Udc.DotNet.ModelUtil.Dao;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao
 {
@@ -10,7 +9,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao
     /// Specific Operations for UserProfile
     /// </summary>
     public class UserDaoEntityFramework :
-        GenericDaoEntityFramework<User, Int64>, IUserDao
+        GenericDaoEntityFramework<User, long>, IUserDao
     {
         #region Public Constructors
 
@@ -31,7 +30,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao
         /// <param name="login"></param>
         /// <returns></returns>
         /// <exception cref="InstanceNotFoundException"></exception>
-        public User FindByLogin(String login)
+        public User FindByLogin(string login)
         {
             User user = null;
 
@@ -48,7 +47,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao
 
             #endregion Option 1: Using Linq.
 
-            
+
             if (user == null)
                 throw new InstanceNotFoundException(login,
                     typeof(User).FullName);
@@ -56,7 +55,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao
             return user;
         }
 
-        public User FindByEmail(String email)
+        /// <exception cref="InstanceNotFoundException"></exception>
+        public User FindByEmail(string email)
         {
             User user = null;
 
@@ -73,7 +73,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao
 
             #endregion Option 1: Using Linq.
 
-            
+
             if (user == null)
                 throw new InstanceNotFoundException(email,
                     typeof(User).FullName);
@@ -81,7 +81,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao
             return user;
         }
 
-        #endregion IUserProfileDao Members
+        #endregion IUserDao Members
     }
 
 }

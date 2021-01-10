@@ -10,8 +10,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
 
         public OrderBlock(List<OrderDetails> orders, bool existMoreOrders)
         {
-            this.Orders = orders;
-            this.ExistMoreOrders = existMoreOrders;
+            Orders = orders;
+            ExistMoreOrders = existMoreOrders;
         }
     }
 }

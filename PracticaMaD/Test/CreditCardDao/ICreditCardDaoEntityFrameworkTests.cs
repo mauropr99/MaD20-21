@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using Ninject;
-using Es.Udc.DotNet.PracticaMaD.Test;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Collections.Generic;
 using System.Transactions;
-using Es.Udc.DotNet.PracticaMaD.Test.Util;
-using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
 using Es.Udc.DotNet.PracticaMaD.Model.LanguageDao;
+using Es.Udc.DotNet.PracticaMaD.Model.UserDao;
+using Es.Udc.DotNet.PracticaMaD.Test;
+using Es.Udc.DotNet.PracticaMaD.Test.Util;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ninject;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao.Tests
 {
@@ -78,18 +77,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CreditCardDao.Tests
         [TestMethod()]
         public void FindCreditCardsByUserLoginTest()
         {
-            Language language = TestUtil.CreateExistentLanguage();
-            User user = TestUtil.CreateExistentUser(language);
-            CreditCard creditCard = TestUtil.CreateCreditCard(user);
+            using (var scope = new TransactionScope())
+            {
+                Language language = TestUtil.CreateExistentLanguage();
+                User user = TestUtil.CreateExistentUser(language);
+                CreditCard creditCard = TestUtil.CreateCreditCard();
+                TestUtil.creditCardDao.AddUser(user, creditCard.id);
 
-            List<CreditCard> foundCreditCards = TestUtil.creditCardDao.FindCreditCardsByUserLogin(user.login);
+                List<CreditCard> foundCreditCards = TestUtil.creditCardDao.FindCreditCardsByUserId(user.id);
 
-            Assert.AreEqual(creditCard.id, foundCreditCards[0].id);
-            Assert.AreEqual(creditCard.creditCardNumber, foundCreditCards[0].creditCardNumber);
-            Assert.AreEqual(creditCard.creditType, foundCreditCards[0].creditType);
-            Assert.AreEqual(creditCard.cvv, foundCreditCards[0].cvv);
-            Assert.AreEqual(creditCard.expirationDate, foundCreditCards[0].expirationDate);
-
+                Assert.AreEqual(creditCard.id, foundCreditCards[0].id);
+                Assert.AreEqual(creditCard.creditCardNumber, foundCreditCards[0].creditCardNumber);
+                Assert.AreEqual(creditCard.creditType, foundCreditCards[0].creditType);
+                Assert.AreEqual(creditCard.cvv, foundCreditCards[0].cvv);
+                Assert.AreEqual(creditCard.expirationDate, foundCreditCards[0].expirationDate);
+            }
         }
     }
 }

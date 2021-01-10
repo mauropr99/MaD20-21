@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Es.Udc.DotNet.ModelUtil.Dao;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.OrderDao
 {
-    public class OrderDaoEntityFramework:
-        GenericDaoEntityFramework<Order, Int64>, IOrderDao
+    public class OrderDaoEntityFramework :
+        GenericDaoEntityFramework<Order, long>, IOrderDao
     {
         #region Public Constructors
 
@@ -32,7 +30,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderDao
             List<Order> result =
                 (from o in orders
                  where o.userId == userId
-                 orderby o.orderDate
+                 orderby o.orderDate descending
                  select o).Skip(startIndex).Take(count).ToList();
 
 
@@ -40,6 +38,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.OrderDao
 
             #endregion Using Linq.
 
+        }
+
+        public List<OrderLine> FindOrderLinesByOrderId(long orderId)
+        {
+            DbSet<Order> order = Context.Set<Order>();
+
+            List<OrderLine> result =
+                (from o in order
+                 where o.id == orderId
+                 orderby o.id
+                 select o.OrderLines).FirstOrDefault().ToList();
+
+
+            return result;
         }
 
         #endregion IOrderDao Members

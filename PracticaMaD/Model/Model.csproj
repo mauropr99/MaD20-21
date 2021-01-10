@@ -66,6 +66,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -92,7 +93,10 @@
     <Compile Include="CommentService\CommentBlock.cs" />
     <Compile Include="CommentService\CommentDetails.cs" />
     <Compile Include="CommentService\CommentService.cs" />
+    <Compile Include="CommentService\Exceptions\ProductAlreadyCommentedException.cs" />
+    <Compile Include="CommentService\Exceptions\DifferentsUsers.cs" />
     <Compile Include="CommentService\ICommentService.cs" />
+    <Compile Include="CommentService\LabelDetails.cs" />
     <Compile Include="Computer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -147,8 +151,10 @@
     <Compile Include="ProductDao\ProductDaoEntityFramework.cs" />
     <Compile Include="ProductService\IProductService.cs" />
     <Compile Include="ProductService\ProductBlock.cs" />
+    <Compile Include="ProductService\ProductDetails.cs" />
     <Compile Include="ProductService\ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShoppingService\Exceptions\DifferentsPrice.cs" />
     <Compile Include="ShoppingService\Exceptions\NotEnoughStock.cs" />
     <Compile Include="ShoppingService\OrderLineDetails.cs" />
     <Compile Include="ShoppingService\OrderDetails.cs" />
@@ -163,6 +169,7 @@
     </Compile>
     <Compile Include="UserDao\UserDaoEntityFramework.cs" />
     <Compile Include="UserDao\IUserDao.cs" />
+    <Compile Include="UserService\CreditCardDetails.cs" />
     <Compile Include="UserService\Exceptions\DuplicatedCreditCardException.cs" />
     <Compile Include="UserService\Exceptions\IncorrectPasswordException.cs" />
     <Compile Include="UserService\IUserService.cs" />
@@ -170,6 +177,7 @@
     <Compile Include="UserService\UserDetails.cs" />
     <Compile Include="UserService\UserService.cs" />
     <Compile Include="UserService\Util\PasswordEncrypter.cs" />
+    <Compile Include="Util\CacheUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Model1.Context.tt">
@@ -182,6 +190,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Sql\SqlServerPopulateDatabase.sql" />
     <Content Include="Sql\SqlServerCreateDatabase.sql" />
     <Content Include="Sql\SqlServerCreateTables.sql" />
   </ItemGroup>

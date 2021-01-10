@@ -1,10 +1,9 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Dao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
-using System;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao
 {
-    public interface IUserDao : IGenericDao<User, Int64>
+    public interface IUserDao : IGenericDao<User, long>
     {
         /// <summary>
         /// Finds a UserProfile by loginName
@@ -12,9 +11,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserDao
         /// <param name="login">loginName</param>
         /// <returns>The UserProfile</returns>
         /// <exception cref="InstanceNotFoundException"/>
-        User FindByLogin(String login);
+        User FindByLogin(string login);
 
-        User FindByEmail(String email);
+        /// <exception cref="InstanceNotFoundException"></exception>
+        User FindByEmail(string email);
     }
 }
 

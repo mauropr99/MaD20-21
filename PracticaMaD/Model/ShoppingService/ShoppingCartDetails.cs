@@ -8,44 +8,62 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ShoppingService
     [Serializable()]
     public class ShoppingCartDetails
     {
-        #region Properties Region
+        public long Product_Id { get; set; }
 
-        public long UserId { get; set; }
+        public string Product_Name { get; set; }
 
-        public decimal TotalPrice { get; set; }
+        public string CategoryName { get; set; }
 
-        public virtual ICollection<OrderLine> OrderLines { get; set; }
+        public short Quantity { get; set; }
 
-        #endregion
+        public decimal Price { get; set; }
 
-        public ShoppingCartDetails()
+        public bool GiftWrap { get; set; }
+
+        public ShoppingCartDetails(long product_Id, string product_Name, string categoryName, short quantity, decimal price, bool giftWrap)
         {
-            this.TotalPrice = 0;
-            this.OrderLines = OrderLines;
+            Product_Id = product_Id;
+            Product_Name = product_Name;
+            CategoryName = categoryName;
+            Quantity = quantity;
+            Price = price;
+            GiftWrap = giftWrap;
         }
 
-        public ShoppingCartDetails(decimal totalPrice, ICollection<OrderLine> orderLines)
+
+        public override string ToString()
         {
-            this.TotalPrice = totalPrice;
-            this.OrderLines = orderLines;
+            string strShoppingCartDetails;
+
+            strShoppingCartDetails =
+                "[ productName = " + Product_Name + " | " +
+                "quantity = " + Quantity + " | " +
+                "price = " + Price + " ] ";
+
+            return strShoppingCartDetails;
         }
 
         public override bool Equals(object obj)
         {
-
-            ShoppingCartDetails target = (ShoppingCartDetails)obj;
-
-            return (this.TotalPrice == target.TotalPrice)
-                  && (this.OrderLines.Equals(target.OrderLines));
-
+            var details = obj as ShoppingCartDetails;
+            return details != null &&
+                   Product_Id == details.Product_Id &&
+                   Product_Name == details.Product_Name &&
+                   CategoryName == details.CategoryName &&
+                   Quantity == details.Quantity &&
+                   Price == details.Price &&
+                   GiftWrap == details.GiftWrap;
         }
 
         public override int GetHashCode()
         {
-            var hashCode = -1395028349;
-            hashCode = hashCode * -1521134295 + UserId.GetHashCode();
-            hashCode = hashCode * -1521134295 + TotalPrice.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<ICollection<OrderLine>>.Default.GetHashCode(OrderLines);
+            var hashCode = 852866481;
+            hashCode = hashCode * -1521134295 + Product_Id.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Product_Name);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(CategoryName);
+            hashCode = hashCode * -1521134295 + Quantity.GetHashCode();
+            hashCode = hashCode * -1521134295 + Price.GetHashCode();
+            hashCode = hashCode * -1521134295 + GiftWrap.GetHashCode();
             return hashCode;
         }
     }

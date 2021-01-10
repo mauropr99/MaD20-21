@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using Ninject;
-using Es.Udc.DotNet.PracticaMaD.Test;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Collections.Generic;
 using System.Transactions;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Test;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ninject;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CategoryDao.Tests
 {
@@ -74,32 +73,38 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CategoryDao.Tests
         [TestMethod()]
         public void FindByCategoryNameTest()
         {
-            int numberOfCategories = 11;
-
-            List<Category> createdCategories = new List<Category>(numberOfCategories);
-
-            /* Create 11 categories */
-            for (int i = 0; i < numberOfCategories; i++)
+            using (var scope = new TransactionScope())
             {
-                Category category = new Category
+                int numberOfCategories = 11;
+
+                List<Category> createdCategories = new List<Category>(numberOfCategories);
+
+                /* Create 11 categories */
+                for (int i = 0; i < numberOfCategories; i++)
                 {
-                    name = "category " + i.ToString()
-                };
-                categoryDao.Create(category);
-                createdCategories.Add(category);
+                    Category category = new Category
+                    {
+                        name = "category " + i.ToString()
+                    };
+                    categoryDao.Create(category);
+                    createdCategories.Add(category);
+                }
+
+                string expectedCategoryName = "category 7";
+                Category foundCategory = categoryDao.FindByName(expectedCategoryName);
+
+                Assert.AreEqual(foundCategory.name, expectedCategoryName);
             }
-
-            String expectedCategoryName = "category 7";
-            Category foundCategory = categoryDao.FindByName(expectedCategoryName);
-
-            Assert.AreEqual(foundCategory.name, expectedCategoryName);
         }
 
         [TestMethod()]
         [ExpectedException(typeof(InstanceNotFoundException))]
         public void FindByNonExistentNameTest()
         {
-            Category foundCategory = categoryDao.FindByName(NON_EXISTENT_CATEGORY_NAME);
+            using (var scope = new TransactionScope())
+            {
+                Category foundCategory = categoryDao.FindByName(NON_EXISTENT_CATEGORY_NAME);
+            }
         }
     }
 }
