@@ -34,7 +34,7 @@ namespace Web.Pages.Product
                     //Fill place holders
                     txtTitleContent.Text = book.product_name;
                     txtAuthorContent.Text = book.author;
-                    txtPriceContent.Text = book.price.ToString("C2");
+                    txtPriceContent.Text = book.price.ToString("C");
                     txtStockContent.Text = book.stock.ToString();
                     txtGenreContent.Text = book.genre;
                     errorPrice.Visible = false;
@@ -67,8 +67,7 @@ namespace Web.Pages.Product
                     book.author = txtAuthorContent.Text;
                     book.stock = int.Parse(txtStockContent.Text);
                     book.genre = txtGenreContent.Text;
-                    productService.UpdateBook(book);
-                    Response.Redirect("~/Pages/Product/Catalog.aspx");
+                   
                     try
                     {
                         string culture;

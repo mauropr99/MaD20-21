@@ -1,6 +1,7 @@
 ﻿using System;
 using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
@@ -33,7 +34,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
             string creditCardCvv = txtCreditCardCvv.Text;
             string creditCardType = DropDownCreditCardTypeList.SelectedValue;
             string expirationDateString = txtExpirationDate.Text;
-             
+
             try
             {
                 DateTime expirationDate = DateTime.ParseExact(expirationDateString, "MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
@@ -46,13 +47,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.CreditCardOperations
                 if (refUrl != null)
                     Response.Redirect((string)refUrl);
             }
-            catch
+            catch (FormatException)
             {
                 Response.Redirect("~/Pages/Errors/InternalError.aspx");
             }
-
-           
+            catch (DuplicatedCreditCardException)
+            {
+                Response.Redirect("~/Pages/Errors/InternalError.aspx");
+            }
         }
-
     }
 }

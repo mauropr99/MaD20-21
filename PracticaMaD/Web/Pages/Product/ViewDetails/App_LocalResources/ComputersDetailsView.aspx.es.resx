@@ -124,25 +124,25 @@
     <value>MARCA: </value>
   </data>
   <data name="price" xml:space="preserve">
-    <value>PREZO: </value>
+    <value>PRECIO:</value>
   </data>
   <data name="availableStock" xml:space="preserve">
-    <value>STOCK DISPOÑIBLE: </value>
+    <value>STOCK DISPONIBLE: </value>
   </data>
   <data name="processor" xml:space="preserve">
     <value>PROCESADOR: </value>
   </data>
   <data name="releaseDate" xml:space="preserve">
-    <value>DATA DE LANZAMENTO: </value>
+    <value>FECHA DE LANZAMIENTO: </value>
   </data>
   <data name="operatingSystem" xml:space="preserve">
     <value>SISTEMA OPERATIVO: </value>
   </data>
   <data name="quantity" xml:space="preserve">
-    <value>Cantidade: </value>
+    <value>Cantidad: </value>
   </data>
   <data name="addToShoppingCart" xml:space="preserve">
-    <value>Engadir ao carrito</value>
+    <value>Añadir al carrito</value>
   </data>
   <data name="submit" xml:space="preserve">
     <value>confirmar</value>

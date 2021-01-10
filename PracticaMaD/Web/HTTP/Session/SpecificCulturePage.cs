@@ -27,47 +27,43 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
              * not do anything and the framework will behave based on
              * configuration on Web.config or page level
              */
-            string culture;
+
             if (SessionManager.IsUserAuthenticated(Context))
             {
                 Locale locale = SessionManager.GetLocale(Context);
 
-                culture = locale.Language + "-" + locale.Country;
-            }
-            else
-            {
-                culture = "en-US";
-            }
-            CultureInfo cultureInfo;
+                String culture = locale.Language + "-" + locale.Country;
+                CultureInfo cultureInfo;
 
-            /*
-                * The method CreateSpecificCulture will try to create a
-                * specific culture based on the combination selected by the
-                * user (i.e. <laguageCode2>-<country/regionCode2>). If the
-                * combination is not a valid culture, it will create a
-                * specific culture using 1) the languague and 2) the default
-                * region for that language. For example, if user selects
-                * gl-UK (wich is not a valid culture), an gl-ES specific
-                * culture will be created
-                */
-            try
-            {
-                cultureInfo = new CultureInfo(culture);
+                /*
+                 * The method CreateSpecificCulture will try to create a
+                 * specific culture based on the combination selected by the
+                 * user (i.e. <laguageCode2>-<country/regionCode2>). If the
+                 * combination is not a valid culture, it will create a
+                 * specific culture using 1) the languague and 2) the default
+                 * region for that language. For example, if user selects
+                 * gl-UK (wich is not a valid culture), an gl-ES specific
+                 * culture will be created
+                 */
+                try
+                {
+                    cultureInfo = new CultureInfo(culture);
 
-                LogManager.RecordMessage("Specific culture created: " + cultureInfo.Name, MessageType.Info);
-            }
-            /*
-                * If any error occurs we will create a default culture
-                * "en-US". This exception should never happen.
-                */
-            catch (ArgumentException)
-            {
-                cultureInfo = CultureInfo.CreateSpecificCulture("en-US");
-                LogManager.RecordMessage("Default Specific culture created: " + cultureInfo.Name, MessageType.Info);
-            }
+                    LogManager.RecordMessage("Specific culture created: " + cultureInfo.Name, MessageType.Info);
+                }
+                /*
+                 * If any error occurs we will create a default culture
+                 * "en-US". This exception should never happen.
+                 */
+                catch (ArgumentException)
+                {
+                    cultureInfo = CultureInfo.CreateSpecificCulture("en-US");
+                    LogManager.RecordMessage("Default Specific culture created: " + cultureInfo.Name, MessageType.Info);
+                }
 
-            Thread.CurrentThread.CurrentCulture = cultureInfo;
-            Thread.CurrentThread.CurrentUICulture = cultureInfo;
+                Thread.CurrentThread.CurrentCulture = cultureInfo;
+                Thread.CurrentThread.CurrentUICulture = cultureInfo;
+            }
 
         }
     }
