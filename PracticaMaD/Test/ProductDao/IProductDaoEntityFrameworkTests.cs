@@ -184,7 +184,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ProductDao.Tests
                 Book product3 = TestUtil.CreateBook(category2, "El Quijote Nueva edición", 3.5m, "El Quijote");
 
                 List<Product> foundProducts = new List<Product>();
-                foundProducts = TestUtil.productDao.FindByProductNameAndCategoryName("Acer", category2.name, 0, 10);
+                foundProducts = TestUtil.productDao.FindByProductNameAndCategoryName("Acer", category1.name, 0, 10);
 
                 Assert.AreEqual(1, foundProducts.Count);
             }
